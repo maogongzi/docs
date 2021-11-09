@@ -1,31 +1,31 @@
 # v3.vuejs.org
 
-This site is built with [VuePress](https://vuepress.vuejs.org/). Site content is written in Markdown format located in `src`.
+Este sitio está construido con [VuePress](https://vuepress.vuejs.org/). El contenido del sitio está escrito en formato Markdown ubicado en `src`.
 
-## Writing
+## Redacción
 
-See the [Vue Docs Writing Guide](https://v3.vuejs.org/guide/writing-guide.html) for our rules and recommendations on writing and maintaining documentation.
+Vea la [Guía de Redacción de Documentación de Vue](https://v3.vuejs.org/guide/writing-guide.html) para conocer nuestras reglas y recomendaciones en la redacción y mantenimiento de la documentación.
 
-## Developing
+## Desarrollar
 
-1. Clone repository
+1. Clone este repositorio
 
 ```bash
 git clone git@github.com:vuejs/docs.git
 ```
 
-2. Install dependencies
+2. Instale las dependencias
 
 ```bash
-yarn # or npm install
+yarn # o npm install
 ```
 
-3. Start local development environment
+3. Inicie el entorno local de desarollo
 
 ```bash
-yarn serve # or npm run serve
+yarn serve # o npm run serve
 ```
 
-## Deploying
+## Desplegar
 
-The site is automatically deployed when commits land in `master`, via [Netlify](https://www.netlify.com/).
+El sitio es desplegado automáticamente en [Netlify](https://www.netlify.com/) cuando se han hecho commits en `master`.
