@@ -257,16 +257,17 @@ app.component('todo-item', {
 })
 ```
 
-Now we can pass the todo into each repeated component using `v-bind`:
+Ahora podemos pasar el todo en cada componente repetido utilizando `v-bind`:
 
 ```html
 <div id="todo-list-app">
   <ol>
     <!--
-      Now we provide each todo-item with the todo object
-      it's representing, so that its content can be dynamic.
-      We also need to provide each component with a "key",
-      which will be explained later.
+      Ahora proporcionamos cada todo-item con el objeto todo
+      que está representando, por lo que su contenido puede
+      ser dinámico.
+      También necesitamos proporcionar cada componente con una "key",
+      lo cual explicaremos luego.
     -->
     <todo-item
       v-for="item in groceryList"
@@ -302,9 +303,9 @@ app.mount('#todo-list-app')
 
 <common-codepen-snippet title="Intro-Components-1" slug="VwLxeEz" />
 
-This is a contrived example, but we have managed to separate our app into two smaller units, and the child is reasonably well-decoupled from the parent via the props interface. We can now further improve our `<todo-item>` component with more complex template and logic without affecting the parent app.
+Este es un ejemplo inventado, pero hemos logrado separar nos aplicación en dos unidades pequeñas, y el hijo está bien desacoplado del padre mediante el uso de la interfaz props. Ahora podemos mejorar nuestro componente`<todo-item>` con plantilla y lógica más compleja sin afectar la aplicación padre.
 
-In a large application, it is necessary to divide the whole app into components to make development manageable. We will talk a lot more about components [later in the guide](component-basics.html), but here's an (imaginary) example of what an app's template might look like with components:
+En una aplicación grande, es necesario dividir toda la aplicación en componentes para hacer el desarrollo manejable. Hablaremos más sobre componentes [más adelante en esta guía](component-basics.html), pero aquí brinadamos un ejemplo(imaginario) de como se vería la plantilla de una aplicación con componentes:
 
 ```html
 <div id="app">
@@ -318,12 +319,12 @@ In a large application, it is necessary to divide the whole app into components 
 
 ### Relation to Custom Elements
 
-You may have noticed that Vue components look similar to **Custom Elements**, which are part of the [Web Components Spec](https://www.w3.org/wiki/WebComponents/). Indeed, parts of Vue's component design (for example the slot API) were influenced by the spec before it was natively implemented in browsers.
+Puede haber notado que los componentes de Vue son muy similares a  los **Elementos personalizados**, los cuales son una parte de la [Especificación de Componentes Web](https://www.w3.org/wiki/WebComponents/). en efecto, un parte del diseño del componente de Vue(por ejemplo el API de slot) son influido por la especificación antes de que fuera implementado nativamente en los navegadores.
 
-The main difference is that Vue's component model is designed as a part of a coherent framework that provides many additional features necessary for building non-trivial applications, for example reactive templating and state management - both of which the spec does not cover.
+La mayor diferencia es que el modelo del componente de Vue es diseñado como un parte de un framework coherente que proporciona muchas características adicionales necesarias para construir aplicaciones no trivales, por ejemplo el gestión de plantillas y estados reactivos - ninguno de los dos está cubrido por la especificación.
 
-Vue also provides great support for both consuming and creating custom elements. For more details, check out the [Vue and Web Components](/guide/web-components.html) section.
+Vue también proporciona un gran soporte tanto para consumir como para crear elementos personalizados, por más detalles, visite la sección [Vue y Componentes Web](/guide/web-components.html).
 
-## Ready for More?
+## ¿Listo para más?
 
-We've briefly introduced the most basic features of Vue.js core - the rest of this guide will cover them and other advanced features with much finer details, so make sure to read through it all!
+Hemos introducido brevemente las características más fundamentales del núcleo de Vue.js - el resto de esta guía las cubrirá y otras características avanzadas con detalles más finos, así que asegúrense de leer todo!
