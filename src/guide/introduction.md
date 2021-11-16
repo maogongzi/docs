@@ -96,7 +96,7 @@ Vue.createApp(AttributeBinding).mount('#bind-attribute')
 
 <common-codepen-snippet title="Attribute dynamic binding" slug="KKpRVvJ" />
 
-Here we're encountering something new. The `v-bind` attribute you're seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, we're basically saying "_keep this element's `title` attribute up-to-date with the `message` property on the current active instance._"
+Aquí estamos encontrando algo nuevo. El atributo `v-bind` que ve es llamado una **directiva**. Las directivas son prefijado con `v-` para indicar que son atributos especiales proporcionados por Vue, y como habrá advinado, aplican comportamientos reactivos especiales al DOM renderizado. Aquí, básicamente estamos hablando de "_Deja el atributo `title` de este elemento actualizado co la propiedad `message` en la instancia actual activa._"
 
 ## Manejar la Entrada del Usuario
 
