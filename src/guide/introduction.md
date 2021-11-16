@@ -1,38 +1,38 @@
-# Introduction
+# Introducción
 
-::: tip NOTE
-Already know Vue 2 and just want to learn about what's new in Vue 3? Check out the [Migration Guide](/guide/migration/introduction.html)!
+::: tip Nota
+¿Ya conoce Vue 2 y solo quiere aprender sobre lo nuevo que hay en Vue 3? Visite la [Guía de Migración](/guide/migration/introduction.html)!
 :::
 
-## What is Vue.js?
+## Qué es Vue.js?
 
-Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](../guide/single-file-component.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#components--libraries).
+Vue (pronunciado /vjuː/, como **view**) es un **framework progresivo** para la construcción de interfaces de usuario. A diferencia de otros frameworks monolíticos, Vue está diseñado desde cero para ser adoptable incrementalmente. La libreía base está enfocada solo en la capa de vista, y es fácil integrarla con otras librerías o proyectos existentes. Por otro lado, Vue es también perfectamente capaz de impulsar Single-Page Aplicaciones sofisticados cuando es utilizado en combinación con [herramientas modernas](../guide/single-file-component.html) y [librerías de soporte](https://github.com/vuejs/awesome-vue#components--libraries).
 
-If you’d like to learn more about Vue before diving in, we <a id="modal-player" class="vuemastery-trigger"  href="#">created a video</a> walking through the core principles and a sample project.
+Si a usted le gustaría aprender más sobre Vue antes de adentrarse, nosotros <a id="modal-player" class="vuemastery-trigger"  href="#">creamos un vídeo</a> que lo guiará a través de los principios básicos y un proyecto de ejemplo.
 
-<VideoLesson href="https://www.vuemastery.com/courses/intro-to-vue-3/intro-to-vue3" title="Watch a free video course on Vue Mastery">Watch a free video course on Vue Mastery</VideoLesson>
+<VideoLesson href="https://www.vuemastery.com/courses/intro-to-vue-3/intro-to-vue3" title="Vea un curso de vídeo gratis de Vue en Vue Mastery">Vea un curso de vídeo gratis de Vue en Vue Mastery</VideoLesson>
 
 <common-vuemastery-video-modal/>
 
-## Getting Started
+## Empezar
 
 <p>
   <ActionLink class="primary" url="installation.html">
-    Installation
+    Instalación
   </ActionLink>
 </p>
 
 ::: tip
-The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.
+La guía oficial asume un conocimiento intermedio de HTML, CSS y JavaScript. Si usteds es completamente nuevo en el desarrollo de frontend, puede que no sea la mejor idea ir directo a un framework como su primer paso, ¡aprenda lo básico y luego vuelva! La experiencia previa con otros frameworks ayuda, pero no es requerida.
 :::
 
-The easiest way to try out Vue.js is using the [Hello World example](https://codepen.io/team/Vue/pen/KKpRVpx). Feel free to open it in another tab and follow along as we go through some basic examples.
+La más facil manera de probar Vue.js es utilizar el [Ejemplo Hola Mundo](https://codepen.io/team/Vue/pen/KKpRVpx). Siéntase libre de abrirlo en otra pestaña y sígalo mientras vamos a través de algunos ejemplos básicos.
 
-The [Installation](installation.md) page provides more options of installing Vue. Note: We **do not** recommend that beginners start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
+La página de [Instalación](installation.md) proporciona más opciones para instalar Vue. Nota: **No** recomendamos que los principiantes empiecen con `vue-cli`, especialmente si no está familiarizado con las herramientas de construcción basadas de Node.js.
 
-## Declarative Rendering
+## Renderización Declarativo
 
-At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
+En el núcleo de Vue.js se encuentra un sistema que nos permite renderizar datos declarativamente en el DOM utilizando una sintaxis de plantilla sencilla:
 
 ```html
 <div id="counter">
@@ -52,7 +52,7 @@ const Counter = {
 Vue.createApp(Counter).mount('#counter')
 ```
 
-We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Take a look at the example below where `counter` property increments every second and you will see how rendered DOM changes:
+¡Hemos creado nuestra primera aplicación Vue! Esto luce muy similar a renderizar una plantilla que contiene cadenas de caracteres, pero Vue ha hecho mucho trabajo detrás de escenas. Los datos y el DOM ahora están vinculados, y todo es **reactivo**. ¿Cómo lo sabemos? Vea el ejemplo siguiente donde la propiedad `counter` incrementa cada segundo y verá como cambia el DOM renderizado:
 
 ```js{8-10}
 const Counter = {
@@ -71,13 +71,12 @@ const Counter = {
 
 <FirstExample />
 
-In addition to text interpolation, we can also bind element attributes like this:
+Además de la interpolación de texto, podemos también vincular atributos de elementes así:
 
 ```html
 <div id="bind-attribute">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds to see my dynamically bound
-    title!
+    ¡Pase el cursor sobre mí por unos segundos para observar el título mío vinculado dinámicamente!
   </span>
 </div>
 ```
@@ -86,7 +85,7 @@ In addition to text interpolation, we can also bind element attributes like this
 const AttributeBinding = {
   data() {
     return {
-      message: 'You loaded this page on ' + new Date().toLocaleString()
+      message: 'Cargó esta página en ' + new Date().toLocaleString()
     }
   }
 }
@@ -283,9 +282,9 @@ const TodoList = {
   data() {
     return {
       groceryList: [
-        { id: 0, text: 'Vegetables' },
-        { id: 1, text: 'Cheese' },
-        { id: 2, text: 'Whatever else humans are supposed to eat' }
+        { id: 0, text: 'Verduras' },
+        { id: 1, text: 'Queso' },
+        { id: 2, text: 'Cualquiera otra cosa que se supone que coman los humanos' }
       ]
     }
   }
@@ -317,9 +316,9 @@ En una aplicación grande, es necesario dividir toda la aplicación en component
 </div>
 ```
 
-### Relation to Custom Elements
+### Relación a Elementos Personalizados
 
-Puede haber notado que los componentes de Vue son muy similares a  los **Elementos personalizados**, los cuales son una parte de la [Especificación de Componentes Web](https://www.w3.org/wiki/WebComponents/). en efecto, un parte del diseño del componente de Vue(por ejemplo el API de slot) son influido por la especificación antes de que fuera implementado nativamente en los navegadores.
+Puede haber notado que los componentes de Vue son muy similares a  los **Elementos Personalizados**, los cuales son una parte de la [Especificación de Componentes Web](https://www.w3.org/wiki/WebComponents/). en efecto, un parte del diseño del componente de Vue(por ejemplo el API de slot) son influido por la especificación antes de que fuera implementado nativamente en los navegadores.
 
 La mayor diferencia es que el modelo del componente de Vue es diseñado como un parte de un framework coherente que proporciona muchas características adicionales necesarias para construir aplicaciones no trivales, por ejemplo el gestión de plantillas y estados reactivos - ninguno de los dos está cubrido por la especificación.
 
