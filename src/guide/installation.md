@@ -1,74 +1,74 @@
-# Installation
+# Instalación
 
-Vue.js is built by design to be incrementally adoptable. This means that it can be integrated into a project multiple ways depending on the requirements.
+Vue.js es construido por diseño para que sea adoptable incrementamente. Esto significa que puede ser integrado en un proyecto en múltiples formas dependiendo de los requisitos.
 
-There are four primary ways of adding Vue.js to a project:
+Hay cuatro formas primarias para añadir Vue.js a un proyecto:
 
-1. Import it as a [CDN package](#cdn) on the page
-2. Download the JavaScript files and [host them yourself](#download-and-self-host)
-3. Install it using [npm](#npm)
-4. Use the official [CLI](#cli) to scaffold a project, which provides batteries-included build setups for a modern frontend workflow (e.g., hot-reload, lint-on-save, and much more)
+1. Importarlo como un [paquete de CDN](#cdn) en la página
+2. Descargar los archivos JavaScript y [alojarlos por sí mismo](#download-and-self-host)
+3. Instalarlo utilizando [npm](#npm)
+4. Utiliza el [CLI](#cli) oficial para organizar un proyecto, lo cual proporciona configuraciones de construcción originalmente para un flujo de trabajo moderno de frontend(por ejemplo, hot-reload, lint-on-save, et cetera)
 
-## Release Notes
+## Notas de Lanzamiento
 
-Latest version: ![npm](https://img.shields.io/npm/v/vue/next.svg)
+Última Versión: ![npm](https://img.shields.io/npm/v/vue/next.svg)
 
-Detailed release notes for each version are available on [GitHub](https://github.com/vuejs/vue-next/blob/master/CHANGELOG.md).
+Las notas de lanzamiento detalladas para cada versión se encuentran en [GitHub](https://github.com/vuejs/vue-next/blob/master/CHANGELOG.md).
 
 ## Vue Devtools
 
-> Currently in Beta - Vuex and Router integration is still WIP
+> Actualmente en fase Beta - Vuex y la integración con Router aún son trabajo en progreso
  
-<VideoLesson href="https://vueschool.io/lessons/using-vue-dev-tools-with-vuejs-3?friend=vuejs" title="Learn how to install Vue Devtools on Vue School">Learn how to install and use Vue Devtools in a free Vue School lesson</VideoLesson>
+<VideoLesson href="https://vueschool.io/lessons/using-vue-dev-tools-with-vuejs-3?friend=vuejs" title="Aprender como instalar Vue Devtools en Vue School">Aprender como instalar y utilizar Vue Devtools en un lección gratis de Vue School</VideoLesson>
 
-When using Vue, we recommend also installing the [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) in your browser, allowing you to inspect and debug your Vue applications in a more user-friendly interface.
+Cuando utiliza Vue, recomendamos instalar también las [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) en su navegador, permitiéndole inspeccionar y depurar sus aplicaciones Vue mediante una interfaz más amigable al usuario.
 
-[Get the Chrome Extension](https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg)
+[Obtener la Extensión de Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg)
 
-[Get the Firefox Addon](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
+[Obtener el Addon de Firefox](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
 
-[Get the standalone Electron app](https://github.com/vuejs/vue-devtools/blob/dev/packages/shell-electron/README.md)
+[Obtener la aplicación independiente de Electron](https://github.com/vuejs/vue-devtools/blob/dev/packages/shell-electron/README.md)
 
 ## CDN
 
-For prototyping or learning purposes, you can use the latest version with:
+Para prototipos o con fines de aprendizaje, puede utilizar la última versión con:
 
 ```html
 <script src="https://unpkg.com/vue@next"></script>
 ```
 
-For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions.
+Para producción, recomendamos vincular a una versión específica para evitar rupturas inesperadas de nuevas versiones.
 
-## Download and Self Host
+## Descargar y Auto Alojamiento
 
-If you want to avoid using build tools but can't use a CDN in production then you can download the relevant `.js` file and host it using your own web server. You can then include it using a `<script>` tag, just like with the CDN approach.
+Si quiere evitar utilizar herramientas de construcción pero no puede acceder a un CDN en producción puede descargar el archivo pertinente de `.js` y alojarlo utilizando su propio servidor. Puede luego incluirlo mediante un tag `<script>`, justo como con el enfoque CDN.
 
-The files can be browsed and downloaded from a CDN such as [unpkg](https://unpkg.com/browse/vue@next/dist/) or [jsDelivr](https://cdn.jsdelivr.net/npm/vue@next/dist/). The various different files are [explained later](#explanation-of-different-builds) but you would typically want to download both a development build and a production build.
+Pueden ser navegado y descargado los archivos por un CDN como [unpkg](https://unpkg.com/browse/vue@next/dist/) o [jsDelivr](https://cdn.jsdelivr.net/npm/vue@next/dist/). Los varios archivos diferentes serán  [explicado más tarde](#explanation-of-different-builds) pero tipicamente quería descargar ambos de el construcción desarrollamiento y el de producción.
 
 ## npm
 
-npm is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [webpack](https://webpack.js.org/) or [Rollup](https://rollupjs.org/).
+npm es el método recomendado de instalación cuando construir aplicaciones Vue a gran escala. Se combina muy bin con paquete de módulos como [webpack](https://webpack.js.org/) o [Rollup](https://rollupjs.org/).
 
 ```bash
-# latest stable
+# la última estable
 $ npm install vue@next
 ```
 
-Vue also provides accompanying tools for authoring [Single File Components](../guide/single-file-component.html) (SFCs). If you want to use SFCs then you'll also need to install `@vue/compiler-sfc`:
+Vue tambien proporciona herramientas correspondientes para crear [Componentes de Único Archivo](../guide/single-file-component.html) (SFCs). Si quiere utilizar SFC también necesita instalar `@vue/compiler-sfc`:
 
 ```bash
 $ npm install -D @vue/compiler-sfc
 ```
 
-If you're coming from Vue 2 then note that `@vue/compiler-sfc` replaces `vue-template-compiler`.
+Si viene de Vue 2 nota que `vue-template-compiler` está replazado por `@vue/compiler-sfc`
 
-In addition to `@vue/compiler-sfc`, you'll also need a suitable SFC loader or plugin for your chosen bundler. See the [SFC documentation](../guide/single-file-component.html) for more information.
+Además de `@vue/compiler-sfc`, podría necesitar un cargador or plugin de SFC para el paquete de módulos elegido por usted. Vea [Documento de SFC](../guide/single-file-component.html) por más detalles.
 
-In most cases, the preferred way to create a webpack build with minimal configuration is to use Vue CLI.
+En la mayoría de los casos, el método preferido para crear una paquete de Webpack con minimal configuraciones es utilizar el CLI de Vue.
 
 ## CLI
 
-Vue provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly scaffolding ambitious Single Page Applications. It provides batteries-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save, and production-ready builds. See [the Vue CLI docs](https://cli.vuejs.org) for more details.
+Vue proporciona un [CLI Oficial](https://github.com/vuejs/vue-cli) para organizar rápidamente Single Page Applicaciones ambiciosos. Lo cual proporciona configuraciones de construcción originalmente para un flujo de trabajo moderno de frontend. Toma solo algunos minutos para establecer todos con hot-reload, lint-on-save, y construcciones preparados para producción. Vea [El Documento de Vue CLI](https://cli.vuejs.org) por más detalles.
 
 ::: tip
 The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through [the guide](./introduction.html) without any build tools before using the CLI.
