@@ -1,16 +1,16 @@
-# Application & Component Instances
+# Instancias de Aplicación y Componente
 
-## Creating an Application Instance
+## Creando una Instancia de Aplicación
 
-Every Vue application starts by creating a new **application instance** with the `createApp` function:
+Cada aplicación Vue empieza con la creación de una **instancia de aplicación** con la función `createApp`:
 
 ```js
 const app = Vue.createApp({
-  /* options */
+  /* opciones */
 })
 ```
 
-The application instance is used to register 'globals' that can then be used by components within that application. We'll discuss that in detail later in the guide but as a quick example:
+La instancia de la aplicación es utilizada para registrar 'globals' que luego puede ser utilizada por componentes dentro de esa aplicación. Discutiremos eso en detalle más adelante en esta guía, pero como un ejemplo rápido:
 
 ```js
 const app = Vue.createApp({})
@@ -19,7 +19,7 @@ app.directive('focus', FocusDirective)
 app.use(LocalePlugin)
 ```
 
-Most of the methods exposed by the application instance return that same instance, allowing for chaining:
+La mayoría de los métodos expuestos por la instancia de la aplicación retornan la misma instancia, permitiendo el encadenamiento:
 
 ```js
 Vue.createApp({})
@@ -28,23 +28,23 @@ Vue.createApp({})
   .use(LocalePlugin)
 ```
 
-You can browse the full application API in the [API reference](../api/application-api.html).
+Usted puede ver la API de la aplicación completa en [Referencia de API](../api/application-api.html).
 
-## The Root Component
+## El Componente Raíz
 
-The options passed to `createApp` are used to configure the **root component**. That component is used as the starting point for rendering when we **mount** the application.
+Las opciones pasadas a `createApp` son utilizadas para configurar el **componente raíz**. Ese componente es utilizado como punto de partida para renderizar cuando **montamos** la aplicación.
 
-An application needs to be mounted into a DOM element. For example, if we want to mount a Vue application into `<div id="app"></div>`, we should pass `#app`:
+Una aplicación necesita ser montada en un elemento del DOM. Por ejemplo, si queremos montar una aplicación Vue en `<div id="app"></div>`, deberíamos pasar `#app`:
 
 ```js
 const RootComponent = {
-  /* options */
+  /* opciones */
 }
 const app = Vue.createApp(RootComponent)
 const vm = app.mount('#app')
 ```
 
-Unlike most of the application methods, `mount` does not return the application. Instead it returns the root component instance.
+A diferencia de la mayoría de los métodos de la aplicación, `mount` no retorna la aplicación. En vez de eso, retorna la instancia del componente raíz.
 
 Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to a component instance.
 
