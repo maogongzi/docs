@@ -98,14 +98,14 @@ Vue.createApp(AttributeBinding).mount('#bind-attribute')
 
 Here we're encountering something new. The `v-bind` attribute you're seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, we're basically saying "_keep this element's `title` attribute up-to-date with the `message` property on the current active instance._"
 
-## Handling User Input
+## Manejar la Entrada del Usuario
 
-To let users interact with our app, we can use the `v-on` directive to attach event listeners that invoke methods on our instances:
+Para permitir a los usuarios interactuar con nuestro aplicación, podemos utilizar la directiva `v-on` para vincular eventos de escucha que invoquen métodos en nuestras instancias:
 
 ```html
 <div id="event-handling">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">Mensaje Invertido</button>
 </div>
 ```
 
@@ -113,7 +113,7 @@ To let users interact with our app, we can use the `v-on` directive to attach ev
 const EventHandling = {
   data() {
     return {
-      message: 'Hello Vue.js!'
+      message: '¡Hola Vue.js!'
     }
   },
   methods: {
@@ -129,11 +129,11 @@ const EventHandling = {
 Vue.createApp(EventHandling).mount('#event-handling')
 ```
 
-<common-codepen-snippet title="Event handling" slug="dyoeGjW" />
+<common-codepen-snippet title="Manipulación de Eventos" slug="dyoeGjW" />
 
-Note that in this method we update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
+Note que en este método actualizamos el estado de nuestra aplicación sin tocar el DOM, todas las manipulaciones del DOM son manejadas por Vue, y el código que usted escribe está enfocado en la lógica que hay debajo.
 
-Vue also provides the `v-model` directive that makes two-way binding between form input and app state a breeze:
+Vue también proporciona la directiva `v-model` que hace muy sencilla la vinculación de doble dirección entre formulario de entrada y el estado de la aplicación:
 
 ```html
 <div id="two-way-binding">
@@ -146,7 +146,7 @@ Vue also provides the `v-model` directive that makes two-way binding between for
 const TwoWayBinding = {
   data() {
     return {
-      message: 'Hello Vue!'
+      message: '¡Hola Vue!'
     }
   }
 }
@@ -154,15 +154,15 @@ const TwoWayBinding = {
 Vue.createApp(TwoWayBinding).mount('#two-way-binding')
 ```
 
-<common-codepen-snippet title="Two-way binding" slug="poJVgZm" />
+<common-codepen-snippet title="Vinculación de Doble Dirección" slug="poJVgZm" />
 
-## Conditionals and Loops
+## Condicionales y Ciclos
 
-It's easy to toggle the presence of an element, too:
+Es sencillo también alternar la presencia de un elemento:
 
 ```html
 <div id="conditional-rendering">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">Ahora me ve</span>
 </div>
 ```
 
@@ -178,13 +178,13 @@ const ConditionalRendering = {
 Vue.createApp(ConditionalRendering).mount('#conditional-rendering')
 ```
 
-This example demonstrates that we can bind data to not only text and attributes, but also the **structure** of the DOM. Moreover, Vue also provides a powerful transition effect system that can automatically apply [transition effects](transitions-enterleave.md) when elements are inserted/updated/removed by Vue.
+Este ejemplo demuestra que podemos vincular datos no solo a texto y atributos, sino también a la **estructura** del DOM. Además, Vue proporciona también un poderoso sistema de transición de efectos que puede automáticamente aplicar [transición de efectos](transitions-enterleave.md) cuando los elementos son insertados/actualizados/eliminados por Vue.
 
-You can change `seen` from `true` to `false` in the sandbox below to check the effect:
+Puede cambiar `seen` de `true` a `false` en el sandbox que sigue para observar lo que ocurre:
 
-<common-codepen-snippet title="Conditional rendering" slug="oNXdbpB" tab="js,result" />
+<common-codepen-snippet title="Renderización Condicional" slug="oNXdbpB" tab="js,result" />
 
-There are quite a few other directives, each with its own special functionality. For example, the `v-for` directive can be used to display a list of items using the data from an array:
+Existen bastantes otras directivas, cada una con su funcionalidad especial. Por ejemplo, la directiva `v-for`  puede ser utilizada para mostrar una lista de elementos empleando datos de un Array:
 
 ```html
 <div id="list-rendering">
@@ -201,9 +201,9 @@ const ListRendering = {
   data() {
     return {
       todos: [
-        { text: 'Learn JavaScript' },
-        { text: 'Learn Vue' },
-        { text: 'Build something awesome' }
+        { text: 'Aprender JavaScript' },
+        { text: 'Aprender Vue' },
+        { text: 'Construir algo asombroso' }
       ]
     }
   }
@@ -212,43 +212,43 @@ const ListRendering = {
 Vue.createApp(ListRendering).mount('#list-rendering')
 ```
 
-<common-codepen-snippet title="List rendering" slug="mdJLVXq" />
+<common-codepen-snippet title="Renderización de Listas" slug="mdJLVXq" />
 
-## Composing with Components
+## Composición mediante Componentes
 
-The component system is another important concept in Vue, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
+El sistema de componentes es otro concepto importante en Vue, porque es una abstracción que nos permite construir aplicaciones a gran escala compuestos de componentes pequeños, auto-contenidos, y usualmente reutilizables. Si lo pensamos, casi todo tipo de interfaz de aplicación puede ser abstraída en un árbol de componentes:
 
-![Component Tree](/images/components.png)
+![Árbol de Componentes](/images/components.png)
 
-In Vue, a component is essentially an instance with pre-defined options. Registering a component in Vue is straightforward: we create a component object as we did with `App` objects and we define it in parent's `components` option:
+En vue, un componente es escencialmente una instancia con opciones predefinidas. Registrar un componente en Vue es sencillo: creamos un objeto componente como hicimos con los objetos `App` y lo definimos en la opción `components` en su padre:
 
 ```js
 const TodoItem = {
-  template: `<li>This is a todo</li>`
+  template: `<li>Esto es un todo</li>`
 }
 
-// Create Vue application
+// Crea aplicación Vue
 const app = Vue.createApp({
   components: {
-    TodoItem // Register a new component
+    TodoItem // Registrar un nuevo componente
   },
-  ... // Other properties for the component
+  ... // Otros props para el componente
 })
 
-// Mount Vue application
+// Montar la aplicación Vue
 app.mount(...)
 ```
 
-Now you can compose it in another component's template:
+Ahora puede componenrlo en la plantilla del otro componente:
 
 ```html
 <ol>
-  <!-- Create an instance of the todo-item component -->
+  <!-- Crea una instancia del componente todo-item -->
   <todo-item></todo-item>
 </ol>
 ```
 
-But this would render the same text for every todo, which is not super interesting. We should be able to pass data from the parent scope into child components. Let's modify the component definition to make it accept a [prop](component-basics.html#passing-data-to-child-components-with-props):
+Pero este va a renderizar el mismo texto para cada todo, lo cual no es muy interesante. Deberíamos ser capaces de pasar datos a los componentes hijos desde el padre. Vamos a modificar la definición del componente para que acepte un [prop](component-basics.html#passing-data-to-child-components-with-props):
 
 ```js
 app.component('todo-item', {
