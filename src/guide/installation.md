@@ -41,7 +41,7 @@ Para producción, recomendamos vincular a una versión específica para evitar r
 
 ## Descargar y Auto Alojamiento
 
-Si quiere evitar utilizar herramientas de construcción pero no puede acceder a un CDN en producción puede descargar el archivo pertinente de `.js` y alojarlo utilizando su propio servidor. Puede luego incluirlo mediante un tag `<script>`, justo como con el enfoque CDN.
+Si quiere evitar utilizar herramientas de construcción pero no puede acceder a un CDN en producción puede descargar el archivo pertinente de `.js` y alojarlo utilizando su propio servidor. Puede luego incluirlo mediante una etiqueta `<script>`, justo como con el enfoque CDN.
 
 Pueden ser navegado y descargado los archivos por un CDN como [unpkg](https://unpkg.com/browse/vue@next/dist/) o [jsDelivr](https://cdn.jsdelivr.net/npm/vue@next/dist/). Los varios archivos diferentes serán  [explicado más tarde](#explanation-of-different-builds) pero tipicamente quería descargar ambos de el construcción desarrollamiento y el de producción.
 
