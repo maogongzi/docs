@@ -1,21 +1,22 @@
-# Class and Style Bindings
+# Vinculaciones de Clases y Estilos
 
-A common need for data binding is manipulating an element's class list and its inline styles. Since they are both attributes, we can use `v-bind` to handle them: we only need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue provides special enhancements when `v-bind` is used with `class` and `style`. In addition to strings, the expressions can also evaluate to objects or arrays.
+Una común necesidad para la vinculación de data es manipular la list de _class_ de un elemento y sus _style_ en línea. Como ambos son atributos, podemos utilizar `v-bind` para manipular ellos: solo necesitamos calcular una cadena de caracteres final con nuestras expresiones. Sin embargo, entrometerse con la concatenación de cadena de caracteres es molesto y susceptible a errores. Por esta razón, Vue proporciona mejoramientos especiales cuando `v-bind` está utilizado juntos con `class` y `style`. Además de cadenas de caracteres, las expresiones pueden también evaularse a objetos o arrays.
 
-## Binding HTML Classes
+## Vinculación de Clases de HTML
 <VideoLesson href="https://vueschool.io/lessons/dynamic-css-classes-with-vue-3?friend=vuejs" title="Free Vue.js Dynamic Classes Lesson">Watch a free video lesson on Vue School</VideoLesson>
 
-### Object Syntax
+### Sintaxis de Objeto
 
-We can pass an object to `:class` (short for `v-bind:class`) to dynamically toggle classes:
+Podemos pasar un objeto a `:class` (abreviado para `v-bind:class`) para
+alternar clases dinámicamente:
 
 ```html
 <div :class="{ active: isActive }"></div>
 ```
 
-The above syntax means the presence of the `active` class will be determined by the [truthiness](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) of the data property `isActive`.
+El sintaxis arriba significa la existencia de la clase `active` será determinado por la [veracidad](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) de la propiedad de dato `isActive`.
 
-You can have multiple classes toggled by having more fields in the object. In addition, the `:class` directive can also co-exist with the plain `class` attribute. So given the following template:
+Puede tener multiple clases alternados por haber más campos en el objeto. Además, la directiva `:class` puede también coexistir con el atributo plano `class`. Por eso dado la siguiente plantilla:
 
 ```html
 <div
@@ -24,7 +25,7 @@ You can have multiple classes toggled by having more fields in the object. In ad
 ></div>
 ```
 
-And the following data:
+y el dato siguiente:
 
 ```js
 data() {
@@ -35,7 +36,7 @@ data() {
 }
 ```
 
-It will render:
+se renderizará:
 
 ```html
 <div class="static active"></div>
