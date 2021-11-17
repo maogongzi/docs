@@ -46,9 +46,9 @@ const vm = app.mount('#app')
 
 A diferencia de la mayoría de los métodos de la aplicación, `mount` no retorna la aplicación. En vez de eso, retorna la instancia del componente raíz.
 
-Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to a component instance.
+Aunque no está estrictamente asociado con el [Patrón MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel), el diseño de Vue fue parcialmente inspirado por este. Como una convención, a menudo utilizamos la variable `vm` (abreviatura de _ViewModel_) para referirnos a la instancia de un componente.
 
-While all the examples on this page only need a single component, most real applications are organized into a tree of nested, reusable components. For example, a Todo application's component tree might look like this:
+Aunque todos los ejemplos en esta página solo necesitan un componente único, la mayoría de las aplicaciones del mundo real están organizadas en un árbol de componentes anidados y reutilizables. Por ejemplo, un árbol de componentes de una aplicación _Todo_ puede verse como sigue a continuación:
 
 ```
 Root Component
@@ -61,13 +61,13 @@ Root Component
       └─ TodoListStatistics
 ```
 
-Each component will have its own component instance, `vm`. For some components, such as `TodoItem`, there will likely be multiple instances rendered at any one time. All of the component instances in this application will share the same application instance.
+Cada componente tendrá su propia instancia de componente, `vm`. Para algunos componentes, como `TodoItem`, es muy probable que haya múltiples instancias renderizadas en un mismo momento. Todas las instancias de componentes en esta aplicación compartirán la misma instancia de aplicación.
 
-We'll talk about [the component system](component-basics.html) in detail later. For now, just be aware that the root component isn't really any different from any other component. The configuration options are the same, as is the behavior of the corresponding component instance.
+Hablaremos luego [del sistema de componentes](component-basics.html) con mayor detalle. Por ahora, solo debe saber que el componente raíz no es diferente de cualquier otro componente. Las opciones de configuración son las mismas, así como también el comportamiento de la instancia de componente correspondiente.
 
-## Component Instance Properties
+## Propiedades de Instancia de Componente
 
-Earlier in the guide we met `data` properties. Properties defined in `data` are exposed via the component instance:
+Previamente en esta guía vimos las propiedades `data`. Las propiedades definidas en `data` son expuestas mediante la instancia del componente:
 
 ```js
 const app = Vue.createApp({
@@ -81,15 +81,15 @@ const vm = app.mount('#app')
 console.log(vm.count) // => 4
 ```
 
-There are various other component options that add user-defined properties to the component instance, such as `methods`, `props`, `computed`, `inject` and `setup`. We'll discuss each of these in depth later in the guide. All of the properties of the component instance, no matter how they are defined, will be accessible in the component's template.
+Existen otras opciones de componente que añaden propiedades definidas por el usuario a la instancia del componente, tal como `methods`, `props`, `computed`, `inject` y `setup`. Discutiremos cada una de esas en detalle más adelante en esta guía. Todas las propiedades de la instnacia del componente, sin importar cómo son definidas, serán accesibles en la plantilla del componente.
 
-Vue also exposes some built-in properties via the component instance, such as `$attrs` and `$emit`. These properties all have a `$` prefix to avoid conflicting with user-defined property names.
+Vue también expone algunas propiedades integradas mediante la instancia del componente, tal como `$attrs` y `$emit`. Estas propiedades tienen un prefijo `$` para evitar conflictos con nombres de propiedades definidas por el usuario.
 
-## Lifecycle Hooks
+## _Hooks_ de Ciclo de Vida
 
-Each component instance goes through a series of initialization steps when it's created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it also runs functions called **lifecycle hooks**, giving users the opportunity to add their own code at specific stages.
+Cada instancia de componente pasa por una serie de pasos de inicialización cuando este es creado, por ejemplo, necesita preparar la observación de datos, compilar la plantilla, montar la instancia al DOM y actualizar el mismo cuando los datos cambian. En el camino, también ejecuta funciones llamadas **_hooks_ de ciclo de vida**, dando a los usuarios la oportunidad de añadir su propio código en etapas específicas.
 
-For example, the [created](../api/options-lifecycle-hooks.html#created) hook can be used to run code after an instance is created:
+Por ejemplo, el _hook_ [created](../api/options-lifecycle-hooks.html#created) puede ser utilizado para ejecutar código después de que una instancia fue creada:
 
 ```js
 Vue.createApp({
@@ -97,20 +97,19 @@ Vue.createApp({
     return { count: 1 }
   },
   created() {
-    // `this` points to the vm instance
-    console.log('count is: ' + this.count) // => "count is: 1"
+    // `this` apunta a la instancia vm
+    console.log('la cantidad es: ' + this.count) // => "la cantidad es: 1"
   }
 })
 ```
 
-There are also other hooks which will be called at different stages of the instance's lifecycle, such as [mounted](../api/options-lifecycle-hooks.html#mounted), [updated](../api/options-lifecycle-hooks.html#updated), and [unmounted](../api/options-lifecycle-hooks.html#unmounted). All lifecycle hooks are called with their `this` context pointing to the current active instance invoking it.
+Existen también otros _hooks_ los cuales serán llamados en etapas diferentes del ciclo de vida de la instancia, como [mounted](../api/options-lifecycle-hooks.html#mounted), [updated](../api/options-lifecycle-hooks.html#updated), y [unmounted](../api/options-lifecycle-hooks.html#unmounted). Todos los _hooks_ del ciclo de vida son llamados con su contexto `this` apuntando a la instancia actual y activa que los invoca.
 
 ::: tip
-Don't use [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) on an options property or callback, such as `created: () => console.log(this.a)` or `vm.$watch('a', newValue => this.myMethod())`. Since an arrow function doesn't have a `this`, `this` will be treated as any other variable and lexically looked up through parent scopes until found, often resulting in errors such as `Uncaught TypeError: Cannot read property of undefined` or `Uncaught TypeError: this.myMethod is not a function`.
-:::
+No utilice [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) en la propiedad de opciones o _callback_, como las `created: () => console.log(this.a)` o `vm.$watch('a', newValue => this.myMethod())`. Como una _arrow function_ no tiene un `this`, `this` será tratado como cualquier otra variable y buscada léxicamente hacia los alcances del elemento padre hasta ser encontrada, usualmente resultando en errores como `Uncaught TypeError: Cannot read property of undefined` o `Uncaught TypeError: this.myMethod is not a function`.
 
-## Lifecycle Diagram
+## Diagrama de Ciclo de Vida
 
-Below is a diagram for the instance lifecycle. You don't need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.
+A continuación se muestra un diagrama del ciclo de vida de la instancia. No necesita entender en este momento todo lo que se muestra, pero conforme aprenda y construya más, será una referencia útil.
 
-<img src="/images/lifecycle.svg" width="840" height="auto" style="margin: 0px auto; display: block; max-width: 100%;" loading="lazy" alt="Instance lifecycle hooks">
+<img src="/images/lifecycle.svg" width="840" height="auto" style="margin: 0px auto; display: block; max-width: 100%;" loading="lazy" alt="Hooks de ciclo de vida de instancia">
