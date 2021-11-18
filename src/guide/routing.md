@@ -1,10 +1,10 @@
-# Routing
+# Enrutamiento
 
-## Official Router
+## Enrutador Oficial
 
-For most Single Page Applications, it's recommended to use the officially-supported [vue-router library](https://github.com/vuejs/vue-router-next). For more details, see vue-router's [documentation](https://next.router.vuejs.org/).
+Para la mayoría de aplicaciones de una sola página, es recomendable utilizar la librería oficialmente soportada [vue-router](https://github.com/vuejs/vue-router-next). Para más detalles, véase la [documentación de Vue Router](https://next.router.vuejs.org/).
 
-## Simple Routing from Scratch
+## Enrutamiento Sencillo desde Cero
 
 If you only need very simple routing and do not wish to involve a full-featured router library, you can do so by dynamically rendering a page-level component like this:
 
