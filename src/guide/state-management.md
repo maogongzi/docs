@@ -1,22 +1,23 @@
 # Manejo de Estados
 
-## Official Flux-Like Implementation
+## Implementación oficial como Flux
 
-Large applications can often grow in complexity, due to multiple pieces of state scattered across many components and the interactions between them. To solve this problem, Vue offers [Vuex](https://next.vuex.vuejs.org/), our own Elm-inspired state management library. It even integrates into [vue-devtools](https://github.com/vuejs/vue-devtools), providing zero-setup access to [time travel debugging](https://raw.githubusercontent.com/vuejs/vue-devtools/legacy/media/demo.gif).
+Las aplicaciones a gran escala pueden a menudo incrementar complejidad, debido a que múltiples piezas de estado esparcidos por muchos componentes y las interacciones entre sí. Para solvar este problema, VUe proporciona [Vuex](https://next.vuex.vuejs.org/), nuestra propia librería de manejo de estados inspirado por Elm. Ella también está integrado en [vue-devtools](https://github.com/vuejs/vue-devtools), proporciona acceso a [depuración por viajes en el tiempo](https://raw.githubusercontent.com/vuejs/vue-devtools/legacy/media/demo.gif) con niguno configuración.
 
-### Information for React Developers
+### Información para los desarrolladores vienen de React
 
-If you're coming from React, you may be wondering how vuex compares to [redux](https://github.com/reactjs/redux), the most popular Flux implementation in that ecosystem. Redux is actually view-layer agnostic, so it can easily be used with Vue via [simple bindings](https://classic.yarnpkg.com/en/packages?q=redux%20vue&p=1). Vuex is different in that it _knows_ it's in a Vue app. This allows it to better integrate with Vue, offering a more intuitive API and improved development experience.
+Si usted viene de React, tal vez se estaría preguntando como comparar vuex con
+[redux](https://github.com/reactjs/redux), la más favorita implementación de Flux en esa ecosistema. Redux es de hecho agonóstico a la capa de vista, por lo que puede ser utilizado fácilmente junto con Vue mediante [vinculaciones sencillos](https://classic.yarnpkg.com/en/packages?q=redux%20vue&p=1). Vuex es diferente en el aspecto que _percibe_ que se está dentro de una aplicación Vue. Esto permite que sea mejor integrado con Vue ofreciendo un API más intuitivo y optimizada experiencia de desarrollo.
 
-## Simple State Management from Scratch
+## Manejo sencillo de estados desde cero
 
-It is often overlooked that the source of truth in Vue applications is the reactive `data` object - a component instance only proxies access to it. Therefore, if you have a piece of state that should be shared by multiple instances, you can use a [reactive](/guide/reactivity-fundamentals.html#declaring-reactive-state) method to make an object reactive:
+Se está frecuentemente ignorado que el fuente de verdad en una aplicación Vue es el objeto reactivo `data` - una instancia de componente solo delega acceso al objeto. Por lo tanto, si tiene una pieza de estado que debe ser compartido por múltiples instancias, puede utilizar el método [reactive](/guide/reactivity-fundamentals.html#declaring-reactive-state) para hacer un objeto reactivo:
 
 ```js
 const { createApp, reactive } = Vue
 
 const sourceOfTruth = reactive({
-  message: 'Hello'
+  message: 'Hola'
 })
 
 const appA = createApp({
@@ -38,7 +39,7 @@ const appB = createApp({
 <div id="app-b">App B: {{ message }}</div>
 ```
 
-Now whenever `sourceOfTruth` is mutated, both `appA` and `appB` will update their views automatically. We have a single source of truth now, but debugging would be a nightmare. Any piece of data could be changed by any part of our app at any time, without leaving a trace.
+Ahora cuando `sourceOfTruth` es mutada, tanto `appA` como `appB` actualizará sus vistas automáticamente. Tenemos un único fuente de verdad ahora, pero la depuración sería una pesadilla. Cualquiera pieza de dato puede ser cambiado por cualquier parte de nuestra applicación en cualquier momento sin dejando un rastro.
 
 ```js
 const appB = createApp({
@@ -46,24 +47,24 @@ const appB = createApp({
     return sourceOfTruth
   },
   mounted() {
-    sourceOfTruth.message = 'Goodbye' // both apps will render 'Goodbye' message now
+    sourceOfTruth.message = 'Adiós' // ambos de las aplicaciones renderizarán el mensaje 'Adiós' ahora
   }
 }).mount('#app-b')
 ```
 
-To help solve this problem, we can adopt a **store pattern**:
+Para tratar de resolver este problema, podemos adoptar un **patrón de almación**:
 
 ```js
 const store = {
   debug: true,
 
   state: reactive({
-    message: 'Hello!'
+    message: '¡Hola!'
   }),
 
   setMessageAction(newValue) {
     if (this.debug) {
-      console.log('setMessageAction triggered with', newValue)
+      console.log('setMessageAction disparado con', newValue)
     }
 
     this.state.message = newValue
@@ -71,7 +72,7 @@ const store = {
 
   clearMessageAction() {
     if (this.debug) {
-      console.log('clearMessageAction triggered')
+      console.log('clearMessageAction está disparado')
     }
 
     this.state.message = ''
@@ -79,9 +80,9 @@ const store = {
 }
 ```
 
-Notice all actions that mutate the store's state are put inside the store itself. This type of centralized state management makes it easier to understand what type of mutations could happen and how they are triggered. Now when something goes wrong, we'll also have a log of what happened leading up to the bug.
+Note que todas acciones que muten el estado del almacén son colocados dentro del almacén mismo. Este tipo de manejo de estado centralizado hace más sencillo comprender cual tipo de mutaciones podrían ocurrir y como son disparados. Ahora cuando algo sale mal, Obtendremos un registro de los occuridos que conducen al error.
 
-In addition, each instance/component can still own and manage its own private state:
+Además, cada instancia/componente todavía puede poseer y manejar sus propios estados privados:
 
 ```html
 <div id="app-a">{{sharedState.message}}</div>
@@ -98,7 +99,7 @@ const appA = createApp({
     }
   },
   mounted() {
-    store.setMessageAction('Goodbye!')
+    store.setMessageAction('¡Adiós!')
   }
 }).mount('#app-a')
 
@@ -112,12 +113,12 @@ const appB = createApp({
 }).mount('#app-b')
 ```
 
-![State Management](/images/state.png)
+![Manejo de Estados](/images/state.png)
 
 ::: tip
-You should never replace the original state object in your actions - the components and the store need to share reference to the same object in order for mutations to be observed.
+Nunca debería replazar el original objeto de estado en tus acciones - los componentes y el almacén necesitan compartir la referiencia del mismo objeto para que los mutaciones sean observados.
 :::
 
-As we continue developing the convention, where components are never allowed to directly mutate state that belongs to a store but should instead dispatch events that notify the store to perform actions, we eventually arrive at the [Flux](https://facebook.github.io/flux/) architecture. The benefit of this convention is we can record all state mutations happening to the store and implement advanced debugging helpers such as mutation logs, snapshots, and history re-rolls / time travel.
+A medida que continuamos desarrollando la convención, donde los componentes nunca serán permitidos mutar directamente el estado que pertenece a un almacén, pero en vez despachar eventos que notifican el almacén para ejecutar acciones, eventualmente llegamos a la architectura [Flux](https://facebook.github.io/flux/). El beneficio de esta convención es que podemos recordar todas mutaciones de estado ocurriendo al almacén y implementar helpers avanzadas de depuración como registros de mutación, instantáneas, y retroceso de la historia / viaje por el tiempo.
 
-This brings us full circle back to [Vuex](https://next.vuex.vuejs.org/), so if you've read this far it's probably time to try it out!
+Esto nos lleva completamente al origin de [Vuex](https://next.vuex.vuejs.org/), por eso si haya llegado a este parte ¡es probablemente el tiempo de probarlo!
