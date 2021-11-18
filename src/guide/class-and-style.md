@@ -163,7 +163,7 @@ Cuando `isActive` es _truthy_, el HTML renderizado será:
 <p class="foo bar active">Hi</p>
 ```
 
-Si su componente tiene más que uno elemento raiz, necesitaría definir cual componente recibirá esta clase. Puede hacerlo utilizando el propiedad `$attrs` del componente:
+Si su componente tiene más que uno elemento raíz, necesitaría definir cual componente recibirá esta clase. Puede hacerlo utilizando el propiedad `$attrs` del componente:
 
 ```html
 <div id="app">
