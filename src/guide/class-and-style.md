@@ -188,7 +188,7 @@ Puede aprender más sobre la herencia de atributos de componentes en la sección
 
 ### Syntaxis de Objeto
 
-El sintaxis de objeto para `:style` es muy sencillo - it looks almost like CSS, except it's a JavaScript object. You can use either camelCase or kebab-case (use quotes with kebab-case) for the CSS property names:
+El sintaxis de objeto para `:style` es muy sencillo - se ve casi igual a CSS, excepto que es un objeto JavaScript. Puede utilizar tanto _camelCase_ como _kebab-case_ (utilice comillas con _kebab-case_) para los nombres de propiedades de CSS:
 
 ```html
 <div :style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
@@ -203,7 +203,7 @@ data() {
 }
 ```
 
-It is often a good idea to bind to a style object directly so that the template is cleaner:
+Es una buena idea vincular a un objecto de estilo directamente para que la plantilla sea más limpia:
 
 ```html
 <div :style="styleObject"></div>
@@ -220,26 +220,26 @@ data() {
 }
 ```
 
-Again, the object syntax is often used in conjunction with computed properties that return objects.
+De nuevo, el sintaxis de objeto es utilizado frecuentemente junto con propiedades computadas que retornan objetos.
 
-### Array Syntax
+### Sintaxis de Matriz
 
-The array syntax for `:style` allows you to apply multiple style objects to the same element:
+La sintaxis de matriz para `:style` permite que aplique múltiples objetos de estilo al mismo elemento:
 
 ```html
 <div :style="[baseStyles, overridingStyles]"></div>
 ```
 
-### Auto-prefixing
+### Prefijarse Automáticamente
 
-When you use a CSS property that requires a [vendor prefix](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) in `:style`, Vue will automatically add the appropriate prefix. Vue does this by checking at runtime to see which style properties are supported in the current browser. If the browser doesn't support a particular property then various prefixed variants will be tested to try to find one that is supported.
+Cuando utiliza una propiedad de CSS que requiere un [prefijo específico del vendor](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) en `:style`, Vue va automáticamente añadir el prefijo apropiado. Lo hace Vue mediante comprobar en el tiempo de ejecución para ver cuales propiedades de estilo son suportado en el navegador corriente. Si el navegador no suporta una propiedad particular, varios variantes prefijados serán comprodados para tratar de encontrar uno que sea soportado.
 
-### Multiple Values
+### Múltiples Valores
 
-You can provide an array of multiple (prefixed) values to a style property, for example:
+Puede proveer un matriz de múltiples valores (prefijados) a una propiedad de estilo, por ejemplo:
 
 ```html
 <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
 ```
 
-This will only render the last value in the array which the browser supports. In this example, it will render `display: flex` for browsers that support the unprefixed version of flexbox.
+Esto solo renderizará el último valor del matriz que soporta el navegador. en este ejemplo, renderizará `display: flex` para navegadores que soportan el versión de _flexbox_ sin prefijo.
