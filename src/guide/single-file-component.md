@@ -1,17 +1,17 @@
-# Single File Components
+# Componentes de un Solo Archivo
 
-<VideoLesson href="https://vueschool.io/lessons/vue-3-introduction-to-single-file-components?friend=vuejs" title="Free Vue.js Single File Components Lesson">Learn about single file components with a free video lesson on Vue School</VideoLesson>
+<VideoLesson href="https://vueschool.io/lessons/vue-3-introduction-to-single-file-components?friend=vuejs" title="Free Vue.js Single File Components Lesson">Aprender sobre componentes de un solo archivo con una lección de vídeo gratis en Vue School</VideoLesson>
 
-## Introduction
+## Introducción
 
-Vue Single File Components (aka `*.vue` files, abbreviated as **SFC**) is a special file format that allows us to encapsulate the template, logic, **and** styling of a Vue component in a single file. Here's an example SFC:
+Componentes de un Solo Archivo de Vue (también conocido como archivos `*.vue`, abreviado como **SFC**) es un formato especial que nos permite encapsular las plantillas, lógica, **y** estilos de un componente Vue en un solo archivo. Aquí es un ejemplo de SFC:
 
 ```vue
 <script>
 export default {
   data() {
     return {
-      greeting: 'Hello World!'
+      greeting: '¡Hola Mundo!'
     }
   }
 }
