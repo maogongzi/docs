@@ -1,4 +1,4 @@
-# State Management
+# Manejo de Estados
 
 ## Official Flux-Like Implementation
 
