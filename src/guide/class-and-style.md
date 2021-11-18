@@ -125,7 +125,7 @@ Sin embargo, esto puede ser un poquito verboso si tiene muchas clases condiciona
 
 > Este sección asume el conocimiento de [Componentes de Vue](component-basics.md). Siéntase libre de saltarlo y volver más tarde.
 
-Cuando utiliza el atributo `class` en un componente personalizado con on sólo elemento raiz, estas clases serán añadido al elemento. Las clases existentes en el elemento no serán sobrescrito.
+Cuando utiliza el atributo `class` en un componente personalizado con on sólo elemento raíz, estas clases serán añadido al elemento. Las clases existentes en el elemento no serán sobrescrito.
 
 Por ejemplo, si declara este componente::
 
