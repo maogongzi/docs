@@ -1,10 +1,10 @@
-# Computed Properties and Watchers
+# Propiedades Computadas y Observadores
 
-## Computed Properties
+## Propiedades Computadas
 
-<VideoLesson href="https://vueschool.io/lessons/computed-properties-in-vue-3?friend=vuejs" title="Learn how computed properties work with Vue School">Learn how computed properties work with a free lesson on Vue School</VideoLesson>
+<VideoLesson href="https://vueschool.io/lessons/computed-properties-in-vue-3?friend=vuejs" title="Aprender cómo propiedades computadas funcionan en Vue School">Aprender cómo propiedades computadas funcionan con una lección gratis en Vue School</VideoLesson>
 
-In-template expressions are very convenient, but they are meant for simple operations. Putting too much logic in your templates can make them bloated and hard to maintain. For example, if we have an object with a nested array:
+Las expresiones dentro de plantillas son muy convenientes, pero son diseñado para operaciones sencillas. Poner demasiada lógica dentro de tus plantillas puede hacerlas infladas y difíciles de mantener. Por ejemplo, si tenemos un objeto con una matriz anidado:
 
 ```js
 Vue.createApp({
@@ -13,9 +13,9 @@ Vue.createApp({
       author: {
         name: 'John Doe',
         books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
+          'Vue 2 - Guía Avanzada',
+          'Vue 3 - Guía Básica',
+          'Vue 4 - El Misterio'
         ]
       }
     }
@@ -23,24 +23,24 @@ Vue.createApp({
 })
 ```
 
-And we want to display different messages depending on if `author` already has some books or not
+Y queremos mostrar mensajes diferentes dependiendo de si `author` ya ha poseído unos libros o no
 
 ```html
 <div id="computed-basics">
-  <p>Has published books:</p>
-  <span>{{ author.books.length > 0 ? 'Yes' : 'No' }}</span>
+  <p>Ha publicado libros:</p>
+  <span>{{ author.books.length > 0 ? 'Sí' : 'No' }}</span>
 </div>
 ```
 
-At this point, the template is no longer simple and declarative. You have to look at it for a second before realizing that it performs a calculation depending on `author.books`. The problem is made worse when you want to include this calculation in your template more than once.
+En este momento, la plantilla no es más sencilla y declarativa. Tiene que revisarlo por un segundo antes de darse cuenta de que ejerza una calculación dependiendo de `author.books`. El problema empeorará cuando quiere incluir esta calculación en tu plantilla más que una vez.
 
-That's why for complex logic that includes reactive data, you should use a **computed property**.
+Es porque para lógica compleja que incluye dato reactivo, debería utilizar una **propiedad computada**.
 
-### Basic Example
+### Ejemplo Básico
 
 ```html
 <div id="computed-basics">
-  <p>Has published books:</p>
+  <p>Ha publicado libros:</p>
   <span>{{ publishedBooksMessage }}</span>
 </div>
 ```
@@ -52,53 +52,53 @@ Vue.createApp({
       author: {
         name: 'John Doe',
         books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
+          'Vue 2 - Guía Avanzada',
+          'Vue 3 - Guía Básica',
+          'Vue 4 - El Misterio'
         ]
       }
     }
   },
   computed: {
-    // a computed getter
+    // un captador computado
     publishedBooksMessage() {
-      // `this` points to the vm instance
+      // `this` apunta a la instancia vm
       return this.author.books.length > 0 ? 'Yes' : 'No'
     }
   }
 }).mount('#computed-basics')
 ```
 
-Result:
+Resultado:
 
-<common-codepen-snippet title="Computed basic example" slug="NWqzrjr" tab="js,result" :preview="false" />
+<common-codepen-snippet title="Ejemplo básico de Computed" slug="NWqzrjr" tab="js,result" :preview="false" />
 
-Here we have declared a computed property `publishedBooksMessage`.
+Aquí hemos declarado una propiedad computada `publishedBooksMessage`.
 
-Try to change the value of `books` array in the application `data` and you will see how `publishedBooksMessage` is changing accordingly.
+Trate de cambiar el valor de la matriz `books` del atributo `data` de la aplicación y verá como `publishedBooksMessage` está cambiando en consecuencia.
 
-You can data-bind to computed properties in templates just like a normal property. Vue is aware that `vm.publishedBooksMessage` depends on `vm.author.books`, so it will update any bindings that depend on `vm.publishedBooksMessage` when `vm.author.books` changes. And the best part is that we've created this dependency relationship declaratively: the computed getter function has no side effects, which makes it easier to test and understand.
+Puede vincular datos a las propiedades computadas en plantillas justo como a propiedades normales. Vue es consciente de que `vm.publishedBooksMessage` depende de `vm.author.books`, así que actualizará cualquieras vinculaciones que dependan de `vm.publishedBooksMessage` cuando `vm.author.books` cambie. Y la mejor parte es que hemos creado esta relación de dependencia declaramente: el función de captador computado no tiene efectos secundarios, lo cual hace que sea más fácil para probar y comprender.
 
-### Computed Caching vs Methods
+### Caché de Computed versus Métodos
 
-You may have noticed we can achieve the same result by invoking a method in the expression:
+Usted puede haber notado que podemos lograr el mismo resultado mediante invocar un método en la expresión:
 
 ```html
 <p>{{ calculateBooksMessage() }}</p>
 ```
 
 ```js
-// in component
+// dentro del componente
 methods: {
   calculateBooksMessage() {
-    return this.author.books.length > 0 ? 'Yes' : 'No'
+    return this.author.books.length > 0 ? 'Sí' : 'No'
   }
 }
 ```
 
-Instead of a computed property, we can define the same function as a method. For the end result, the two approaches are indeed exactly the same. However, the difference is that **computed properties are cached based on their reactive dependencies.** A computed property will only re-evaluate when some of its reactive dependencies have changed. This means as long as `author.books` has not changed, multiple access to the `publishedBooksMessage` computed property will immediately return the previously computed result without having to run the function again.
+En ves de una propiedad computada, podemos definir el mismo función como un método, para el resultado final, los dos enfoques son en efecto el mismo, exactamente. Sin embargo, la diferencia es que **las propiedades computadas son almacenado en caché basado de sus dependencias reactivas.** Una propiedad computado solo será reevaluado cuando unos de sus dependencias reactivas hayan cambiado. Esto significa que siempre y cuando `author.books` no haya cambiado, múltiples accesos a la propiedad computada `publishedBooksMessage` retornará inmediatamente el previo resultado computado sin ejecutar el función de nuevo.
 
-This also means the following computed property will never update, because `Date.now()` is not a reactive dependency:
+Esto también significa que la siguiente propiedad computada nonca se actualizará, porque `Date.now()` no es una dependencia reactiva:
 
 ```js
 computed: {
@@ -137,7 +137,7 @@ computed: {
 
 Now when you run `vm.fullName = 'John Doe'`, the setter will be invoked and `vm.firstName` and `vm.lastName` will be updated accordingly.
 
-## Watchers
+## Observadores
 
 While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary. That's why Vue provides a more generic way to react to data changes through the `watch` option. This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
 
