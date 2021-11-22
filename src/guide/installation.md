@@ -68,7 +68,7 @@ En la mayoría de los casos, el método preferido para crear una paquete de Webp
 
 ## CLI
 
-Vue proporciona un [CLI Oficial](https://github.com/vuejs/vue-cli) para organizar rápidamente Single Page Aplicaciones ambiciosos. Lo cual proporciona configuraciones de construcción originalmente para un flujo de trabajo moderno de frontend. Toma solo unos minutos para establecer todos con hot-reload, lint-on-save, y compilaciones preparados para producción. Vea [El Documento de Vue CLI](https://cli.vuejs.org) para más detalles.
+Vue proporciona un [CLI Oficial](https://cli.vuejs.org/) para organizar rápidamente Single Page Aplicaciones ambiciosos. Lo cual proporciona configuraciones de construcción originalmente para un flujo de trabajo moderno de frontend. Toma solo unos minutos para establecer todos con hot-reload, lint-on-save, y compilaciones preparados para producción.
 
 ::: tip
 El CLI(interfaz de línea de comandos) asume que usted posee conocimiento previo de Node.js y las herramientas de compilación asociadas. Si usted es nuevo en Vue o en el manejo de las herramientas de compilación de front-end, le recomendamos leer [la guía](./introduction.html) sin ninguna herramienta de compilación antes de usar el CLI.
@@ -90,7 +90,7 @@ vue upgrade --next
 
 ## Vite
 
-[Vite](https://github.com/vitejs/vite) es una herramienta de desarrollo web que le permite el rápido despliegue del código debido a su enfoque nativo para importación de Módulos ES.
+[Vite](https://vitejs.dev/) es una herramienta de desarrollo web que le permite el rápido despliegue del código debido a su enfoque nativo para importación de Módulos ES.
 
 Los proyectos de Vue pueden ser rápidamente configurados con Vit ejecutando los siguientes comandos en su terminal.
 
