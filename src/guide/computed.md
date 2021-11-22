@@ -196,13 +196,13 @@ Result:
 
 <common-codepen-snippet title="Ve el ejemplo básico" slug="GRJGqXp" tab="result" :preview="false" />
 
-In this case, using the `watch` option allows us to perform an asynchronous operation (accessing an API) and sets a condition for performing this operation. None of that would be possible with a computed property.
+En este caso, utilizar la opción `watch` nos permite ejecutar una operación asincrónica (acceder un API) y establecer una condición para ejecutar esta operación. Nada de eso puede ser posible con una propiedad computada.
 
-In addition to the `watch` option, you can also use the imperative [vm.$watch API](../api/instance-methods.html#watch).
+Además de la opción `watch`, puede también utilizar el API imperativo [vm.$watch](../api/instance-methods.html#watch).
 
 ### Computed vs Watched Property
 
-Vue does provide a more generic way to observe and react to data changes on a current active instance: **watch properties**. When you have some data that needs to change based on some other data, it is tempting to overuse `watch` - especially if you are coming from an AngularJS background. However, it is often a better idea to use a computed property rather than an imperative `watch` callback. Consider this example:
+Vue proporciona una manera más genérica para observar y reaccionar a cambios de dato de una instancia activa: **propiedades de observación**. Cuando tiene algo dato que necesita cambiar basada en algunos otros datos, es tentador utilizar excesivamente `watch` - especialmente si viene de un fondo de AngularJS. Sin embargo, a menudo es una mejor idea utilizar una propiedad computada en vez de una _callback_ imperativa de `watch`. Considere este ejemplo:
 
 ```html
 <div id="demo">{{ fullName }}</div>
@@ -228,7 +228,7 @@ const vm = Vue.createApp({
 }).mount('#demo')
 ```
 
-The above code is imperative and repetitive. Compare it with a computed property version:
+El código arriba es imperativa y repetitiva. Compárelo con una versión de propiedad computada:
 
 ```js
 const vm = Vue.createApp({
@@ -246,4 +246,4 @@ const vm = Vue.createApp({
 }).mount('#demo')
 ```
 
-Much better, isn't it?
+Much mejor, ¿no? 
