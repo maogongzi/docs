@@ -108,23 +108,23 @@ computed: {
 }
 ```
 
-In comparison, a method invocation will **always** run the function whenever a re-render happens.
+En comparación, una invocación de método **siempre** ejecutará el función cada vez que una re-renderización occurre.
 
-Why do we need caching? Imagine we have an expensive computed property `list`, which requires looping through a huge array and doing a lot of computations. Then we may have other computed properties that in turn depend on `list`. Without caching, we would be executing `list`’s getter many more times than necessary! In cases where you do not want caching, use a `method` instead.
+Por qué necesitamos caché? Imagine que tenemos una propiedad computada `list`, lo que requiere recorrer una gran matriz y hacer un montón de computaciones, Entonces podríamos tener otras propiedades computadas que a su vez depende de `list`. Sin caché, ¡estaríamos ejecutiendo el cargador de `list` muchos más veces de lo necesario! En los casos donde no necesita caché, utilice un `método` en su lugar.
 
-### Computed Setter
+### Establecedor Computado
 
-Computed properties are by default getter-only, but you can also provide a setter when you need it:
+Las propiedades computadas son por defecto solo cargadores, pero puede también proporcionar un establecedor cuando lo necesite:
 
 ```js
 // ...
 computed: {
   fullName: {
-    // getter
+    // cargador
     get() {
       return this.firstName + ' ' + this.lastName
     },
-    // setter
+    // establecedor
     set(newValue) {
       const names = newValue.split(' ')
       this.firstName = names[0]
@@ -135,18 +135,18 @@ computed: {
 // ...
 ```
 
-Now when you run `vm.fullName = 'John Doe'`, the setter will be invoked and `vm.firstName` and `vm.lastName` will be updated accordingly.
+Ahora cuando ejecuta `vm.fullName = 'John Doe'`, el establecedor será invocado y `vm.firstName` y `vm.lastName` serán actualizado en consecuencia.
 
 ## Observadores
 
-While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary. That's why Vue provides a more generic way to react to data changes through the `watch` option. This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
+Mientras que propiedades computadas son más apropiadas en la mayoría de los casos, hay momentos cuando un observador personalizada es necesario. Eso es porque Vue proporciona una manera más genérica para reaccionar a cambios de datos por la opción `watch`. Esto es muy útil cuando quiere ejecutar operaciones asincrónicas o caras en respuesta a cambios de dato.
 
-For example:
+Por ejemplo:
 
 ```html
 <div id="watch-example">
   <p>
-    Ask a yes/no question:
+    Plantea una pregunta de sí/no:
     <input v-model="question" />
   </p>
   <p>{{ answer }}</p>
@@ -154,21 +154,21 @@ For example:
 ```
 
 ```html
-<!-- Since there is already a rich ecosystem of ajax libraries    -->
-<!-- and collections of general-purpose utility methods, Vue core -->
-<!-- is able to remain small by not reinventing them. This also   -->
-<!-- gives you the freedom to use what you're familiar with.      -->
+<!-- Dado que ya existe una ecosistema rica de librerías ajax, -->
+<!-- y colecciones de métodos de utilidades de uso general, El núcleo de Vue -->
+<!-- puede mantenerse pequeño mediante no reinventarlos. Esto también -->
+<!-- le brinda la libertad de utilizar con lo que está familiarizado. -->
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 <script>
   const watchExampleVM = Vue.createApp({
     data() {
       return {
         question: '',
-        answer: 'Questions usually contain a question mark. ;-)'
+        answer: 'Preguntas usualmente contienen un signo de interrogación. ;-)'
       }
     },
     watch: {
-      // whenever question changes, this function will run
+      // Cada vez que la pregunta cambia, este función ejecutará
       question(newQuestion, oldQuestion) {
         if (newQuestion.indexOf('?') > -1) {
           this.getAnswer()
@@ -177,14 +177,14 @@ For example:
     },
     methods: {
       getAnswer() {
-        this.answer = 'Thinking...'
+        this.answer = 'Piensando...'
         axios
           .get('https://yesno.wtf/api')
           .then(response => {
             this.answer = response.data.answer
           })
           .catch(error => {
-            this.answer = 'Error! Could not reach the API. ' + error
+            this.answer = '¡Error! No se puede alcanzar al API. ' + error
           })
       }
     }
@@ -194,7 +194,7 @@ For example:
 
 Result:
 
-<common-codepen-snippet title="Watch basic example" slug="GRJGqXp" tab="result" :preview="false" />
+<common-codepen-snippet title="Ve el ejemplo básico" slug="GRJGqXp" tab="result" :preview="false" />
 
 In this case, using the `watch` option allows us to perform an asynchronous operation (accessing an API) and sets a condition for performing this operation. None of that would be possible with a computed property.
 
