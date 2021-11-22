@@ -1,4 +1,4 @@
-# Event Handling
+# Manejo de Eventos
 
 <VideoLesson href="https://vueschool.io/lessons/user-events-in-vue-3?friend=vuejs" title="Learn how to handle events on Vue School">Learn how to handle events in a free Vue School lesson</VideoLesson>
 
