@@ -246,4 +246,4 @@ const vm = Vue.createApp({
 }).mount('#demo')
 ```
 
-Much mejor, ¿no? 
+Mucho mejor, ¿no? 
