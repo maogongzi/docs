@@ -1,52 +1,52 @@
-# Conditional Rendering
+# Renderización Condicional
 
-<VideoLesson href="https://vueschool.io/lessons/conditional-rendering-in-vue-3?friend=vuejs" title="Learn how conditional rendering works with Vue School">Learn how conditional rendering works with a free lesson on Vue School</VideoLesson>
+<VideoLesson href="https://vueschool.io/lessons/conditional-rendering-in-vue-3?friend=vuejs" title="Aprender cómo renderización condicional funciona en Vue School">Aprender cómo renderización condicional funciona con una lección gratis en Vue School</VideoLesson>
 
 ## `v-if`
 
-The directive `v-if` is used to conditionally render a block. The block will only be rendered if the directive's expression returns a truthy value.
+Esta directiva `v-if` es utilizado para renderizar un bloque condicionalmente. Este bloque solo será renderizado si la expresión de la directiva retorna un valor _truthy_.
 
 ```html
-<h1 v-if="awesome">Vue is awesome!</h1>
+<h1 v-if="awesome">¡Vue es estupendo!</h1>
 ```
 
-It is also possible to add an "else block" with `v-else`:
+Es también posible añadir un bloque de _else_ con `v-else`:
 
 ```html
-<h1 v-if="awesome">Vue is awesome!</h1>
+<h1 v-if="awesome">¡Vue es estupendo!</h1>
 <h1 v-else>Oh no 😢</h1>
 ```
 
-### Conditional Groups with `v-if` on `<template>`
+### Grupos Condicionales con `v-if` en `<template>`
 
-Because `v-if` is a directive, it has to be attached to a single element. But what if we want to toggle more than one element? In this case we can use `v-if` on a `<template>` element, which serves as an invisible wrapper. The final rendered result will not include the `<template>` element.
+Debido a que `v-if` es una directiva, tiene que ser adjuntado a un solo elemento. Pero ¿y si queremos alternar más que uno elemento? En este caso podemos utilizar `v-if` en un elemento `<template>`, lo que sierve como un envoltorio invisible. El final resulto renderizado no incluirá el elemento `<template>`.
 
 ```html
 <template v-if="ok">
-  <h1>Title</h1>
-  <p>Paragraph 1</p>
-  <p>Paragraph 2</p>
+  <h1>Título</h1>
+  <p>Párrafo 1</p>
+  <p>Párrafo 2</p>
 </template>
 ```
 
 ### `v-else`
 
-You can use the `v-else` directive to indicate an "else block" for `v-if`:
+Puede utilizar la directiva `v-else` para indicar un bloque _else_ para `v-if`:
 
 ```html
 <div v-if="Math.random() > 0.5">
-  Now you see me
+  Ahora me ve
 </div>
 <div v-else>
-  Now you don't
+  Ahora no
 </div>
 ```
 
-A `v-else` element must immediately follow a `v-if` or a `v-else-if` element - otherwise it will not be recognized.
+Un elemento de `v-else` debe seguir inmediatamente un elemento de `v-if` o `v-else-if`, de lo contrario no será reconocido.
 
 ### `v-else-if`
 
-The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. It can also be chained multiple times:
+La directiva `v-else-if`, como su nombre indica, sierve como un bloque de _else if_ para `v-if`. También puede ser encadenado múltiples tiempos:
 
 ```html
 <div v-if="type === 'A'">
@@ -59,38 +59,38 @@ The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. 
   C
 </div>
 <div v-else>
-  Not A/B/C
+  Ni A/B/C
 </div>
 ```
 
-Similar to `v-else`, a `v-else-if` element must immediately follow a `v-if` or a `v-else-if` element.
+Similar como `v-else`, un elemento de `v-else-if` debe seguir inmediatamente un elemento de `v-if` o `v-else-if`.
 
 ## `v-show`
 
-Another option for conditionally displaying an element is the `v-show` directive. The usage is largely the same:
+Otra opción para mostrar condicionalmente un elemento es la directiva `v-show`. El uso es lo mismo en gran medida.
 
 ```html
-<h1 v-show="ok">Hello!</h1>
+<h1 v-show="ok">¡Hola!</h1>
 ```
 
-The difference is that an element with `v-show` will always be rendered and remain in the DOM; `v-show` only toggles the `display` CSS property of the element.
+La diferencia es que un elemento con `v-show` será renderizado y mantenido en el DOM; `v-show` solo alterna la propiedad CSS `display` del elemento.
 
-`v-show` doesn't support the `<template>` element, nor does it work with `v-else`.
+`v-show` no soporta el elemento `<template>`, tampoco funciona con `v-else`.
 
-## `v-if` vs `v-show`
+## `v-if` versus `v-show`
 
-`v-if` is "real" conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
+`v-if` es renderización condicional verdadero poeque garantiza que los escuchadores de evento y componentes secundarios dentro del bloque condicional serán destruido correctamente y recreado durante alternaciones.
 
-`v-if` is also **lazy**: if the condition is false on initial render, it will not do anything - the conditional block won't be rendered until the condition becomes true for the first time.
+`v-if` es también **perezoso**: si la condición es falsa o renderización inicial, no hará nada - el bloque condicional no será renderizado hasta que la condición se convierta en _true_ por primera vez.
 
-In comparison, `v-show` is much simpler - the element is always rendered regardless of initial condition, with CSS-based toggling.
+En comparación, `v-show` es más sencillo - el elemento es siempre renderizado sin tener en cuenta la condición inicial, con alternación basada de CSS.
 
-Generally speaking, `v-if` has higher toggle costs while `v-show` has higher initial render costs. So prefer `v-show` if you need to toggle something very often, and prefer `v-if` if the condition is unlikely to change at runtime.
+En términos generales, `v-if` es más costoso mientras `v-show` es más costoso en la renderización inicial. Por eso elige `v-show` si necesita alternar algo muy a menudo, y elige `v-if` si la condición es poco probable de cambiarse en tiempo de ejecución.
 
-## `v-if` with `v-for`
+## `v-if` junto con `v-for`
 
 ::: tip Note
-Using `v-if` and `v-for` together is **not recommended**. See the [style guide](../style-guide/#avoid-v-if-with-v-for-essential) for further information.
+Utilice `v-if` y `v-for` juntos **no es recomendado**. Vea el [guía de estilos](../style-guide/#avoid-v-if-with-v-for-essential) por más detalles.
 :::
 
-When `v-if` and `v-for` are both used on the same element, `v-if` will be evaluated first. See the [list rendering guide](list.html#v-for-with-v-if) for details.
+Cuando `v-if` y `v-for` son aplicado juntos en el mismo elemento, `v-if` será evaluado primero. Vea el [guía de renderización de listas](list.html#v-for-with-v-if) por más detalles.
