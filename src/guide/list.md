@@ -1,10 +1,10 @@
-# List Rendering
+# Renderización de lista
 
-<VideoLesson href="https://vueschool.io/lessons/list-rendering-in-vue-3?friend=vuejs" title="Learn how to render lists on Vue School">Learn how to render list with a free Vue School lesson</VideoLesson>
+<VideoLesson href="https://vueschool.io/lessons/list-rendering-in-vue-3?friend=vuejs" title="Aprender cómo renderizar listas en Vue School">Aprender cómo renderizar listas con una lección gratis en Vue School</VideoLesson>
 
-## Mapping an Array to Elements with `v-for`
+## Mapear una matriz a elementos con v-for
 
-We can use the `v-for` directive to render a list of items based on an array. The `v-for` directive requires a special syntax in the form of `item in items`, where `items` is the source data array and `item` is an **alias** for the array element being iterated on:
+Podemos utilizar la directiva `v-for` para renderizar una lista de elementos basada en una matriz. La directiva `v-for` requiere una sintaxis especial en forma de `item in items`, donde los `items` son la matriz de datos de origen y el `item` es un **alias** para el elemento de matriz que se está iterando:
 
 ```html
 <ul id="array-rendering">
@@ -24,11 +24,11 @@ Vue.createApp({
 }).mount('#array-rendering')
 ```
 
-Result:
+Resultado:
 
-<common-codepen-snippet title="v-for with Array" slug="VwLGbwa" tab="js,result" :preview="false" />
+<common-codepen-snippet title="v-for con matriz" slug="VwLGbwa" tab="js,result" :preview="false" />
 
-Inside `v-for` blocks we have full access to parent scope properties. `v-for` also supports an optional second argument for the index of the current item.
+Dentro de los bloques `v-for` tenemos acceso completo a las propiedades del alcance del padre. `v-for` también soporta un segundo argumento opcional para el índice del elemento actual.
 
 ```html
 <ul id="array-with-index">
@@ -51,7 +51,7 @@ Vue.createApp({
 
 Result:
 
-<common-codepen-snippet title="v-for with Array and index" slug="wvaEdBP" tab="js,result" :preview="false" />
+<common-codepen-snippet title="v-for con matriz y índice" slug="wvaEdBP" tab="js,result" :preview="false" />
 
 You can also use `of` as the delimiter instead of `in`, so that it is closer to JavaScript's syntax for iterators:
 
