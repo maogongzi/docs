@@ -1,10 +1,10 @@
 # Propiedades y Métodos de Dato
 
-<VideoLesson href="https://vueschool.io/lessons/methods-in-vue-3?friend=vuejs" title="Learn how to use methods on Vue School">Learn how to work with data and methods with a free Vue School lesson</VideoLesson>
+<VideoLesson href="https://vueschool.io/lessons/methods-in-vue-3?friend=vuejs" title="Aprender cómo utilizar métodos en Vue School">Aprender cómo trabajar con dato y métodos con una lección gratis en Vue School</VideoLesson>
 
-## Data Properties
+## Propiedades de Dato
 
-The `data` option for a component is a function. Vue calls this function as part of creating a new component instance. It should return an object, which Vue will then wrap in its reactivity system and store on the component instance as `$data`. For convenience, any top-level properties of that object are also exposed directly via the component instance:
+La opción `data` para un componente es un función. Vue lo llama como una parte del proceso de la creación de una nueva instancia de componente. Debería retornar un objeto, lo cual Vue va a envolver en su sistema reactiva y almancenarlo en la instancia componente como `$data`. Por conveniencia, cualquiera propiedad de nivel superior de ese objeto son también expuesto directamente mediante la instancia componente:
 
 ```js
 const app = Vue.createApp({
@@ -18,18 +18,18 @@ const vm = app.mount('#app')
 console.log(vm.$data.count) // => 4
 console.log(vm.count)       // => 4
 
-// Assigning a value to vm.count will also update $data.count
+// Asignar un valor a vm.count también actualizará $data.count
 vm.count = 5
 console.log(vm.$data.count) // => 5
 
-// ... and vice-versa
+// ... y viceversa
 vm.$data.count = 6
 console.log(vm.count) // => 6
 ```
 
-These instance properties are only added when the instance is first created, so you need to ensure they are all present in the object returned by the `data` function. Where necessary, use `null`, `undefined` or some other placeholder value for properties where the desired value isn't yet available.
+Estas propiedades de instancia son solo agregado cuando la instancia es creada inicialmente, así que necesita asegurar que ellas están presentes en el objeto retornado por la función `data`. Si es necesario, utiliza `null`, `undefined` o algunos otros valores de marcadores de posición dónde el valor deseado no haya sido disponible ya.
 
-It is possible to add a new property directly to the component instance without including it in `data`. However, because this property isn't backed by the reactive `$data` object, it won't automatically be tracked by [Vue's reactivity system](reactivity.html).
+Es posible agregar una nueva propiedad directamente a la instancia componente sin incluirlo en `data`. Sin embargo, debido a que esta propiedad no está respaldado por el objeto reactivo `$data`, no será rastreado automáticamente por la [Sistema reactiva de Vue](reactivity.html).
 
 Vue uses a `$` prefix when exposing its own built-in APIs via the component instance. It also reserves the prefix `_` for internal properties. You should avoid using names for top-level `data` properties that start with either of these characters.
 
