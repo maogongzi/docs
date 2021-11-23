@@ -1,4 +1,4 @@
-# Data Properties and Methods
+# Propiedades y Métodos de Dato
 
 <VideoLesson href="https://vueschool.io/lessons/methods-in-vue-3?friend=vuejs" title="Learn how to use methods on Vue School">Learn how to work with data and methods with a free Vue School lesson</VideoLesson>
 
