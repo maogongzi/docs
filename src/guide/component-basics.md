@@ -25,7 +25,7 @@ app.component('button-counter', {
 ```
 
 ::: info
-Le estámos mostrando un ejemplo sencillo aquí, pero en una aplicación Vue típica utilizamos componentes de un solo archivo (Single File Components) en vez de una plantilla de cadena de caracteres. Puede consultar más información sobre los [en esta sección](./single-file-component.html).
+Le estámos mostrando un ejemplo sencillo aquí, pero en una aplicación Vue típica utilizamos componentes de un solo archivo (Single File Components) en vez de una plantilla de cadena de caracteres. Puede consultar más información sobre los [en esta sección](single-file-component.html).
 :::
 
 Los componentes son instancias reutilizables de Vue con un nombre: en este caso, `<button-counter>`. Podemos utilizar este componente como un elemento personalizado dentro de una instancia raíz:
@@ -413,7 +413,7 @@ Si está escribiendo sus plantillas Vue directamente en DOM, Vue tendrá que rec
 Debería tenerse en cuenta que las limitaciones debatidos abajo solo aplican si está escribiendo sus plantillas directamente en DOM. No aplican si está utilizando plantillas de cadenas de caracteres desde los siguiente fuentes:
 
 - Plantillas de cadenas de caracteres (p. ej. `template: '...'`)
-- [Componentes de un solo archivo (`.vue`)](./single-file-component.html)
+- [Componentes de un solo archivo (`.vue`)](single-file-component.html)
 - `<script type="text/x-template">`
 :::
 
@@ -464,4 +464,4 @@ app.component('blog-post', {
 
 Eso es todo lo que necesita saber sobre los casos especiales de análisis de plantillas DOM por ahora, y en realidad, el final de los _aspectos esenciales_ de Vue. ¡Felicidades! Todavía hay más que aprender, pero primero, recomendamos tomar un descanso para practicar con Vue usted mismo y construir algo divertido.
 
-Una vez que se sienta cómodo con el conocimiento que acaba de digerir, le recomendamos que regrese para leer la guía completa de [Componentes Dinámicos y Asíncronos](./component-dynamic-async.html), así como las otras páginas en la sección Componentes en Profundidad de la barra lateral.
+Una vez que se sienta cómodo con el conocimiento que acaba de digerir, le recomendamos que regrese para leer la guía completa de [Componentes Dinámicos y Asíncronos](component-dynamic-async.html), así como las otras páginas en la sección Componentes en Profundidad de la barra lateral.
