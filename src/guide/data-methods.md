@@ -61,7 +61,7 @@ console.log(vm.count) // => 5
 
 Vue automáticamente vincula el valor de `this` para `methods` para que el siempre refiere a la instancia de componente. Esto asegura que un método retiene el valor correcto de `this` si está utilizado como un escuchador de eventos o _callback_. Debería evitar utilizar funciones de flecha cuando define `methods`, porque eso previene que Vue vincule el valor apropiado de `this`.
 
-Justo como todas otras propiedades de la instancia de componente, los funciones de `methods` son accesible desde dentro de la plantilla del componente. Dentro de una plantilla son utilizados con mayor frecuencia como escuchadores de evento:
+Justo como todas otras propiedades de la instancia de componente, las funciones de `methods` son accesible desde dentro de la plantilla del componente. Dentro de una plantilla son utilizados con mayor frecuencia como escuchadores de evento:
 
 ```html
 <button @click="increment">Votar</button>
@@ -101,7 +101,7 @@ En casos donde un componente es utilizado de una sola vez, el _debouncing_  pued
 </script>
 ```
 
-Sin embargo, este enfoque es potencialmente problemático para comoponentes que son reutilizados porque comparten lo mismo función de _debouncing_. Para mantener la instancia del componente independiente de cada una, podemos añadir el función de _debouncing_ en el _hook_ de ciclo de vida de `created`:
+Sin embargo, este enfoque es potencialmente problemático para comoponentes que son reutilizados porque comparten lo mismo función de _debouncing_. Para mantener la instancia del componente independiente de cada una, podemos añadir la función de _debouncing_ en el _hook_ de ciclo de vida de `created`:
 
 ```js
 app.component('save-button', {
