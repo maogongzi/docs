@@ -1,16 +1,16 @@
-# Components Basics
+# Básicos de Componentes
 
-<VideoLesson href="https://vueschool.io/courses/vue-js-3-components-fundamentals?friend=vuejs" title="Free Vue.js Components Fundamentals Course">Learn component basics with a free video course on Vue School</VideoLesson>
+<VideoLesson href="https://vueschool.io/courses/vue-js-3-components-fundamentals?friend=vuejs" title="Curso gratis de componentes de Vue.js">Aprender los básicos de componentes con un curso gratis en Vue School</VideoLesson>
 
-## Base Example
+## Ejemplo básico
 
-Here's an example of a Vue component:
+Aquí es un ejemplo de un componente Vue:
 
 ```js
-// Create a Vue application
+// Crear una aplicación Vue
 const app = Vue.createApp({})
 
-// Define a new global component called button-counter
+// Definir un nuevo componente global llamado button-counter
 app.component('button-counter', {
   data() {
     return {
@@ -19,16 +19,16 @@ app.component('button-counter', {
   },
   template: `
     <button @click="count++">
-      You clicked me {{ count }} times.
+      Me ha hecho clics de {{ count }} veces.
     </button>`
 })
 ```
 
 ::: info
-We're showing you a simple example here, but in a typical Vue application we use Single File Components instead of a string template. You can find more information about them [in this section](single-file-component.html).
+Le estámos mostrando un ejemplo sencillo aquí, pero en una aplicación Vue típica utilizamos componentes de un solo archivo (Single File Components) en vez de una plantilla de cadena de caracteres. Puede consultar más información sobre los [en esta sección](single-file-component.html).
 :::
 
-Components are reusable instances with a name: in this case, `<button-counter>`. We can use this component as a custom element inside a root instance:
+Los componentes son instancias reutilizables de Vue con un nombre: en este caso, `<button-counter>`. Podemos utilizar este componente como un elemento personalizado dentro de una instancia raíz:
 
 ```html
 <div id="components-demo">
@@ -40,13 +40,13 @@ Components are reusable instances with a name: in this case, `<button-counter>`.
 app.mount('#components-demo')
 ```
 
-<common-codepen-snippet title="Component basics" slug="abORVEJ" tab="js,result" :preview="false" />
+<common-codepen-snippet title="Básicos de componentes" slug="abORVEJ" tab="js,result" :preview="false" />
 
-Since components are reusable instances, they accept the same options as a root instance, such as `data`, `computed`, `watch`, `methods`, and lifecycle hooks.
+Dado que los componentes son instancias reutilizables, aceptan las mismas opciones de una instancia raíz, como `data`, `computed`, `watch`, `methods`, y _hooks_ de ciclo de vida.
 
-## Reusing Components
+## Reutilizar Componentes
 
-Components can be reused as many times as you want:
+Los componentes se pueden reutilizar tantas veces como se desee:
 
 ```html
 <div id="components-demo">
@@ -56,37 +56,37 @@ Components can be reused as many times as you want:
 </div>
 ```
 
-<common-codepen-snippet title="Component basics: reusing components" slug="rNVqYvM" tab="result" :preview="false" />
+<common-codepen-snippet title="Básicos de componentes: reutilizar componentes" slug="rNVqYvM" tab="result" :preview="false" />
 
-Notice that when clicking on the buttons, each one maintains its own, separate `count`. That's because each time you use a component, a new **instance** of it is created.
+Tenga en cuenta que al hacer clic en los botones, cada uno mantiene su propio `count` por separado. Esto se debe a que cada vez que utiliza un componente, se crea una nueva **instancia** de sí mismo.
 
-## Organizing Components
+## Organización de Componentes
 
-It's common for an app to be organized into a tree of nested components:
+Es común que una aplicación se organice en un árbol de componentes anidados:
 
-![Component Tree](/images/components.png)
+![Árbol de Componente](/images/components.png)
 
-For example, you might have components for a header, sidebar, and content area, each typically containing other components for navigation links, blog posts, etc.
+Por ejemplo, puede tener componentes para un encabezado, una barra lateral y un área de contenido, cada uno de los cuales generalmente contiene otros componentes para enlaces de navegación, publicaciones de blog, etc.
 
-To use these components in templates, they must be registered so that Vue knows about them. There are two types of component registration: **global** and **local**. So far, we've only registered components globally, using the `component` method of our app:
+Para utilizar estos componentes en plantillas, deben registrarse para que Vue los conozca. Existen dos tipos de registro de componentes: **global** y **local**. Hasta ahora, solo hemos registrado componentes globalmente, utilizando el método `component` de nuestra aplicación:
 
 ```js
 const app = Vue.createApp({})
 
 app.component('my-component-name', {
-  // ... options ...
+  // ... opciones ...
 })
 ```
 
-Globally registered components can be used in the template of any component within the app.
+Los componentes registrados globalmente se pueden utilizar en la plantilla de cualquier componente dentro de la aplicación.
 
-That's all you need to know about registration for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Component Registration](component-registration.md).
+Eso es todo lo que necesita saber sobre el registro por ahora, pero una vez que haya terminado de leer esta página y se sienta cómodo con su contenido, le recomendamos volver más tarde para leer la guía completa de [Registro de Componentes](component-registration.md).
 
-## Passing Data to Child Components with Props
+## Pasar datos a componentes secundarios con _Props_
 
-Earlier, we mentioned creating a component for blog posts. The problem is, that component won't be useful unless you can pass data to it, such as the title and content of the specific post we want to display. That's where props come in.
+Anteriormente, mencionamos la creación de un componente para publicaciones de blog. El problema es que ese componente no será útil a menos que pueda pasarle datos, como el título y el contenido de la publicación específica que queremos mostrar. Ahí es donde entran las _props_.
 
-Props are custom attributes you can register on a component. To pass a title to our blog post component, we can include it in the list of props this component accepts, using the `props` option:
+Las _props_ son atributos personalizados que puede registrar en un componente. Para pasar un título a nuestro componente de publicación de blog, podemos incluirlo en la lista de _props_ que este componente acepta, usando la opción `props`:
 
 ```js
 const app = Vue.createApp({})
@@ -98,33 +98,32 @@ app.component('blog-post', {
 
 app.mount('#blog-post-demo')
 ```
+Cuando se pasa un valor a un atributo _prop_, se convierte en una propiedad en esa instancia de componente. El valor de la propiedad es accesible dentro de la plantilla, justo como cualquiera otra propiedad del componente.
 
-When a value is passed to a prop attribute, it becomes a property on that component instance. The value of that property is accessible within the template, just like any other component property.
+Un componente puede tener tantas _props_ como se desee, por defecto, se puede pasar cualquier valor a cualquiera _prop_.
 
-A component can have as many props as you like and, by default, any value can be passed to any prop.
-
-Once a prop is registered, you can pass data to it as a custom attribute, like this:
+Una vez que se registra un _prop_, puede pasarle datos como un atributo personalizado, de la siguiente manera:
 
 ```html
 <div id="blog-post-demo" class="demo">
-  <blog-post title="My journey with Vue"></blog-post>
-  <blog-post title="Blogging with Vue"></blog-post>
-  <blog-post title="Why Vue is so fun"></blog-post>
+  <blog-post title="Mi viaje con Vue"></blog-post>
+  <blog-post title="Blogging con Vue"></blog-post>
+  <blog-post title="¿Por qué Vue es tan divertido?"></blog-post>
 </div>
 ```
 
-<common-codepen-snippet title="Component basics: passing props" slug="PoqyOaX" tab="result" :preview="false" />
+<common-codepen-snippet title="Básicos de componentes: pasar props" slug="PoqyOaX" tab="result" :preview="false" />
 
-In a typical app, however, you'll likely have an array of posts in `data`:
+En una aplicación típica, sin embargo, es probable que tenga una matriz de publicaciones en `data`:
 
 ```js
 const App = {
   data() {
     return {
       posts: [
-        { id: 1, title: 'My journey with Vue' },
-        { id: 2, title: 'Blogging with Vue' },
-        { id: 3, title: 'Why Vue is so fun' }
+        { id: 1, title: 'Mi viaje con Vue' },
+        { id: 2, title: 'Blogging con Vue' },
+        { id: 3, title: '¿Por qué Vue es tan divertido?' }
       ]
     }
   }
@@ -140,7 +139,7 @@ app.component('blog-post', {
 app.mount('#blog-posts-demo')
 ```
 
-Then want to render a component for each one:
+Entonces querría renderizar un componente para cada una:
 
 ```html
 <div id="blog-posts-demo">
@@ -152,15 +151,15 @@ Then want to render a component for each one:
 </div>
 ```
 
-Above, you'll see that we can use `v-bind` to dynamically pass props. This is especially useful when you don't know the exact content you're going to render ahead of time.
+Arriba, verá que podemos utilizar `v-bind` para pasar _props_ dinámicamente. Esto es especialmente útil cuando no se conoce el contenido exacto que se va a renderizar con anticipación.
 
-That's all you need to know about props for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Props](component-props.html).
+Esto es todo lo que necesita saber sobre _props_ por ahora, pero una vez que haya terminado de leer esta página y se sienta cómodo con su contenido, le recomendamos volver más tarde para leer la guía completa de [_Props_](component-props.html).
 
-## Listening to Child Components Events
+## Escuchar a eventos de componentes secundarios
 
-As we develop our `<blog-post>` component, some features may require communicating back up to the parent. For example, we may decide to include an accessibility feature to enlarge the text of blog posts, while leaving the rest of the page its default size.
+A medida que desarrollamos nuestro componente `<blog-post>`, es posible que algunas funciones requieran la comunicación hacia el componente padre. Por ejemplo, podemos decidir incluir una característica de accesibilidad para ampliar el texto de las publicaciones del blog, dejando el resto de la página en su tamaño por defecto:
 
-In the parent, we can support this feature by adding a `postFontSize` data property:
+En el padre, podemos soportar esta característica agregando una propiedad `postFontSize` en `data`:
 
 ```js
 const App = {
@@ -175,7 +174,7 @@ const App = {
 }
 ```
 
-Which can be used in the template to control the font size of all blog posts:
+Esta propiedad puede ser utilizado en la plantilla para controlar el tamaño de la fuente de todas las publicaciones del blog:
 
 ```html
 <div id="blog-posts-events-demo">
@@ -189,7 +188,7 @@ Which can be used in the template to control the font size of all blog posts:
 </div>
 ```
 
-Now let's add a button to enlarge the text right before the content of every post:
+Ahora agreguemos un botón para ampliar el texto justo antes del contenido de cada publicación:
 
 ```js
 app.component('blog-post', {
@@ -198,28 +197,28 @@ app.component('blog-post', {
     <div class="blog-post">
       <h4>{{ title }}</h4>
       <button>
-        Enlarge text
+        Agrandar texto
       </button>
     </div>
   `
 })
 ```
 
-The problem is, this button doesn't do anything:
+El problema es que este botón no hace nada:
 
 ```html
 <button>
-  Enlarge text
+   Agrandar texto
 </button>
 ```
 
-When we click on the button, we need to communicate to the parent that it should enlarge the text of all posts. To solve this problem, component instances provide a custom events system. The parent can choose to listen to any event on the child component instance with `v-on` or `@`, just as we would with a native DOM event:
+Cuando hacemos clic en el botón, debemos comunicar al componente padre que debe agrandar el texto de todas las publicaciones. Para resolver este problema, las instancias componentes proporcionan una sistema de eventos personalizados. El padre puede optar por escuchar a cualquier evento de la instancia del componente secundario con `v-on` o `@`, justo como lo que haríamos con un evento nativo de DOM:
 
 ```html
 <blog-post ... @enlarge-text="postFontSize += 0.1"></blog-post>
 ```
 
-Then the child component can emit an event on itself by calling the built-in [**`$emit`** method](../api/instance-methods.html#emit), passing the name of the event:
+Entonces, el componente secundario puede emitir un evento en sí mismo mediante llamar el método integrado [**`$emit`**](../api/instance-methods.html#emit) pasando el nombre del evento:
 
 ```html
 <button @click="$emit('enlargeText')">
@@ -227,9 +226,9 @@ Then the child component can emit an event on itself by calling the built-in [**
 </button>
 ```
 
-Thanks to the `@enlarge-text="postFontSize += 0.1"` listener, the parent will receive the event and update the value of `postFontSize`.
+Gracias al escuchador `@enlarge-text="postFontSize += 0.1"`, el padre recibirá el evento y actualizará el valor de `postFontSize`.
 
-<common-codepen-snippet title="Component basics: emitting events" slug="KKpGyrp" tab="result" :preview="false" />
+<common-codepen-snippet title="Básicos de componentes: emitir eventos" slug="KKpGyrp" tab="result" :preview="false" />
 
 We can list emitted events in the component's `emits` option:
 
