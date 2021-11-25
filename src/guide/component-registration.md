@@ -1,12 +1,12 @@
-# Component Registration
+# Registro de Componente
 
-<VideoLesson href="https://vueschool.io/lessons/vue-3-global-vs-local-vue-components?friend=vuejs" title="Free Vue.js Component Registration lesson">Learn how component registration works with a free lesson on Vue School</VideoLesson>
+<VideoLesson href="https://vueschool.io/lessons/vue-3-global-vs-local-vue-components?friend=vuejs" title="Lección gratis sobre registro de componente de Vue.js">Aprender cómo funciona el registro de componente con una lección gratis en Vue School</VideoLesson>
 
-> This page assumes you've already read the [Components Basics](component-basics.md). Read that first if you are new to components.
+> Esta pagina asume que usted ya ha leído [Básicos de Componentes](component-basics.md). Léalo primero si usted es nuevo con componentes.
 
-## Component Names
+## Nombre del Componente
 
-When registering a component, it will always be given a name. For example, in the global registration we've seen so far:
+Cuando registramos un componente, siempre se le asignará un nombre. Por ejemplo, en el registro global hemos visto hasta ahora:
 
 ```js
 const app = Vue.createApp({...})
@@ -16,22 +16,22 @@ app.component('my-component-name', {
 })
 ```
 
-The component's name is the first argument of `app.component`. In the example above, the component's name is "my-component-name".
+El nombre del componente es el primer argumento de `app.component`. En el ejemplo arriba, el nombre del componente es "my-component-name".
 
-The name you give a component may depend on where you intend to use it. When using a component directly in the DOM (as opposed to in a string template or [single-file component](../guide/single-file-component.html)), we strongly recommend following the [W3C rules](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name) for custom tag names:
+El nombre que le dé a un componente puede depender de dónde pretenda utilizarlo. Cuando utilice un componente directamente en el DOM (a diferencia de en una plantilla de cadena de caracteres o [componentes de un solo archivo](../guide/single-file-component.html)), recomendamos encarecidamente seguir las [reglas de W3C](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name) para nombres de etiquetas personalizados:
 
-1. All lowercase
-2. Contains a hyphen (i.e., has multiple words connected with the hyphen symbol)
+1. Todo en minúsculas
+2. Debe contener un guión (es decir, hay múltiples palabras conectadas por el guión)
 
-By doing so, this will help you avoid conflicts with current and future HTML elements.
+De esta manera, le ayudará evitar conflictos con los elementos HTML actuales y futuros.
 
-You can see other recommendations for component names in the [Style Guide](../style-guide/#base-component-names-strongly-recommended).
+Usted puede ver otras recomenaciones para nombres de componentes en la [Guía de Estilo](../style-guide/#base-component-names-strongly-recommended).
 
-### Name Casing
+### Nomenclatura
 
-When defining components in a string template or a single-file component, you have two options for naming them:
+Cuando define componentes en una plantilla de cadena de caracteres o en un componente de un solo archivo, tiene dos opciones para nombrarlos:
 
-#### With kebab-case
+#### Con _kebab-case_
 
 ```js
 app.component('my-component-name', {
@@ -39,9 +39,9 @@ app.component('my-component-name', {
 })
 ```
 
-When defining a component with kebab-case, you must also use kebab-case when referencing its custom element, such as in `<my-component-name>`.
+Al definir un componente con _kebab-case_, también debe utilizar _kebab-case_ al hacer referencia a su elemento personalizado, como en `<my-component-name>`.
 
-#### With PascalCase
+#### Con _PascalCase_
 
 ```js
 app.component('MyComponentName', {
@@ -49,19 +49,19 @@ app.component('MyComponentName', {
 })
 ```
 
-When defining a component with PascalCase, you can use either case when referencing its custom element. That means both `<my-component-name>` and `<MyComponentName>` are acceptable. Note, however, that only kebab-case names are valid directly in the DOM (i.e. non-string templates).
+Cuando define un componente con _PascalCase_, puede utilizar cualquiera de los dos casos al hacer referencia a su elemento personalizado. Eso significa que tanto `<my-component-name>` como `<MyComponentName>` son aceptables. Sin embargo, tenga en cuenta que solo los nombres de _kebab-case_ son válidos directamente en el DOM (es decir, plantillas que no son cadenas de caracteres).
 
-## Global Registration
+## Registro Global
 
-So far, we've only created components using `app.component`:
+Hasta ahora, solo hemos creado componentes utilizando `app.component`:
 
 ```js
 Vue.createApp({...}).component('my-component-name', {
-  // ... options ...
+  // ... opciones ...
 })
 ```
 
-These components are **globally registered** for the application. That means they can be used in the template of any component instance within this application:
+Estos componentes son **registrados globalmente** para la aplicación. Lo que significa que ellos pueden ser utilizado en la plantilla de cualquiera instancia de componente dentro de esta aplicación:
 
 ```js
 const app = Vue.createApp({})
@@ -87,13 +87,13 @@ app.mount('#app')
 </div>
 ```
 
-This even applies to all subcomponents, meaning all three of these components will also be available _inside each other_.
+Esto se aplica incluso a todos los componentes secundarios, lo que significa que todos los tres componentes también estarán disponibles _dentro de cada uno_.
 
-## Local Registration
+## Registro local
 
-Global registration often isn't ideal. For example, if you're using a build system like Webpack, globally registering all components means that even if you stop using a component, it could still be included in your final build. This unnecessarily increases the amount of JavaScript your users have to download.
+El registro global a menudo no es ideal. Por ejemplo, si estás utilizando un empaquetador de módulos como Webpack, el registro global de todos los componentes significa que, incluso si deja de utilizar un componente, podría ser incluido en su compilación final. Esto aumenta innecesariamente la cantidad de JavaScript que sus usuarios tienen que descargar.
 
-In these cases, you can define your components as plain JavaScript objects:
+En estos casos, puede definir sus componentes como objetos JavaScript simples:
 
 ```js
 const ComponentA = {
@@ -107,7 +107,7 @@ const ComponentC = {
 }
 ```
 
-Then define the components you'd like to use in a `components` option:
+Entonces, defina los componentes que le gustaría utilizar en una opción `components`:
 
 ```js
 const app = Vue.createApp({
@@ -118,9 +118,9 @@ const app = Vue.createApp({
 })
 ```
 
-For each property in the `components` object, the key will be the name of the custom element, while the value will contain the options object for the component.
+Para cada propiedad del objeto `components`, la clave será el nombre del elemento personalizado, mientras que el valor contendrá el objeto de opciones del componente.
 
-Note that **locally registered components are _not_ also available in subcomponents**. For example, if you wanted `ComponentA` to be available in `ComponentB`, you'd have to use:
+Note que **los componentes registrados localmente _no_ están tampoco disponibles en los componentes secundarios**. Por ejemplo, si quisiera que el `ComponentA` estuviera disponible en el `ComponentB`, tendría que utilizar:
 
 ```js
 const ComponentA = {
@@ -135,7 +135,7 @@ const ComponentB = {
 }
 ```
 
-Or if you're using ES2015 modules, such as through Babel and Webpack, that might look more like:
+O si está usando módulos ES2015, como por ejemplo a través de Babel y Webpack, podría parecerse más a:
 
 ```js
 import ComponentA from './ComponentA.vue'
@@ -148,20 +148,20 @@ export default {
 }
 ```
 
-Note that in ES2015+, placing a variable name like `ComponentA` inside an object is shorthand for `ComponentA: ComponentA`, meaning the name of the variable is both:
+Note que en ES2015+, colocar un nombre de variable como `ComponentA` dentro de un objeto es la abreviatura de `ComponentA: ComponentA`, lo que significa que el nombre de la variable es ambos:
 
-- the custom element name to use in the template, and
-- the name of the variable containing the component options
+- el nombre del elemento personalizado para utilizar en la plantilla, y
+- el nombre de la variable que contiene las opciones del componente
 
-## Module Systems
+## Sistemas de módulos
 
-If you're not using a module system with `import`/`require`, you can probably skip this section for now. If you are, we have some special instructions and tips just for you.
+Si no está utilizando un sistema de módulos con `import`/`require`, puede probablemente saltar esta sección por ahora. Si lo está, tenemos algunas instrucciones y consejos especiales solo para usted.
 
-### Local Registration in a Module System
+### Registro local en un Sistema de Módulos
 
-If you're still here, then it's likely you're using a module system, such as with Babel and Webpack. In these cases, we recommend creating a `components` directory, with each component in its own file.
+Si todavía está aquí, es probable que esté usando un sistema de módulos, tales como Babel y Webpack. En estos casos, recomendamos crear un directorio de `components`, con cada componente en su propio archivo.
 
-Then you'll need to import each component you'd like to use, before you locally register it. For example, in a hypothetical `ComponentB.js` or `ComponentB.vue` file:
+Entonces tendrá que importar cada componente que quiera utilizar, antes de registrarlo localmente. Por ejemplo, en un hipotético archivo `ComponentB.js` o `ComponentB.vue`:
 
 ```js
 import ComponentA from './ComponentA'
@@ -176,4 +176,4 @@ export default {
 }
 ```
 
-Now both `ComponentA` and `ComponentC` can be used inside `ComponentB`'s template.
+Ahora ambos `ComponentA` y `ComponentC` pueden ser utilizado dentro de la plantilla de `ComponentB`.
