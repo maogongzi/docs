@@ -443,7 +443,7 @@ When used on native HTML elements, the value of `is` must be prefixed with `vue:
 
 ### Distinción entre mayúsculas y minúsculas (Case Insensitivity)
 
-Los nombres de atributos HTML no distinguen mayúsculas de minúsculas, por eso los navegadores interpretarán cualquier carácter en mayúscula como minúscula. Eso significa que cuando está utilizando plantillas dentro del DOM, los nombres de _props_ y los parámetros de manejadores de eventos de _camelCase_ necesitan utilizar sus equivalentes de _kebab-case_ (delimitado con el guión):
+Los nombres de atributos HTML no distinguen mayúsculas de minúsculas, por eso los navegadores interpretarán cualquier carácter en mayúscula como minúscula. Eso significa que cuando está utilizando plantillas dentro del DOM, los nombres de _props_ y los parámetros de manejadores de eventos de _camelCase_ necesitan utilizar sus equivalentes de _kebab-case_ (delimitados por guiones):
 
 ```js
 // camelCase en JavaScript
