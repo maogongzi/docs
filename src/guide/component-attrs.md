@@ -1,10 +1,10 @@
-# Non-Prop Attributes
+# Atributos que no son _props_
 
-> This page assumes you've already read the [Components Basics](component-basics.md). Read that first if you are new to components.
+> Esta página asume que usted ya ha leído [Básicos de Componentes](component-basics.md). Léalo primero si usted es nuevo con componentes.
 
-A component non-prop attribute is an attribute or event listener that is passed to a component, but does not have a corresponding property defined in [props](component-props.html) or [emits](component-custom-events.html#defining-custom-events). Common examples of this include `class`, `style`, and `id` attributes. You can access those attributes via `$attrs` property.
+Un atributo que no es _prop_ es un atributo u escuchador de eventos que se pasa a un componente, pero no tiene una propiedad correspondiente definida en [props](component-props.html) o [emits](component-custom-events.html#defining-custom-events). Los ejemplos comunes de esto incluyen los atributos `class`, `style` e `id`. Puede acceder estos atributos mediante la propiedad `$attrs`.
 
-## Attribute Inheritance
+## Herencia de Atributos
 
 When a component returns a single root node, non-prop attributes will automatically be added to the root node's attributes. For example, in the instance of a date-picker component:
 
