@@ -128,11 +128,11 @@ Será equivalente a:
 
 Todas las _props_ forman una **vinculación de una sola dirección** entre la propiedad del hijo y la de su padre: cuando la propiedad del padre se actualice, fluirá hacia el hijo, pero no al revés. Esto evita que los componentes secundarios muten accidentalmente el estado de los padres, lo que puede hacer que el flujo de datos de su aplicación sean más difíciles de entender.
 
-In addition, every time the parent component is updated, all props in the child component will be refreshed with the latest value. This means you should **not** attempt to mutate a prop inside a child component. If you do, Vue will warn you in the console.
+Además, cada vez que se actualice el componente padre, todas las _props_ del componente secundario se actualizarán con el último valor. Esto significa que usted **no** debe intentar mutar una _prop_ dentro de un componente secundario. Si lo hace, Vue le advertirá en la consola.
 
-There are usually two cases where it's tempting to mutate a prop:
+Normalmente hay dos casos en los que es tentador mutar una _prop_:
 
-1. **The prop is used to pass in an initial value; the child component wants to use it as a local data property afterwards.** In this case, it's best to define a local data property that uses the prop as its initial value:
+1. **La _prop_ es utilizado para pasar un valor inicial; el componente secundario desea utilizarlo como una local propiedad de datos más adelante.** En este caso, es mejor definir una local propiedad de datos que utiliza la _prop_ como su valor inicial:
 
 ```js
 props: ['initialCounter'],
@@ -143,7 +143,7 @@ data() {
 }
 ```
 
-2. **The prop is passed in as a raw value that needs to be transformed.** In this case, it's best to define a computed property using the prop's value:
+2. **La _prop_ se pasa como un valor crudo que debe transformarse.** En este caso, es mejor definir una propiedad computada utilizando el valor de la _prop_:
 
 ```js
 props: ['size'],
@@ -155,69 +155,69 @@ computed: {
 ```
 
 ::: tip Note
-Note that objects and arrays in JavaScript are passed by reference, so if the prop is an array or object, mutating the object or array itself inside the child component **will** affect parent state.
+Tenga en cuenta que los objetos y las matrices en JavaScript se pasan por referencia, por lo que si la _prop_ es una matriz u objeto, mutar el objeto o la matriz mismo dentro del componente secundario **afectará** el estado del padre.
 :::
 
-## Prop Validation
+## Validación de la _Prop_
 
-Components can specify requirements for their props, such as the types you've already seen. If a requirement isn't met, Vue will warn you in the browser's JavaScript console. This is especially useful when developing a component that's intended to be used by others.
+Los componentes pueden especificar requisitos para sus _props_, como los tipos que ya ha visto. Si no se cumple un requisito, Vue le avisará en la consola de JavaScript del navegador. Esto es especialmente útil cuando se desarrolla un componente que está destinado a ser utilizado por otros.
 
-To specify prop validations, you can provide an object with validation requirements to the value of `props`, instead of an array of strings. For example:
+Para especificar validaciones de _props_, puede proporcionar un objeto con requisitos de validación al valor de `props`, en lugar de una matriz de cadenas de caracteres. Por ejemplo:
 
 ```js
 app.component('my-component', {
   props: {
-    // Basic type check (`null` and `undefined` values will pass any type validation)
+    // Comprobación de tipo básico (`null` y `undefined` coincide con cualquier tipo)
     propA: Number,
-    // Multiple possible types
+    // Múltiples tipos posibles
     propB: [String, Number],
-    // Required string
+    // se requiere cadena de caracteres
     propC: {
       type: String,
       required: true
     },
-    // Number with a default value
+    // Número con un valor por defecto
     propD: {
       type: Number,
       default: 100
     },
-    // Object with a default value
+    // Objeto con un valor por defecto
     propE: {
       type: Object,
-      // Object or array defaults must be returned from
-      // a factory function
+      // Los valores por defecto del objeto o matriz deben retornarse desde
+      // una función de fábrica
       default() {
         return { message: 'hello' }
       }
     },
-    // Custom validator function
+    // Función de validación personalizada
     propF: {
       validator(value) {
-        // The value must match one of these strings
+        // El valor debe coincidir con una de estas cadenas de caracteres
         return ['success', 'warning', 'danger'].includes(value)
       }
     },
-    // Function with a default value
+    // Función con un valor por defecto
     propG: {
       type: Function,
-      // Unlike object or array default, this is not a factory function - this is a function to serve as a default value
+      // A diferencia de los valores por defecto de objetos o matrices, esta no es una función de fábrica - esta es una función para servirse como un valor por defecto.
       default() {
-        return 'Default function'
+        return 'Función por defecto'
       }
     }
   }
 })
 ```
 
-When prop validation fails, Vue will produce a console warning (if using the development build).
+Cuando falla la validación de _prop_, Vue producirá una advertencia en la consola (si se utiliza la compilación de desarrollo).
 
 ::: tip Note
-Note that props are validated **before** a component instance is created, so instance properties (e.g. `data`, `computed`, etc) will not be available inside `default` or `validator` functions.
+Tenga en cuenta que las _props_ se validan **antes de que** se cree una instancia de componente, por lo que las propiedades de la instancia (p. ej. `data`, `computed`, etc.) no estarán disponibles dentro de las funciones `default` o `validator`.
 :::
 
-### Type Checks
+### Validación de Tipos
 
-The `type` can be one of the following native constructors:
+La opción `type` puede ser uno de los siguientes constructores nativos:
 
 - String
 - Number
@@ -228,7 +228,7 @@ The `type` can be one of the following native constructors:
 - Function
 - Symbol
 
-In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check. For example, given the following constructor function exists:
+Además, `type` también puede ser una función constructora personalizada y la aserción se realizará con una comprobación de `instanceof`. Por ejemplo, dada la siguiente función constructora:
 
 ```js
 function Person(firstName, lastName) {
@@ -237,7 +237,7 @@ function Person(firstName, lastName) {
 }
 ```
 
-You could use:
+Usted podría utilizar:
 
 ```js
 app.component('blog-post', {
@@ -247,25 +247,25 @@ app.component('blog-post', {
 })
 ```
 
-to validate that the value of the `author` prop was created with `new Person`.
+para validar que el valor de la _prop_ `author` fue creado con `new Person`.
 
-## Prop Casing (camelCase vs kebab-case)
+## Formateando las _Props_ (camelCase versus kebab-case)
 
-HTML attribute names are case-insensitive, so browsers will interpret any uppercase characters as lowercase. That means when you're using in-DOM templates, camelCased prop names need to use their kebab-cased (hyphen-delimited) equivalents:
+Los nombres de atributos HTML no distinguen entre mayúsculas y minúsculas, por lo que los navegadores interpretarán los caracteres en mayúscula como en minúscula. Eso significa que cuando utiliza plantillas del DOM, los nombres de _props_ de _camelCase_ necesitan utilizar sus equivalentes de _kebab-case_ (delimitados por guiones):
 
 ```js
 const app = Vue.createApp({})
 
 app.component('blog-post', {
-  // camelCase in JavaScript
+  // _camelCase_ en JavaScript
   props: ['postTitle'],
   template: '<h3>{{ postTitle }}</h3>'
 })
 ```
 
 ```html
-<!-- kebab-case in HTML -->
+<!-- kebab-case en HTML -->
 <blog-post post-title="hello!"></blog-post>
 ```
 
-Again, if you're using string templates, this limitation does not apply.
+Otra vez, si está utilizando plantillas de cadenas de caracteres, esta limitación no se aplica.
