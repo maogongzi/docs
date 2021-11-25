@@ -1,12 +1,12 @@
-# Non-Prop Attributes
+# Atributos que no son _props_
 
-> This page assumes you've already read the [Components Basics](component-basics.md). Read that first if you are new to components.
+> Esta página asume que usted ya ha leído [Básicos de Componentes](component-basics.md). Léalo primero si usted es nuevo con componentes.
 
-A component non-prop attribute is an attribute or event listener that is passed to a component, but does not have a corresponding property defined in [props](component-props.html) or [emits](component-custom-events.html#defining-custom-events). Common examples of this include `class`, `style`, and `id` attributes. You can access those attributes via `$attrs` property.
+Un atributo que no es _prop_ es un atributo u escuchador de eventos que se pasa a un componente, pero no tiene una propiedad correspondiente definida en [props](component-props.html) o [emits](component-custom-events.html#defining-custom-events). Los ejemplos comunes de esto incluyen los atributos `class`, `style` e `id`. Puede acceder estos atributos mediante la propiedad `$attrs`.
 
-## Attribute Inheritance
+## Herencia de Atributos
 
-When a component returns a single root node, non-prop attributes will automatically be added to the root node's attributes. For example, in the instance of a date-picker component:
+Cuando un componente retorna un solo nodo raíz. los atributos que no son _props_ serán automáticamente agregado a los atributos del nodo raíz. Por ejemplo, en la instancia de un componente _date-picker_:
 
 ```js
 app.component('date-picker', {
@@ -18,19 +18,19 @@ app.component('date-picker', {
 })
 ```
 
-In the event we need to define the status of the date-picker component via a `data-status` attribute, it will be applied to the root node (i.e., `div.date-picker`).
+En el caso necesitamos definir el estado del componente _date-picker_ mediante un atributo `data-status`, será aplicado al nodo raíz (es decir, `div.date-picker`).
 
 ```html
-<!-- Date-picker component with a non-prop attribute -->
+<!-- el componente date-picker con un atributo que no es _prop_ -->
 <date-picker data-status="activated"></date-picker>
 
-<!-- Rendered date-picker component -->
+<!-- el componente date-picker renderizado -->
 <div class="date-picker" data-status="activated">
   <input type="datetime-local" />
 </div>
 ```
 
-Same rule applies to the event listeners:
+La misma regla se aplica a los escuchadores de eventos:
 
 ```html
 <date-picker @change="submitChange"></date-picker>
@@ -44,21 +44,21 @@ app.component('date-picker', {
 })
 ```
 
-This might be helpful when we have an HTML element with `change` event as a root element of `date-picker`.
+Este podría ser útil cuando tenemos un elemento HTML con un evento `change` como el elemento raíz del componente `date-picker`.
 
 ```js
 app.component('date-picker', {
   template: `
     <select>
-      <option value="1">Yesterday</option>
-      <option value="2">Today</option>
-      <option value="3">Tomorrow</option>
+      <option value="1">Ayer</option>
+      <option value="2">Hoy</option>
+      <option value="3">Mañana</option>
     </select>
   `
 })
 ```
 
-In this case, `change` event listener is passed from the parent component to the child and it will be triggered on native `<select>` `change` event. We won't need to emit an event from the `date-picker` explicitly:
+En este caso, el escuchador del evento `change` se pasa desde el componente padre al componente secundario y será disparado cuando se dispare el evento nativo `change` del elemento `<select>`. No necesitarémos emitir un evento desde el componente `date-picker` explícamente:
 
 ```html
 <div id="date-picker" class="demo">
@@ -70,21 +70,21 @@ In this case, `change` event listener is passed from the parent component to the
 const app = Vue.createApp({
   methods: {
     showChange(event) {
-      console.log(event.target.value) // will log a value of the selected option
+      console.log(event.target.value) // registrará un valor de la opción seleccionada
     }
   }
 })
 ```
 
-## Disabling Attribute Inheritance
+## Deshabilitar la herencia de atributos
 
-If you do **not** want a component to automatically inherit attributes, you can set `inheritAttrs: false` in the component's options.
+Si **no** quiere que el componente herede automáticamente los atributos, puede establecer `inheritAttrs: false` en las opciones del componente.
 
-The common scenario for disabling an attribute inheritance is when attributes need to be applied to other elements besides the root node.
+El escenario común para deshabilitar la herencia de un atributo es cuando los atributos necesitan aplicarse a los otros elementos al lado del nodo raíz.
 
-By setting the `inheritAttrs` option to `false`, you can control to apply to other elements attributes to use the component's `$attrs` property, which includes all attributes not included to component `props` and `emits` properties (e.g., `class`, `style`, `v-on` listeners, etc.).
+A través de establecer la opción `inheritAttrs` a `false`, puede aplicar atributos provenientes de la propiedad `$attrs` del componente a los otros elementos en vez del nodo raíz, la cual incluye todos los atributos que no sean incluido por las propiedades `props` y `emits` del componente (p. ej. `class`, `style`, escuchadores de `v-on`, etc.)
 
-Using our date-picker component example from the [previous section](#attribute-inheritance), in the event we need to apply all non-prop attributes to the `input` element rather than the root `div` element, this can be accomplished by using the `v-bind` shortcut.
+Utilicemos nuestro componente _date-picker_ desde la [sección anterior](#attribute-inheritance), en el evento necesitamos aplicar todos los atributos que no son _props_ al elemento `input` en vez del elemento raíz `div`, esto puede ser logrado mediante utilizar la abreviatura `v-bind`.
 
 ```js{5}
 app.component('date-picker', {
@@ -97,28 +97,28 @@ app.component('date-picker', {
 })
 ```
 
-With this new configuration, our `data-status` attribute will be applied to our `input` element!
+Con esta nueva configuración, ¡nuestro atributo `data-status` será aplicado a nuestro elemento `input`!
 
 ```html
-<!-- Date-picker component with a non-prop attribute -->
+<!-- el componente date-picker con un atributo que no es _prop_ -->
 <date-picker data-status="activated"></date-picker>
 
-<!-- Rendered date-picker component -->
+<!-- el componente date-picker renderizado -->
 <div class="date-picker">
   <input type="datetime-local" data-status="activated" />
 </div>
 ```
 
-## Attribute Inheritance on Multiple Root Nodes
+## Herencia de atributos en múltiples nodos raíces
 
-Unlike single root node components, components with multiple root nodes do not have an automatic attribute fallthrough behavior. If `$attrs` are not bound explicitly, a runtime warning will be issued.
+A diferencia de los componentes de un solo nodo raíz, los componentes con múltiples nodo raíces no poseen un comportamiento automático de fracaso de atributos (attribute fallthrough). Si `$attrs` no es vinculado explícamente, una advertencia de tiempo de ejecución será emitido.
 
 ```html
 <custom-layout id="custom-layout" @click="changeValue"></custom-layout>
 ```
 
 ```js
-// This will raise a warning
+// Este emitirá una advertencia
 app.component('custom-layout', {
   template: `
     <header>...</header>
@@ -127,7 +127,7 @@ app.component('custom-layout', {
   `
 })
 
-// No warnings, $attrs are passed to <main> element
+// No advertencias, los atributos de $attrs se pasan al elemento <main>
 app.component('custom-layout', {
   template: `
     <header>...</header>
