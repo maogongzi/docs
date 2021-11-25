@@ -1,4 +1,4 @@
-# Custom Events
+# Eventos Personalizados
 
 > This page assumes you've already read the [Components Basics](component-basics.md). Read that first if you are new to components.
 
