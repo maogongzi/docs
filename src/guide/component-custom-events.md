@@ -1,10 +1,10 @@
 # Eventos Personalizados
 
-> This page assumes you've already read the [Components Basics](component-basics.md). Read that first if you are new to components.
+> Esta página asume que usted ya ha leído [Básicos de Componentes](component-basics.md). Léalo primero si usted es nuevo con componentes.
 
-## Event Names
+## Nombre de eventos
 
-Like components and props, event names provide an automatic case transformation. If you emit an event from the child component in camel case, you will be able to add a kebab-cased listener in the parent:
+Como los componentes y _props_, los nombres de eventos proporcionan una transformación automática de casos. Si emite un evento desde el componente secundario con un nombre de _camelCase_, será capaz de agregar escuchadores de _kebab-case_ en el componente padre.
 
 ```js
 this.$emit('myEvent')
@@ -14,13 +14,13 @@ this.$emit('myEvent')
 <my-component @my-event="doSomething"></my-component>
 ```
 
-As with [props casing](/guide/component-props.html#prop-casing-camelcase-vs-kebab-case), we recommend using kebab-cased event listeners when you are using in-DOM templates. If you're using string templates, this limitation does not apply.
+Como con [Casos de _Props_](/guide/component-props.html#prop-casing-camelcase-vs-kebab-case), recomendamos utilizar escuchadores de eventos de _kebab-case_ cuando está utilizando plantillas en DOM. Si está utilizando plantillas de cadena de caracteres, esta limitación no se aplica.
 
-## Defining Custom Events
+## Definir eventos personalizados
 
-<VideoLesson href="https://vueschool.io/lessons/defining-custom-events-emits?friend=vuejs" title="Learn how to define which events a component can emit with Vue School">Watch a free video on how to define custom events on Vue School</VideoLesson>
+<VideoLesson href="https://vueschool.io/lessons/defining-custom-events-emits?friend=vuejs" title="Aprender cómo definir los eventos que pueden ser emitidos por un componente en Vue School">Ver un video gratis sobre cómo definir eventos personalizados en Vue School</VideoLesson>
 
-Emitted events can be defined on the component via the `emits` option.
+Los eventos emitidos pueden ser definido en el componente mediante la opción `emits`.
 
 ```js
 app.component('custom-form', {
@@ -28,15 +28,15 @@ app.component('custom-form', {
 })
 ```
 
-When a native event (e.g., `click`) is defined in the `emits` option, the component event will be used **instead** of a native event listener.
+Cuando un evento nativo (p. ej. `click`) está definido en la opción `emits`, el evento de componente será utilizado **en vez de** un escuchador de evento nativo.
 
 ::: tip
-It is recommended to define all emitted events in order to better document how a component should work.
+Es recomendado definir todos eventos emitidos para documentar mejor cómo un componente debería funcionar.
 :::
 
-### Validate Emitted Events
+### Validar eventos emitidos
 
-Similar to prop type validation, an emitted event can be validated if it is defined with the Object syntax instead of the array syntax.
+Similar a las validaciones de _props_, un evento emitido puede ser validado si es definido con la sintaxis de objeto en vez de matriz.
 
 To add validation, the event is assigned a function that receives the arguments passed to the `$emit` call and returns a boolean to indicate whether the event is valid or not.
 
