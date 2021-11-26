@@ -160,7 +160,7 @@ app.component('my-component', {
 })
 ```
 
-Now that we have our prop set up, we can check the `modelModifiers` object keys and write a handler to change the emitted value. In the code below we will capitalize the string whenever the `<input />` element fires an `input` event.
+Ahora que tenemos nuestra _prop_ establecida, podemos probar las claves del objeto `modelModifiers` y escribir un manejador para cambiar el valor emitido. En el código abajo vamos a poner en mayúscula la primera letra de la cadena de caracteres cada vez que el elemento `<input />` dispare un evento `input`. 
 
 ```html
 <div id="app">
@@ -204,7 +204,7 @@ app.component('my-component', {
 app.mount('#app')
 ```
 
-For `v-model` bindings with arguments, the generated prop name will be `arg + "Modifiers"`:
+Para las vinculaciones de `v-model` con argumentos, el nombre generado de la _prop_ será `arg + "Modifiers"`:
 
 ```html
 <my-component v-model:description.capitalize="myText"></my-component>
