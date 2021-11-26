@@ -316,7 +316,7 @@ Esto puede acortarse aún más. Así como se asume que el contenido no especific
 Note que la sintaxis abreviada del slot por defecto **no puede** mezclarse con los slots con nombre, ya que resultará en una ambigüedad de alcance:
 
 ```html
-<!-- INVALID, will result in warning -->
+<!-- INVÁLIDO, resultará en una advertencia -->
 <todo-list v-slot="slotProps">
   <i class="fas fa-check"></i>
   <span class="green">{{ slotProps.item }}</span>
