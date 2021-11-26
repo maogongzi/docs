@@ -158,7 +158,7 @@ computed: {
 Tenga en cuenta que los objetos y las matrices en JavaScript se pasan por referencia, por lo que si la _prop_ es una matriz u objeto, mutar el objeto o la matriz mismo dentro del componente secundario **afectará** el estado del padre.
 :::
 
-## Validación de la _Prop_
+## Validación de _props_
 
 Los componentes pueden especificar requisitos para sus _props_, como los tipos que ya ha visto. Si no se cumple un requisito, Vue le avisará en la consola de JavaScript del navegador. Esto es especialmente útil cuando se desarrolla un componente que está destinado a ser utilizado por otros.
 
@@ -249,7 +249,7 @@ app.component('blog-post', {
 
 para validar que el valor de la _prop_ `author` fue creado con `new Person`.
 
-## Formateando las _Props_ (camelCase versus kebab-case)
+## Casos de _Props_ (camelCase versus kebab-case)
 
 Los nombres de atributos HTML no distinguen entre mayúsculas y minúsculas, por lo que los navegadores interpretarán los caracteres en mayúscula como en minúscula. Eso significa que cuando utiliza plantillas del DOM, los nombres de _props_ de _camelCase_ necesitan utilizar sus equivalentes de _kebab-case_ (delimitados por guiones):
 
