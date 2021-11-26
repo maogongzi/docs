@@ -2,8 +2,6 @@
 
 > Esta página asume que usted ya ha leído [Básicos de Componentes](component-basics.md). Léalo primero si usted es nuevo con componentes.
 
-> This page assumes you've already read the [Components Basics](component-basics.md). Read that first if you are new to components.
-
 <VideoLesson href="https://vueschool.io/lessons/vue-3-component-slots?friend=vuejs" title="Lección gratis sobre Slots de Vue.js">Aprender los básicos de slot con una lección gratis en Vue School</VideoLesson>
 
 ## Contenido del Slot
