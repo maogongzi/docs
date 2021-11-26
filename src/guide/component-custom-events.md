@@ -38,20 +38,20 @@ Es recomendado definir todos eventos emitidos para documentar mejor cómo un com
 
 Similar a las validaciones de _props_, un evento emitido puede ser validado si es definido con la sintaxis de objeto en vez de matriz.
 
-To add validation, the event is assigned a function that receives the arguments passed to the `$emit` call and returns a boolean to indicate whether the event is valid or not.
+Para agregar validación, una función está asignado al evento, la que recibe los argumentos pasados a la llamada de `$emit` y retorna un valor booleano para indicar si el evento es válido o no.
 
 ```js
 app.component('custom-form', {
   emits: {
-    // No validation
+    // no validación
     click: null,
 
-    // Validate submit event
+    // Validar el evento _submit_
     submit: ({ email, password }) => {
       if (email && password) {
         return true
       } else {
-        console.warn('Invalid submit event payload!')
+        console.warn('¡La carga del evento submit es inválida!')
         return false
       }
     }
@@ -64,15 +64,15 @@ app.component('custom-form', {
 })
 ```
 
-## `v-model` arguments
+## Argumentos de `v-model`
 
-By default, `v-model` on a component uses `modelValue` as the prop and `update:modelValue` as the event. We can modify these names passing an argument to `v-model`:
+Por defecto, `v-model` de un componente utiliza `modelValue` como la _prop_ y `update:modelValue` como el evento. Podemos modificar estes nombres pasando un argumento a `v-model`:
 
 ```html
 <my-component v-model:title="bookTitle"></my-component>
 ```
 
-In this case, child component will expect a `title` prop and emits `update:title` event to sync:
+En este caso, el componente secundario esperará una _prop_ `title` y emitirá evento `update:title` para sincronizar.
 
 ```js
 app.component('my-component', {
@@ -90,11 +90,11 @@ app.component('my-component', {
 ```
 
 
-## Multiple `v-model` bindings
+## Múltiples vinculaciones de `v-model`
 
-By leveraging the ability to target a particular prop and event as we learned before with [`v-model` arguments](#v-model-arguments), we can now create multiple v-model bindings on a single component instance.
+Al aprovechar la capacidad para dirigir una _prop_ u evento particular como aprendemos antes con [argumentos de `v-model`](#v-model-arguments), podemos ahora crear múltiples vinculaciones de `v-model` en una sola instancia de componente.
 
-Each v-model will sync to a different prop, without the need for extra options in the component:
+Cada `v-model` será sincronizado con una _prop_ diferente, sin la necesidad de opciones adicionales en el componente:
 
 ```html
 <user-name
@@ -124,17 +124,17 @@ app.component('user-name', {
 })
 ```
 
-<common-codepen-snippet title="Multiple v-models" slug="GRoPPrM" tab="html,result" />
+<common-codepen-snippet title="Múltiples directivas de v-model" slug="GRoPPrM" tab="html,result" />
 
-## Handling `v-model` modifiers
+## Manejar modificadores de `v-model`
 
-When we were learning about form input bindings, we saw that `v-model` has [built-in modifiers](/guide/forms.html#modifiers) - `.trim`, `.number` and `.lazy`. In some cases, however, you might also want to add your own custom modifiers.
+Cuando estabamos aprendiendo sobre las vinculaciones de entradas de formularios, vimos que `v-model` tiene [modificadores integrados](/guide/forms.html#modifiers) - `.trim`, `.number` y `.lazy`. En algunos casos, sin embargo, querría también agregar sus propios modificadores personalizados.
 
-Let's create an example custom modifier, `capitalize`, that capitalizes the first letter of the string provided by the `v-model` binding.
+Creemos un ejemplo de modificador personalizado, `capitalize`, lo que pone en mayúscula la primera letra de la cadena de caracteres proporcionada por la vinculación de `v-model`.
 
-Modifiers added to a component `v-model` will be provided to the component via the `modelModifiers` prop. In the below example, we have created a component that contains a `modelModifiers` prop that defaults to an empty object.
+Los modificadores agregados a `v-model` de un componente serán proporcionados al componente mediante la _prop_ `modelModifiers`. En el siguiente ejemplo, hemos creado un componente que contiene una _prop_ `modelModifiers` que utiliza un objeto vacío como su valor por defecto.
 
-Notice that when the component's `created` lifecycle hook triggers, the `modelModifiers` prop contains `capitalize` and its value is `true` - due to it being set on the `v-model` binding `v-model.capitalize="myText"`.
+Note que cuando se activa el hook de ciclo de vida `created` del componente, la _prop_ `modelModifiers` contiene `capitalize` y su valor es `true` - debido a que está establecido en la vinculación de `v-model`, es decir, `v-model.capitalize="myText"`.
 
 ```html
 <my-component v-model.capitalize="myText"></my-component>
