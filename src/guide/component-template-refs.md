@@ -1,14 +1,15 @@
-# Template refs
+# _refs_ de Plantillas
 
-> This page assumes you've already read the [Components Basics](component-basics.md). Read that first if you are new to components.
+> Esta página asume que usted ya ha leído [Básicos de Componentes](component-basics.md). Léalo primero si usted es nuevo con componentes.
 
-Despite the existence of props and events, sometimes you might still need to directly access a child component in JavaScript. To achieve this you can assign a reference ID to the child component or HTML element using the `ref` attribute. For example:
+Pese a la existencia de _props_ y eventos, a veces es posible que necesita
+acceder directamente a un componente secundario en JavaScript. Para lograrlo puede asignar una ID de referencia al componente secundario o elemento HTML utilizando el atributo `ref`. Por ejemplo:
 
 ```html
 <input ref="input" />
 ```
 
-This may be useful when you want to, for example, programmatically focus this input on component mount:
+Este puede ser útil cuando quiere, por ejemplo, programáticamente enfocar a esta entrada cuando se monte el componente:
 
 ```js
 const app = Vue.createApp({})
@@ -28,7 +29,7 @@ app.component('base-input', {
 })
 ```
 
-Also, you can add another `ref` to the component itself and use it to trigger `focusInput` event from the parent component:
+También, puede agregar otra `ref` al componente mismo y utilizarlo para disparar evento `focusInput` desde el componente padre:
 
 ```html
 <base-input ref="usernameInput"></base-input>
@@ -39,7 +40,7 @@ this.$refs.usernameInput.focusInput()
 ```
 
 ::: warning
-`$refs` are only populated after the component has been rendered. It is only meant as an escape hatch for direct child manipulation - you should avoid accessing `$refs` from within templates or computed properties.
+Las `$refs` son sólo disponibles después de cuando el componente haya sido renderizado. Sólo sirve como una salida de emergencia para las manipulaciones directas de los componentes secundarios - debería evitar acceder `$refs` desde dentro de plantillas o propiedades computadas.
 :::
 
-**See also**: [Using template refs in Composition API](/guide/composition-api-template-refs.html#template-refs)
+**Vea también**: [Utilizar _refs_ de plantillas en API de composición](/guide/composition-api-template-refs.html#template-refs)
