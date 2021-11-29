@@ -1,33 +1,33 @@
-# Custom Directives
+# Directivas Personalizadas
 
-## Intro
+## Introducción
 
-In addition to the default set of directives shipped in core (like `v-model` or `v-show`), Vue also allows you to register your own custom directives. Note that in Vue, the primary form of code reuse and abstraction is components - however, there may be cases where you need some low-level DOM access on plain elements, and this is where custom directives would still be useful. An example would be focusing on an input element, like this one:
+Además del conjunto por defecto de directivas incluidas en el núcleo (como `v-model` y `v-show`), Vue también le permite registrar sus propias directivas personalizadas. Note que en Vue, la forma primaria de reutilización y abstracción del código son los componentes; sin embargo, puede haber casos en los que necesite un acceso al bajo nivel al DOM en elementos simples, y aquí es donde las directivas personalizadas seguirían siendo útiles. Un ejemplo sería enfocarse en un elemento de entrada, como este:
 
-<common-codepen-snippet title="Custom directives: basic example" slug="JjdxaJW" :preview="false" />
+<common-codepen-snippet title="Directivas personalizadas: ejemplo básico" slug="JjdxaJW" :preview="false" />
 
-When the page loads, that element gains focus (note: `autofocus` doesn't work on mobile Safari). In fact, if you haven't clicked on anything else since visiting this page, the input above should be focused now. Also, you can click on the `Rerun` button and input will be focused.
+Cuando se carga la página, este elemento se enfoca (nota: el atributo `autofocus` no funciona en Safari para dispositivos mobiles). De hecho, si no ha hecho clic en nada más desde que visitó esta página, la entrada de arriba debería estar enfocada ahora. También, puede hacer clic en el botón `Rerun` y la entrada será enfocado.
 
-Now let's build the directive that accomplishes this:
+Ahora vamos a construir la directiva que realiza esto:
 
 ```js
 const app = Vue.createApp({})
-// Register a global custom directive called `v-focus`
+// Registra una directiva personalizada global llamada `v-focus`
 app.directive('focus', {
-  // When the bound element is mounted into the DOM...
+  // Cuando el elemento vinculado se inserta en el DOM...
   mounted(el) {
-    // Focus the element
+    // Enfoca el elemento
     el.focus()
   }
 })
 ```
 
-If you want to register a directive locally instead, components also accept a `directives` option:
+Si desea registrar una directiva localmente en su lugar, los componentes también aceptan una opción `directives`:
 
 ```js
 directives: {
   focus: {
-    // directive definition
+    // Definición de directiva
     mounted(el) {
       el.focus()
     }
@@ -35,35 +35,35 @@ directives: {
 }
 ```
 
-Then in a template, you can use the new `v-focus` attribute on any element, like this:
+Luego, en una plantilla, puede utilizar el nuevo atributo `v-focus` en cualquier elemento, como este:
 
 ```html
 <input v-focus />
 ```
 
-## Hook Functions
+## Funciones de Hook
 
-A directive definition object can provide several hook functions (all optional):
+Un objeto de definición de directiva puede proveer algunas funciones de hook (todas son opcionales):
 
-- `created`: called before the bound element's attributes or event listeners are applied. This is useful in cases where the directive needs to attach event listeners that must be called before normal `v-on` event listeners.
+- `created`: llamado antes de que se apliquen los atributos u escuchadores de eventos del elemento vinculado. Este es útil en casos donde la directiva necesita adjuntar escuchadores de eventos que deben ser llamado antes de los escuchadores normales de eventos de `v-no`.
 
-- `beforeMount`: called when the directive is first bound to the element and before parent component is mounted.
+- `beforeMount`: llamado cuando la directiva es vinculado por primera vez al elemento y antes de que se monte el componente padre.
 
-- `mounted`: called when the bound element's parent component is mounted.
+- `mounted`: llamado cuando el componente padre del elemento vinculado está montado.
 
-- `beforeUpdate`: called before the containing component's VNode is updated
+- `beforeUpdate`: llamado antes de que se actualice el VNode del componente que contiene el elemento
 
 :::tip Note
-We'll cover VNodes in more detail [later](render-function.html#the-virtual-dom-tree), when we discuss render functions.
+Vamos a hablar de VNodes con más detalles [más tarde](render-function.html#the-virtual-dom-tree), cuando hablamos de funciones de _render_
 :::
 
-- `updated`: called after the containing component's VNode **and the VNodes of its children** have updated.
+- `updated`: llamado después de que se hayan actualizado el VNode del componente que contiene el elemento, **y los VNodes de sus hijos**.
 
-- `beforeUnmount`: called before the bound element's parent component is unmounted
+- `beforeUnmount`: llamado antes de que el componente padre del elemento vinculado sea desmontado
 
-- `unmounted`: called only once, when the directive is unbound from the element and the parent component is unmounted.
+- `unmounted`: llamado solo una vez, cuando la directiva esté desvinculado del elemento y el componente padre sea desmontado.
 
-You can check the arguments passed into these hooks (i.e. `el`, `binding`, `vnode`, and `prevVnode`) in [Custom Directive API](../api/application-api.html#directive)
+Puede probar los argumentos pasados a estos hooks (es decir, `el`, `binding`, `vnode` y `prevVnode`) en [API de directivas personalizadas](../api/application-api.html#directive)
 
 ### Dynamic Directive Arguments
 
