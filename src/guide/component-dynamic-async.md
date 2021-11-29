@@ -1,41 +1,41 @@
-# Dynamic & Async Components
+# Componentes Dinámicos & Asíncronos
 
-> This page assumes you've already read the [Components Basics](component-basics.md). Read that first if you are new to components.
+> Esta página asume que usted ya ha leído [Básicos de Componentes](component-basics.md). Léalo primero si usted es nuevo con componentes.
 
-## Dynamic Components with `keep-alive`
+## `keep-alive` con Componentes Dinámicos
 
-Earlier, we used the `is` attribute to switch between components in a tabbed interface:
+Anteriormente, usamos el atributo `is` para cambiar entre componentes en una interfaz con pestañas:
 
 ```vue-html
 <component :is="currentTabComponent"></component>
 ```
 
-When switching between these components though, you'll sometimes want to maintain their state or avoid re-rendering for performance reasons. For example, when expanding our tabbed interface a little:
+Sin embargo, al cambiar entre estos componentes, a veces querrá mantener su estado o evitar la re-renderización por motivos de rendimiento. Por ejemplo, al expandir nuestra interfaz con pestañas:
 
-<common-codepen-snippet title="Dynamic components: without keep-alive" slug="jOPjZOe" tab="html,result" />
+<common-codepen-snippet title="Componentes Dinámicos: sin keep-alive" slug="jOPjZOe" tab="html,result" />
 
-You'll notice that if you select a post, switch to the _Archive_ tab, then switch back to _Posts_, it's no longer showing the post you selected. That's because each time you switch to a new tab, Vue creates a new instance of the `currentTabComponent`.
+Notará que si selecciona una publicación, cambie a la pestaña _Archive_, luego vuelva a _Posts_, ya no se muestra la publicación que seleccionó. Esto se debe a que cada vez que cambia a una nueva pestaña, Vue crea una nueva instancia de `currentTabComponent`.
 
-Recreating dynamic components is normally useful behavior, but in this case, we'd really like those tab component instances to be cached once they're created for the first time. To solve this problem, we can wrap our dynamic component with a `<keep-alive>` element:
+La recreación de componentes dinámicos suele ser un comportamiento útil, pero en este caso, nos gustaría que esas instancias de componentes de pestañas se almacenen en caché una vez que se crean por primera vez. Para resolver este problema, podemos envolver nuestro componente dinámico con un elemento `<keep-alive>`:
 
 ```vue-html
-<!-- Inactive components will be cached! -->
+<!-- ¡Componentes inactivos se almacenarán en caché! -->
 <keep-alive>
   <component :is="currentTabComponent"></component>
 </keep-alive>
 ```
 
-Check out the result below:
+Eche un vistazo a los resultados a continuación:
 
-<common-codepen-snippet title="Dynamic components: with keep-alive" slug="VwLJQvP" tab="html,result" />
+<common-codepen-snippet title="Componentes Dinámicos: con keep-alive" slug="VwLJQvP" tab="html,result" />
 
-Now the _Posts_ tab maintains its state (the selected post) even when it's not rendered.
+Ahora la pestaña _Posts_ mantiene su estado (la publicación seleccionada) incluso cuando no está renderizada.
 
-Check out more details on `<keep-alive>` in the [API reference](../api/built-in-components.html#keep-alive).
+Por más detalles sobre `<keep-alive>` eche un vistazo a [Referencia de API](../api/built-in-components.html#keep-alive).
 
-## Async Components
+## Componentes asíncronos
 
-In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it's needed. To make that possible, Vue has a `defineAsyncComponent` method:
+En aplicaciones grandes, es posible que tengamos que dividir la aplicación en partes más pequeñas y solo cargar un componente del servidor cuando sea necesario. Para facilitarlo, Vue proporciona un método `defineAsyncComponent`:
 
 ```js
 const { createApp, defineAsyncComponent } = Vue
@@ -54,9 +54,10 @@ const AsyncComp = defineAsyncComponent(
 app.component('async-example', AsyncComp)
 ```
 
-As you can see, this method accepts a factory function returning a `Promise`. Promise's `resolve` callback should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed.
+Como puede ver, este método recibe una función de fábrica que retorna un `Promise`.
+la _callback_ `resolve` del Promise debería llamarse cuando haya recuperado su definición de componente desde el servidor. También puede llamar a `reject(motivo)` para indicar que la carga ha fallado.
 
-You can also return a `Promise` in the factory function, so with Webpack 2 or later and ES2015 syntax you can do:
+Puede también retornar un `Promise` en la función de fábrica, así que con Webpack 2 o más avanzado y la sintaxis ES2015 puede hacer esto:
 
 ```js
 import { defineAsyncComponent } from 'vue'
@@ -68,7 +69,7 @@ const AsyncComp = defineAsyncComponent(() =>
 app.component('async-component', AsyncComp)
 ```
 
-You can also use `defineAsyncComponent` when [registering a component locally](component-registration.html#local-registration):
+Puede también utilizar `defineAsyncComponent` cuando [Registar un componente localmente](component-registration.html#local-registration):
 
 ```js
 import { createApp, defineAsyncComponent } from 'vue'
@@ -83,10 +84,10 @@ createApp({
 })
 ```
 
-### Using with Suspense
+### Utilizar con _Suspense_
 
-Async components are _suspensible_ by default. This means if it has a `<Suspense>` in the parent chain, it will be treated as an async dependency of that `<Suspense>`. In this case, the loading state will be controlled by the `<Suspense>`, and the component's own loading, error, delay and timeout options will be ignored.
+Los componentes asíncronos soportan suspenderse (_suspensible_) por defecto. Esto significa que si tiene un `<Suspense>` en la cadena de los componentes padres, será tratado como una dependencia asíncrona de ese `<Suspense>`. En este caso, el estado de cargamento será controlado por el `<Suspense>`, y sus propios estados como cargamento, error, demora y las opciones de tiempo de espera serán ignorado.
 
-The async component can opt-out of `Suspense` control and let the component always control its own loading state by specifying `suspensible: false` in its options.
+El componente asíncrono puede excluir el control de `Suspense` y dejar que el componente simpre controlar sus propios estados de cargamento mediante especificar `suspensible: false` en sus opciones.
 
-You can check the list of available options in the [API Reference](../api/global-api.html#arguments-4)
+Puede consultar la lista de opciones disponibles en la [Referencia de API](../api/global-api.html#arguments-4).
