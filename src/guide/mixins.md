@@ -223,5 +223,4 @@ En Vue 2, _mixins_ estuvieron la hierramienta primaria para abstraer partes de l
 
 - Reutilizabilidad es limitado: no podemos pasar cualquiere parámetro al _mixin_ para cambiar su lógica, lo cual reduce su flexibilidad en términos de abstraer lógica.
 
-Para abordar estas problemas, agregamos un nuevo método para organizar código por
-preocupaciones lógicas: la [API de Composición](composition-api-introduction.html).
+Para abordar estas problemas, agregamos un nuevo método para organizar código por preocupaciones lógicas: la [API de Composición](composition-api-introduction.html).
