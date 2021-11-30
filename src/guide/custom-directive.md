@@ -1,33 +1,33 @@
-# Custom Directives
+# Directivas Personalizadas
 
-## Intro
+## Introducción
 
-In addition to the default set of directives shipped in core (like `v-model` or `v-show`), Vue also allows you to register your own custom directives. Note that in Vue, the primary form of code reuse and abstraction is components - however, there may be cases where you need some low-level DOM access on plain elements, and this is where custom directives would still be useful. An example would be focusing on an input element, like this one:
+Además del conjunto por defecto de directivas incluidas en el núcleo (como `v-model` y `v-show`), Vue también le permite registrar sus propias directivas personalizadas. Note que en Vue, la forma primaria de reutilización y abstracción del código son los componentes; sin embargo, puede haber casos en los que necesite un acceso al bajo nivel al DOM en elementos simples, y aquí es donde las directivas personalizadas seguirían siendo útiles. Un ejemplo sería enfocarse en un elemento de entrada, como este:
 
-<common-codepen-snippet title="Custom directives: basic example" slug="JjdxaJW" :preview="false" />
+<common-codepen-snippet title="Directivas personalizadas: ejemplo básico" slug="JjdxaJW" :preview="false" />
 
-When the page loads, that element gains focus (note: `autofocus` doesn't work on mobile Safari). In fact, if you haven't clicked on anything else since visiting this page, the input above should be focused now. Also, you can click on the `Rerun` button and input will be focused.
+Cuando se carga la página, este elemento se enfoca (nota: el atributo `autofocus` no funciona en Safari para dispositivos mobiles). De hecho, si no ha hecho clic en nada más desde que visitó esta página, la entrada de arriba debería estar enfocada ahora. También, puede hacer clic en el botón `Rerun` y la entrada será enfocado.
 
-Now let's build the directive that accomplishes this:
+Ahora vamos a construir la directiva que realiza esto:
 
 ```js
 const app = Vue.createApp({})
-// Register a global custom directive called `v-focus`
+// Registra una directiva personalizada global llamada `v-focus`
 app.directive('focus', {
-  // When the bound element is mounted into the DOM...
+  // Cuando el elemento vinculado se inserta en el DOM...
   mounted(el) {
-    // Focus the element
+    // Enfoca el elemento
     el.focus()
   }
 })
 ```
 
-If you want to register a directive locally instead, components also accept a `directives` option:
+Si desea registrar una directiva localmente en su lugar, los componentes también aceptan una opción `directives`:
 
 ```js
 directives: {
   focus: {
-    // directive definition
+    // Definición de directiva
     mounted(el) {
       el.focus()
     }
@@ -35,46 +35,46 @@ directives: {
 }
 ```
 
-Then in a template, you can use the new `v-focus` attribute on any element, like this:
+Luego, en una plantilla, puede utilizar el nuevo atributo `v-focus` en cualquier elemento, como este:
 
 ```html
 <input v-focus />
 ```
 
-## Hook Functions
+## Funciones de Hook
 
-A directive definition object can provide several hook functions (all optional):
+Un objeto de definición de directiva puede proveer algunas funciones de hook (todas son opcionales):
 
-- `created`: called before the bound element's attributes or event listeners are applied. This is useful in cases where the directive needs to attach event listeners that must be called before normal `v-on` event listeners.
+- `created`: llamado antes de que se apliquen los atributos u escuchadores de eventos del elemento vinculado. Este es útil en casos donde la directiva necesita adjuntar escuchadores de eventos que deben ser llamado antes de los escuchadores normales de eventos de `v-no`.
 
-- `beforeMount`: called when the directive is first bound to the element and before parent component is mounted.
+- `beforeMount`: llamado cuando la directiva es vinculado por primera vez al elemento y antes de que se monte el componente padre.
 
-- `mounted`: called when the bound element's parent component is mounted.
+- `mounted`: llamado cuando el componente padre del elemento vinculado está montado.
 
-- `beforeUpdate`: called before the containing component's VNode is updated
+- `beforeUpdate`: llamado antes de que se actualice el VNode del componente que contiene el elemento
 
 :::tip Note
-We'll cover VNodes in more detail [later](render-function.html#the-virtual-dom-tree), when we discuss render functions.
+Vamos a hablar de VNodes con más detalles [más tarde](render-function.html#the-virtual-dom-tree), cuando hablamos de funciones de _render_
 :::
 
-- `updated`: called after the containing component's VNode **and the VNodes of its children** have updated.
+- `updated`: llamado después de que se hayan actualizado el VNode del componente que contiene el elemento, **y los VNodes de sus hijos**.
 
-- `beforeUnmount`: called before the bound element's parent component is unmounted
+- `beforeUnmount`: llamado antes de que el componente padre del elemento vinculado sea desmontado
 
-- `unmounted`: called only once, when the directive is unbound from the element and the parent component is unmounted.
+- `unmounted`: llamado solo una vez, cuando la directiva esté desvinculado del elemento y el componente padre sea desmontado.
 
-You can check the arguments passed into these hooks (i.e. `el`, `binding`, `vnode`, and `prevVnode`) in [Custom Directive API](../api/application-api.html#directive)
+Puede probar los argumentos pasados a estos hooks (es decir, `el`, `binding`, `vnode` y `prevVnode`) en [API de directivas personalizadas](../api/application-api.html#directive)
 
 ### Dynamic Directive Arguments
 
-Directive arguments can be dynamic. For example, in `v-mydirective:[argument]="value"`, the `argument` can be updated based on data properties in our component instance! This makes our custom directives flexible for use throughout our application.
+Los argumentos de directivas pueden ser dinámicos. Por ejemplo, en `v-mydirective:[argument]="value"`, ¡la `argument` puede ser actualizado basado en las propiedades de dato en nuestra instancia de componente! Este hace que nuestras directivas personalizadas sean flexibles para uso en toda nuestra aplicación.
 
-Let's say you want to make a custom directive that allows you to pin elements to your page using fixed positioning. We could create a custom directive where the value updates the vertical positioning in pixels, like this:
+Digamos que quiere realizar una directiva personalizada que te permita fijar elementos a tu página utilizando posicionamiento fijado. Podríamos crear una directiva personalizada dónde el valor actualice el posicionamiento vertical en píxeles, como este:
 
 ```vue-html
 <div id="dynamic-arguments-example" class="demo">
-  <p>Scroll down the page</p>
-  <p v-pin="200">Stick me 200px from the top of the page</p>
+  <p>Desplácese por la página</p>
+  <p v-pin="200">Fíjeme 200 píxeles desde la parte superior de la página</p>
 </div>
 ```
 
@@ -84,7 +84,7 @@ const app = Vue.createApp({})
 app.directive('pin', {
   mounted(el, binding) {
     el.style.position = 'fixed'
-    // binding.value is the value we pass to directive - in this case, it's 200
+    // binding.value es el valor que pasamos a la directiva, en este caso, es 200
     el.style.top = binding.value + 'px'
   }
 })
@@ -92,12 +92,12 @@ app.directive('pin', {
 app.mount('#dynamic-arguments-example')
 ```
 
-This would pin the element 200px from the top of the page. But what happens if we run into a scenario when we need to pin the element from the left, instead of the top? Here's where a dynamic argument that can be updated per component instance comes in very handy:
+Este podría fijar el elemento 200 píxeles desde la parte superior de la página. ¿Pero que sucederá si nos encontramos en un escenario cuando necesitamos fijar el elemento desde la izquierda, en lugar de la arriba? Aquí viene el muy útil argumento dinámico que puede ser actualizado por instancias de componente:
 
 ```vue-html
 <div id="dynamicexample">
-  <h3>Scroll down inside this section ↓</h3>
-  <p v-pin:[direction]="200">I am pinned onto the page at 200px to the left.</p>
+  <h3>Desplácese dentro de esta sección ↓</h3>
+  <p v-pin:[direction]="200">Estoy fijado en la página a la distancia de 200 píxeles desde la izquierda.</p>
 </div>
 ```
 
@@ -113,7 +113,7 @@ const app = Vue.createApp({
 app.directive('pin', {
   mounted(el, binding) {
     el.style.position = 'fixed'
-    // binding.arg is an argument we pass to directive
+    // binding.arg es un argumento que pasamos a la directiva
     const s = binding.arg || 'top'
     el.style[s] = binding.value + 'px'
   }
@@ -124,15 +124,15 @@ app.mount('#dynamic-arguments-example')
 
 Result:
 
-<common-codepen-snippet title="Custom directives: dynamic arguments" slug="YzXgGmv" :preview="false" />
+<common-codepen-snippet title="Directivas personalizadas: argumentos dinámicos" slug="YzXgGmv" :preview="false" />
 
-Our custom directive is now flexible enough to support a few different use cases. To make it even more dynamic, we can also allow to modify a bound value. Let's create an additional property `pinPadding` and bind it to the `<input type="range">`
+Ahora nuestra directiva personalizada es suficientemente flexible para soportar unos casos diferentes. Para hacerla aún más dinámica, podemos también permitir modificar un valor vinculado. Creamos una propiedad adicional `pinPadding` y la vinculemos a `<input type="range">`
 
 ```vue-html{4}
 <div id="dynamicexample">
-  <h2>Scroll down the page</h2>
+  <h2>Desplácese por la página</h2>
   <input type="range" min="0" max="500" v-model="pinPadding">
-  <p v-pin:[direction]="pinPadding">Stick me {{ pinPadding + 'px' }} from the {{ direction || 'top' }} of the page</p>
+  <p v-pin:[direction]="pinPadding">Fíjeme {{ pinPadding + 'px' }} de la {{ direction || 'arriba' }} de la página</p>
 </div>
 ```
 
@@ -140,63 +140,63 @@ Our custom directive is now flexible enough to support a few different use cases
 const app = Vue.createApp({
   data() {
     return {
-      direction: 'right',
+      direction: 'derecha',
       pinPadding: 200
     }
   }
 })
 ```
 
-Now let's extend our directive logic to recalculate the distance to pin on component update:
+Ahora extendamos la lógica de nuestra directiva para recalcular la distancia de fijar cuando el componente se actualice:
 
 ```js{7-10}
 app.directive('pin', {
   mounted(el, binding) {
     el.style.position = 'fixed'
-    const s = binding.arg || 'top'
+    const s = binding.arg || 'arriba'
     el.style[s] = binding.value + 'px'
   },
   updated(el, binding) {
-    const s = binding.arg || 'top'
+    const s = binding.arg || 'arriba'
     el.style[s] = binding.value + 'px'
   }
 })
 ```
 
-Result:
+Resultado:
 
-<common-codepen-snippet title="Custom directives: dynamic arguments + dynamic binding" slug="rNOaZpj" :preview="false" />
+<common-codepen-snippet title="Directivas personalizadas: argumentos dinámicos + vinculaciones dinámicos" slug="rNOaZpj" :preview="false" />
 
-## Function Shorthand
+## Forma Abreviada de Funciones
 
-In previous example, you may want the same behavior on `mounted` and `updated`, but don't care about the other hooks. You can do it by passing the callback to directive:
+En el ejemplo anterior, podría querer el mismo comportamiento en `mounted` y `updated`, sin preocuparse de otras hooks. Puede hacerlo mediante pasar el _callback_ a la directiva:
 
 ```js
 app.directive('pin', (el, binding) => {
   el.style.position = 'fixed'
-  const s = binding.arg || 'top'
+  const s = binding.arg || 'arriba'
   el.style[s] = binding.value + 'px'
 })
 ```
 
-## Object Literals
+## Objetos Literales
 
-If your directive needs multiple values, you can also pass in a JavaScript object literal. Remember, directives can take any valid JavaScript expression.
+Si su directiva necesita varios valores, también puede pasar un objeto literal de JavaScript. Recuerde, las directivas pueden tomar cualquier expresión válida de JavaScript.
 
 ```vue-html
-<div v-demo="{ color: 'white', text: 'hello!' }"></div>
+<div v-demo="{ color: 'blanco', text: '¡hola!' }"></div>
 ```
 
 ```js
 app.directive('demo', (el, binding) => {
-  console.log(binding.value.color) // => "white"
-  console.log(binding.value.text) // => "hello!"
+  console.log(binding.value.color) // => "blanco"
+  console.log(binding.value.text) // => "¡hola!"
 })
 ```
 
-## Usage on Components
+## Usos en Componentes
 
-When used on components, custom directive will always apply to component's root node, similarly to [non-prop attributes](component-attrs.html).
+Cuando se utilizan en componentes, las directivas personalizadas solo aplicarán al nodo raíz del componente, similar a [atributos que no son _props_](component-attrs.html).
 
 ```vue-html
 <my-component v-demo="test"></my-component>
@@ -205,13 +205,13 @@ When used on components, custom directive will always apply to component's root 
 ```js
 app.component('my-component', {
   template: `
-    <div> // v-demo directive will be applied here
-      <span>My component content</span>
+    <div> // la directiva v-demo solo se aplicará aquí
+      <span>El contenido de mi componente</span>
     </div>
   `
 })
 ```
 
-Unlike attributes, directives can't be passed to a different element with `v-bind="$attrs"`.
+A diferencia de atributos, las directivas no se pueden pasar a un elemento diferente con `v-bind="$attrs"`.
 
-With [fragments](/guide/migration/fragments.html#overview) support, components can potentially have more than one root node. When applied to a multi-root component, directive will be ignored and the warning will be thrown.
+Con suporte de [fragmentos](/guide/migration/fragments.html#overview), los componentes pueden potencialmente tener más que un solo nodo raíz. Al aplicarla a un componente con múltiples raíces, la directiva será ignorado y se lanzará una advertencia.

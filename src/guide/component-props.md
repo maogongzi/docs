@@ -1,18 +1,18 @@
-# Props
+# _Props_
 
-> This page assumes you've already read the [Components Basics](component-basics.md). Read that first if you are new to components.
+> Esta página asume que usted ya ha leído [Básicos de Componentes](component-basics.md). Léalo primero si usted es nuevo con componentes.
 
-<VideoLesson href="https://vueschool.io/lessons/vue-3-reusable-components-with-props?friend=vuejs" title="Free Vue.js Component Props Lesson">Learn how component props work with a free lesson on Vue School</VideoLesson>
+<VideoLesson href="https://vueschool.io/lessons/vue-3-reusable-components-with-props?friend=vuejs" title="Lección gratis sobre props de componente de Vue.js">Aprender cómo funciona las _props_ de componente con una lección gratis en Vue School</VideoLesson>
 
-## Prop Types
+## Tipos de _Prop_
 
-So far, we've only seen props listed as an array of strings:
+Hasta ahora, solo hemos visto las _props_ listadas como una matriz de cadenas de caracteres:
 
 ```js
 props: ['title', 'likes', 'isPublished', 'commentIds', 'author']
 ```
 
-Usually though, you'll want every prop to be a specific type of value. In these cases, you can list props as an object, where the properties' names and values contain the prop names and types, respectively:
+Sin embargo, por lo general, querrá que cada _prop_ sea un tipo específico de valor. En estos casos, puede enumerar las _props_ como un objeto, donde los nombres y valores de las propiedades de este objeto contienen los nombres y tipos de las _props_, respectivamente:
 
 ```js
 props: {
@@ -22,74 +22,74 @@ props: {
   commentIds: Array,
   author: Object,
   callback: Function,
-  contactsPromise: Promise // or any other constructor
+  contactsPromise: Promise // o cualquier otro constructor
 }
 ```
 
-This not only documents your component, but will also warn users in the browser's JavaScript console if they pass the wrong type. You'll learn much more about [type checks and other prop validations](#prop-validation) further down this page.
+Esto no solo documenta su componente, sino que también advertirá a los usuarios en la consola de JavaScript del navegador si se está pasando el tipo incorrecto. Aprenderá mucho más sobre [verificaciones de tipos y otras validaciones de _props_](#prop-validation) más adelante en esta página.
 
-## Passing Static or Dynamic Props
+## Pasar _props_ estáticas o dinámicas 
 
-So far, you've seen props passed a static value, like in:
+Hasta ahora, ha visto que las _props_ pasaban un valor estático, como en:
 
 ```html
 <blog-post title="My journey with Vue"></blog-post>
 ```
 
-You've also seen props assigned dynamically with `v-bind` or its shortcut, the `:` character, such as in:
+También ha visto _props_ asignadas dinámicamente con `v-bind` o su abreviatura, el carácter `:`, como en:
 
 ```html
-<!-- Dynamically assign the value of a variable -->
+<!-- Asigna dinámicamente el valor de una variable -->
 <blog-post :title="post.title"></blog-post>
 
-<!-- Dynamically assign the value of a complex expression -->
-<blog-post :title="post.title + ' by ' + post.author.name"></blog-post>
+<!-- Asigna dinámicamente el valor de una expresión compleja. -->
+<blog-post :title="post.title + ' por ' + post.author.name"></blog-post>
 ```
 
-In the two examples above, we happen to pass string values, but _any_ type of value can actually be passed to a prop.
+En los dos ejemplos anteriores, pasamos valores de cadena de caracteres, pero _cualquier_ tipo de valor se puede pasar a una _prop_.
 
-### Passing a Number
+### Pasar un número
 
 ```html
-<!-- Even though `42` is static, we need v-bind to tell Vue that -->
-<!-- this is a JavaScript expression rather than a string.       -->
+<!-- Aunque `42` es estático, necesitamos v-bind para decirle a Vue que -->
+<!-- es una expresión de JavaScript en vez de una cadena de caracteres. -->
 <blog-post :likes="42"></blog-post>
 
-<!-- Dynamically assign to the value of a variable. -->
+<!-- Asigna dinámicamente el valor de una variable. -->
 <blog-post :likes="post.likes"></blog-post>
 ```
 
-### Passing a Boolean
+### Pasar un booleano
 
 ```html
-<!-- Including the prop with no value will imply `true`. -->
-<!-- If you don't set is-published's type to Boolean in props, it will be an empty string instead of "true" value. -->
+<!-- Incluir la prop sin valor implicará `true` -->
+<!-- Si no asigna Boolean al tipo de is-published en props, será una cadena de caracteres vacía en vez del valor "true" -->
 <blog-post is-published></blog-post>
 
-<!-- Even though `false` is static, we need v-bind to tell Vue that -->
-<!-- this is a JavaScript expression rather than a string.          -->
+<!-- Aunque `false` es estático, necesitamos v-bind para decirle a Vue que -->
+<!-- es una expresión de JavaScript en vez de una cadena de caracteres. -->
 <blog-post :is-published="false"></blog-post>
 
-<!-- Dynamically assign to the value of a variable. -->
+<!-- Asigna dinámicamente el valor de una variable. -->
 <blog-post :is-published="post.isPublished"></blog-post>
 ```
 
-### Passing an Array
+### Pasar una matriz
 
 ```html
-<!-- Even though the array is static, we need v-bind to tell Vue that -->
-<!-- this is a JavaScript expression rather than a string.            -->
+<!-- Aunque la matriz es estático, necesitamos v-bind para decirle a Vue que -->
+<!-- es una expresión de JavaScript en vez de una cadena de caracteres. -->
 <blog-post :comment-ids="[234, 266, 273]"></blog-post>
 
-<!-- Dynamically assign to the value of a variable. -->
+<!-- Asigna dinámicamente el valor de una variable. -->
 <blog-post :comment-ids="post.commentIds"></blog-post>
 ```
 
-### Passing an Object
+### Pasar un objeto
 
 ```html
-<!-- Even though the object is static, we need v-bind to tell Vue that -->
-<!-- this is a JavaScript expression rather than a string.             -->
+<!-- Aunque el objeto es estático, necesitamos v-bind para decirle a Vue que -->
+<!-- es una expresión de JavaScript en vez de una cadena de caracteres. -->
 <blog-post
   :author="{
     name: 'Veronica',
@@ -97,42 +97,42 @@ In the two examples above, we happen to pass string values, but _any_ type of va
   }"
 ></blog-post>
 
-<!-- Dynamically assign to the value of a variable. -->
+<!-- Asigna dinámicamente el valor de una variable. -->
 <blog-post :author="post.author"></blog-post>
 ```
 
-### Passing the Properties of an Object
+### Pasar las propiedades de un objeto
 
-If you want to pass all the properties of an object as props, you can use `v-bind` without an argument (`v-bind` instead of `:prop-name`). For example, given a `post` object:
+Si desea pasar todas las propiedades de un objeto como _props_, puede usar `v-bind` sin un argumento (`v-bind` en lugar de `:prop-name`). Por ejemplo, dado un objeto `post`:
 
 ```js
 post: {
   id: 1,
-  title: 'My Journey with Vue'
+  title: 'Mi viaje con vue'
 }
 ```
 
-The following template:
+La siguiente plantilla:
 
 ```html
 <blog-post v-bind="post"></blog-post>
 ```
 
-Will be equivalent to:
+Será equivalente a:
 
 ```html
 <blog-post v-bind:id="post.id" v-bind:title="post.title"></blog-post>
 ```
 
-## One-Way Data Flow
+## Flujo de datos de una sola dirección
 
-All props form a **one-way-down binding** between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent's state, which can make your app's data flow harder to understand.
+Todas las _props_ forman una **vinculación de una sola dirección** entre la propiedad del hijo y la de su padre: cuando la propiedad del padre se actualice, fluirá hacia el hijo, pero no al revés. Esto evita que los componentes secundarios muten accidentalmente el estado de los padres, lo que puede hacer que el flujo de datos de su aplicación sean más difíciles de entender.
 
-In addition, every time the parent component is updated, all props in the child component will be refreshed with the latest value. This means you should **not** attempt to mutate a prop inside a child component. If you do, Vue will warn you in the console.
+Además, cada vez que se actualice el componente padre, todas las _props_ del componente secundario se actualizarán con el último valor. Esto significa que usted **no** debe intentar mutar una _prop_ dentro de un componente secundario. Si lo hace, Vue le advertirá en la consola.
 
-There are usually two cases where it's tempting to mutate a prop:
+Normalmente hay dos casos en los que es tentador mutar una _prop_:
 
-1. **The prop is used to pass in an initial value; the child component wants to use it as a local data property afterwards.** In this case, it's best to define a local data property that uses the prop as its initial value:
+1. **La _prop_ es utilizado para pasar un valor inicial; el componente secundario desea utilizarlo como una local propiedad de datos más adelante.** En este caso, es mejor definir una local propiedad de datos que utiliza la _prop_ como su valor inicial:
 
 ```js
 props: ['initialCounter'],
@@ -143,7 +143,7 @@ data() {
 }
 ```
 
-2. **The prop is passed in as a raw value that needs to be transformed.** In this case, it's best to define a computed property using the prop's value:
+2. **La _prop_ se pasa como un valor crudo que debe transformarse.** En este caso, es mejor definir una propiedad computada utilizando el valor de la _prop_:
 
 ```js
 props: ['size'],
@@ -155,69 +155,69 @@ computed: {
 ```
 
 ::: tip Note
-Note that objects and arrays in JavaScript are passed by reference, so if the prop is an array or object, mutating the object or array itself inside the child component **will** affect parent state.
+Tenga en cuenta que los objetos y las matrices en JavaScript se pasan por referencia, por lo que si la _prop_ es una matriz u objeto, mutar el objeto o la matriz mismo dentro del componente secundario **afectará** el estado del padre.
 :::
 
-## Prop Validation
+## Validación de _props_
 
-Components can specify requirements for their props, such as the types you've already seen. If a requirement isn't met, Vue will warn you in the browser's JavaScript console. This is especially useful when developing a component that's intended to be used by others.
+Los componentes pueden especificar requisitos para sus _props_, como los tipos que ya ha visto. Si no se cumple un requisito, Vue le avisará en la consola de JavaScript del navegador. Esto es especialmente útil cuando se desarrolla un componente que está destinado a ser utilizado por otros.
 
-To specify prop validations, you can provide an object with validation requirements to the value of `props`, instead of an array of strings. For example:
+Para especificar validaciones de _props_, puede proporcionar un objeto con requisitos de validación al valor de `props`, en lugar de una matriz de cadenas de caracteres. Por ejemplo:
 
 ```js
 app.component('my-component', {
   props: {
-    // Basic type check (`null` and `undefined` values will pass any type validation)
+    // Comprobación de tipo básico (`null` y `undefined` coincide con cualquier tipo)
     propA: Number,
-    // Multiple possible types
+    // Múltiples tipos posibles
     propB: [String, Number],
-    // Required string
+    // se requiere cadena de caracteres
     propC: {
       type: String,
       required: true
     },
-    // Number with a default value
+    // Número con un valor por defecto
     propD: {
       type: Number,
       default: 100
     },
-    // Object with a default value
+    // Objeto con un valor por defecto
     propE: {
       type: Object,
-      // Object or array defaults must be returned from
-      // a factory function
+      // Los valores por defecto del objeto o matriz deben retornarse desde
+      // una función de fábrica
       default() {
         return { message: 'hello' }
       }
     },
-    // Custom validator function
+    // Función de validación personalizada
     propF: {
       validator(value) {
-        // The value must match one of these strings
+        // El valor debe coincidir con una de estas cadenas de caracteres
         return ['success', 'warning', 'danger'].includes(value)
       }
     },
-    // Function with a default value
+    // Función con un valor por defecto
     propG: {
       type: Function,
-      // Unlike object or array default, this is not a factory function - this is a function to serve as a default value
+      // A diferencia de los valores por defecto de objetos o matrices, esta no es una función de fábrica - esta es una función para servirse como un valor por defecto.
       default() {
-        return 'Default function'
+        return 'Función por defecto'
       }
     }
   }
 })
 ```
 
-When prop validation fails, Vue will produce a console warning (if using the development build).
+Cuando falla la validación de _prop_, Vue producirá una advertencia en la consola (si se utiliza la compilación de desarrollo).
 
 ::: tip Note
-Note that props are validated **before** a component instance is created, so instance properties (e.g. `data`, `computed`, etc) will not be available inside `default` or `validator` functions.
+Tenga en cuenta que las _props_ se validan **antes de que** se cree una instancia de componente, por lo que las propiedades de la instancia (p. ej. `data`, `computed`, etc.) no estarán disponibles dentro de las funciones `default` o `validator`.
 :::
 
-### Type Checks
+### Validación de Tipos
 
-The `type` can be one of the following native constructors:
+La opción `type` puede ser uno de los siguientes constructores nativos:
 
 - String
 - Number
@@ -228,7 +228,7 @@ The `type` can be one of the following native constructors:
 - Function
 - Symbol
 
-In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check. For example, given the following constructor function exists:
+Además, `type` también puede ser una función constructora personalizada y la aserción se realizará con una comprobación de `instanceof`. Por ejemplo, dada la siguiente función constructora:
 
 ```js
 function Person(firstName, lastName) {
@@ -237,7 +237,7 @@ function Person(firstName, lastName) {
 }
 ```
 
-You could use:
+Usted podría utilizar:
 
 ```js
 app.component('blog-post', {
@@ -247,25 +247,25 @@ app.component('blog-post', {
 })
 ```
 
-to validate that the value of the `author` prop was created with `new Person`.
+para validar que el valor de la _prop_ `author` fue creado con `new Person`.
 
-## Prop Casing (camelCase vs kebab-case)
+## Casos de _Props_ (camelCase versus kebab-case)
 
-HTML attribute names are case-insensitive, so browsers will interpret any uppercase characters as lowercase. That means when you're using in-DOM templates, camelCased prop names need to use their kebab-cased (hyphen-delimited) equivalents:
+Los nombres de atributos HTML no distinguen entre mayúsculas y minúsculas, por lo que los navegadores interpretarán los caracteres en mayúscula como en minúscula. Eso significa que cuando utiliza plantillas del DOM, los nombres de _props_ de _camelCase_ necesitan utilizar sus equivalentes de _kebab-case_ (delimitados por guiones):
 
 ```js
 const app = Vue.createApp({})
 
 app.component('blog-post', {
-  // camelCase in JavaScript
+  // _camelCase_ en JavaScript
   props: ['postTitle'],
   template: '<h3>{{ postTitle }}</h3>'
 })
 ```
 
 ```html
-<!-- kebab-case in HTML -->
+<!-- kebab-case en HTML -->
 <blog-post post-title="hello!"></blog-post>
 ```
 
-Again, if you're using string templates, this limitation does not apply.
+Otra vez, si está utilizando plantillas de cadenas de caracteres, esta limitación no se aplica.

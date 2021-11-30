@@ -108,7 +108,7 @@ computed: {
 }
 ```
 
-En comparación, una invocación de método **siempre** ejecutará el función cada vez que una re-renderización occurre.
+En comparación, una invocación de método **siempre** ejecutará la función cada vez que una re-renderización occurre.
 
 Por qué necesitamos caché? Imagine que tenemos una propiedad computada `list`, lo que requiere recorrer una gran matriz y hacer un montón de computaciones, Entonces podríamos tener otras propiedades computadas que a su vez depende de `list`. Sin caché, ¡estaríamos ejecutiendo el cargador de `list` muchos más veces de lo necesario! En los casos donde no necesita caché, utilice un `método` en su lugar.
 

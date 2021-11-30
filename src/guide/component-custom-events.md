@@ -1,10 +1,10 @@
-# Custom Events
+# Eventos Personalizados
 
-> This page assumes you've already read the [Components Basics](component-basics.md). Read that first if you are new to components.
+> Esta página asume que usted ya ha leído [Básicos de Componentes](component-basics.md). Léalo primero si usted es nuevo con componentes.
 
-## Event Names
+## Nombre de eventos
 
-Like components and props, event names provide an automatic case transformation. If you emit an event from the child component in camel case, you will be able to add a kebab-cased listener in the parent:
+Como los componentes y _props_, los nombres de eventos proporcionan una transformación automática de casos. Si emite un evento desde el componente secundario con un nombre de _camelCase_, será capaz de agregar escuchadores de _kebab-case_ en el componente padre.
 
 ```js
 this.$emit('myEvent')
@@ -14,13 +14,13 @@ this.$emit('myEvent')
 <my-component @my-event="doSomething"></my-component>
 ```
 
-As with [props casing](/guide/component-props.html#prop-casing-camelcase-vs-kebab-case), we recommend using kebab-cased event listeners when you are using in-DOM templates. If you're using string templates, this limitation does not apply.
+Como con [Casos de _Props_](/guide/component-props.html#prop-casing-camelcase-vs-kebab-case), recomendamos utilizar escuchadores de eventos de _kebab-case_ cuando está utilizando plantillas en DOM. Si está utilizando plantillas de cadena de caracteres, esta limitación no se aplica.
 
-## Defining Custom Events
+## Definir eventos personalizados
 
-<VideoLesson href="https://vueschool.io/lessons/defining-custom-events-emits?friend=vuejs" title="Learn how to define which events a component can emit with Vue School">Watch a free video on how to define custom events on Vue School</VideoLesson>
+<VideoLesson href="https://vueschool.io/lessons/defining-custom-events-emits?friend=vuejs" title="Aprender cómo definir los eventos que pueden ser emitidos por un componente en Vue School">Ver un video gratis sobre cómo definir eventos personalizados en Vue School</VideoLesson>
 
-Emitted events can be defined on the component via the `emits` option.
+Los eventos emitidos pueden ser definido en el componente mediante la opción `emits`.
 
 ```js
 app.component('custom-form', {
@@ -28,30 +28,30 @@ app.component('custom-form', {
 })
 ```
 
-When a native event (e.g., `click`) is defined in the `emits` option, the component event will be used **instead** of a native event listener.
+Cuando un evento nativo (p. ej. `click`) está definido en la opción `emits`, el evento de componente será utilizado **en vez de** un escuchador de evento nativo.
 
 ::: tip
-It is recommended to define all emitted events in order to better document how a component should work.
+Es recomendado definir todos eventos emitidos para documentar mejor cómo un componente debería funcionar.
 :::
 
-### Validate Emitted Events
+### Validar eventos emitidos
 
-Similar to prop type validation, an emitted event can be validated if it is defined with the Object syntax instead of the array syntax.
+Similar a las validaciones de _props_, un evento emitido puede ser validado si es definido con la sintaxis de objeto en vez de matriz.
 
-To add validation, the event is assigned a function that receives the arguments passed to the `$emit` call and returns a boolean to indicate whether the event is valid or not.
+Para agregar validación, una función está asignado al evento, la que recibe los argumentos pasados a la llamada de `$emit` y retorna un valor booleano para indicar si el evento es válido o no.
 
 ```js
 app.component('custom-form', {
   emits: {
-    // No validation
+    // no validación
     click: null,
 
-    // Validate submit event
+    // Validar el evento _submit_
     submit: ({ email, password }) => {
       if (email && password) {
         return true
       } else {
-        console.warn('Invalid submit event payload!')
+        console.warn('¡La carga del evento submit es inválida!')
         return false
       }
     }
@@ -64,15 +64,15 @@ app.component('custom-form', {
 })
 ```
 
-## `v-model` arguments
+## Argumentos de `v-model`
 
-By default, `v-model` on a component uses `modelValue` as the prop and `update:modelValue` as the event. We can modify these names passing an argument to `v-model`:
+Por defecto, `v-model` de un componente utiliza `modelValue` como la _prop_ y `update:modelValue` como el evento. Podemos modificar estes nombres pasando un argumento a `v-model`:
 
 ```html
 <my-component v-model:title="bookTitle"></my-component>
 ```
 
-In this case, child component will expect a `title` prop and emits `update:title` event to sync:
+En este caso, el componente secundario esperará una _prop_ `title` y emitirá evento `update:title` para sincronizar.
 
 ```js
 app.component('my-component', {
@@ -90,11 +90,11 @@ app.component('my-component', {
 ```
 
 
-## Multiple `v-model` bindings
+## Múltiples vinculaciones de `v-model`
 
-By leveraging the ability to target a particular prop and event as we learned before with [`v-model` arguments](#v-model-arguments), we can now create multiple v-model bindings on a single component instance.
+Al aprovechar la capacidad para dirigir una _prop_ u evento particular como aprendemos antes con [argumentos de `v-model`](#v-model-arguments), podemos ahora crear múltiples vinculaciones de `v-model` en una sola instancia de componente.
 
-Each v-model will sync to a different prop, without the need for extra options in the component:
+Cada `v-model` será sincronizado con una _prop_ diferente, sin la necesidad de opciones adicionales en el componente:
 
 ```html
 <user-name
@@ -124,17 +124,17 @@ app.component('user-name', {
 })
 ```
 
-<common-codepen-snippet title="Multiple v-models" slug="GRoPPrM" tab="html,result" />
+<common-codepen-snippet title="Múltiples directivas de v-model" slug="GRoPPrM" tab="html,result" />
 
-## Handling `v-model` modifiers
+## Manejar modificadores de `v-model`
 
-When we were learning about form input bindings, we saw that `v-model` has [built-in modifiers](/guide/forms.html#modifiers) - `.trim`, `.number` and `.lazy`. In some cases, however, you might also want to add your own custom modifiers.
+Cuando estabamos aprendiendo sobre las vinculaciones de entradas de formularios, vimos que `v-model` tiene [modificadores integrados](/guide/forms.html#modifiers) - `.trim`, `.number` y `.lazy`. En algunos casos, sin embargo, querría también agregar sus propios modificadores personalizados.
 
-Let's create an example custom modifier, `capitalize`, that capitalizes the first letter of the string provided by the `v-model` binding.
+Creemos un ejemplo de modificador personalizado, `capitalize`, lo que pone en mayúscula la primera letra de la cadena de caracteres proporcionada por la vinculación de `v-model`.
 
-Modifiers added to a component `v-model` will be provided to the component via the `modelModifiers` prop. In the below example, we have created a component that contains a `modelModifiers` prop that defaults to an empty object.
+Los modificadores agregados a `v-model` de un componente serán proporcionados al componente mediante la _prop_ `modelModifiers`. En el siguiente ejemplo, hemos creado un componente que contiene una _prop_ `modelModifiers` que utiliza un objeto vacío como su valor por defecto.
 
-Notice that when the component's `created` lifecycle hook triggers, the `modelModifiers` prop contains `capitalize` and its value is `true` - due to it being set on the `v-model` binding `v-model.capitalize="myText"`.
+Note que cuando se activa el hook de ciclo de vida `created` del componente, la _prop_ `modelModifiers` contiene `capitalize` y su valor es `true` - debido a que está establecido en la vinculación de `v-model`, es decir, `v-model.capitalize="myText"`.
 
 ```html
 <my-component v-model.capitalize="myText"></my-component>
@@ -160,7 +160,7 @@ app.component('my-component', {
 })
 ```
 
-Now that we have our prop set up, we can check the `modelModifiers` object keys and write a handler to change the emitted value. In the code below we will capitalize the string whenever the `<input />` element fires an `input` event.
+Ahora que tenemos nuestra _prop_ establecida, podemos probar las claves del objeto `modelModifiers` y escribir un manejador para cambiar el valor emitido. En el código abajo vamos a poner en mayúscula la primera letra de la cadena de caracteres cada vez que el elemento `<input />` dispare un evento `input`. 
 
 ```html
 <div id="app">
@@ -204,7 +204,7 @@ app.component('my-component', {
 app.mount('#app')
 ```
 
-For `v-model` bindings with arguments, the generated prop name will be `arg + "Modifiers"`:
+Para las vinculaciones de `v-model` con argumentos, el nombre generado de la _prop_ será `arg + "Modifiers"`:
 
 ```html
 <my-component v-model:description.capitalize="myText"></my-component>
