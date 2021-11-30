@@ -212,6 +212,6 @@ app.component('my-component', {
 })
 ```
 
-Unlike attributes, directives can't be passed to a different element with `v-bind="$attrs"`.
+A diferencia de atributos, las directivas no se pueden pasar a un elemento diferente con `v-bind="$attrs"`.
 
-With [fragments](/guide/migration/fragments.html#overview) support, components can potentially have more than one root node. When applied to a multi-root component, directive will be ignored and the warning will be thrown.
+Con suporte de [fragmentos](/guide/migration/fragments.html#overview), los componentes pueden potencialmente tener más que un solo nodo raíz. Al aplicarla a un componente con múltiples raíces, la directiva será ignorado y se lanzará una advertencia.
