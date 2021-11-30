@@ -364,7 +364,7 @@ module.exports = {
         ]
       },
       {
-        text: 'La Referencia de API',
+        text: 'Referencia de API',
         link: '/api/'
       },
       {
