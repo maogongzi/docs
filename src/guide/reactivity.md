@@ -1,21 +1,21 @@
 # Reactividad en profundidad
 
-Now it’s time to take a deep dive! One of Vue’s most distinct features is the unobtrusive reactivity system. Models are proxied JavaScript objects. When you modify them, the view updates. It makes state management simple and intuitive, but it’s also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue’s reactivity system.
+¡Ha llegado la hora de profundizar en el asunto! Una de las características más distintas de Vue es su discreto sistema de reactividad. Los modelos simplemente son objetos delegados (proxied) de JavaScript. Cuando los modifique, se actualizará la vista. Esto hace que el gestor de estados sea sencillo e intuitivo, pero también es importante entender como funciona para evitar algunos errores comunes. En esta sección, vamos a indagar en algunos detalles de bajo nivel del sistema de reactividad de Vue.
 
-<VideoLesson href="https://www.vuemastery.com/courses/vue-3-reactivity/vue3-reactivity" title="Learn how how reactivity works in depth with Vue Mastery">Watch a free video on Reactivity in Depth on Vue Mastery</VideoLesson>
+<VideoLesson href="https://www.vuemastery.com/courses/vue-3-reactivity/vue3-reactivity" title="Aprender cómo funciona la reactividad a fondo con Vue Mastery">Ver un video gratis sobre Reactividad en profundidad en Vue Mastery</VideoLesson>
 
-## What is Reactivity?
+## ¿Que es Reactividad?
 
-This term comes up in programming quite a bit these days, but what do people mean when they say it? Reactivity is a programming paradigm that allows us to adjust to changes in a declarative manner. The canonical example that people usually show, because it’s a great one, is an Excel spreadsheet.
+Este término surge en programación muy frecuente estos días, ¿pero que quiere decir cuando la gente lo menciona? Reactividad es una paradigma de programación que nos permite adaptar a cambios en una manera declarativa. El ejemplo canónico que la gente a menudo demuestra, porque es genial, es una hoja de cálculo de Excel.
 
 <video width="550" height="400" controls>
   <source src="/images/reactivity-spreadsheet.mp4" type="video/mp4">
-  Your browser does not support the video tag.
+  Su navegador no soporta la etiqueta video.
 </video>
 
-If you put the number 2 in the first cell, and the number 3 in the second and asked for the SUM, the spreadsheet would give it to you. No surprises there. But if you update that first number, the SUM automagically updates too.
+Si pone el número 2 en la primera celda, y el número 3 en la segunda y pide la SUM, la hoja de cálculo le daría. No hay sorpresas allí. Pero si actualiza el primero número, la SUM se actualiza automáticamente, también.
 
-JavaScript doesn’t usually work like this. If we were to write something comparable in JavaScript:
+JavaScript usualmente no funciona como esto. Si estuviéramos escribiendo algo similar en JavaScript:
 
 ```js
 let val1 = 2
@@ -29,11 +29,11 @@ val1 = 3
 console.log(sum) // Still 5
 ```
 
-If we update the first value, the sum is not adjusted.
+Si actualizamos el primer valor, el sum no es adaptado.
 
-So how would we do this in JavaScript?
+Entonces, ¿cómo podríamos hacerlo en JavaScript?
 
-As a high-level overview, there are a few things we need to be able to do:
+Como una visión general de alto nivel, hay unas cuantas cosas que debemos ser capaz de hacer:
 
 1. **Track when a value is read.** e.g. `val1 + val2` reads both `val1` and `val2`.
 2. **Detect when a value changes.** e.g. When we assign `val1 = 3`.
