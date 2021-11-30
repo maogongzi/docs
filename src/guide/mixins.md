@@ -1,43 +1,43 @@
 # Mixins
 
-## Basics
+## Básicos
 
-Mixins distribute reusable functionalities for Vue components. A mixin object can contain any component options. When a component uses a mixin, all options in the mixin will be "mixed" into the component's own options.
+Los _mixins_ distribuyen funcionalidades reutilizables para componentes Vue. Un objeto _mixin_ puede contener cualquier opción de componente. Cuando un componente utiliza un _mixin_, todas las opciones en el mixins se “mezclarán” en las propias opciones del componente.
 
-Example:
+Ejemplo:
 
 ```js
-// define a mixin object
+// definir un objeto mixin
 const myMixin = {
   created() {
     this.hello()
   },
   methods: {
     hello() {
-      console.log('hello from mixin!')
+      console.log('¡hola desde mixin!')
     }
   }
 }
 
-// define an app that uses this mixin
+// definir una aplicación qu utiliza este _mixin_
 const app = Vue.createApp({
   mixins: [myMixin]
 })
 
-app.mount('#mixins-basic') // => "hello from mixin!"
+app.mount('#mixins-basic') // => "¡hola desde mixin!"
 ```
 
-## Option Merging
+## Fusión de Opciones
 
-When a mixin and the component itself contain overlapping options, they will be "merged" using appropriate strategies.
+Cuando un _mixin_ y el componente mismo contienen opciones superpuestas, se “fusionarán” utilizando estrategias apropiadas.
 
-For example, each mixin can have its own `data` function. Each of them will be called, with the returned objects being merged. Properties from the component's own data will take priority in cases of conflicts.
+Por ejemplo, cada _mixin_ puede tener su propia función `data`. Cada una de ellas serán llamado, y los objetos retornados serán fusionado. Las propiedades de los propios datos del componente tienen prioridad en caso de conflictos.
 
 ```js
 const myMixin = {
   data() {
     return {
-      message: 'hello',
+      message: 'hola',
       foo: 'abc'
     }
   }
@@ -47,37 +47,37 @@ const app = Vue.createApp({
   mixins: [myMixin],
   data() {
     return {
-      message: 'goodbye',
+      message: 'adiós',
       bar: 'def'
     }
   },
   created() {
-    console.log(this.$data) // => { message: "goodbye", foo: "abc", bar: "def" }
+    console.log(this.$data) // => { message: "adiós", foo: "abc", bar: "def" }
   }
 })
 ```
 
-Hook functions with the same name are merged into an array so that all of them will be called. Mixin hooks will be called **before** the component's own hooks.
+Las funciones _hook_ con el mismo nombre serán fusionado en una matriz para que todas de ellas serán llamado. Hooks de _mixin_ serán llamado **antes** de los propios hooks del componente.
 
 ```js
 const myMixin = {
   created() {
-    console.log('mixin hook called')
+    console.log('hook de mixin está llamado')
   }
 }
 
 const app = Vue.createApp({
   mixins: [myMixin],
   created() {
-    console.log('component hook called')
+    console.log('hook del componente está llamado')
   }
 })
 
-// => "mixin hook called"
-// => "component hook called"
+// => "hook de mixin está llamado"
+// => "hook del componente está llamado"
 ```
 
-Options that expect object values, for example `methods`, `components` and `directives`, will be merged into the same object. The component's options will take priority when there are conflicting keys in these objects:
+Las opciones, excepto valores de objetos, por ejemplo `methods`, `components` y `directives`, serán fusionado en el mismo objeto. Las opciones del componente tendrán prioridad cuando hay claves conflictos en estos objetos:
 
 ```js
 const myMixin = {
@@ -86,7 +86,7 @@ const myMixin = {
       console.log('foo')
     },
     conflicting() {
-      console.log('from mixin')
+      console.log('desde mixin')
     }
   }
 }
@@ -98,7 +98,7 @@ const app = Vue.createApp({
       console.log('bar')
     },
     conflicting() {
-      console.log('from self')
+      console.log('desde sí mismo')
     }
   }
 })
@@ -107,19 +107,19 @@ const vm = app.mount('#mixins-basic')
 
 vm.foo() // => "foo"
 vm.bar() // => "bar"
-vm.conflicting() // => "from self"
+vm.conflicting() // => "desde sí mismo"
 ```
 
-## Global Mixin
+## Mixin Global
 
-You can also apply a mixin globally for a Vue application:
+Puede también aplicar un _mixin_ globalmente para una aplicación Vue:
 
 ```js
 const app = Vue.createApp({
-  myOption: 'hello!'
+  myOption: '¡hola!'
 })
 
-// inject a handler for `myOption` custom option
+// inyectar un manejador para la opción personalizada `myOption`
 app.mixin({
   created() {
     const myOption = this.$options.myOption
@@ -129,17 +129,17 @@ app.mixin({
   }
 })
 
-app.mount('#mixins-global') // => "hello!"
+app.mount('#mixins-global') // => "¡hola!"
 ```
 
-Use with caution! Once you apply a mixin globally, it will affect **every** component instance created afterwards in the given app (for example, child components):
+¡Utilizarlo con precaución! Una vez que aplique un _mixin_ globalmente, afectará **cada** instancia de componente creada posteriormente en la aplicación dada (por ejemplo, en los componentes secundarios):
 
 ```js
 const app = Vue.createApp({
-  myOption: 'hello!'
+  myOption: '¡hola!'
 })
 
-// inject a handler for `myOption` custom option
+// inyectar un manejador para la opción personalizada `myOption`
 app.mixin({
   created() {
     const myOption = this.$options.myOption
@@ -149,78 +149,78 @@ app.mixin({
   }
 })
 
-// add myOption also to child component
+// también agregar myOption a componentes secundarios
 app.component('test-component', {
-  myOption: 'hello from component!'
+  myOption: '¡hola desde el component!'
 })
 
 app.mount('#mixins-global')
 
-// => "hello!"
-// => "hello from component!"
+// => "¡hola!"
+// => "¡hola desde el component!"
 ```
 
-In most cases, you should only use it for custom option handling like demonstrated in the example above. It's also a good idea to ship them as [Plugins](plugins.html) to avoid duplicate application.
+En la mayoría de los casos, debería solo utilizarlo para manipular opciones personalizadas como demonstrado en el ejemplo anterior arriba. Es también un buen idea ofrecerlos como [plugins](plugins.html) para evitar aplicación doble.
 
-## Custom Option Merge Strategies
+## Estrategias de Fusión de Opciones Personalizadas
 
-When custom options are merged, they use the default strategy which overwrites the existing value. If you want a custom option to be merged using custom logic, you need to attach a function to `app.config.optionMergeStrategies`:
+Cuando las opciones personalizadas se fusionan, utilizan la estrategia por defecto que sobrescribe el valor existente. Si desea que una opción personalizada se fusione utilizando lógica personalizada, debe adjuntar una función a `app.config.optionMergeStrategies`:
 
 ```js
 const app = Vue.createApp({})
 
 app.config.optionMergeStrategies.customOption = (toVal, fromVal) => {
-  // return mergedVal
+  // retorna valor fusionado
 }
 ```
 
-The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. Let's try to check what do we have in these parameters when we use a mixin:
+La estrategia de fusión recibe el valor de aquella opción definida en la instancia de padre y hijo como el primero y segundo argumento, respectivamente. Tratemos de probar qué tenemos en estos parámetros cuando utilizamos un _mixin_:
 
 ```js
 const app = Vue.createApp({
-  custom: 'hello!'
+  custom: '¡hola!'
 })
 
 app.config.optionMergeStrategies.custom = (toVal, fromVal) => {
   console.log(fromVal, toVal)
-  // => "goodbye!", undefined
-  // => "hello", "goodbye!"
+  // => "¡adiós!", undefined
+  // => "¡hola!", "¡adiós!"
   return fromVal || toVal
 }
 
 app.mixin({
-  custom: 'goodbye!',
+  custom: '¡adiós!',
   created() {
-    console.log(this.$options.custom) // => "hello!"
+    console.log(this.$options.custom) // => "¡hola!"
   }
 })
 ```
 
-As you can see, in the console we have `toVal` and `fromVal` printed first from the mixin and then from the `app`. We always return `fromVal` if it exists, that's why `this.$options.custom` is set to `hello!` in the end. Let's try to change a strategy to _always return a value from the child instance_:
+Como puede ver, en la consola tenemos `toVal` y `fromVal` impreso primero desde el _mixin_ y luego de la `app`. Siempre retornamos `fromVal` si existe, eso es porque `this.$options.custom` se establece como `¡hola!` al fin. Tratemos de cambiar una estrategia para que _siempre retorne un valor desde la instancia del hijo_:
 
 ```js
 const app = Vue.createApp({
-  custom: 'hello!'
+  custom: '¡hola!'
 })
 
 app.config.optionMergeStrategies.custom = (toVal, fromVal) => toVal || fromVal
 
 app.mixin({
-  custom: 'goodbye!',
+  custom: '¡adiós!',
   created() {
-    console.log(this.$options.custom) // => "goodbye!"
+    console.log(this.$options.custom) // => "¡adiós!"
   }
 })
 ```
 
-## Drawbacks
+## Ddesventajas
 
-In Vue 2, mixins were the primary tool to abstract parts of component logic into reusable chunks. However, they have a few issues:
+En Vue 2, _mixins_ estuvieron la hierramienta primaria para abstraer partes de la lógica de componentes en fragmentos reutilizables. Sin embargo, tuvieron unas problemas:
 
-- Mixins are conflict-prone: Since properties from each mixin are merged into the same component, you still have to know about every other mixin to avoid property name conflicts.
+- _Mixins_ son fáciles de provocar conflictos: Debido a que las propiedades de cada _mixin_ son fusionado en el mismo componente, todavía tiene que saber todos los otros _mixins_ para evitar conflictos de nombres de propiedades.
 
-- Properties seem to appear from nowhere: If a component uses multiple mixins it isn't necessarily obvious which properties came from which mixin.
+- Parece que las propiedades aparecen de la nada: si un componente utiliza múltiples _mixins_, no es muy claro cual propiedad viene de cual _mixin_.
 
-- Reusability is limited: we cannot pass any parameters to the mixin to change its logic, which reduces their flexibility in terms of abstracting logic.
+- Reutilizabilidad es limitado: no podemos pasar cualquiere parámetro al _mixin_ para cambiar su lógica, lo cual reduce su flexibilidad en términos de abstraer lógica.
 
-To address these issues, we added a new way to organize code by logical concerns: the [Composition API](composition-api-introduction.html).
+Para abordar estas problemas, agregamos un nuevo método para organizar código por preocupaciones lógicas: la [API de Composición](composition-api-introduction.html).
