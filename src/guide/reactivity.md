@@ -298,14 +298,14 @@ const obj = reactive({
 console.log(obj.count === 0) // true
 ```
 
-## How Rendering Reacts to Changes
+## Cómo la renderización reacciona a cambios
 
-The template for a component is compiled down into a [`render`](/guide/render-function.html) function. The `render` function creates the [VNodes](/guide/render-function.html#the-virtual-dom-tree) that describe how the component should be rendered. It is wrapped in an effect, allowing Vue to track the properties that are 'touched' while it is running.
+La plantilla para un componente es compilado en una función [`render`](/guide/render-function.html). La función `render` crea los [VNodes (Nodos Virtuales)](/guide/render-function.html#the-virtual-dom-tree) que describen como el componente se debe renderizar. Es envuelto en un _effect_, permitiendo que Vue rastree las propiedades que son 'tocado' mientras está ejecutando.
 
-A `render` function is conceptually very similar to a `computed` property. Vue doesn't track exactly how dependencies are used, it only knows that they were used at some point while the function was running. If any of those properties subsequently changes, it will trigger the effect to run again, re-running the `render` function to generate new VNodes. These are then used to make the necessary changes to the DOM.
+Una función `render` es conceptualmente muy similar a la propiedad `computed`. Vue no rastrea exactamente cómo las dependencias son utilizado, solo sabe que ellas hayan sido utilizado en algún momento mientras la función está ejecutando. Si cualquiera de estas propiedades cambia posteriormente, disparará el _effect_ para ejecutar de nuevo, reejecutando la función `render` para generar nuevos VNodes. Estos son luego utilizado para hacer los cambios necesarios al DOM.
 
 <div class="reactivecontent">
-  <common-codepen-snippet title="Second Reactivity with Proxies in Vue 3 Explainer" slug="wvgqyJK" tab="result" theme="light" :height="500" :editable="false" :preview="false" />
+  <common-codepen-snippet title="La Segunda Reactividad con Proxies en El Explicador de Vue 3" slug="wvgqyJK" tab="result" theme="light" :height="500" :editable="false" :preview="false" />
 </div>
 
-> If you are using Vue 2.x and below, you may be interested in some of the change detection caveats that exist for those versions, [explored in more detail here](change-detection.md).
+> Si está utilizando Vue 2.x y bajo, le podría interesar en algunas de las advertencias de detección de cambios que existen en esos versiones, [explicados con más detalles aquí](change-detection.md).
