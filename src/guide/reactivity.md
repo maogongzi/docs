@@ -35,17 +35,17 @@ Entonces, ¿cómo podríamos hacerlo en JavaScript?
 
 Como una visión general de alto nivel, hay unas cuantas cosas que debemos ser capaz de hacer:
 
-1. **Track when a value is read.** e.g. `val1 + val2` reads both `val1` and `val2`.
-2. **Detect when a value changes.** e.g. When we assign `val1 = 3`.
-3. **Re-run the code that read the value originally.** e.g. Run `sum = val1 + val2` again to update the value of `sum`.
+1. **Rastrear cuándo un valor esté leido.** p. ej. `val1 + val2` lee tanto `val1` como `val2`.
+2. **Detectar cuándo un valor se cambie.** p. ej. cuando asignamos `val1 = 3`.
+3. **Reejecutar el código que lea el valor originalmente.** p. ej. Ejecutar `sum = val1 + val2` de nuevo para actualizar el valor de `sum`.
 
-We can't do this directly using the code from the previous example but we'll come back to this example later to see how to adapt it to be compatible with Vue's reactivity system.
+No podemos hacerlo directamente utilizando el código desde el previo ejemplo, pero volverémos a este ejemplo más adelante para ver como adaptarlo para sea compatible con el sistema de reactividad de Vue.
 
-First, let's dig a bit deeper into how Vue implements the core reactivity requirements outlined above.
+Primero, vamos a profundizar un poco más en cómo Vue implementa los requisitos núcleos de reactividad descritos anteriormente.
 
-## How Vue Knows What Code Is Running
+## Cómo Vue sabe que código está ejecutando
 
-To be able to run our sum whenever the values change, the first thing we need to do is wrap it in a function:
+Para ser capaz de obtener nuestra suma cada vez que los valores se cambien, la primera cosa que debemos hacer es envolverlo en una función:
 
 ```js
 const updateSum = () => {
@@ -53,13 +53,13 @@ const updateSum = () => {
 }
 ```
 
-But how do we tell Vue about this function?
+Pero, ¿cómo informamos a Vue sobre esta función?
 
-Vue keeps track of which function is currently running by using an *effect*. An effect is a wrapper around the function that initiates tracking just before the function is called. Vue knows which effect is running at any given point and can run it again when required.
+Vue realiza un seguimiento de cual función está ejecutando en la actualidad, mediante utilizar un **effect**. Un _effect_ es una envoltura alrededor de la función que inicie el seguimiento justo antes de que se llame la función. Vue sabe cual _effect_ está ejecutando en cualquier momento y puede ejecutarlo de nuevo cuando sea necesario.
 
-To understand that better, let's try to implement something similar ourselves, without Vue, to see how it might work.
+Para comprenderlo mejor, tratemos de implementar algo similar nosotros, sin Vue, para ver cómo podría funcionar.
 
-What we need is something that can wrap our sum, like this:
+Lo que necesitamos es algo que pueda envolver nuestra suma, como esto:
 
 ```js
 createEffect(() => {
@@ -67,32 +67,32 @@ createEffect(() => {
 })
 ```
 
-We need `createEffect` to keep track of when the sum is running. We might implement it something like this:
+Necesitamos `createEffect` para realizar un seguimiento de cuando la suma está ejecutando. Podríamos implementarlo de alguna manera como esto:
 
 ```js
-// Maintain a stack of running effects
+// Mantener una pila de _effects_ que están ejecutando
 const runningEffects = []
 
 const createEffect = fn => {
-  // Wrap the passed fn in an effect function
+  // Envolver la función pasada en una función _effect_
   const effect = () => {
     runningEffects.push(effect)
     fn()
     runningEffects.pop()
   }
 
-  // Automatically run the effect immediately
+  // Automáticamente ejecutar el _effect_ inmediatmente
   effect()
 }
 ```
 
-When our effect is called it pushes itself onto the `runningEffects` array, before calling `fn`. Anything that needs to know which effect is currently running can check that array.
+Cuando nuestro _effect_ está llamado, se empuja a sí mismo en la matriz `runningEffects`, antes de llamar `fn`. Cualquiera cosa que necesita saber cual _effect_ está ejecutando en la actualidad puede revisar la matriz.
 
-Effects act as the starting point for many key features. For example, both component rendering and computed properties use effects internally. Any time something magically responds to data changes you can be pretty sure it has been wrapped in an effect.
+_Effects_ actúan como el punto de partida para muchas características fundamentales. Por ejemplo, tanto la renderización de componentes como las propiedades computadas utilizan _effects_ internalmente. Cualquier tiempo cuando algo responda a cambios de datos mágicamente, puede ser casi seguro que se haya envuelto en un _effect_.
 
-While Vue's public API doesn't include any way to create an effect directly, it does expose a function called `watchEffect` that behaves a lot like the `createEffect` function from our example. We'll discuss that in more detail [later in the guide](/guide/reactivity-computed-watchers.html#watcheffect).
+Mientras la API pública de Vue no incluye nada de maneras para crear un _effect_ directamente, en verdad expone una función llamada `watchEffect`, lo que se porta muy similar como la función `createEffect` de nuestro ejemplo. Discutirémoslo con más detalles [más adelante en la guía](/guide/reactivity-computed-watchers.html#watcheffect).
 
-But knowing what code is running is just one part of the puzzle. How does Vue know what values the effect uses and how does it know when they change?
+Pero saber qué código está ejecutando es solo un parte del puzle. ¿Cómo sabe Vue qué valores utiliza el _effect_ y cuando se cambian?
 
 ## How Vue Tracks These Changes
 
