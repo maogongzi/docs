@@ -4,7 +4,7 @@
 
 ## Nombre de eventos
 
-Como los componentes y _props_, los nombres de eventos proporcionan una transformación automática de casos. Si emite un evento desde el componente secundario con un nombre de _camelCase_, será capaz de agregar escuchadores de _kebab-case_ en el componente padre.
+Como los componentes y _props_, los nombres de eventos proporcionan una transformación automática de casos. Si emite un evento desde el componente secundario con un nombre de _camelCase_, será capaz de agregar un escuchador de _kebab-case_ en el componente padre.
 
 ```js
 this.$emit('myEvent')
