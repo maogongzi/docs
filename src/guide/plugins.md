@@ -1,22 +1,22 @@
-﻿# Plugins
+# Plugins
 
-Plugins are self-contained code that usually add global-level functionality to Vue. It is either an `object` that exposes an `install()` method, or a `function`.
+Los _Plugins_ son códigos autocontenidos que usualmente agregan funcionalidades de nivel global a Vue. Es o un `objeto` que expone un método `install()`, o una `function`.
 
-There is no strictly defined scope for a plugin, but common scenarios where plugins are useful include:
+No hay un alcance estrictamente definido para un _Plugin_, pero los escenarios comunes dónde los _plugins_ son útiles incluyen:
 
-1. Add some global methods or properties, e.g. [vue-custom-element](https://github.com/karol-f/vue-custom-element).
+1. Agregar algunos métodos o propiedades globales. Por ejemplo, [vue-custom-element](https://github.com/karol-f/vue-custom-element).
 
-2. Add one or more global assets: directives/transitions etc. (e.g. [vue-touch](https://github.com/vuejs/vue-touch)).
+2. Agregar uno o más recursos globales: directivas/transiciones, etc. (p. ej. [vue-touch](https://github.com/vuejs/vue-touch)).
 
-3. Add some component options by global mixin (e.g. [vue-router](https://github.com/vuejs/vue-router)).
+3. Agregar algunas opciones de componentes mediante mixines globales (p. ej. [vue-router](https://github.com/vuejs/vue-router)).
 
-4. Add some global instance methods by attaching them to `config.globalProperties`.
+4. Agregar algunos métodos globales de instancias mediante adjuntarlos a `config.globalProperties`.
 
-5. A library that provides an API of its own, while at the same time injecting some combination of the above (e.g. [vue-router](https://github.com/vuejs/vue-router)).
+5. Una librería que proporciona una API propia, mientras que al mismo tiempo inyecta alguna combinación de lo anterior (e.g. [vue-router](https://github.com/vuejs/vue-router)).
 
-## Writing a Plugin
+## Escribir un _Plugin_
 
-In order to better understand how to create your own Vue.js plugins, we will create a very simplified version of a plugin that displays `i18n` ready strings.
+Para mejor comprender cómo crear sus propios _plugins_ de Vue.js, crearémos una versión de un _plugin_ muy simplificada que mostra cadenas de caracteres que se han prepadado para `i18n`.
 
 Whenever this plugin is added to an application, the `install` method will be called if it is an object. If it is a `function`, the function itself will be called. In both cases, it will receive two parameters - the `app` object resulting from Vue's `createApp`, and the options passed in by the user.
 
