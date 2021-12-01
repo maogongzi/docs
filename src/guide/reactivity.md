@@ -198,13 +198,13 @@ console.log(proxy.meal)
 
 ¿Recuerda esta lista de antes? Ahora tenemos algunas respuestas para cómo Vue implementa estos pasos fundamentales:
 
-1. **Track when a value is read**: the `track` function in the proxy's `get` handler records the property and the current effect.
-2. **Detect when that value changes**: the `set` handler is called on the proxy.
-3. **Re-run the code that read the value originally:** the `trigger` function looks up which effects depend on the property and runs them.
+1. **Rastrear cuándo un valor esté leido**: la función `track` en el manejador `get` del _proxy_ graba la propiedad y el actual _effect_.
+2. **Detectar cuándo un valor se cambie**: el manejador `set` está llamado en el _proxy_.
+3. **Reejecutar el código que lea el valor originalmente:** la función `trigger` busca cuales _effects_ dependen de la propiedad y los ejecute.
 
-The proxied object is invisible to the user, but under the hood it enables Vue to perform dependency-tracking and change-notification when properties are accessed or modified. One caveat is that console logging will format proxied objects differently, so you may want to install [vue-devtools](https://github.com/vuejs/vue-devtools) for a more inspection-friendly interface.
+El objeto delegado (proxied) es invisible al usuario, pero fundamentalmente le permite a Vue a realizar el seguimiento de dependencias y notificación a cambios cuando las propiedades son accesado o modificado. Una advertencia es que el registro de la consola va a formatear los objetos delegados (proxied) de maneras diferentes, así que querría instalar [vue-devtools](https://github.com/vuejs/vue-devtools) para una interfaz más faborable a la inspección.
 
-If we were to rewrite our original example using a component we might do it something like this:
+Si queremos reescribir nuestro ejemplo original utilizando un componente, podríamos hacerlo de una manera como esto:
 
 ```js
 const vm = createApp({
@@ -228,11 +228,11 @@ vm.val1 = 3
 console.log(vm.sum) // 6
 ```
 
-The object returned by `data` will be wrapped in a reactive proxy and stored as `this.$data`. The properties `this.val1` and `this.val2` are aliases for `this.$data.val1` and `this.$data.val2` respectively, so they go through the same proxy.
+El objeto retornado por `data` será envuelto en un _proxy_ reactivo y almacenado como `this.$data`. Las propiedades `this.val1` y `this.val2` son alias para `this.$data.val1` y `this.$data.val2`, respectivamente, po eso vienen del mismo _proxy_.
 
-Vue will wrap the function for `sum` in an effect. When we try to access `this.sum`, it will run that effect to calculate the value. The reactive proxy around `$data` will track that the properties `val1` and `val2` were read while that effect is running.
+Vue envolverá la función para `sum` en un _effect_. Cuando tratamos de acceder `this.sum`, ejecutará ese _effect_ para calcular el valor. El _proxy_ reactivo alrededor `$data` rastreará que las propiedades `val1` y `val2` sean leido cuando ese _effect_ sea ejecutando.
 
-As of Vue 3, our reactivity is now available in a [separate package](https://github.com/vuejs/vue-next/tree/master/packages/reactivity). The function that wraps `$data` in a proxy is called [`reactive`](/api/basic-reactivity.html#reactive). We can call this directly ourselves, allowing us to wrap an object in a reactive proxy without needing to use a component:
+A partir de Vue 3, nuestra reactividad es ahora disponible en un [paquete separado](https://github.com/vuejs/vue-next/tree/master/packages/reactivity). La función que envolve `$data` en un _proxy_ es llamado [`reactive`](/api/basic-reactivity.html#reactive). Podemos llamar este directamente por nosotros mismos, permitíendonos envolver un objeto en un _proxy_ reactivo sin necesidad de utilizar un componente:
 
 ```js
 const proxy = reactive({
@@ -241,7 +241,7 @@ const proxy = reactive({
 })
 ```
 
-We'll explore the functionality exposed by the reactivity package over the course of the next few pages of this guide. That includes functions like `reactive` and `watchEffect` that we've already met, as well as ways to use other reactivity features, such as `computed` and `watch`, without needing to create a component.
+Explorarémos la funcionalidad expuesta por el paquete de reactividad a lo largo del curso de las siguientes páginas de esta guía. Eso incluye funciones como `reactive` y `watchEffect` que ya hemos encontrado, así como maneras para utilizar otras características de reactividad, como `computed` y `watch`, sin necesidad de crear un componente.
 
 ### Proxied Objects
 
