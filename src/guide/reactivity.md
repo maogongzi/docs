@@ -94,19 +94,19 @@ Mientras la API pública de Vue no incluye nada de maneras para crear un _effect
 
 Pero saber qué código está ejecutando es solo un parte del puzle. ¿Cómo sabe Vue qué valores utiliza el _effect_ y cuando se cambian?
 
-## How Vue Tracks These Changes
+## Cómo Vue rastrear estos cambios
 
-We can't track reassignments of local variables like those in our earlier examples, there's just no mechanism for doing that in JavaScript. What we can track are changes to object properties.
+No podemos rastrear reasignación de variables locales como esos en nuestros ejemplos anteriores, simplemente no hay mecanismo para hacerlo en JavaScript. Los que podemos rastrear son los cambios de las propiedades de objetos.
 
-When we return a plain JavaScript object from a component's `data` function, Vue will wrap that object in a [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) with handlers for `get` and `set`. Proxies were introduced in ES6 and allow Vue 3 to avoid some of the reactivity caveats that existed in earlier versions of Vue.
+Cuando retornamos un objeto JavaScript plano desde la función `data` de un componente, Vue va a envolver ese objeto en un [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) con manejadores para `get` y `set`. Los _proxies_ estuvieron introducido en ES6 y le permite a Vue 3 a evitar unas de las advertencias de reactividad que existen en las versiones anteriores de Vue.
 
 <div class="reactivecontent">
-  <common-codepen-snippet title="Proxies and Vue's Reactivity Explained Visually" slug="VwmxZXJ" tab="result" theme="light" :height="500" :editable="false" :preview="false" />
+  <common-codepen-snippet title="Proxies y la Reactividad de Vue Explicados Visualmente" slug="VwmxZXJ" tab="result" theme="light" :height="500" :editable="false" :preview="false" />
 </div>
 
-That was rather quick and requires some knowledge of [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) to understand! So let’s dive in a bit. There’s a lot of literature on Proxies, but what you really need to know is that a **Proxy is an object that encases another object and allows you to intercept any interactions with that object.**
+¡Eso fue muy rápido y requiere unos conocimientos de [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) para comprender! Por eso dejamos profundizar un poco. Hay muchos para conocer sobre _Proxies_, pero lo que en realidad necesita saber es que un **Proxy** es un objeto que encierra otro objeto y le permite interceptar cualquier interacción con el objeto encerrado.**
 
-We use it like this: `new Proxy(target, handler)`
+Utilizámoslo como este: `new Proxy(target, handler)`
 
 ```js
 const dinner = {
@@ -127,11 +127,11 @@ console.log(proxy.meal)
 // tacos
 ```
 
-Here we've intercepted attempts to read properties of the target object. A handler function like this is also known as a *trap*. There are many different types of trap available, each handling a different type of interaction.
+Aquí hemos interceptado los intentos de leer propiedades del objeto objetivo. Una función de manejador como este es también conocido como una *trampa*. Hay muchos tipos diferentes de *trampas* disponibles, cada uno maneja un tipo diferente de interacción.
 
-Beyond a console log, we could do anything here we wish. We could even _not_ return the real value if we wanted to. This is what makes Proxies so powerful for creating APIs.
+Más allá de un registro de la consola, podríamos hacer cualquier cosa que nos gustaríamos aquí. Podríamos incluso _no_ retornar el valor verdadero si quisiéramos. Este hace que _Proxies_ sea muy poderoso para crear API.
 
-One challenge with using a Proxy is the `this` binding. We'd like any methods to be bound to the Proxy, rather than the target object, so that we can intercept them too. Thankfully, ES6 introduced another new feature, called `Reflect`, that allows us to make this problem disappear with minimal effort:
+Un reto que se encuentra cuando se utiliza un _Proxy_ es la vinculación de `this`. Querríamos que cualquier método sea vinculado al _Proxy_ en lugar del objeto objetivo, así que podemos interceptarlos también. Afortunadamente, ES6 introdujo otra nueva característica, llamada `Reflect`, lo que nos permite eliminar este problema con mínimo esfuerzo:
 
 ```js{7}
 const dinner = {
@@ -150,7 +150,7 @@ console.log(proxy.meal)
 // tacos
 ```
 
-The first step towards implementing reactivity with a Proxy is to track when a property is read. We do this in the handler, in a function called `track`, where we pass in the `target` and `property`:
+El primero paso hacia implementar reactividad con un _Proxy_ es rastrear cuando una propiedad sea leido. Hacemoslo en el manejador, en una función llamada `track`, a la que pasamos `target` y `property`:
 
 ```js{7}
 const dinner = {
@@ -170,9 +170,9 @@ console.log(proxy.meal)
 // tacos
 ```
 
-The implementation of `track` isn't shown here. It will check which *effect* is currently running and record that alongside the `target` and `property`. This is how Vue knows that the property is a dependency of the effect.
+La implementación de `track` no está mostrado aquí. Comprobará cual *effect* está ejecutando en la actualidad y lo grabará junto con `target` y `property`. Esto es cómo Vue sabe que la propiedad es una dependencia del _effect_.
 
-Finally, we need to re-run the effect when the property value changes. For this we're going to need a `set` handler on our proxy:
+Por fin, necesitamos reejecutar el _effect_ cuando el valor de la propiedad haya cambiado. Para esto vamos a necesitar un manejador `set` en nuestro _Proxy_:
 
 ```js
 const dinner = {
@@ -196,7 +196,7 @@ console.log(proxy.meal)
 // tacos
 ```
 
-Remember this list from earlier? Now we have some answers to how Vue implements these key steps:
+¿Recuerda esta lista de antes? Ahora tenemos algunas respuestas para cómo Vue implementa estos pasos fundamentales:
 
 1. **Track when a value is read**: the `track` function in the proxy's `get` handler records the property and the current effect.
 2. **Detect when that value changes**: the `set` handler is called on the proxy.
