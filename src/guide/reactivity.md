@@ -243,11 +243,11 @@ const proxy = reactive({
 
 Explorarémos la funcionalidad expuesta por el paquete de reactividad a lo largo del curso de las siguientes páginas de esta guía. Eso incluye funciones como `reactive` y `watchEffect` que ya hemos encontrado, así como maneras para utilizar otras características de reactividad, como `computed` y `watch`, sin necesidad de crear un componente.
 
-### Proxied Objects
+### Objetos Delegados (Proxied)
 
-Vue internally tracks all objects that have been made reactive, so it always returns the same proxy for the same object.
+Vue rastrea todos objetos que se han hecho reactivo internalmente, así que siempre retorna el mismo _proxy_ para el mismo objeto.
 
-When a nested object is accessed from a reactive proxy, that object is _also_ converted into a proxy before being returned:
+Cuando un objeto anidado está accesado desde un _proxy_ reactivo, ese objeto es _también_ convertido en un _proxy_ antes de ser retornado:
 
 ```js{6-7}
 const handler = {
@@ -265,9 +265,9 @@ const handler = {
 }
 ```
 
-### Proxy vs. original identity
+### Proxy versus la identidad original
 
-The use of Proxy does introduce a new caveat to be aware of: the proxied object is not equal to the original object in terms of identity comparison (`===`). For example:
+El uso de _Proxy_ de hecho introduce una nueva advertencia que deba tener en cuenta: el objeto delegado no es igual al objeto original en términos de la comparación de identidad (`===`). Por ejemplo:
 
 ```js
 const obj = {}
@@ -276,19 +276,19 @@ const wrapped = new Proxy(obj, handlers)
 console.log(obj === wrapped) // false
 ```
 
-Other operations that rely on strict equality comparisons can also be impacted, such as `.includes()` or `.indexOf()`.
+Otras operacions que dependen de las comparaciones estrictas de igualdad pueden también ser afectado, como `.includes()` o `.indexOf()`.
 
-The best practice here is to never hold a reference to the original raw object and only work with the reactive version:
+La mejor práctica aquí es nunca poseer una referencia al crudo objeto original y solo trabajar con la versión reactiva:
 
 ```js
 const obj = reactive({
   count: 0
-}) // no reference to original
+}) // no referencia al original
 ```
 
-This ensures that both equality comparisons and reactivity behave as expected.
+Este asegura que tanto las comparaciones de igualdad como la reactividad se comportan como se espera.
 
-Note that Vue does not wrap primitive values such as numbers or strings in a Proxy, so you can still use `===` directly with those values:
+Note que Vue no envolver los valores primitivos como los números o cadenas de caracteres en un _proxy_, por eso puede todavía utilizar `===` directamente con esos valores:
 
 ```js
 const obj = reactive({
