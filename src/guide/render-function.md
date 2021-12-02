@@ -380,16 +380,15 @@ Aquí es un ejemplo con todos los modificadores utilizados juntos:
 render() {
   return h('input', {
     onKeyUp: event => {
-      // Abort if the element emitting the event is not
-      // the element the event is bound to
+      // Abortar si el elemento que emite el evento no es el elemento al que
+      // el evento sea vinculado
       if (event.target !== event.currentTarget) return
-      // Abort if the key that went up is not the enter
-      // key and the shift key was not held down at the
-      // same time
+      // Abortar si la tecla que rebotó no no es la tecla _enter_
+      // y la tecla _shift_ no fue presionada al mismo tiempo
       if (!event.shiftKey || event.key !== 'Enter') return
-      // Stop event propagation
+      // Dejar la propagación de evento
       event.stopPropagation()
-      // Prevent the default keyup handler for this element
+      // Prevenir el manejador por defecto de _keyup_ de este elemento
       event.preventDefault()
       // ...
     }
@@ -397,9 +396,9 @@ render() {
 }
 ```
 
-### Slots
+### _Slots_
 
-We can access slot contents as arrays of VNodes from [`this.$slots`](../api/instance-properties.html#slots):
+Podemos acceder los contenidos de _slot_ como una matriz de VNodes mediante [`this.$slots`](../api/instance-properties.html#slots):
 
 ```js
 render() {
@@ -418,7 +417,7 @@ render() {
 }
 ```
 
-For component VNodes, we need to pass the children to `h` as an object rather than an array. Each property is used to populate the slot of the same name:
+Para VNodes de componentes, necesitamos pasar los hijos a `h` como un objeto en lugar de una matriz. Cada propiedad es utilizado para poblar el _slot_ del mismo nombre:
 
 ```js
 render() {
@@ -427,8 +426,8 @@ render() {
     h(
       resolveComponent('child'),
       null,
-      // pass `slots` as the children object
-      // in the form of { name: props => VNode | Array<VNode> }
+      // pasar `slots` como el objeto de hijos
+      // en forma de { name: props => VNode | Array<VNode> }
       {
         default: (props) => h('span', props.text)
       }
@@ -437,12 +436,12 @@ render() {
 }
 ```
 
-The slots are passed as functions, allowing the child component to control the creation of each slot's contents. Any reactive data should be accessed within the slot function to ensure that it's registered as a dependency of the child component and not the parent. Conversely, calls to `resolveComponent` should be made outside the slot function, otherwise they'll resolve relative to the wrong component:
+Los _slots_ son pasado como funciones, permitiendo los componentes secundarios controlar la creación de los contenidos de cada _slot_. Cualquier dato reactivo debe ser accesado dentro de la función de _slot_ para asegurarse de que sea registrado como una dependencia del componente hijo en vez del padre. Por el contrario, las llamadas a `resolveComponent` deben realizarse afuera de la función de _slot_, de lo contrario se resolverán respecto al componente incorrecto:
 
 ```js
 // `<MyButton><MyIcon :name="icon" />{{ text }}</MyButton>`
 render() {
-  // Calls to resolveComponent should be outside the slot function
+  // Llamadas a resolveComponent debe ser afuera de la función de slot
   const Button = resolveComponent('MyButton')
   const Icon = resolveComponent('MyIcon')
 
@@ -450,10 +449,11 @@ render() {
     Button,
     null,
     {
-      // Use an arrow function to preserve the `this` value
+      // Utilizar una función de flecha para preservar el valor de `this`
       default: (props) => {
-        // Reactive properties should be read inside the slot function
-        // so that they become dependencies of the child's rendering
+        // Las propiedades reactivas deben ser leido dentro de la función
+        // de _slot_ para que sean convertido en dependencias de la renderización
+        // del hijo
         return [
           h(Icon, { name: this.icon }),
           this.text
