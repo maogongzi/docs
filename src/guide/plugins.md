@@ -18,22 +18,22 @@ No hay un alcance estrictamente definido para un _Plugin_, pero los escenarios c
 
 Para mejor comprender cómo crear sus propios _plugins_ de Vue.js, crearémos una versión de un _plugin_ muy simplificada que mostra cadenas de caracteres que se han prepadado para `i18n`.
 
-Whenever this plugin is added to an application, the `install` method will be called if it is an object. If it is a `function`, the function itself will be called. In both cases, it will receive two parameters - the `app` object resulting from Vue's `createApp`, and the options passed in by the user.
+Cuando este _plugin_ es agregado a la aplicación, el método `install` será llamado si es un objeto. Si es una función, la misma función será llamado. En ambos casos, recibirá dos parámetros, el objeto `app` resultante de `createApp` de Vue, y las opciones pasadas por el usuario.
 
-Let's begin by setting up the plugin object. It is recommended to create it in a separate file and export it, as shown below to keep the logic contained and separate.
+Empecemos por establecer el objeto de _plugin_. Es recomendado crearlo en un archivo separado y exportarlo, como mostrado a continuación para mantener la lógica contenida y separada.
 
 ```js
 // plugins/i18n.js
 export default {
   install: (app, options) => {
-    // Plugin code goes here
+    // El código del _plugin_ code va aquí
   }
 }
 ```
 
-We want to make a function to translate keys available to the whole application, so we will expose it using `app.config.globalProperties`.
+Queremos realizar una función para traducir las claves disponibles a la aplicación entera, por lo tanto, exponerémoslo utilizando `app.config.globalProperties`.
 
-This function will receive a `key` string, which we will use to look up the translated string in the user-provided options.
+Esta función recibirá una cadena de caracteres `key`, la que utilizarémos para buscar la cadena de caracteres traducida en las opciones proporcionadas por el usuario.
 
 ```js
 // plugins/i18n.js
@@ -48,9 +48,9 @@ export default {
 }
 ```
 
-We will assume that our users will pass in an object containing the translated keys in the `options` parameter when they use the plugin. Our `$translate` function will take a string such as `greetings.hello`, look inside the user provided configuration and return the translated value - in this case, `Bonjour!`
+Asumimos que nuestros usuarios pasarán un objeto que contenga las claves traducidas en el parámetro `options` cuando utilicen el _plugin_. Nuestra función `$translate` tomará una cadena de caracteres como por ejemplo, `greetings.hello`, y mirará dentro de la configuración proporcionada por el usuario y retornará el valor traducido, en este caso, `Bonjour!`
 
-Ex:
+Por ejemplo:
 
 ```js
 greetings: {
@@ -58,7 +58,7 @@ greetings: {
 }
 ```
 
-Plugins also allow us to use `inject` to provide a function or attribute to the plugin's users. For example, we can allow the application to have access to the `options` parameter to be able to use the translations object.
+Los _plugins_ también nos permiten utilizar `inject` para proporcionar una función o atributo a los usuarios del _plugin_. Por ejemplo, podemos dejar la aplicación tener acceso al parámetro `options` para que sea capaz de utilizar el objeto de las traducciones.
 
 ```js
 // plugins/i18n.js
@@ -75,9 +75,9 @@ export default {
 }
 ```
 
-Plugin users will now be able to `inject['i18n']` into their components and access the object.
+Los usuarios del _plugin_ ahora son capaz de `inject['i18n']` en sus componentes y acceder el objeto.
 
-Additionally, since we have access to the `app` object, all other capabilities like using `mixin` and `directive` are available to the plugin. To learn more about `createApp` and the application instance, check out the [Application API documentation](/api/application-api.html).
+Adicionalmente, debido a que tenemos acceso al objeto `app`, todas otras capacidades como utilizar `mixin` y `directive` son disponibles al _plugin_. Para aprender más sobre `createApp` y la instancia de la aplicación, Consulte la [documentación de API de la aplicación](/api/application-api.html).
 
 ```js
 // plugins/i18n.js
@@ -92,14 +92,14 @@ export default {
 
     app.directive('my-directive', {
       mounted (el, binding, vnode, oldVnode) {
-        // some logic ...
+        // unas lógicas ...
       }
       ...
     })
 
     app.mixin({
       created() {
-        // some logic ...
+        // unas lógicas ...
       }
       ...
     })
@@ -107,20 +107,20 @@ export default {
 }
 ```
 
-## Using a Plugin
+## Utilizar un _Plugin_
 
-After a Vue app has been initialized with `createApp()`, you can add a plugin to your application by calling the `use()` method.
+Desupés de que una aplicación Vue se haya iniciado con `createApp()`, puede agregar un _plugin_ a su aplicación mediante llamar el método `use()`.
 
-We will use the `i18nPlugin` we created in the [Writing a Plugin](#writing-a-plugin) section for demo purposes.
+Utilizarémos el `i18nPlugin` creado por nosotros en la sección [Escribir un _Plugin_](#writing-a-plugin) para propósitos de demostración.
 
-The `use()` method takes two parameters. The first one is the plugin to be installed, in this case `i18nPlugin`.
+El método `use()` toma dos parámetros. Lo primero es el _plugin_ para instalarse, en este caso es `i18nPlugin`.
 
-It also automatically prevents you from using the same plugin more than once, so calling it multiple times on the same plugin will install the plugin only once.
+También automáticamente le impide de utilizar el mismo _plugin_ más de una vez, así que llamarlo múltiples vecez al mismo _plugin_ solo lo instalará una vez.
 
-The second parameter is optional, and depends on each particular plugin. In the case of the demo `i18nPlugin`, it is an object with the translated strings.
+El segundo parámetro es opcional, y depiende de cada _plugin_ particular. En el caso de la demostración `i18nPlugin`, es un objeto con las cadenas de caracteres traducidas.
 
 :::info
-If you are using third party plugins such as `Vuex` or `Vue Router`, always check the documentation to know what that particular plugin expects to receive as a second parameter.
+Si está utilizando _plugins_ de terceros, como `Vuex` o `Vue Router`, simepre revisar la documentación para comprender qué cosa como el parámetro segundo espere recibir el _plugin_ particular.
 :::
 
 ```js
@@ -139,4 +139,4 @@ app.use(i18nPlugin, i18nStrings)
 app.mount('#app')
 ```
 
-Checkout [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries) for a huge collection of community-contributed plugins and libraries.
+Consulte [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries) para una enorme colección de _plugins_ y librerías aportados por la comunidad.
