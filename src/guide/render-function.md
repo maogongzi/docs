@@ -295,16 +295,16 @@ render() {
 
 ### `v-if` y `v-for`
 
-Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide a proprietary alternative. For example, in a template using `v-if` and `v-for`:
+Cuando algo puede ser logrado fácilmente en JavaScript plano, Las funciones de `render` de Vue no proporcionan una alternativa propietaria. Por ejemplo, en una plantilla que utiliza `v-if` y `v-for`:
 
 ```html
 <ul v-if="items.length">
   <li v-for="item in items">{{ item.name }}</li>
 </ul>
-<p v-else>No items found.</p>
+<p v-else>No se ha encontrado niguno elemento.</p>
 ```
 
-This could be rewritten with JavaScript's `if`/`else` and `map()` in a render function:
+Este podría ser reescrito con `if`/`else` y `map()` de JavaScript en una función `render`:
 
 ```js
 props: ['items'],
@@ -314,16 +314,16 @@ render() {
       return h('li', item.name)
     }))
   } else {
-    return h('p', 'No items found.')
+    return h('p', 'No se ha encontrado niguno elemento.')
   }
 }
 ```
 
-In a template it can be useful to use a `<template>` tag to hold a `v-if` or `v-for` directive. When migrating to a `render` function, the `<template>` tag is no longer required and can be discarded.
+En una plantilla puede ser útil utilizar una etiqueta `<template>` para sujetar una directiva `v-if` o `v-for`. Cuando se migra a función `render`, la etiqueta `<template>` es no más requerido y puede ser abandonado.
 
 ### `v-model`
 
-The `v-model` directive is expanded to `modelValue` and `onUpdate:modelValue` props during template compilation—we will have to provide these props ourselves:
+La directiva `v-model` es expandido a _props_ `modelValue` y `onUpdate:modelValue` durante la compilación de plantillas, tedrémos que proporcionar estas _props_ por nosotros mísmos:
 
 ```js
 props: ['modelValue'],
@@ -338,7 +338,7 @@ render() {
 
 ### `v-on`
 
-We have to provide a proper prop name for the event handler, e.g., to handle `click` events, the prop name would be `onClick`.
+Tenemos que proporcionar un nombre apropiado de _prop_ para el manejador del evento, p. ej. para manejar eventos `click`, el nombre de la _prop_ puede ser `onClick`.
 
 ```js
 render() {
