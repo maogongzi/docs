@@ -348,11 +348,11 @@ render() {
 }
 ```
 
-#### Event Modifiers
+#### Modificadores de Eventos
 
-For the `.passive`, `.capture`, and `.once` event modifiers, they can be concatenated after the event name using camelCase.
+Para los modificadores de eventos `.passive`, `.capture`, y `.once`, pueden ser concatenado después del nombre de evento utilizando _camelCase_.
 
-For example:
+Por ejemplo:
 
 ```js
 render() {
@@ -364,17 +364,17 @@ render() {
 }
 ```
 
-For all other event and key modifiers, no special API is necessary, because we can use event methods in the handler:
+Para todos otros eventos y modificadores principales, no API específico es necesario, porque podemos utilizar métodos de eventos en el manejador:
 
-| Modifier(s)                                          | Equivalent in Handler                                                                                      |
-| ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `.stop`                                              | `event.stopPropagation()`                                                                                  |
-| `.prevent`                                           | `event.preventDefault()`                                                                                   |
-| `.self`                                              | `if (event.target !== event.currentTarget) return`                                                         |
-| Keys:<br>e.g. `.enter`                               | `if (event.key !== 'Enter') return`<br><br>Change `'Enter'` to the appropriate [key](http://keycode.info/) |
-| Modifier Keys:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return`<br><br>Likewise for `altKey`, `shiftKey`, and `metaKey`                       |
+| Modificador(es)                                                | Equivalente en Manejador                                                                                   |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `.stop`                                                        | `event.stopPropagation()`                                                                                  |
+| `.prevent`                                                     | `event.preventDefault()`                                                                                   |
+| `.self`                                                        | `if (event.target !== event.currentTarget) return`                                                         |
+| Teclas:<br>e.g. `.enter`                                       | `if (event.key !== 'Enter') return`<br><br>Cambiar `'Enter'` a la [tecla](http://keycode.info/) apropiada  |
+| Teclas de Modificadores:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return`<br><br>Lo mismo para `altKey`, `shiftKey`, y `metaKey`                        |
 
-Here's an example with all of these modifiers used together:
+Aquí es un ejemplo con todos los modificadores utilizados juntos:
 
 ```js
 render() {
