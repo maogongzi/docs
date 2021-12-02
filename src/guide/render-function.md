@@ -120,46 +120,46 @@ render() {
 
 Y en ambos casos, Vue automáticamente mantiene la página actualizada, incluso cuando `blogTitle` se cambie.
 
-## The Virtual DOM tree
+## El árbol DOM virtual
 
-Vue keeps the page updated by building a **virtual DOM** to keep track of the changes it needs to make to the real DOM. Taking a closer look at this line:
+Vue mantiene la página actualizada mediante construir un **DOM virtual** para mantener un registro de los cambios que necesite hacer al DOM real. Echemos un vistazo más cerca en esta línea:
 
 ```js
 return h('h1', {}, this.blogTitle)
 ```
 
-What is the `h()` function returning? It's not _exactly_ a real DOM element. It returns a plain object which contains information describing to Vue what kind of node it should render on the page, including descriptions of any child nodes. We call this node description a "virtual node", usually abbreviated to **VNode**. "Virtual DOM" is what we call the entire tree of VNodes, built by a tree of Vue components.
+¿Qué se retorna de la función `h()`? No es _exactamente_ un elemento DOM real. Retorna un objeto plano que contiene información que describe a Vue qué tipo de nodo que se deba renderizar en la página, incluyendo descripciones de cualquier nodo hijo. La llamamos a esta descripción de nodo un "nodo virtual", a menudo abreviado a **VNode**. "DOM virtual" es lo que llamamos al árbol entero de VNodes, construido por un árbol de componentes Vue.
 
-## `h()` Arguments
+## Argumentos de `h()`
 
-The `h()` function is a utility to create VNodes. It could perhaps more accurately be named `createVNode()`, but it's called `h()` due to frequent use and for brevity. It accepts three arguments:
+La función `h()` es una utilidad para crear VNodes. podría probablemente más precisamente ser llamado `createVNode()`, pero es llamado `h()` debido al uso frecuente y la brevedad. Acepta tres argumentos:
 
 ```js
 // @returns {VNode}
 h(
-  // {String | Object | Function} tag
-  // An HTML tag name, a component, an async component, or a
-  // functional component.
+  // {String | Object | Function} etiqueta
+  // Un nombre de etiqueta HTML, un componente, un componente asíncrono, o un
+  // componente funcional.
   //
-  // Required.
+  // Requerido.
   'div',
 
   // {Object} props
-  // An object corresponding to the attributes, props and events
-  // we would use in a template.
+  // Un objeto correspondiente a los atributos, props y eventos que podríamos
+  // utilizar en una plantilla
   //
-  // Optional.
+  // Opcional.
   {},
 
-  // {String | Array | Object} children
-  // Children VNodes, built using `h()`,
-  // or using strings to get 'text VNodes' or
-  // an object with slots.
+  // {String | Array | Object} hijos
+  // VNodes secundarios, construido por `h()`,
+  // o utilizar cadenas de caracteres para obtener 'Vnodes de textos' o
+  // on objeto con slots.
   //
-  // Optional.
+  // Opcional.
   [
-    'Some text comes first.',
-    h('h1', 'A headline'),
+    'Va primero algo texto.',
+    h('h1', 'Un titular'),
     h(MyComponent, {
       someProp: 'foobar'
     })
@@ -167,18 +167,18 @@ h(
 )
 ```
 
-If there are no props then the children can usually be passed as the second argument. In cases where that would be ambiguous, `null` can be passed as the second argument to keep the children as the third argument.
+Si no hay _props_, luego los hijos pueden usualmente ser pasado como el segundo argumento. En casos cuando pueda tener ambigüedad, se puede pasar `null` como el segundo argumento para dejar los hijos como el tercero argumento.
 
-## Complete Example
+## Ejemplo Completo
 
-With this knowledge, we can now finish the component we started:
+Con este conocimiento, podemos ahora terminar el componente que iniciamos:
 
 ```js
 const { createApp, h } = Vue
 
 const app = createApp({})
 
-/** Recursively get text from children nodes */
+/** Obtener textos de manera recursiva desde nodos hijos */
 function getChildrenTextContent(children) {
   return children
     .map(node => {
@@ -193,11 +193,11 @@ function getChildrenTextContent(children) {
 
 app.component('anchored-heading', {
   render() {
-    // create kebab-case id from the text contents of the children
+    // crear id en _kebab-case_ desde los contenidos de texto de los hijos
     const headingId = getChildrenTextContent(this.$slots.default())
       .toLowerCase()
-      .replace(/\W+/g, '-') // replace non-word characters with dash
-      .replace(/(^-|-$)/g, '') // remove leading and trailing dashes
+      .replace(/\W+/g, '-') // reemplazar caracteres que no son palabras por un guión
+      .replace(/(^-|-$)/g, '') // reemplazar guión inicial y posterior
 
     return h('h' + this.level, [
       h(
@@ -219,23 +219,23 @@ app.component('anchored-heading', {
 })
 ```
 
-## Constraints
+## Limitaciones
 
-### VNodes Must Be Unique
+### VNodes deben ser únicos
 
-All VNodes in the component tree must be unique. That means the following render function is invalid:
+Todos los VNodes en el árbol de componentes deben ser únicos. Lo que significa la siguiente función de `render` es inválida:
 
 ```js
 render() {
   const myParagraphVNode = h('p', 'hi')
   return h('div', [
-    // Yikes - duplicate VNodes!
+    // ¡Caramba - VNodes duplicados!
     myParagraphVNode, myParagraphVNode
   ])
 }
 ```
 
-If you really want to duplicate the same element/component many times, you can do so with a factory function. For example, the following render function is a perfectly valid way of rendering 20 identical paragraphs:
+Si de verdad quiere duplicar el mismo elemento/componente múltiples veces, puede hacerlo con una función de fábrica. Por ejemplo, la siguiente función de `render` es una manera perfectamente válida para renderizar 20 párrafos idénticos:
 
 ```js
 render() {
@@ -247,17 +247,16 @@ render() {
 }
 ```
 
-## Creating Component VNodes
+## Crear VNodes de Componentes
 
-To create a VNode for a component, the first argument passed to `h` should be the component itself:
+Para crear un VNode para un componente, el primer argumento pasado a `h` debe ser el componente mismo:
 
 ```js
 render() {
   return h(ButtonCounter)
 }
 ```
-
-If we need to resolve a component by name then we can call `resolveComponent`:
+Si necesitamos resolver un componente por nombre, luego podemos llamar `resolveComponent`:
 
 ```js
 const { h, resolveComponent } = Vue
@@ -270,12 +269,12 @@ render() {
 }
 ```
 
-`resolveComponent` is the same function that templates use internally to resolve components by name.
+`resolveComponent` es la misma función que las plantillas utilizan internalmente para resolver componentes por nombres.
 
-A `render` function will normally only need to use `resolveComponent` for components that are [registered globally](/guide/component-registration.html#global-registration). [Local component registration](/guide/component-registration.html#local-registration) can usually be skipped altogether. Consider the following example:
+Una función `render` normalmente solo necesitará utilizar `resolveComponent` para componentes que son [registados globalmente](/guide/component-registration.html#global-registration). [Registración de componentes localmente](/guide/component-registration.html#local-registration) puede saltarse por completo. Considere el siguiente ejemplo:
 
 ```js
-// We can simplify this
+// Podemos simplificar esto
 components: {
   ButtonCounter
 },
@@ -284,7 +283,7 @@ render() {
 }
 ```
 
-Rather than registering a component by name and then looking it up we can use it directly instead:
+En lugar de registrar un componente por nombre y luego buscarlo, podemos utilizarlo directamente:
 
 ```js
 render() {
@@ -292,9 +291,9 @@ render() {
 }
 ```
 
-## Replacing Template Features with Plain JavaScript
+## Reemplazar las características de plantillas con JavaScript plano
 
-### `v-if` and `v-for`
+### `v-if` y `v-for`
 
 Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide a proprietary alternative. For example, in a template using `v-if` and `v-for`:
 
