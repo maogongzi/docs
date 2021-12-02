@@ -67,9 +67,9 @@ const app = createApp({})
 app.component('anchored-heading', {
   render() {
     return h(
-      'h' + this.level, // tag name
-      {}, // props/attributes
-      this.$slots.default() // array of children
+      'h' + this.level, // nombre de la etiqueta
+      {}, // props/atributos
+      this.$slots.default() // matriz de componentes secundarios
     )
   },
   props: {
@@ -81,35 +81,36 @@ app.component('anchored-heading', {
 })
 ```
 
-The `render()` function implementation is much simpler, but also requires greater familiarity with component instance properties. In this case, you have to know that when you pass children without a `v-slot` directive into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default()`. If you haven't already, **it's recommended to read through the [instance properties API](../api/instance-properties.html) before diving into render functions.**
+La implementación con función `render()` es mucho más sencilla, pero también requiere mayor familiaridad con propiedades de instancias de componentes. En este caso, tiene que saber que cuando pasa contenidos sin directiva `v-slot` a un comoponente, como la `¡Hola mundo!` dentro de `anchored-heading`, aquellos hijos son almacenado en la instancia de componente como `$slots.default()`. Si no está listo, **se recomienda leer [API de propiedades de instancia](../api/instance-properties.html) antes de profundizarse en funciones de `render`.**
 
-## The DOM tree
 
-Before we dive into render functions, it’s important to know a little about how browsers work. Take this HTML for example:
+## El árbol DOM
+
+Antes de que profundicemos en funciones de `render`, es importante saber un poco sobre cómo funciona los navegadores. Tomemos este código HTML como ejemplo:
 
 ```html
 <div>
   <h1>My title</h1>
   Some text content
-  <!-- TODO: Add tagline -->
+  <!-- TODO: Agregar lema -->
 </div>
 ```
 
-When a browser reads this code, it builds a [tree of "DOM nodes"](https://javascript.info/dom-nodes) to help it keep track of everything.
+Cuando un navegador lee este código, construye un [árbol de "nodos DOM"](https://javascript.info/dom-nodes) para ayudarlo mantener un registro de todos.
 
-The tree of DOM nodes for the HTML above looks like this:
+El árbol de nodos DOM para el código HTML arriba se parece como este:
 
-![DOM Tree Visualization](/images/dom-tree.png)
+![Visualización del árbol DOM](/images/dom-tree.png)
 
-Every element is a node. Every piece of text is a node. Even comments are nodes! Each node can have children (i.e. each node can contain other nodes).
+Cada elemento es un nodo. Cada pieza de texto es un nodo. ¡Incluso los comentarios son nodos! Cada nodo puede tener hijos (es decir, cada nodo puede contener otros nodos).
 
-Updating all these nodes efficiently can be difficult, but thankfully, we never have to do it manually. Instead, we tell Vue what HTML we want on the page, in a template:
+Actualizar todos estos nodos eficientemente puede ser difícil, pero afortunadamente, nunca tenemos que hacerlo manualmente. En cambio, informamos a Vue qué HTML queramos mostrar en la página, en una plantilla:
 
 ```html
 <h1>{{ blogTitle }}</h1>
 ```
 
-Or in a render function:
+O en una función `render`:
 
 ```js
 render() {
@@ -117,7 +118,7 @@ render() {
 }
 ```
 
-And in both cases, Vue automatically keeps the page updated, even when `blogTitle` changes.
+Y en ambos casos, Vue automáticamente mantiene la página actualizada, incluso cuando `blogTitle` se cambie.
 
 ## The Virtual DOM tree
 
