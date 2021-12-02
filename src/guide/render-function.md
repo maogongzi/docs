@@ -1,24 +1,24 @@
 # Funciones de Renderización
 
-Vue recommends using templates to build applications in the vast majority of cases. However, there are situations where we need the full programmatic power of JavaScript. That's where we can use the **render function**.
+Vue recomienda utilizar plantillas en la gran mayoría de los casos. Sin embargo, hay situaciones en las que necesitamos el poder programático completo de JavaScript. Ahí es donde puede utilizar la **función `render`**.
 
-Let's dive into an example where a `render()` function would be practical. Say we want to generate anchored headings:
+Profundicemos en un ejemplo dónde una función `render()` sea practical. Por ejemplo, si queremos generar enlaces de cabeceras:
 
 ```html
 <h1>
   <a name="hello-world" href="#hello-world">
-    Hello world!
+    ¡Hola mundo!
   </a>
 </h1>
 ```
 
-Anchored headings are used very frequently, we should create a component:
+Los enlaces de cabeceras son utilizado con mucha frecuencia, deberíamos crear un componente:
 
 ```vue-html
-<anchored-heading :level="1">Hello world!</anchored-heading>
+<anchored-heading :level="1">¡Hola mundo!</anchored-heading>
 ```
 
-The component must generate a heading based on the `level` prop, and we quickly arrive at this:
+El componente debe generar una cabecera basada de la _prop_ `level`, y lo alcanzamos con facilidad:
 
 ```js
 const { createApp } = Vue
@@ -55,9 +55,9 @@ app.component('anchored-heading', {
 })
 ```
 
-This template doesn't feel great. It's not only verbose, but we're duplicating `<slot></slot>` for every heading level. And when we add the anchor element, we have to again duplicate it in every `v-if/v-else-if` branch.
+Esta plantilla no se siente genial. No sólo verboso, sino también estamos repetiendo `<slot></slot>` par cada nivel de las cabeceras. Y cuando agregamos el elemento de enlace, tenemos que de nuevo repetirlo en cada rama de `v-if/v-else-if`.
 
-While templates work great for most components, it's clear that this isn't one of them. So let's try rewriting it with a `render()` function:
+Mientras plantillas funcionan muy bien para la mayoría de los componentes, es claro que este no es uno de ellos. Así que tratemos reescribirlo con una función `render()`:
 
 ```js
 const { createApp, h } = Vue
