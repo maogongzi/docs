@@ -115,7 +115,7 @@ Utilizarémos el `i18nPlugin` creado por nosotros en la sección [Escribir un _P
 
 El método `use()` toma dos parámetros. Lo primero es el _plugin_ para instalarse, en este caso es `i18nPlugin`.
 
-También automáticamente le impide de utilizar el mismo _plugin_ más de una vez, así que llamarlo múltiples vecez al mismo _plugin_ solo lo instalará una vez.
+También automáticamente le impide de utilizar el mismo _plugin_ más de una vez, así que llamarlo múltiples veces al mismo _plugin_ solo lo instalará una vez.
 
 El segundo parámetro es opcional, y depiende de cada _plugin_ particular. En el caso de la demostración `i18nPlugin`, es un objeto con las cadenas de caracteres traducidas.
 
