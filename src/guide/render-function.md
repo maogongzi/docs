@@ -464,7 +464,7 @@ render() {
 }
 ```
 
-If a component receives slots from its parent, they can be passed on directly to a child component:
+Si un componente recibe _slots_ de su padre, pueden ser pasado directamente a un componente hijo:
 
 ```js
 render() {
@@ -472,7 +472,7 @@ render() {
 }
 ```
 
-They can also be passed individually or wrapped as appropriate:
+Pueden también ser pasado individualmente u envuelto según proceda:
 
 ```js
 render() {
@@ -480,24 +480,24 @@ render() {
     Panel,
     null,
     {
-      // If we want to pass on a slot function we can
+      // Si queremos pasar una función de slot podemos
       header: this.$slots.header,
 
-      // If we need to manipulate the slot in some way
-      // then we need to wrap it in a new function
+      // Si queremos manipular el slot en alguna manera, luego necesitamos
+      // envolverlo en una nueva función
       default: (props) => {
         const children = this.$slots.default ? this.$slots.default(props) : []
 
-        return children.concat(h('div', 'Extra child'))
+        return children.concat(h('div', 'Hijo adicional'))
       }
     }
   )
 }
 ```
 
-### `<component>` and `is`
+### `<component>` y `is`
 
-Behind the scenes, templates use `resolveDynamicComponent` to implement the `is` attribute. We can use the same function if we need all the flexibility provided by `is` in our `render` function:
+Detrás de las escenas, las plantillas utiliza `resolveDynamicComponent` para implementar el atributo `is`. Podemos utilizar la misma función si necesitamos toda la flexibilidad proporcionada por `is` en nuestra función de `render`:
 
 ```js
 const { h, resolveDynamicComponent } = Vue
@@ -511,13 +511,13 @@ render() {
 }
 ```
 
-Just like `is`, `resolveDynamicComponent` supports passing a component name, an HTML element name, or a component options object.
+Justo como `is`, `resolveDynamicComponent` soporta pasar un nombre de componente, un nombre de elemento HTML, u un objeto de opciones de componente.
 
-However, that level of flexibility is usually not required. It's often possible to replace `resolveDynamicComponent` with a more direct alternative.
+Sin embargo, ese nivel de flexibilidad no es usualmente requerido. A menudo es posible reemplazar `resolveDynamicComponent` con una alternativa más directa.
 
-For example, if we only need to support component names then `resolveComponent` can be used instead.
+Por ejemplo, si solo necesitamos soportar nombres de componentes, luego se puede utilizar `resolveComponent` en su lugar.
 
-If the VNode is always an HTML element then we can pass its name directly to `h`:
+Si el VNode es siempre un elemento HTML, luego podemos pasar su nombre directamente a `h`:
 
 ```js
 // `<component :is="bold ? 'strong' : 'em'"></component>`
@@ -526,13 +526,13 @@ render() {
 }
 ```
 
-Similarly, if the value passed to `is` is a component options object then there's no need to resolve anything, it can be passed directly as the first argument of `h`.
+De la misma manera, si el valor pasado a `is` es un objeto de opciones de componente, luego no necesita resolver nada, se puede pasar directamente como el primero argumento de `h`.
 
-Much like a `<template>` tag, a `<component>` tag is only required in templates as a syntactical placeholder and should be discarded when migrating to a `render` function.
+Muy parecida a una etiqueta `<template>`, una etiqueta `<component>` es solo requerido en plantillas como un marcador de posición sintáctico y debería ser descartado cuando se migre a la función `render`.
 
-### Custom Directives
+### Directivas Personalizadas
 
-Custom directives can be applied to a VNode using [`withDirectives`](/api/global-api.html#withdirectives):
+Se pueden aplicar directivas personalizadas a un VNode utilizando [`withDirectives`](/api/global-api.html#withdirectives):
 
 ```js
 const { h, resolveDirective, withDirectives } = Vue
@@ -549,13 +549,13 @@ render () {
 }
 ```
 
-[`resolveDirective`](/api/global-api.html#resolvedirective) is the same function that templates use internally to resolve directives by name. That is only necessary if you don't already have direct access to the directive's definition object.
+[`resolveDirective`](/api/global-api.html#resolvedirective) es la misma función que las plantillas utilizan internalmente para resolver directivas por nombres. Eso es necesario solo si ya no tiene acceso directo al objeto de definición de la directiva.
 
-### Built-in Components
+### Componentes Integrados
 
-[Built-in components](/api/built-in-components.html) such as `<keep-alive>`, `<transition>`, `<transition-group>`, and `<teleport>` are not registered globally by default. This allows bundlers to perform tree-shaking, so that the components are only included in the build if they are used. However, that also means we can't access them using `resolveComponent` or `resolveDynamicComponent`.
+[Componentes integrados](/api/built-in-components.html) como `<keep-alive>`, `<transition>`, `<transition-group>`, y `<teleport>` no son registrado globalmente por defecto. Eso les permite a los empaquetadores realizar _tree-shaking_, así que los componentes son solo incluido en la compilación si son utilizado. Sin embargo, lo que también significa que no podemos accederlos utilizando `resolveComponent` o `resolveDynamicComponent`.
 
-Templates have special handling for those components, automatically importing them when they are used. When we're writing our own `render` functions, we need to import them ourselves:
+Las plantillas tienen manipulación especiales para aquellos componentes, los importan automáticamente cuando sean utilizado. Cuando estamos escribiendo nuestras propias funciones de `render`, necesitamos importarlos por nosotros mísmos:
 
 ```js
 const { h, KeepAlive, Teleport, Transition, TransitionGroup } = Vue
@@ -567,11 +567,11 @@ render () {
 }
 ```
 
-## Return Values for Render Functions
+## Retornar valores para funciones de `render`
 
-In all of the examples we've seen so far, the `render` function has returned a single root VNode. However, there are alternatives.
+En todos los ejemplos que hemos visto hasta el momento, la función `render` ha retornado un sólo VNode raíz. Sin embargo, hay alternativas.
 
-Returning a string will create a text VNode, without any wrapping element:
+Retornar una cadena de caracteres va creando un VNode de texto, sin cualquier elemento de envoltorio:
 
 ```js
 render() {
@@ -579,24 +579,24 @@ render() {
 }
 ```
 
-We can also return an array of children, without wrapping them in a root node. This creates a fragment:
+También podemos retornar una matriz de hijos, sin envolverlos en un nodo raíz. Este creará un fragmento:
 
 ```js
-// Equivalent to a template of `Hello<br>world!`
+// Equivalente a la plantilla `¡Hola<br>mundo!`
 render() {
   return [
-    'Hello',
+    '¡Hola',
     h('br'),
-    'world!'
+    'mundo!'
   ]
 }
 ```
 
-If a component needs to render nothing, perhaps because data is still loading, it can just return `null`. This will be rendered as a comment node in the DOM.
+Si un componente necesita renderizar nada, tal vez es porque el dato se está cargando, puede solo retornar `null`. Este va a renderizarse como un nodo de comentario en el DOM.
 
 ## JSX
 
-If we're writing a lot of `render` functions, it might feel painful to write something like this:
+Si estamos escribiendo muchos funciones de `render`, podría ser doloroso escribir algo como esto:
 
 ```js
 h(
@@ -605,18 +605,18 @@ h(
     level: 1
   },
   {
-    default: () => [h('span', 'Hello'), ' world!']
+    default: () => [h('span', '¡Hola'), ' mundo!']
   }
 )
 ```
 
-Especially when the template version is so concise in comparison:
+Especialmente cuando la versión de plantilla es muy conciso, en comparación:
 
 ```vue-html
-<anchored-heading :level="1"> <span>Hello</span> world! </anchored-heading>
+<anchored-heading :level="1"> <span>¡Hola</span> mundo! </anchored-heading>
 ```
 
-That's why there's a [Babel plugin](https://github.com/vuejs/jsx-next) to use JSX with Vue, getting us back to a syntax that's closer to templates:
+Por eso, hay un [Plugin de Babel](https://github.com/vuejs/jsx-next) para utilizar JSX junto con Vue, nos llevará atrás hacia un sintaxis que sea más cerca de plantillas:
 
 ```jsx
 import AnchoredHeading from './AnchoredHeading.vue'
@@ -634,7 +634,7 @@ const app = createApp({
 app.mount('#demo')
 ```
 
-For more on how JSX maps to JavaScript, see the [usage docs](https://github.com/vuejs/jsx-next#installation).
+Para más sobre cómo JSX se mapea a JavaScript, vea la [documentación de usos](https://github.com/vuejs/jsx-next#installation).
 
 ## Functional Components
 
