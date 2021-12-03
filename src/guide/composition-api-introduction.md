@@ -79,7 +79,7 @@ La nueva opción de componente `setup` se ejecuta **antes** de que el componente
 Debería evitar utilizar `this` dentro de `setup` debido a que no se refiera a la instancia de componente. `setup` es llamado antes de que se resuelvan las propiedades de `data`, las propiedades computadas o los métodos, por eso no son disponibles dentro de `setup`.
 :::
 
-La opción `setup` debe ser una función que acepte `props` y `context`, sobre los cuales hablaremos [más adelante](composition-api-setup.html#arguments). También, todo lo que retornamos de `setup` será expuesto al resto de nuestro componente (propiedades computadas, métodos, _hooks_ del ciclo de vida y más) así como a la plantilla del componente.
+La opción `setup` debe ser una función que acepte `props` y `context`, sobre los cuales hablaremos [más adelante](composition-api-setup.html#arguments). También, todo lo que retornamos de `setup` será expuesto al resto de nuestro componente (propiedades computadas, métodos, _hooks_ de ciclo de vida y más) así como a la plantilla del componente.
 
 Agreguemos `setup` a nuestro componente:
 
@@ -240,7 +240,7 @@ Hemos movido unas cuantas partes de nuestra primera responsabilidad lógica al m
 
 Comenzaremos con el _hook_ de ciclo de vida.
 
-### Registro de un _Hook_ del Ciclo de Vida dentro de `setup`
+### Registro de un _Hook_ de Ciclo de Vida dentro de `setup`
 
 Para hacer que la API de Composición fuese completa en comparación a la API de Opciones, también necesitamos una manera para registrar _hooks_ de ciclo de vida dentro de `setup`. Esto es posible gracias a algunas funciones exportadas por Vue. Los _hooks_ de ciclo de vida en la API de Composición tienen el mismo nombre al que tienen en la API de Opciones, pero tienen el prefijo `on`: es decir, `mounted` sería `onMounted`.
 
