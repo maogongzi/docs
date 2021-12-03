@@ -8,9 +8,9 @@ Al haber llegado tan lejos en la documentación, usted ya debería estar familia
 
 <VideoLesson href="https://www.vuemastery.com/courses/vue-3-essentials/why-the-composition-api" title="Aprender cómo la API de Composición funciona en profundidad con Vue Mastery">Vea un video gratis sobre la API de Composición en Vue Mastery</VideoLesson>
 
-Crear componentes Vue nos permite extraer partes repetibles de la interfaz junto con su funcionalidad en piezas reutilizables de código. Esto puedo hacer que nuestra aplicación llegue bastante lejos en términos de mantenibilidad y flexibilidad. Sin embargo, nuestra experiencia colectiva ha demostrado que esto solo no sería suficiente, especialmente cuando nuestra aplicación se está volviendo realmente grade - piense varios cientos de componentes. Al lidiar con aplicaciones a esta escala, compartir y reutilizar código se vuelve crucial.
+Crear componentes Vue nos permite extraer partes repetibles de la interfaz junto con su funcionalidad en piezas reutilizables de código. Esto puede hacer que nuestra aplicación llegue bastante lejos en términos de mantenibilidad y flexibilidad. Sin embargo, nuestra experiencia colectiva ha demostrado que esto solo no sería suficiente, especialmente cuando nuestra aplicación se está volviendo realmente grade - piense varios cientos de componentes. Al lidiar con aplicaciones a esta escala, compartir y reutilizar código se vuelve crucial.
 
-Imaginemos que en nuestra aplicación, tenemos una vista que muestra una lista de repositorios de un cierto usuario. Sobre esto, querremos agregar capacidad de buscar y filtrar. Nuestro componente para dicha vista podría verse como esto:
+Imaginemos que en nuestra aplicación, tenemos una vista que muestra una lista de repositorios de un cierto usuario. Sobre esto, quizás queramos agregar capacidad de buscar y filtrar. Nuestro componente para dicha vista podría verse como esto:
 
 ```js
 // src/components/UserRepositories.vue
@@ -63,11 +63,11 @@ Ejemplo presentado un componente grande donde sus **responsabilidades lógicas**
 
 Esta fragmentación es la que hace difícil entender y mantener un componente complejo. La separación de opciones oscurece las responsabilidades lógicas subyacentes. Además, cuando se trabaja en una única responsabilidad lógica, tenemos que "saltar" constantemente a través de los diferentes bloques de opciones para hallar el código relevante.
 
-Sería mucho mejor si pudiéramos colocar el código relacionado a la misma responsabilidad lógica junto. Y esto es exactamente lo que la API de Composición nos permite hacer.
+Sería mucho mejor si pudiéramos colocar junto el código relacionado a la misma responsabilidad lógica. Y esto es exactamente lo que la API de Composición nos permite hacer.
 
 ## Aspectos Básicos de la API de Composición
 
-Ahora que sabemos el **por qué** podemos entrar en el **cómo**. Para comenzar trabajar con la API de Composición primero necesitamos un lugar donde la podamos utilizar. En un componente Vue, nosotros llamamos a este lugar el `setup`.
+Ahora que sabemos el **porqué** podemos entrar en el **cómo**. Para comenzar trabajar con la API de Composición primero necesitamos un lugar donde la podamos utilizar. En un componente Vue, nosotros llamamos a este lugar el `setup`.
 
 ### Opción de Componente `setup`
 
@@ -79,7 +79,7 @@ La nueva opción de componente `setup` se ejecuta **antes** de que el componente
 Debería evitar utilizar `this` dentro de `setup` debido a que no se refiera a la instancia de componente. `setup` es llamado antes de que se resuelvan las propiedades de `data`, las propiedades computadas o los métodos, por eso no son disponibles dentro de `setup`.
 :::
 
-La opción `setup` debe ser una función que acepte `props` y `context`, sobre los cuales hablaremos [más adelante](composition-api-setup.html#arguments). También, todo lo que retornamos de `setup` será expuesto al resto de nuestro componente (propiedades computadas, métodos, _hooks_ del ciclo de video y más) así como a la plantilla del componente.
+La opción `setup` debe ser una función que acepte `props` y `context`, sobre los cuales hablaremos [más adelante](composition-api-setup.html#arguments). También, todo lo que retornamos de `setup` será expuesto al resto de nuestro componente (propiedades computadas, métodos, _hooks_ del ciclo de vida y más) así como a la plantilla del componente.
 
 Agreguemos `setup` a nuestro componente:
 
@@ -103,7 +103,7 @@ export default {
 }
 ```
 
-Ahora comencemos a extraer nuestra primer responsabilidad lógica (marcada como "1" en el fragmento original).
+Ahora comencemos a extraer nuestra primera responsabilidad lógica (marcada como "1" en el fragmento original).
 
 > 1. Obtener los repositorios de una API presuntamente externa para ese nombre de usuario y refrescarlos siempre que el usuario cambie
 
@@ -131,11 +131,11 @@ setup (props) {
 }
 ```
 
-Este es nuestro punto de partida, excepto que todavía no funciona dado que nuestra variable `repositories` no es reactiva. Esto quiere decir que, desde el punto de vista del usuario, la lista de repositorios se mantendría vacía. Arreglémoslo!
+Este es nuestro punto de partida, excepto que todavía no funciona dado que nuestra variable `repositories` no es reactiva. Esto quiere decir que, desde el punto de vista del usuario, la lista de repositorios se mantendría vacía. ¡Arreglémoslo!
 
 ### Variables Reactivas con `ref`
 
-En Vue 3.0 podemos crear una variable reactiva en cualquier lugar con una nueva función `ref`, de la siguiente manera:
+En Vue 3.0 podemos crear una variable reactiva en cualquier lugar con la nueva función `ref`, de la siguiente manera:
 
 ```js
 import { ref } from 'vue'
@@ -143,7 +143,7 @@ import { ref } from 'vue'
 const counter = ref(0)
 ```
 
-`ref` toma el argumento y lo retorna envuelto en un objeto que tiene una propiedad `value`, la cual puede ser utilizado para acceder o mutar el valor de la variable reactiva:
+`ref` toma el argumento y lo retorna envuelto en un objeto con una propiedad `value`, la cual puede ser utilizado para acceder o mutar el valor de la variable reactiva:
 
 ```js
 import { ref } from 'vue'
@@ -309,9 +309,9 @@ export default {
 }
 ```
 
-Por más detalles sobre `watch`, vea nuestra [guía en profundidad](reactivity-computed-watchers.md#watch).
+Para más detalles sobre `watch`, vea nuestra [guía en profundidad](reactivity-computed-watchers.md#watch).
 
-**Ahora apliquemoslo a nuestro ejemplo:**
+**Ahora apliquémoslo a nuestro ejemplo:**
 
 ```js
 // src/components/UserRepositories.vue `setup` function
@@ -331,7 +331,7 @@ setup (props) {
 
   onMounted(getUserRepositories)
 
-  // establecer un _watcher_ en la Referencia Reactica para la _prop_ `user`
+  // configurar un _watcher_ en la Referencia Reactiva para la _prop_ `user`
   watch(user, getUserRepositories)
 
   return {
@@ -343,9 +343,9 @@ setup (props) {
 
 Probablemente haya notado el uso de `toRefs` al comienzo de nuestro `setup`. Esto se realiza para asegurar que nuestro _watcher_ reaccione a los cambios realizados a la _prop_ `user`.
 
-Con estos cambios listos, hemos movido toda la primer responsabilidad lógica a un único lugar. Ahora podemos hacer lo mismo con la segunda responsabilidad - filtrar según `searchQuery`, esta vez con una propiedad computada.
+Con estos cambios listos, hemos movido toda la primera responsabilidad lógica a un único lugar. Ahora podemos hacer lo mismo con la segunda responsabilidad - filtrar según `searchQuery`, esta vez con una propiedad computada.
 
-### Propiedad Computadas Independientes
+### Propiedades Computadas Independientes
 
 De forma similar a `ref` y `watch`, las propiedades computadas también pueden ser creado afuera de un componente Vue con la función `computed` importada desde Vue. Volvamos a nuestro ejemplo de contador:
 
@@ -384,7 +384,7 @@ setup (props) {
 
   onMounted(getUserRepositories)
 
-  // establecer un _watcher_ en la Referencia Reactica para la _prop_ `user`
+  // configurar un _watcher_ en la Referencia Reactiva para la _prop_ `user`
   watch(user, getUserRepositories)
 
   const searchQuery = ref('')
@@ -403,7 +403,7 @@ setup (props) {
 }
 ```
 
-Podríamos realizar lo mismo para otras **responsabilidades lógicas**, pero usted seguramente se este realizando la siguiente pregunta - _¿Esto no es simplemente mover el código a la opción `setup` y hacerla extremadamente grande?_ Bueno, eso es cierto. Es porque antes de abordar las otras responsabilidades, primero extraeremos el código de arribo en una **función de composición** independiente. Comencemos por crear `useUserRepositories`:
+Podríamos realizar lo mismo para otras **responsabilidades lógicas**, pero usted seguramente se esté realizando la siguiente pregunta - _¿Esto no es simplemente mover el código a la opción `setup` y hacerla extremadamente grande?_ Bueno, eso es cierto. Es porque antes de abordar las otras responsabilidades, primero extraeremos el código de arriba en una **función de composición** independiente. Comencemos por crear `useUserRepositories`:
 
 ```js
 // src/composables/useUserRepositories.js
@@ -497,7 +497,7 @@ export default {
 }
 ```
 
-En este punto usted ya sabe como va la cosa, así que vayamos al final y migremos la funcionalidad de filtrado restante. No tenemos que entrar en los detalles de implementación, puesto que no va al caso de esta guía.
+En este punto usted ya sabe cómo va la cosa, así que vayamos al final y migremos la funcionalidad de filtrado restante. No tenemos que entrar en los detalles de implementación, puesto que no va al caso de esta guía.
 
 ```js
 // src/components/UserRepositories.vue
