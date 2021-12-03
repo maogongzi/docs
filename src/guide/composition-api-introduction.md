@@ -1,16 +1,16 @@
-# Introduction
+# Introducción
 
-## Why Composition API?
+## ¿Por qué la API de Composición?
 
 ::: tip Note
-Reaching this far in the documentation, you should already be familiar with both [the basics of Vue](introduction.md) and [creating components](component-basics.md).
+Al haber llegado tan lejos en la documentación, usted ya debería estar familiarizado tanto con [los conceptos básicos de Vue](introduction.md) y con [crear componentes](component-basics.md).
 :::
 
-<VideoLesson href="https://www.vuemastery.com/courses/vue-3-essentials/why-the-composition-api" title="Learn how Composition API works in depth with Vue Mastery">Watch a free video about the Composition API on Vue Mastery</VideoLesson>
+<VideoLesson href="https://www.vuemastery.com/courses/vue-3-essentials/why-the-composition-api" title="Aprender cómo la API de Composición funciona en profundidad con Vue Mastery">Vea un video gratis sobre la API de Composición en Vue Mastery</VideoLesson>
 
-Creating Vue components allows us to extract repeatable parts of the interface coupled with its functionality into reusable pieces of code. This alone can get our application pretty far in terms of maintainability and flexibility. However, our collective experience has proved that this alone might not be enough, especially when your application is getting really big – think several hundred components. When dealing with such large applications, sharing and reusing code becomes especially important.
+Crear componentes Vue nos permite extraer partes repetibles de la interfaz junto con su funcionalidad en piezas reutilizables de código. Esto puedo hacer que nuestra aplicación llegue bastante lejos en términos de mantenibilidad y flexibilidad. Sin embargo, nuestra experiencia colectiva ha demostrado que esto solo no sería suficiente, especialmente cuando nuestra aplicación se está volviendo realmente grade - piense varios cientos de componentes. Al lidiar con aplicaciones a esta escala, compartir y reutilizar código se vuelve crucial.
 
-Let’s imagine that in our app, we have a view to show a list of repositories of a certain user. On top of that, we want to apply search and filter capabilities. Our component handling this view could look like this:
+Imaginemos que en nuestra aplicación, tenemos una vista que muestra una lista de repositorios de un cierto usuario. Sobre esto, querremos agregar capacidad de buscar y filtrar. Nuestro componente para dicha vista podría verse como esto:
 
 ```js
 // src/components/UserRepositories.vue
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     getUserRepositories () {
-      // using `this.user` to fetch user repositories
+      // utilizando `this.user` para cargar los repositorios del usuario
     }, // 1
     updateFilters () { ... }, // 3
   },
@@ -49,39 +49,39 @@ export default {
 }
 ```
 
-This component has several responsibilities:
+Este componente tiene varias responsabilidades:
 
-1. Getting repositories from a presumedly external API for that user name and refreshing it whenever the user changes
-2. Searching for repositories using a `searchQuery` string
-3. Filtering repositories using a `filters` object
+1. Obtener los repositorios de una API presuntamente externa para ese nombre de usuario y refrescarlos siempre que el usuario cambie
+2. Buscar repositorios utilizando la cadena de caracteres `searchQuery`
+3. Filtrar repositorios utilizando el objeto `filters`
 
-Organizing logics with component's options (`data`, `computed`, `methods`, `watch`) works in most cases. However, when our components get bigger, the list of **logical concerns** also grows. This can lead to components that are hard to read and understand, especially for people who didn't write them in the first place.
+Orgnizar la lógica en las opciones del componente (`data`, `computed`, `methods`, `watch`) funciona en la mayoría de los casos. Sin embargo, cuando el componente crece, la lista de **responsabilidades lógicas** también crece. Esto puede llevar a componentes difíciles de leer y comprender, en especial para las personas que no las escribieron en primer lugar.
 
-![Vue Options API: Code grouped by option type](/images/options-api.png)
+![API de Opciones de Vue: código agrupado por tipo de opción](/images/options-api.png)
 
-Example presenting a large component where its **logical concerns** are grouped by colors.
+Ejemplo presentado un componente grande donde sus **responsabilidades lógicas** están agrupadas por colores.
 
-Such fragmentation is what makes it difficult to understand and maintain a complex component. The separation of options obscures the underlying logical concerns. In addition, when working on a single logical concern, we have to constantly "jump" around option blocks for the relevant code.
+Esta fragmentación es la que hace difícil entender y mantener un componente complejo. La separación de opciones oscurece las responsabilidades lógicas subyacentes. Además, cuando se trabaja en una única responsabilidad lógica, tenemos que "saltar" constantemente a través de los diferentes bloques de opciones para hallar el código relevante.
 
-It would be much nicer if we could collocate code related to the same logical concern. And this is exactly what the Composition API enables us to do.
+Sería mucho mejor si pudiéramos colocar el código relacionado a la misma responsabilidad lógica junto. Y esto es exactamente lo que la API de Composición nos permite hacer.
 
-## Basics of Composition API
+## Aspectos Básicos de la API de Composición
 
-Now that we know the **why** we can get to the **how**. To start working with the Composition API we first need a place where we can actually use it. In a Vue component, we call this place the `setup`.
+Ahora que sabemos el **por qué** podemos entrar en el **cómo**. Para comenzar trabajar con la API de Composición primero necesitamos un lugar donde la podamos utilizar. En un componente Vue, nosotros llamamos a este lugar el `setup`.
 
-### `setup` Component Option
+### Opción de Componente `setup`
 
-<VideoLesson href="https://www.vuemastery.com/courses/vue-3-essentials/setup-and-reactive-references" title="Learn how setup works with Vue Mastery">Watch a free video on setup on Vue Mastery</VideoLesson>
+<VideoLesson href="https://www.vuemastery.com/courses/vue-3-essentials/setup-and-reactive-references" title="Aprender cómo funciona _setup_ con Vue Mastery">Vea un video gratis sobre setup en Vue Mastery</VideoLesson>
 
-The new `setup` component option is executed **before** the component is created, once the `props` are resolved, and serves as the entry point for composition APIs.
+La nueva opción de componente `setup` se ejecuta **antes** de que el componente sea creado, una vez que las `props` sean resuelto, y sirve como punto de entrada para la API de Composición.
 
 ::: warning
-You should avoid using `this` inside `setup` as it won't refer to the component instance. `setup` is called before `data` properties, `computed` properties or `methods` are resolved, so they won't be available within `setup`.
+Debería evitar utilizar `this` dentro de `setup` debido a que no se refiera a la instancia de componente. `setup` es llamado antes de que se resuelvan las propiedades de `data`, las propiedades computadas o los métodos, por eso no son disponibles dentro de `setup`.
 :::
 
-The `setup` option should be a function that accepts `props` and `context` which we will talk about [later](composition-api-setup.html#arguments). Additionally, everything that we return from `setup` will be exposed to the rest of our component (computed properties, methods, lifecycle hooks and so on) as well as to the component's template.
+La opción `setup` debe ser una función que acepte `props` y `context`, sobre los cuales hablaremos [más adelante](composition-api-setup.html#arguments). También, todo lo que retornamos de `setup` será expuesto al resto de nuestro componente (propiedades computadas, métodos, _hooks_ del ciclo de video y más) así como a la plantilla del componente.
 
-Let’s add `setup` to our component:
+Agreguemos `setup` a nuestro componente:
 
 ```js
 // src/components/UserRepositories.vue
@@ -97,11 +97,13 @@ export default {
   setup(props) {
     console.log(props) // { user: '' }
 
-    return {} // anything returned here will be available for the rest of the component
+    return {} // cualquier cosa retornada aquí será disponible en el resto de nuestro componente
   }
-  // the "rest" of the component
+  // el "resto" de nuestro componente
 }
 ```
+
+Ahora comencemos a extraer nuestra primer responsabilidad lógica (marcada como "1" en el _snippet_ original).
 
 Now let’s start with extracting the first logical concern (marked as "1" in the original snippet).
 
