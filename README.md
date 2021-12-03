@@ -21,6 +21,8 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/component-slots.md](src/guide/component-slots.md)|Spanish :white_check_mark:|
 |[src/guide/component-template-refs.md](src/guide/component-template-refs.md)|Spanish :white_check_mark:|
 |[src/guide/composition-api-introduction.md](src/guide/composition-api-introduction.md)|Spanish :white_check_mark:|
+|[src/guide/composition-api-lifecycle-hooks.md](src/guide/composition-api-lifecycle-hooks.md)|Spanish :white_check_mark:|
+|[src/guide/composition-api-setup.md](src/guide/composition-api-setup.md)|Spanish :white_check_mark:|
 |[src/guide/computed.md](src/guide/computed.md)|Spanish :white_check_mark:|
 |[src/guide/conditional.md](src/guide/conditional.md)|Spanish :white_check_mark:|
 |[src/guide/custom-directive.md](src/guide/custom-directive.md)|Spanish :white_check_mark:|
@@ -91,9 +93,7 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/a11y-semantics.md](src/guide/a11y-semantics.md)|English :x:|
 |[src/guide/a11y-standards.md](src/guide/a11y-standards.md)|English :x:|
 |[src/guide/change-detection.md](src/guide/change-detection.md)|English :x:|
-|[src/guide/composition-api-lifecycle-hooks.md](src/guide/composition-api-lifecycle-hooks.md)|English :x:|
 |[src/guide/composition-api-provide-inject.md](src/guide/composition-api-provide-inject.md)|English :x:|
-|[src/guide/composition-api-setup.md](src/guide/composition-api-setup.md)|English :x:|
 |[src/guide/composition-api-template-refs.md](src/guide/composition-api-template-refs.md)|English :x:|
 |[src/guide/contributing/doc-style-guide.md](src/guide/contributing/doc-style-guide.md)|English :x:|
 |[src/guide/contributing/translations.md](src/guide/contributing/translations.md)|English :x:|
