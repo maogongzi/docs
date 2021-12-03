@@ -34,7 +34,7 @@ export default {
 Sin embargo, dado que las `props` son reactivas, usted **no puede utilizar desestructuración de ES6** porque esto removerá la reactividad de _props_.
 :::
 
-Si usted necesita destrucutrar sus _props_, puede hacerlo con [toRefs](reactivity-fundamentals.html#destructuring-reactive-state) dentro de la función `setup`:
+Si usted necesita desestructurar sus _props_, puede hacerlo con [toRefs](reactivity-fundamentals.html#destructuring-reactive-state) dentro de la función `setup`:
 
 ```js
 // MyBook.vue
@@ -97,7 +97,7 @@ export default {
 }
 ```
 
-`attrs` y `slots` son objetos con estados que siempre son actualizados cuando el componente mismo se actualice. Esto quiere decir que usted debería evitar destructurarlos y siempre referenciar sus propiedades como `attrs.x` o `slots.x`. También tenga en cuenta que, a diferencia de `props`, las propiedades de `attrs` y `slots` **no** son reactivas. Si usted se ve tentado a aplicar efectos secundarios basados de cambios a `attrs` o `slots`, usted debería realizarlo dentro del _hook_ de ciclo de vida `onBeforeUpdate`.
+`attrs` y `slots` son objetos con estados que siempre son actualizados cuando el componente mismo se actualice. Esto quiere decir que usted debería evitar desestructurarlos y siempre referenciar sus propiedades como `attrs.x` o `slots.x`. También tenga en cuenta que, a diferencia de `props`, las propiedades de `attrs` y `slots` **no** son reactivas. Si usted se ve tentado a aplicar efectos secundarios basados de cambios a `attrs` o `slots`, usted debería realizarlo dentro del _hook_ de ciclo de vida `onBeforeUpdate`.
 
 Explicaremos el rol de `expose` en breve.
 
