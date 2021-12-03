@@ -1,21 +1,21 @@
 # Setup
 
-> This section uses [single-file component](single-file-component.html) syntax for code examples
+> Esta sección utiliza [componentes de un solo archivo](single-file-component.html) para ejemplos de códigos
 
-> This guide assumes that you have already read the [Composition API Introduction](composition-api-introduction.html) and [Reactivity Fundamentals](reactivity-fundamentals.html). Read that first if you are new to Composition API.
+> Esta página asume que usted ya ha leído [Introducción de la API de Composición](composition-api-introduction.html) y [Fundamentos de la Reactividad](reactivity-fundamentals.html). Léalos primero si usted es nuevo con la API de Composición.
 
-## Arguments
+## Argumentos
 
-When using the `setup` function, it will take two arguments:
+Cuando se utiliza la función `setup`, recibirá dos argumentos:
 
 1. `props`
 2. `context`
 
-Let's dive deeper into how each argument can be used.
+Profundicemos en cómo se utilice cada argumento.
 
 ### Props
 
-The first argument in the `setup` function is the `props` argument. Just as you would expect in a standard component, `props` inside of a `setup` function are reactive and will be updated when new props are passed in.
+El primer argumento de la función `setup` es el argumento `props`. Tal y como usted esperaría en un componente normal, `props` dentro de la función `setup` son reactivas y serán actualizadas cuando nuevas _props_ sean pasado.
 
 ```js
 // MyBook.vue
@@ -31,10 +31,10 @@ export default {
 ```
 
 :::warning
-However, because `props` are reactive, you **cannot use ES6 destructuring** because it will remove props reactivity.
+Sin embargo, dado que las `props` son reactivas, usted **no puede utilizar desestructuración de ES6** porque esto removerá la reactividad de _props_.
 :::
 
-If you need to destructure your props, you can do this by utilizing the [toRefs](reactivity-fundamentals.html#destructuring-reactive-state) inside of the `setup` function:
+Si usted necesita destrucutrar sus _props_, puede hacerlo con [toRefs](reactivity-fundamentals.html#destructuring-reactive-state) dentro de la función `setup`:
 
 ```js
 // MyBook.vue
@@ -48,7 +48,7 @@ setup(props) {
 }
 ```
 
-If `title` is an optional prop, it could be missing from `props`. In that case, `toRefs` won't create a ref for `title`. Instead you'd need to use `toRef`:
+Si `title` es una _prop_ opcional, podría ausentarse de `props`. En ese caso, `toRefs` no creará una referencia para `title`. En su lugar tendría que utilizar `toRef`:
 
 ```js
 // MyBook.vue
@@ -64,29 +64,29 @@ setup(props) {
 
 ### Context
 
-The second argument passed to the `setup` function is the `context`. The `context` is a normal JavaScript object that exposes other values that may be useful inside `setup`:
+El segundo argumento pasado a la función `setup` es `context`. El argumento `context` es un objeto JavaScript común que expone otras propiedades que puedan ser útiles dentro de `setup`:
 
 ```js
 // MyBook.vue
 
 export default {
   setup(props, context) {
-    // Attributes (Non-reactive object, equivalent to $attrs)
+    // Atributos (objeto no reactivo, equivalente a $attrs)
     console.log(context.attrs)
 
-    // Slots (Non-reactive object, equivalent to $slots)
+    // Slots (objeto no reactivo, equivalente a $slots)
     console.log(context.slots)
 
-    // Emit events (Function, equivalent to $emit)
+    // Emitir eventos (Función, equivalente a $emit)
     console.log(context.emit)
 
-    // Expose public properties (Function)
+    // Exponer propiedades públicas (Función)
     console.log(context.expose)
   }
 }
 ```
 
-The `context` object is a normal JavaScript object, i.e., it is not reactive, this means you can safely use ES6 destructuring on `context`.
+El objeto `context` es un objeto JavaScript común, es decir, no es reactivo, esto quiere decir que puede utilizar desestructuración de ES6 de forma segura sobre `context`.
 
 ```js
 // MyBook.vue
@@ -97,29 +97,29 @@ export default {
 }
 ```
 
-`attrs` and `slots` are stateful objects that are always updated when the component itself is updated. This means you should avoid destructuring them and always reference properties as `attrs.x` or `slots.x`. Also note that, unlike `props`, the properties of `attrs` and `slots` are **not** reactive. If you intend to apply side effects based on changes to `attrs` or `slots`, you should do so inside an `onBeforeUpdate` lifecycle hook.
+`attrs` y `slots` son objetos con estados que siempre son actualizados cuando el componente mismo se actualice. Esto quiere decir que usted debería evitar destructurarlos y siempre referenciar sus propiedades como `attrs.x` o `slots.x`. También tenga en cuenta que, a diferencia de `props`, las propiedades de `attrs` y `slots` **no** son reactivas. Si usted se ve tentado a aplicar efectos secundarios basados de cambios a `attrs` o `slots`, usted debería realizarlo dentro del _hook_ de ciclo de vida `onBeforeUpdate`.
 
-We'll explain the role of `expose` shortly.
+Explicaremos el rol de `expose` en breve.
 
-## Accessing Component Properties
+## Acceder a Propiedades de Componentes
 
-When `setup` is executed, the component instance has not been created yet. As a result, you will only be able to access the following properties:
+Cuando `setup` es ejecutada, la instancia del componente aún no ha sido creada. Como resultado, usted solo podrá acceder a las siguientes propiedades:
 
 - `props`
 - `attrs`
 - `slots`
 - `emit`
 
-In other words, you **will not have access** to the following component options:
+En otras palabras, usted **no tendrá acceso** a las siguientes opciones del componente:
 
 - `data`
 - `computed`
 - `methods`
 - `refs` (template refs)
 
-## Usage with Templates
+## Uso con Plantillas
 
-If `setup` returns an object, the properties on the object can be accessed in the component's template, as well as the properties of the `props` passed into `setup`:
+Si `setup` retorna un objeto, las propiedad de dicho objeto pueden ser accedidas desde la plantilla del componente, así como las propiedades de `props` pasadas a la función `setup`:
 
 ```vue-html
 <!-- MyBook.vue -->
@@ -136,9 +136,9 @@ If `setup` returns an object, the properties on the object can be accessed in th
     },
     setup(props) {
       const readersNumber = ref(0)
-      const book = reactive({ title: 'Vue 3 Guide' })
+      const book = reactive({ title: 'Guía de Vue 3' })
 
-      // expose to template
+      // exponer a la plantilla
       return {
         readersNumber,
         book
@@ -148,11 +148,11 @@ If `setup` returns an object, the properties on the object can be accessed in th
 </script>
 ```
 
-Note that [refs](../api/refs-api.html#ref) returned from `setup` are [automatically shallow unwrapped](/guide/reactivity-fundamentals.html#ref-unwrapping) when accessed in the template so you shouldn't use `.value` in templates.
+Note que [refs](../api/refs-api.html#ref) retornadas desde `setup` son [desenvueltas automáticamente](/guide/reactivity-fundamentals.html#ref-unwrapping) cuando sean accedidas en la plantilla así usted no debería utilizar `.value` en las plantillas.
 
-## Usage with Render Functions
+## Uso con Funciones de _render_
 
-`setup` can also return a render function which can directly make use of the reactive state declared in the same scope:
+`setup` también puede retornar una función _render_, la cual puede directamente utilizar el estado reactivo declarado en el mismo alcance:
 
 ```js
 // MyBook.vue
@@ -163,15 +163,15 @@ export default {
   setup() {
     const readersNumber = ref(0)
     const book = reactive({ title: 'Vue 3 Guide' })
-    // Please note that we need to explicitly use ref value here
+    // Por favor note que aquí debemos utilizar explícitamente el valor de _ref_
     return () => h('div', [readersNumber.value, book.title])
   }
 }
 ```
 
-Returning a render function prevents us from returning anything else. Internally that shouldn't be a problem, but it can be problematic if we want to expose methods of this component to the parent component via template refs.
+Retornar una función _render_ nos previene de retornar cualquiera otra coas. Internalmente eso no va a ser un problema, pero puede ser problemático si queremos exponer métodos de este componente al padre mediante _refs_ de plantillas.
 
-We can solve this problem by calling `expose`, passing it an object that defines the properties that should be available on the external component instance:
+Podemos resolver este problema mediante llamar `expose`, pasarlo un objeto que define las propiedades que deberían ser disponibles en la exterior instancia de componente:
 
 ```js
 import { h, ref } from 'vue'
@@ -190,8 +190,8 @@ export default {
 }
 ```
 
-The `increment` method would then be available in the parent component via a template ref.
+El método `increment` podría luego ser disponible en el componente padre mediante un _ref_ de plantilla.
 
-## Usage of `this`
+## Uso de `this`
 
-**Inside `setup()`, `this` won't be a reference to the current active instance** Since `setup()` is called before other component options are resolved, `this` inside `setup()` will behave quite differently from `this` in other options. This might cause confusions when using `setup()` along other Options API.
+**Dentro de `setup()`, `this` no será una referencia a la instancia activa corriente** Dado que `setup()` es llamada antes de que las otras opciones del componente sean resueltas, `this` dentro de `setup()` se comportará diferente que `this` en otras opciones. Esto puede causar confusiones al utilizar `setup()` junto con la API de Opciones.
