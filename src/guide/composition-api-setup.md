@@ -1,6 +1,6 @@
 # Setup
 
-> This section uses [single-file component](single-file-component.html) syntax for code examples
+> Esta sección utiliza [componentes de un solo archivo](single-file-component.html) para ejemplos de códigos
 
 > This guide assumes that you have already read the [Composition API Introduction](composition-api-introduction.html) and [Reactivity Fundamentals](reactivity-fundamentals.html). Read that first if you are new to Composition API.
 
