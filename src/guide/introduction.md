@@ -4,7 +4,7 @@
 ¿Ya conoce Vue 2 y solo quiere aprender sobre lo nuevo que hay en Vue 3? Visite la [Guía de Migración](/guide/migration/introduction.html)!
 :::
 
-## Qué es Vue.js?
+## ¿Qué es Vue.js?
 
 Vue (pronunciado /vjuː/, como **view**) es un **framework progresivo** para la construcción de interfaces de usuario. A diferencia de otros frameworks monolíticos, Vue está diseñado desde cero para ser adoptable incrementalmente. La libreía base está enfocada solo en la capa de vista, y es fácil integrarla con otras librerías o proyectos existentes. Por otro lado, Vue es también perfectamente capaz de impulsar Single-Page Aplicaciones sofisticados cuando es utilizado en combinación con [herramientas modernas](../guide/single-file-component.html) y [librerías de soporte](https://github.com/vuejs/awesome-vue#components--libraries).
 
@@ -14,7 +14,7 @@ Si a usted le gustaría aprender más sobre Vue antes de adentrarse, nosotros <a
 
 <common-vuemastery-video-modal/>
 
-## Empezar
+## Empezando
 
 <p>
   <ActionLink class="primary" url="installation.html">
@@ -23,14 +23,14 @@ Si a usted le gustaría aprender más sobre Vue antes de adentrarse, nosotros <a
 </p>
 
 ::: tip
-La guía oficial asume un conocimiento intermedio de HTML, CSS y JavaScript. Si usteds es completamente nuevo en el desarrollo de frontend, puede que no sea la mejor idea ir directo a un framework como su primer paso, ¡aprenda lo básico y luego vuelva! La experiencia previa con otros frameworks ayuda, pero no es requerida.
+La guía oficial asume un conocimiento intermedio de HTML, CSS y JavaScript. Si usted es completamente nuevo en el desarrollo de frontend, puede que no sea la mejor idea saltar directamente a un framework como su primer paso, ¡aprenda lo básico y luego vuelva! La experiencia previa con otros frameworks ayuda, pero no es requerida.
 :::
 
 La más facil manera de probar Vue.js es utilizar el [Ejemplo Hola Mundo](https://codepen.io/team/Vue/pen/KKpRVpx). Siéntase libre de abrirlo en otra pestaña y sígalo mientras vamos a través de algunos ejemplos básicos.
 
 La página de [Instalación](installation.md) proporciona más opciones para instalar Vue. Nota: **No** recomendamos que los principiantes empiecen con `vue-cli`, especialmente si no está familiarizado con las herramientas de construcción basadas de Node.js.
 
-## Renderización Declarativo
+## Renderización Declarativa
 
 En el núcleo de Vue.js se encuentra un sistema que nos permite renderizar datos declarativamente en el DOM utilizando una sintaxis de plantilla sencilla:
 
