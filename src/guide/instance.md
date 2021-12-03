@@ -103,13 +103,13 @@ Vue.createApp({
 })
 ```
 
-Existen también otros _hooks_ los cuales serán llamados en etapas diferentes del ciclo de vida de la instancia, como [mounted](../api/options-lifecycle-hooks.html#mounted), [updated](../api/options-lifecycle-hooks.html#updated), y [unmounted](../api/options-lifecycle-hooks.html#unmounted). Todos los _hooks_ del ciclo de vida son llamados con su contexto `this` apuntando a la instancia actual y activa que los invoca.
+Existen también otros _hooks_ los cuales serán llamados en etapas diferentes de ciclo de vida de la instancia, como [mounted](../api/options-lifecycle-hooks.html#mounted), [updated](../api/options-lifecycle-hooks.html#updated), y [unmounted](../api/options-lifecycle-hooks.html#unmounted). Todos los _hooks_ de ciclo de vida son llamados con su contexto `this` apuntando a la instancia actual y activa que los invoca.
 
 ::: tip
 No utilice [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) en la propiedad de opciones o _callback_, como las `created: () => console.log(this.a)` o `vm.$watch('a', newValue => this.myMethod())`. Como una _arrow function_ no tiene un `this`, `this` será tratado como cualquier otra variable y buscada léxicamente hacia los alcances del elemento padre hasta ser encontrada, usualmente resultando en errores como `Uncaught TypeError: Cannot read property of undefined` o `Uncaught TypeError: this.myMethod is not a function`.
 
 ## Diagrama de Ciclo de Vida
 
-A continuación se muestra un diagrama del ciclo de vida de la instancia. No necesita entender en este momento todo lo que se muestra, pero conforme aprenda y construya más, será una referencia útil.
+A continuación se muestra un diagrama de ciclo de vida de la instancia. No necesita entender en este momento todo lo que se muestra, pero conforme aprenda y construya más, será una referencia útil.
 
 <img src="/images/lifecycle.svg" width="840" height="auto" style="margin: 0px auto; display: block; max-width: 100%;" loading="lazy" alt="Hooks de ciclo de vida de instancia">
