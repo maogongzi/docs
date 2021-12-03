@@ -636,11 +636,11 @@ app.mount('#demo')
 
 Para más sobre cómo JSX se mapea a JavaScript, vea la [documentación de usos](https://github.com/vuejs/jsx-next#installation).
 
-## Functional Components
+## Componentes Funcionales
 
-Functional components are an alternative form of component that don't have any state of their own. They are rendered without creating a component instance, bypassing the usual component lifecycle.
+Componentes funcionales son una forma alternativa de componentes que no posee niguno estado de sí mismo. Son renderizado sin crear una instancia de componente, ignorando el ciclo de vida normal de componentes.
 
-To create a functional component we use a plain function, rather than an options object. The function is effectively the `render` function for the component. As there is no `this` reference for a functional component, Vue will pass in the `props` as the first argument:
+Para crear un componente funcional utilizamos una función plana, en vez de un objeto de opciones. La función es realmente la runción `render` para el componente. Debido a que no hay referencia de `this` para un componente funcional, Vue lo pasa la `props` como el primero argumento:
 
 ```js
 const FunctionalComponent = (props, context) => {
@@ -648,21 +648,21 @@ const FunctionalComponent = (props, context) => {
 }
 ```
 
-The second argument, `context`, contains three properties: `attrs`, `emit`, and `slots`. These are equivalent to the instance properties [`$attrs`](/api/instance-properties.html#attrs), [`$emit`](/api/instance-methods.html#emit), and [`$slots`](/api/instance-properties.html#slots) respectively.
+El segundo argumento, `context`, contiene tres propiedades: `attrs`, `emit`, y `slots`. Estos son equivalentes a las propiedades de instancias [`$attrs`](/api/instance-properties.html#attrs), [`$emit`](/api/instance-methods.html#emit), y [`$slots`](/api/instance-properties.html#slots), respectivamente.
 
-Most of the usual configuration options for components are not available for functional components. However, it is possible to define [`props`](/api/options-data.html#props) and [`emits`](/api/options-data.html#emits) by adding them as properties:
+La mayoría de las opciones de configuración normales para componentes no son disponibles para componentes funcionales. Sin embargo, es posible definir [`props`](/api/options-data.html#props) y [`emits`](/api/options-data.html#emits) mediante agregarlos como propiedades:
 
 ```js
 FunctionalComponent.props = ['value']
 FunctionalComponent.emits = ['click']
 ```
 
-If the `props` option is not specified, then the `props` object passed to the function will contain all attributes, the same as `attrs`. The prop names will not be normalized to camelCase unless the `props` option is specified.
+Si la opción `props` no es especificado, luego el objeto `props` pasad a la función va a contener todos atributos, lo mismo como `attrs`. Los nombres de _prop_ no serán normalizado a _camelCase_ a menos que la opción `props` es especificado.
 
-Functional components can be registered and consumed just like normal components. If you pass a function as the first argument to `h`, it will be treated as a functional component.
+Componentes funcionales se pueden registrar y consumir justo como componentes normales. Si pasa una función como el primero argumento a `h`, será tratado como un componente funcional.
 
-## Template Compilation
+## Compilación de Plantilla
 
-You may be interested to know that Vue's templates actually compile to render functions. This is an implementation detail you usually don't need to know about, but if you'd like to see how specific template features are compiled, you may find it interesting. Below is a little demo using `Vue.compile` to live-compile a template string:
+Le puede interesar a Usted que en realidad las plantillas Vue se compilan a funciones de `render`. Este es un detalle de implementación no necesita por lo general, pero si le gustaría ver cómo son compilado características específicas de plantillas, le puede resultar interesante. Abajo es una pequeña demostración de compilar una cadena de caracteres de plantilla en tiempo real utilizando `Vue.compile`:
 
 <iframe src="https://vue-next-template-explorer.netlify.app/" width="100%" height="420"></iframe>
