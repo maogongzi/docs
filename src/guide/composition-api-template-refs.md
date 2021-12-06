@@ -1,4 +1,4 @@
-# Template Refs
+# _refs_ de Plantillas
 
 > Esta sección utiliza [componentes de un solo archivo](single-file-component.html) para ejemplos de códigos
 
