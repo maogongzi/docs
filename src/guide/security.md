@@ -110,34 +110,34 @@ En un URL como este:
 </a>
 ```
 
-There's a potential security issue if the URL has not been "sanitized" to prevent JavaScript execution using `javascript:`. There are libraries such as [sanitize-url](https://www.npmjs.com/package/@braintree/sanitize-url) to help with this, but note:
+Hay un problema potencial de seguridad  si el _URL_ no se ha "desinfectado (sanitized)" para prevenir ejecución de JavaScript utilizando `javascript:`. Hay librerías como [sanitize-url](https://www.npmjs.com/package/@braintree/sanitize-url) para ayudar con esto, pero tenga en cuenta:
 
 :::tip
-If you're ever doing URL sanitization on the frontend, you already have a security issue. User-provided URLs should always be sanitized by your backend before even being saved to a database. Then the problem is avoided for _every_ client connecting to your API, including native mobile apps. Also note that even with sanitized URLs, Vue cannot help you guarantee that they lead to safe destinations.
+Si está realizando desinfección de URL en el lado _frontend_, ya tiene un problema de seguridad. los _URLs_ proporcionados por el usuario deberían ser desinfectados por su _backend_ incluso antes de guardarse en la base de datos. Entonces el problema es evitado para _cada_ cliente conectado a su API, incluye las aplicaciones móviles nativas. También tenga en cuenta que incluso con los _URLs_ desinfectados, Vue no puede garantizarle que apunten a direcciones seguras.
 :::
 
-### Injecting Styles
+### Inyectar Estilos (Styles)
 
-Looking at this example:
+Mire el siguiente ejemplo:
 
 ```html
 <a
   :href="sanitizedUrl"
   :style="userProvidedStyles"
 >
-  click me
+  Hazme clic
 </a>
 ```
 
-let's assume that `sanitizedUrl` has been sanitized, so that it's definitely a real URL and not JavaScript. With the `userProvidedStyles`, malicious users could still provide CSS to "click jack", e.g. styling the link into a transparent box over the "Log in" button. Then if `https://user-controlled-website.com/` is built to resemble the login page of your application, they might have just captured a user's real login information.
+Asumamos que `sanitizedUrl` ya ha sido desinfectado, así que es definitivamente un _URL_ real y no es JavaScript. Con `userProvidedStyles`, los usuarios maliciosos podrían todavía proporcionar CSS para "clickjacking (secuestro de clic)", por ejemplo, decorar el enlace como una caja transparente sobre el botón "Log in". Entonces si `https://user-controlled-website.com/` es construido para asemejar la página de inicio de sesión de su aplicación, ya podrían haber capturado la información real de inicio de sesión de un usuario.
 
-You may be able to imagine how allowing user-provided content for a `<style>` element would create an even greater vulnerability, giving that user full control over how to style the entire page. That's why Vue prevents rendering of style tags inside templates, such as:
+Podría ser capaz de imaginar cómo permitir contenido proporcionado por el usuario para un elemento `<style>` pueda provocar una vulnerabilidad más fuerte, dado que el usuario obtenga el control completo sobre cómo decorar la página entera. Eso es porque Vue previene la renderización de etiquetas de style dentro de plantillas, como esto:
 
 ```html
 <style>{{ userProvidedStyles }}</style>
 ```
 
-To keep your users fully safe from click jacking, we recommend only allowing full control over CSS inside a sandboxed iframe. Alternatively, when providing user control through a style binding, we recommend using its [object syntax](class-and-style.html#object-syntax-2) and only allowing users to provide values for specific properties it's safe for them to control, like this:
+Para mantener su usuarios completamente seguros de _clickjacking_, recomendamos solo permitir el control completo sobre CSS dentro de un _iframe_ que forma un entorno de recinto de seguridad (sandboxed). Alternativamente, cuando proviene al usuario el control mediante una vinculación de estilos (style), recomendamos utilizar la [sintaxis de objeto](class-and-style.html#object-syntax-2) y solo permitir que los usuarios proporcionen valores para propiedades específicas que sean seguros para ellos para controlar, como esto:
 
 ```html
 <a
@@ -147,13 +147,13 @@ To keep your users fully safe from click jacking, we recommend only allowing ful
     background: userProvidedBackground
   }"
 >
-  click me
+  Hazme clic
 </a>
 ```
 
-### Injecting JavaScript
+### Inyectar JavaScript
 
-We strongly discourage ever rendering a `<script>` element with Vue, since templates and render functions should never have side effects. However, this isn't the only way to include strings that would be evaluated as JavaScript at runtime.
+Desaconsejamos fuertemente renderizar un elemento `<script>` con Vue, debido a que plantillas y funciones de _render_ deberían causar ninguno efecto secundario. Sin embargo, esta no es la única manera para incluir cadenas de caracteres que podrían ser evaluadas como JavaScript en tiempo de ejecución.
 
 Every HTML element has attributes with values accepting strings of JavaScript, such as `onclick`, `onfocus`, and `onmouseenter`. Binding user-provided JavaScript to any of these event attributes is a potential security risk, so should be avoided.
 
