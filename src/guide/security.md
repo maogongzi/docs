@@ -1,72 +1,72 @@
-# Security
+# Seguridad
 
-## Reporting Vulnerabilities
+## Reportar Vulnerabilidades
 
-When a vulnerability is reported, it immediately becomes our top concern, with a full-time contributor dropping everything to work on it. To report a vulnerability, please email [security@vuejs.org](mailto:security@vuejs.org).
+Cuando una vulnerabilidad es reportada, se transforma inmediatamente en nuestra principal preocupación, con un contribuidor de tiempo completo deja todos al lado para trabajar solo en esta. Para reportar una vulnerabilidad, por favor envíe un email a [security@vuejs.org](mailto:security@vuejs.org).
 
-While the discovery of new vulnerabilities is rare, we also recommend always using the latest versions of Vue and its official companion libraries to ensure your application remains as secure as possible.
+Mientras el descubrimiento de nuevas vulnerabilidades es raro, también recomendamos siempre utilizar la última versión de Vue y sus librerías oficiales de complementos para aseguar que su aplicación mantenga lo más segura posible.
 
-## Rule No.1: Never Use Non-trusted Templates
+## Norma N°1: No utilice nunca plantillas que no son de confianza
 
-The most fundamental security rule when using Vue is **never use non-trusted content as your component template**. Doing so is equivalent to allowing arbitrary JavaScript execution in your application - and worse, could lead to server breaches if the code is executed during server-side rendering. An example of such usage:
+La norma de seguridad más fundamental cuando se utiliza Vue es **no utilice nunca contenidos que no son de confianza como la plantilla de su componente**. Hacerlo es equivalente a permitir ejecución arbitraria de JavaScript en su aplicación, y peor, puede conducir a las brechas en el servidor si el código es ejecutido durante la renderización en el lado del servidor. Un ejemplo de tal uso:
 
 ```js
 Vue.createApp({
-  template: `<div>` + userProvidedString + `</div>` // NEVER DO THIS
+  template: `<div>` + userProvidedString + `</div>` // NUNCA HACERLO
 }).mount('#app')
 ```
 
-Vue templates are compiled into JavaScript, and expressions inside templates will be executed as part of the rendering process. Although the expressions are evaluated against a specific rendering context, due to the complexity of potential global execution environments, it is impractical for a framework like Vue to completely shield you from potential malicious code execution without incurring unrealistic performance overhead. The most straightforward way to avoid this category of problems altogether is to make sure the contents of your Vue templates are always trusted and entirely controlled by you.
+Las plantillas Vue son compilada a JavaScript, y expresiones dentro de plantillas son ejecutadas como un parte del proceso de la renderización. Aunque las expresiones son evauladas contra un contexto específico de renderización, debido a que la complejidad del entorno potencial de ejecución global, es impráctico para un framework como Vue para protegerle complementamente de las ejecuciones potenciales de códigos maliciosos sin incurrir sobrecarga de rendimiento irreal. La más directa manera para evitar esta categoría de problemas por completo es aseguarse que los contenidos de sus plantillas Vue son siempre confiables y controlados completamente por usted mismo.
 
-## What Vue Does to Protect You
+## Que hace Vue para protegerle
 
-### HTML content
+### El contenido HTML
 
-Whether using templates or render functions, content is automatically escaped. That means in this template:
+Pese a lo que se utiliza, tanto plantilla como función de _render_, el contenido será automáticamente escapado, lo que significa que en la siguiente plantilla:
 
 ```html
 <h1>{{ userProvidedString }}</h1>
 ```
 
-if `userProvidedString` contained:
+si `userProvidedString` contiene:
 
 ```js
 '<script>alert("hi")</script>'
 ```
 
-then it would be escaped to the following HTML:
+entonces sería escapada al siguiente HTML:
 
 ```html
 &lt;script&gt;alert(&quot;hi&quot;)&lt;/script&gt;
 ```
 
-thus preventing the script injection. This escaping is done using native browser APIs, like `textContent`, so a vulnerability can only exist if the browser itself is vulnerable.
+por lo tanto previene la inyección de _script_. Este escape es realizado utilizando las APIs nativos del navegador, como `textContent`, así una vulnerabilidad sólo puede existir si el navegador mismo es vulnerable.
 
-### Attribute bindings
+### Las Vinculaciones de Atributos
 
-Similarly, dynamic attribute bindings are also automatically escaped. That means in this template:
+De la misma manera, las vinculaciones dinámicas de atributos son también automáticamente escapadas. Lo que significa que en la siguiente plantilla:
 
 ```html
 <h1 :title="userProvidedString">
-  hello
+  hola
 </h1>
 ```
 
-if `userProvidedString` contained:
+si `userProvidedString` contiene:
 
 ```js
 '" onclick="alert(\'hi\')'
 ```
 
-then it would be escaped to the following HTML:
+entonces sería escapado al siguiente HTML:
 
 ```html
 &quot; onclick=&quot;alert('hi')
 ```
 
-thus preventing the close of the `title` attribute to inject new, arbitrary HTML. This escaping is done using native browser APIs, like `setAttribute`, so a vulnerability can only exist if the browser itself is vulnerable.
+por lo tanto previene que el cierre del atributo `title` inyecte nuevo, arbitrario HTML. Este escape es realizado utilizando las APIs nativos del navegador, como `setAttribute`, así una vulnerabilidad sólo puede existir si el navegador mismo es vulnerable.
 
-## Potential Dangers
+## Peligros Potenciales
 
 In any web application, allowing unsanitized, user-provided content to be executed as HTML, CSS, or JavaScript is potentially dangerous, so should be avoided wherever possible. There are times when some risk may be acceptable though.
 
