@@ -68,21 +68,21 @@ por lo tanto previene que el cierre del atributo `title` inyecte nuevo, arbitrar
 
 ## Peligros Potenciales
 
-In any web application, allowing unsanitized, user-provided content to be executed as HTML, CSS, or JavaScript is potentially dangerous, so should be avoided wherever possible. There are times when some risk may be acceptable though.
+En cualquiera aplicación web, permitir la ejecución del contenido sin desinfectar, proporcionado por el usuario como HTML, CSS o JavaScript puede ser peligroso, por lo tanto, eso debe ser evitado siempre que sea posible. Pero también hay casos en que algunos riesgos pueden ser aceptables.
 
-For example, services like CodePen and JSFiddle allow user-provided content to be executed, but it's in a context where this is expected and sandboxed to some extent inside iframes. In the cases when an important feature inherently requires some level of vulnerability, it's up to your team to weigh the importance of the feature against the worst-case scenarios the vulnerability enables.
+Por ejemplo, los servicios como CodePen y JSFiddle permite que el contenido proporcionado por el usuario sea ejecutado, pero eso ocurre en un contexto previsto, y en un entorno de recinto de seguridad (sandboxed) dentro de _iframes_. en los casos cuando una característica importante requiere alguno nivel de vulnerabilidad por naturaleza, depende de su equipo para evaluar la importancia de la característica contra los escenarios más peores que pueda provocar la vulnerabilidad.
 
-### Injecting HTML
+### Inyectar HTML
 
-As you learned earlier, Vue automatically escapes HTML content, preventing you from accidentally injecting executable HTML into your application. However, in cases where you know the HTML is safe, you can explicitly render HTML content:
+Como ha aprendido anteriormente, Vue escapa automáticamente el contenido HTML, le previene de inyectar HTML ejecutable por accidente en su aplicación. Sin embargo, in casos dónde sabe que el HTML es seguro, puede renderizar el contenido HTML explícitamente:
 
-- Using a template:
+- Utiliando una plantilla:
 
   ```html
   <div v-html="userProvidedHtml"></div>
   ```
 
-- Using a render function:
+- Utilizando un función _render_:
 
   ```js
   h('div', {
@@ -90,23 +90,23 @@ As you learned earlier, Vue automatically escapes HTML content, preventing you f
   })
   ```
 
-- Using a render function with JSX:
+- Utilizando un función _render_ con JSX:
 
   ```jsx
   <div innerHTML={this.userProvidedHtml}></div>
   ```
 
 :::tip
-Note that user-provided HTML can never be considered 100% safe unless it's in a sandboxed iframe or in a part of the app where only the user who wrote that HTML can ever be exposed to it. Additionally, allowing users to write their own Vue templates brings similar dangers.
+Note que el HTML proporcionado por el usuario no puede nunca considerado 100% seguro salvo que es en un entorno de recinto de seguridad (sandbox) dentro de _iframe_ o en una parte de la aplicación dónde solo el usuario quién escribió aquel HTML puede ser expuesto a el. Además, permitir a los usuarios escribir sus propias plantillas Vue puede provocar los mismos riesgos.
 :::
 
-### Injecting URLs
+### Inyectar URLs
 
-In a URL like this:
+En un URL como este:
 
 ```html
 <a :href="userProvidedUrl">
-  click me
+  hazme clic
 </a>
 ```
 
