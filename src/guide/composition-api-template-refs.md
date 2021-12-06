@@ -105,8 +105,8 @@ Pero una diferencia clave a _hooks_ de ciclo de vida es que los _effects_ de `wa
       const root = ref(null)
 
       watchEffect(() => {
-        // This effect runs before the DOM is updated, and consequently,
-        // the template ref does not hold a reference to the element yet.
+        // Este _effect_ ejecuta antes de que el DOM se actualice, en consecuencia,
+        // la _ref_ de plantilla todavía no posee una referencia al elemento
         console.log(root.value) // => null
       })
 
@@ -118,11 +118,11 @@ Pero una diferencia clave a _hooks_ de ciclo de vida es que los _effects_ de `wa
 </script>
 ```
 
-Therefore, watchers that use template refs should be defined with the `flush: 'post'` option. This will run the effect *after* the DOM has been updated and ensure that the template ref stays in sync with the DOM and references the correct element.
+Por lo tanto, los observadores que utilizan _refs_ de plantilla deberían ser definidos con la opción `flush: 'post'`. Este va a ejecutar el _effect_ *después* de que el DOM se haya actualizado y asegurar que la _ref_ de plantilla quede sincronizado con el DOM y se refiera al elemento correcto.
 
 ```vue
 <template>
-  <div ref="root">This is a root element</div>
+  <div ref="root">Este es un elemento raíz</div>
 </template>
 
 <script>
@@ -133,7 +133,7 @@ Therefore, watchers that use template refs should be defined with the `flush: 'p
       const root = ref(null)
 
       watchEffect(() => {
-        console.log(root.value) // => <div>This is a root element</div>
+        console.log(root.value) // => <div>Este es un elemento raíz</div>
       }, 
       {
         flush: 'post'
@@ -147,4 +147,4 @@ Therefore, watchers that use template refs should be defined with the `flush: 'p
 </script>
 ```
 
-* See also: [Computed and Watchers](./reactivity-computed-watchers.html#effect-flush-timing)
+* Vea también: [_Computed_ y _Watchers_](./reactivity-computed-watchers.html#effect-flush-timing)
