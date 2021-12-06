@@ -477,7 +477,7 @@ module.exports = {
           },
           {
             text: 'Español',
-            link: 'https://619b4a00100b5e58e8044848--suspicious-banach-31f97e.netlify.app/',
+            link: 'https://vue3-docs-es.netlify.app/',
             isTranslation: true
           },
           {
