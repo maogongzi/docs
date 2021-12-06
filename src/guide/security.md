@@ -155,10 +155,10 @@ Para mantener su usuarios completamente seguros de _clickjacking_, recomendamos 
 
 Desaconsejamos fuertemente renderizar un elemento `<script>` con Vue, debido a que plantillas y funciones de _render_ deberían causar ninguno efecto secundario. Sin embargo, esta no es la única manera para incluir cadenas de caracteres que podrían ser evaluadas como JavaScript en tiempo de ejecución.
 
-Every HTML element has attributes with values accepting strings of JavaScript, such as `onclick`, `onfocus`, and `onmouseenter`. Binding user-provided JavaScript to any of these event attributes is a potential security risk, so should be avoided.
+Cada elemento HTML tiene atributos con valores que aceptan cadenas de caracteres de JavaScript, por ejemplo, `onclick`, `onfocus`, y `onmouseenter`. Vincular JavaScript proporcionado por el usuario a cualquier de estos atributos de eventos es un riesgo potencial de seguridad, por lo tanto eso debe ser evitado.
 
 :::tip
-Note that user-provided JavaScript can never be considered 100% safe unless it's in a sandboxed iframe or in a part of the app where only the user who wrote that JavaScript can ever be exposed to it.
+Note que JavaScript proporcionado por el usuario no se puede considerar 100% seguro, salvo que dentro de un _iframe_ que forma un entorno de recinto de seguridad o en una parte de la aplicación dónde solo el usuario quién escribió ese JavaScript puede ser expuesto a el.
 :::
 
 Sometimes we receive vulnerability reports on how it's possible to do cross-site scripting (XSS) in Vue templates. In general, we do not consider such cases to be actual vulnerabilities, because there's no practical way to protect developers from the two scenarios that would allow XSS:
