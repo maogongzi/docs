@@ -1,23 +1,23 @@
-# Server-Side Rendering
+# Renderización en el lado del Servidor
 
-## The Complete SSR Guide
+## La Guía Completa al Renderización en el lado del Servidor
 
-We have created a standalone guide for creating server-rendered Vue applications. This is a very in-depth guide for those who are already familiar with client-side Vue development, server-side Node.js development and webpack. Check it out [here](/guide/ssr/introduction.html).
+Hemos creado una guía independiente para crear aplicaciones de Vue que sean renderizadas en el lado del servidor. Esta es una guía profunda para todos aquellos que están familiarizados con el desarrollo de Vue en el lado cliente, desarrollo con Node.js en el lado del servidor y webpack. Échele un vistazo [aquí](/guide/ssr/introduction.html).
 
 ## Nuxt.js
 
-Properly configuring all the discussed aspects of a production-ready server-rendered app can be a daunting task. Luckily, there is an excellent community project that aims to make all of this easier: [Nuxt.js](https://nuxtjs.org/). Nuxt.js is a higher-level framework built on top of the Vue ecosystem which provides an extremely streamlined development experience for writing universal Vue applications. Better yet, you can even use it as a static site generator (with pages authored as single-file Vue components)! We highly recommend giving it a try.
+Configurar apropiadamente todos los aspectos discutidos de una aplicación lista para producción renderizada en el lado del servidor puede ser una tarea desalentadora. Por suerte, hay un excelente proyecto de la comunidad que busca hacer este proceso más sencillo: [Nuxt.js](https://nuxtjs.org/). Nuxt.js es un framework de alto nivel construido sobre el ecosistema de Vue y que provee una experiencia de desarrollo extremadamente sencilla para escribir aplicaciones universales con Vue. Mejor aún, ¡usted puede utilizarlo como un generador de sitios web estáticos (con páginas escritas como Single File Components)! Le recomendamos probarlo.
 
 ## Quasar Framework SSR + PWA
 
-[Quasar Framework](https://quasar.dev) will generate an SSR app (with optional PWA handoff) that leverages its best-in-class build system, sensible configuration and developer extensibility to make designing and building your idea a breeze. With over one hundred specific "Material Design 2.0"-compliant components, you can decide which ones to execute on the server, which are available in the browser, and even manage the `<meta>` tags of your site. Quasar is a node.js and webpack based development environment that supercharges and streamlines rapid development of SPA, PWA, SSR, Electron, Capacitor and Cordova apps—all from one codebase.
+[Quasar Framework](https://quasar.dev) generará una aplicación renderizada en el lado del servidor (con posibilidad de PWA) que apalanca su mejor sistema de compilación, configuración sensible y extensibilidad para el desarrollador para hacer que el diseño y la construcción de su idea algo muy sencillo. Con más de cien componentes específicos en cumplimiento con "Material Design 2.0", usted puede decidir cuáles deben ser ejecutados en el servidor, cuáles están disponibles en el navegador, e incluso manejar las etiquetas `<meta>` de su sitio. Quasar es un entorno de desarrollo basado en Node.js y webpack que sobrecarga y y simplifica el desarrollo rápido de aplicaciones SPA, PWA, SSR, Electron, Capacitor y Cordova, todo con el mismo código fuente.
 
 ## Vite SSR
 
-[Vite](https://vitejs.dev/) is a new breed of frontend build tool that significantly improves the frontend development experience. It consists of two major parts:
+[Vite](https://vitejs.dev/) es un nuevo especie de herramienta de compilación de frontend que notablemente mejora la experiencia de desarrollo de frontend. Consiste en dos partes principales:
 
-- A dev server that serves your source files over native ES modules, with rich built-in features and astonishingly fast Hot Module Replacement (HMR).
+- Un servidor de desarrollo que sirve sus archivos de fuente sobre módulos ES nativos, junto con características integradas abundantes y reemplazo de módulo activo (HMR) increíblemente rápido.
 
-- A build command that bundles your code with [Rollup](https://rollupjs.org/), pre-configured to output highly optimized static assets for production.
+- Un comando integrado que empaqueta su código con [Rollup](https://rollupjs.org/), preconfigurado para generar recursos estáticos optimizados en alto grado para producción.
 
-Vite also provides built-in [support for server-side rendering](https://vitejs.dev/guide/ssr.html). You can find an example project with Vue [here](https://github.com/vitejs/vite/tree/main/packages/playground/ssr-vue)
+Vite también proporciona [sorporte integrado para renderización en el lado del servidor](https://vitejs.dev/guide/ssr.html). Puede encontrar un proyecto de ejemplo con Vue [aquí](https://github.com/vitejs/vite/tree/main/packages/playground/ssr-vue)
