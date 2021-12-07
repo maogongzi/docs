@@ -1,28 +1,28 @@
 # Vue y Componentes Web
 
-[Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) is an umbrella term for a set of web native APIs that allows developers to create reusable custom elements.
+[Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) es un término general para un conjunto de APIs web nativos que les permite a los desarrolladores crear elementos personalizados reutilizables.
 
-We consider Vue and Web Components to be primarily complementary technologies. Vue has excellent support for both consuming and creating custom elements. Whether you are integrating custom elements into an existing Vue application, or using Vue to build and distribute custom elements, you are in good company.
+Consideramos que Vue y Componentes Web son fundamentalmente tecnologías complementarias. Vue posee soporte excelente tanto para consumir como para crear elementos personalizados. Si está integrando elementos personalizados en una aplicación Vue existente o utilizando Vue para construir y distribuir elementos personalizados, está en buena compañía.
 
-## Using Custom Elements in Vue
+## Utilizar elementos personalizados en Vue
 
-Vue [scores a perfect 100% in the Custom Elements Everywhere tests](https://custom-elements-everywhere.com/libraries/vue/results/results.html). Consuming custom elements inside a Vue application largely works the same as using native HTML elements, with a few things to keep in mind:
+Vue [obtuvo la máxima puntuación (100%) en las pruebas de Elementos Personalizados por Todas Partes(Custom Elements Everywhere)](https://custom-elements-everywhere.com/libraries/vue/results/results.html). Consumir elementos personalizados dentro de una aplicación Vue en general funciona de la misma manera como utilizar elementos HTML nativos, con un par de cosas que deba tener en cuenta:
 
-### Skipping Component Resolution
+### Saltar la resolución de Componente
 
-By default, Vue will attempt to resolve a non-native HTML tag as a registered Vue component before falling back to rendering it as a custom element. This will cause Vue to emit a "failed to resolve component" warning during development. To let Vue know that certain elements should be treated as custom elements and skip component resolution, we can specify the [`compilerOptions.isCustomElement` option](/api/application-config.html#compileroptions).
+Por defecto, Vue tratará de resolver una etiqueta HTML que no es nativa como un componente Vue registrado antes de retroceder a renderizarla como un elemento personalizado. Este hará que Vue emitir una advertencia "failed to resolve component" durante el proceso de desarrollo. Para permitir a Vue a saber que ciertos elementos deberían tratarse como elementos personalizados y saltar la resolución de componente, podemos especificar la [opción `compilerOptions.isCustomElement`](/api/application-config.html#compileroptions).
 
-If you are using Vue with a build setup, the option should be passed via build configs since it is a compile-time option.
+Si está utilizando Vue con un paso de compilación, la opción debería ser pasado a través de las configuraciones de compilación debido a que es una opción del tiempo de compilación (compile-time).
 
-#### Example In-Browser Config
+#### Ejemplo de Configuración dentro del Navegador
 
 ```js
-// Only works if using in-browser compilation.
-// If using build tools, see config examples below.
+// Solo funciona si se utiliza compilación dentro del navegador
+// si se utiliza herramientas de compilación, vea los ejemplos de configuración abajo.
 app.config.compilerOptions.isCustomElement = tag => tag.includes('-')
 ```
 
-#### Example Vite Config
+#### Ejemplo de Configuración de Vite
 
 ```js
 // vite.config.js
@@ -33,7 +33,7 @@ export default {
     vue({
       template: {
         compilerOptions: {
-          // treat all tags with a dash as custom elements
+          // Considera todas etiquetas con un guión como elementos personalizados
           isCustomElement: tag => tag.includes('-')
         }
       }
@@ -42,7 +42,7 @@ export default {
 }
 ```
 
-#### Example Vue CLI Config
+#### Ejemplo de Configuración de Vue CLI
 
 ```js
 // vue.config.js
@@ -54,7 +54,7 @@ module.exports = {
       .tap(options => ({
         ...options,
         compilerOptions: {
-          // treat any tag that starts with ion- as custom elements
+          // Considera cualquiera etiqueta que empeza con ion- como elementos personalizados
           isCustomElement: tag => tag.startsWith('ion-')
         }
       }))
@@ -62,16 +62,16 @@ module.exports = {
 }
 ```
 
-### Passing DOM Properties
+### Pasar Propiedades DOM
 
-Since DOM attributes can only be strings, we need to pass complex data to custom elements as DOM properties. When setting props on a custom element, Vue 3 automatically checks DOM-property presence using the `in` operator and will prefer setting the value as a DOM property if the key is present. This means that, in most cases, you won't need to think about this if the custom element follows the [recommended best practices](https://developers.google.com/web/fundamentals/web-components/best-practices#aim-to-keep-primitive-data-attributes-and-properties-in-sync,-reflecting-from-property-to-attribute,-and-vice-versa.).
+Ya que atributos DOM solo pueden ser cadenas de caracteres, necesitamos pasar dato complejo a elementos personalizados como propiedades DOM. Al establecer _props_ en un elemento personalizado, Vue 3 automáticamente verifica la existencia de la propiedad DOM utilizando el operador `in` y prefeirá establecer el valor como propiedad DOM si la clave está presente. Este significa que, en la mayoría de casos, no necesitará pensar de esto si el elemento personalizado siga las [mejores prácticas recomendadas](https://developers.google.com/web/fundamentals/web-components/best-practices#aim-to-keep-primitive-data-attributes-and-properties-in-sync,-reflecting-from-property-to-attribute,-and-vice-versa.).
 
-However, there could be rare cases where the data must be passed as a DOM property, but the custom element does not properly define/reflect the property (causing the `in` check to fail). In this case, you can force a `v-bind` binding to be set as a DOM property using the `.prop` modifier:
+Sin embargo, podría haber casos raros dónde el dato debe pasarse como una propiedad DOM, pero el elemento personalizado no define/refleja la propiedad adecuadamente (hace que la verificación `in` falle). En este caso, puede forzar que una vinculación `v-bind` sea establecida como una propiedad DOM utilizando el modificador `.prop`:
 
 ```html
 <my-element :user.prop="{ name: 'jack' }"></my-element>
 
-<!-- shorthand equivalent -->
+<!-- equivalente abreviado -->
 <my-element .user="{ name: 'jack' }"></my-element>
 ```
 
