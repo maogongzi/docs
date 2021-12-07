@@ -161,27 +161,27 @@ Cada elemento HTML tiene atributos con valores que aceptan cadenas de caracteres
 Note que JavaScript proporcionado por el usuario no se puede considerar 100% seguro, salvo que dentro de un _iframe_ que forma un entorno de recinto de seguridad o en una parte de la aplicación dónde solo el usuario quién escribió ese JavaScript puede ser expuesto a el.
 :::
 
-Sometimes we receive vulnerability reports on how it's possible to do cross-site scripting (XSS) in Vue templates. In general, we do not consider such cases to be actual vulnerabilities, because there's no practical way to protect developers from the two scenarios that would allow XSS:
+A veces recibimos reportajes de vulnerabilidad sobre cómo es posible hacer _cross-site scripting (XSS)_ en plantillas Vue. Por lo general, no consideramos que tales casos sean vulnerabilidades verdaderas, porque no hay maneras prácticas para protejer los desarrolladores de los dos escenarios que podrían permitir XSS:
 
-1. The developer is explicitly asking Vue to render user-provided, unsanitized content as Vue templates. This is inherently unsafe and there's no way for Vue to know the origin.
+1. El desarrollador está pidiendo a Vue explícitamente renderizar el contenido sin desinfectar proporcionado por el usuario como plantillas Vue. Este es inseguro por naturaleza y no hay ninguna manera de que Vue pueda reconocer el origen.
 
-2. The developer is mounting Vue to an entire HTML page which happens to contain server-rendered and user-provided content. This is fundamentally the same problem as \#1, but sometimes devs may do it without realizing. This can lead to possible vulnerabilities where the attacker provides HTML which is safe as plain HTML but unsafe as a Vue template. The best practice is to never mount Vue on nodes that may contain server-rendered and user-provided content.
+2. El desarrollador está montando Vue a una página HTML entera en que pasa a contener contenido renderizado por el servidor o proporcionado por el usuario. Eso es fundamentalmente el mismo problama como \#1, pero a veces los desarrolladores podrían hacerlo sin darse cuenta. Eso puede provocar vulnerabilidades posibles dónde el atacante proporciona HTML que es seguro como HTML plano pero inseguro como una plantilla Vue. La mejor práctica es nunca montar Vue en nodos que pueda contener contenido renderizado por el servidor o proporcionado por el usuario.
 
-## Best Practices
+## Prácticas Óptimas
 
-The general rule is that if you allow unsanitized, user-provided content to be executed (as either HTML, JavaScript, or even CSS), you might be opening yourself up to attacks. This advice actually holds true whether using Vue, another framework, or even no framework.
+La regla general es que si permite la ejecución de contenido sin desinfectar, proporcionado por el usuario (ya sea HTML, JavaScript u incluso CSS), se estaría exponiendo a los ataques. En realidad, este consejo mantiene válido tanto en el uso de Vue como con otro framework, o incluso con ninguno framework.
 
-Beyond the recommendations made above for [Potential Dangers](#potential-dangers), we also recommend familiarizing yourself with these resources:
+Más allá de las recomendaciones hechas arriba para [peligros potenciales](#potential-dangers), también recomendamos familiarizarse usted mismo con estos recursos:
 
-- [HTML5 Security Cheat Sheet](https://html5sec.org/)
-- [OWASP's Cross Site Scripting (XSS) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)
+- [Hoja de apuntes de la seguridad de HTML5](https://html5sec.org/)
+- [Hoja de apuntes de la prevención de _Cross Site Scripting (XSS)_ de OWASP](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)
 
-Then use what you learn to also review the source code of your dependencies for potentially dangerous patterns, if any of them include 3rd-party components or otherwise influence what's rendered to the DOM.
+Luego utilice lo que ya ha aprendido para también revisar el código de fuente de sus dependencias por patrones potencialmente peligrosos. Si cualquier de ellas incluye componentes de tercera parte o influye lo que va a ser renderizado al DOM.
 
-## Backend Coordination
+## Coordinación con _Backend_
 
-HTTP security vulnerabilities, such as cross-site request forgery (CSRF/XSRF) and cross-site script inclusion (XSSI), are primarily addressed on the backend, so aren't a concern of Vue's. However, it's still a good idea to communicate with your backend team to learn how to best interact with their API, e.g. by submitting CSRF tokens with form submissions.
+Las vulnerabilidades de seguridad de HTML, como solicitudes falsas de sitios cruzados (CSRF/XSRF) y _cross-site script inclusion (XSSI)_, son dirigidos principalmente al _backend_, por lo tanto son afuera de las preocupaciones de Vue. Sin embargo, es aún una buena idea para comunicar con su equipo de _backend_ para aprender la mejor manera de interactuar con sus APIs, por ejemplo, enviar el formulario junto con el token CSRF.
 
-## Server-Side Rendering (SSR)
+## Renderización en el lado del Servidor (SSR)
 
-There are some additional security concerns when using SSR, so make sure to follow the best practices outlined throughout [our SSR documentation](ssr/introduction.html) to avoid vulnerabilities.
+Hay unas preocupaciones adicionales de seguridad cuando se utiliza SSR, así que asegúrese de seguir las mejores prácticas reseñadas a través de [nuestra documentación de SSR](ssr/introduction.html) para evitar las vulnerabilidades.
