@@ -190,18 +190,19 @@ const ExampleElement = defineCustomElement(Example)
 customElements.define('my-example', ExampleElement)
 ```
 
-If you wish to customize what files should be imported in custom element mode (for example treating _all_ SFCs as custom elements), you can pass the `customElement` option to the respective build plugins:
+Si quiere personalizar los archivos importados en el modo de elemento personalizado (por ejemplo, trata _todos_ SFCs como elementos personalizados), puede pasar la opción `customElement` a los plugins respectivos de compilación:
 
 - [@vitejs/plugin-vue](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#using-vue-sfcs-as-custom-elements)
 - [vue-loader](https://github.com/vuejs/vue-loader/tree/next#v16-only-options)
 
-### Tips for a Vue Custom Elements Library
+### Consejos para una librería de elementos personalizados de Vue
 
-When building custom elements with Vue, the elements will rely on Vue's runtime. There is a ~16kb baseline size cost depending on how many features are being used. This means it is not ideal to use Vue if you are shipping a single custom element - you may want to use vanilla JavaScript, [petite-vue](https://github.com/vuejs/petite-vue), or frameworks that specialize in small runtime size. However, the base size is more than justifiable if you are shipping a collection of custom elements with complex logic, as Vue will allow each component to be authored with much less code. The more elements you are shipping together, the better the trade-off.
+Cuando se crea elementos personalizados con Vue, los elementos dependerán del _runtime_ de Vue. Hay una costa de tamaño básico de ~16kb, dependiente de cuántos características son utilizadas. Este significa que no es ideal utilizar Vue si está ofreciendo un solo elemento personalizado, es posible que desee utilizar JavaScript puro (vanilla), [petite-vue](https://github.com/vuejs/petite-vue), o frameworks que se caracteriza en pequeño tamaño de _runtime_. Sin embargo, el tamaño básico es más que justifiable si está ofreciendo un conjunto de elementos personalizados con lógica compleja, debido a que Vue le permitirá a cada componente que sea fabricado con mucho menos código. Mientras más elementos está ofreciendo juntos, mejor será el equilibrio.
 
-If the custom elements will be used in an application that is also using Vue, you can choose to externalize Vue from the built bundle so that the elements will be using the same copy of Vue from the host application.
 
-It is recommended to export the individual element constructors to give your users the flexibility to import them on-demand and register them with desired tag names. You can also export a convenience function to automatically register all elements. Here's an example entry point of a Vue custom element library:
+Si los elementos personalizados serán utilizados en una aplicación que también utiliza Vue, podría exteriorizar Vue de la compilación para que los elementos utilicen el mismo fuente de Vue de la aplicación de origen (host application).
+
+Es recomendado exportar los constructors individuales de elementos para darles a sus usuarios la flexibilidad para importarlos a petición y registrarlos con nombres deseados de etiquetas. Puede también exportar una función de conveniencia para automáticamente registrar todos los elementos. Aquí es un ejemplo de punto de entrada de una librería de elementos personalizados de Vue.
 
 ```js
 import { defineCustomElement } from 'vue'
