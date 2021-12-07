@@ -40,7 +40,9 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/reactivity.md](src/guide/reactivity.md)|Spanish :white_check_mark:|
 |[src/guide/render-function.md](src/guide/render-function.md)|Spanish :white_check_mark:|
 |[src/guide/routing.md](src/guide/routing.md)|Spanish :white_check_mark:|
+|[src/guide/security.md](src/guide/security.md)|Spanish :white_check_mark:|
 |[src/guide/single-file-component.md](src/guide/single-file-component.md)|Spanish :white_check_mark:|
+|[src/guide/ssr.md](src/guide/ssr.md)|Spanish :white_check_mark:|
 |[src/guide/state-management.md](src/guide/state-management.md)|Spanish :white_check_mark:|
 |[src/guide/teleport.md](src/guide/teleport.md)|Spanish :white_check_mark:|
 |[src/guide/template-syntax.md](src/guide/template-syntax.md)|Spanish :white_check_mark:|
@@ -138,7 +140,6 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/optimizations.md](src/guide/optimizations.md)|English :x:|
 |[src/guide/reactivity-computed-watchers.md](src/guide/reactivity-computed-watchers.md)|English :x:|
 |[src/guide/reactivity-fundamentals.md](src/guide/reactivity-fundamentals.md)|English :x:|
-|[src/guide/security.md](src/guide/security.md)|English :x:|
 |[src/guide/ssr/build-config.md](src/guide/ssr/build-config.md)|English :x:|
 |[src/guide/ssr/getting-started.md](src/guide/ssr/getting-started.md)|English :x:|
 |[src/guide/ssr/hydration.md](src/guide/ssr/hydration.md)|English :x:|
@@ -147,7 +148,6 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/ssr/server.md](src/guide/ssr/server.md)|English :x:|
 |[src/guide/ssr/structure.md](src/guide/ssr/structure.md)|English :x:|
 |[src/guide/ssr/universal.md](src/guide/ssr/universal.md)|English :x:|
-|[src/guide/ssr.md](src/guide/ssr.md)|English :x:|
 |[src/guide/testing.md](src/guide/testing.md)|English :x:|
 |[src/guide/tooling/deployment.md](src/guide/tooling/deployment.md)|English :x:|
 |[src/guide/transitions-enterleave.md](src/guide/transitions-enterleave.md)|English :x:|
