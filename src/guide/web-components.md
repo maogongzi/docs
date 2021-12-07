@@ -75,13 +75,13 @@ Sin embargo, podría haber casos raros dónde el dato debe pasarse como una prop
 <my-element .user="{ name: 'jack' }"></my-element>
 ```
 
-## Building Custom Elements with Vue
+## Crear Elementos Personalizados con Vue
 
-The primary benefit of custom elements is that they can be used with any framework, or even without a framework. This makes them ideal for distributing components where the end consumer may not be using the same frontend stack, or when you want to insulate the end application from the implementation details of the components it uses.
+El primario beneficio de elementos personalizados es que pueden ser utilizado junto con cualquier framework, incluso sin un framework. Este hace que sean ideales para distribuir componentes dónde el consumidor final no estaría utilizando el mismo _frontend stack_, o cuando quiere aislar la aplicación final de las detalles de implementación de los componentes que utilice.
 
 ### defineCustomElement
 
-Vue supports creating custom elements using exactly the same Vue component APIs via the [`defineCustomElement`](/api/global-api.html#definecustomelement) method. The method accepts the same argument as [`defineComponent`](/api/global-api.html#definecomponent), but instead returns a custom element constructor that extends `HTMLElement`:
+Vue soporta crear elementos personalizados utilizando exactamente las misma APIs de componentes Vue mediante el método [`defineCustomElement`](/api/global-api.html#definecustomelement). El método acepta los mismos argumentos como [`defineComponent`](/api/global-api.html#definecomponent), pero en su lugar retorna un constructor de elemento personalizado que extienda `HTMLElement`:
 
 ```html
 <my-vue-element></my-vue-element>
@@ -91,48 +91,46 @@ Vue supports creating custom elements using exactly the same Vue component APIs 
 import { defineCustomElement } from 'vue'
 
 const MyVueElement = defineCustomElement({
-  // normal Vue component options here
+  // opciones normales de componente Vue aquí
   props: {},
   emits: {},
   template: `...`,
 
-  // defineCustomElement only: CSS to be injected into shadow root
+  // sólo para defineCustomElement: CSS será inyectado en la raíz de _shadow_
   styles: [`/* inlined css */`]
 })
 
-// Register the custom element.
-// After registration, all `<my-vue-element>` tags
-// on the page will be upgraded.
+// Registrar el elemento personalizado.
+// Después de la registración, todas etiquetas de `<my-vue-element>`
+// en la página serán actualizadas.
 customElements.define('my-vue-element', MyVueElement)
 
-// You can also programmatically instantiate the element:
-// (can only be done after registration)
+// Puede también programáticamente instanciar el elemento:
+// (sólo puede hacerse después de la registración)
 document.body.appendChild(
   new MyVueElement({
-    // initial props (optional)
+    // _props_ iniciales (opcional)
   })
 )
 ```
 
-#### Lifecycle
+#### Ciclo de Vida
 
-- A Vue custom element will mount an internal Vue component instance inside its shadow root when the element's [`connectedCallback`](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks) is called for the first time.
+- Un elemento personalizado Vue montará una instancia Vue internal dentro de su raíz de _shadow_ cuando la [`connectedCallback`](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks) del elemento sea llamada por la primera vez.
+- Cuando la `disconnectedCallback` del elemento sea invocada, Vue verificará si el elemento sea desprendido del documento después de un tic de microtarea (microtask tick).
+  - Si el elemento esté todavía en el documento, sea un movimiento y la instancia del componente se preservará;
 
-- When the element's `disconnectedCallback` is invoked, Vue will check whether the element is detached from the document after a microtask tick.
+  - Si el elemento esté desprendido del documento, sea una eliminación y la instancia del componente será desmontada.
 
-  - If the element is still in the document, it's a move and the component instance will be preserved;
+#### _Props_
 
-  - If the element is detached from the document, it's a removal and the component instance will be unmounted.
+- Todas _props_ declaradas utilizando la opción `props` serán definidas en el elemento personalizado como propiedades, Vue manejará automáticamente la reflexión entre atributos / propiedades cuando proceda.
 
-#### Props
+  - Atributos siempre son reflejados a propiedades correspondientes.
 
-- All props declared using the `props` option will be defined on the custom element as properties. Vue will automatically handle the reflection between attributes / properties where appropriate.
+  - Propiedades con valores primitivos (`string`, `boolean` o `number`) son reflejadas como atributos.
 
-  - Attributes are always reflected to corresponding properties.
-
-  - Properties with primitive values (`string`, `boolean` or `number`) are reflected as attributes.
-
-- Vue also automatically casts props declared with `Boolean` or `Number` types into the desired type when they are set as attributes (which are always strings). For example given the following props declaration:
+- Vue también automáticamente convertirá _props_ declaradas con tipos `Boolean` o `Number` en los tipos deseados cuando son establecidas como atributos (los cuales son siempre cadenas de caracteres). Por ejemplo dado la siguiente declaración de _props_:
 
   ```js
   props: {
@@ -141,29 +139,29 @@ document.body.appendChild(
   }
   ```
 
-  And the custom element usage:
+  Y el uso de elemento personalizado:
 
   ```html
   <my-element selected index="1"></my-element>
   ```
 
-  In the component, `selected` will be cast to `true` (boolean) and `index` will be cast to `1` (number).
+  En el componente, `selected` será convertido a `true` (boolean) y `index` será convertido a `1` (number).
 
-#### Events
+#### Eventos
 
-Events emitted via `this.$emit` or setup `emit` are dispatched as native [CustomEvents](https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events#adding_custom_data_%E2%80%93_customevent) on the custom element. Additional event arguments (payload) will be exposed as an array on the CustomEvent object as its `details` property.
+Los eventos emitidos mediante `this.$emit` o `emit` dentro de _setup_ son despachados como [Eventos Personalizados](https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events#adding_custom_data_%E2%80%93_customevent) nativos en el elemento personalizado. Adicionales argumentos del evento (payload) serán expuestos como una matriz en el objeto CustomEvent como su propiedad `details`.
 
-#### Slots
+#### _Slots_
 
-Inside the component, slots can be rendered using the `<slot/>` element as usual. However when consuming the resulting element, it only accepts [native slots syntax](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots):
+Dentro del componente, _slots_ pueden renderizarse utilizando el elemento `<slot/>` como siempre. Sin embargo, cuando se consume el elemento resultante, sólo acepta [la sintaxis de slots nativos](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots):
 
-- [Scoped slots](/guide/component-slots.html#scoped-slots) are not supported.
+- [Scoped slots](/guide/component-slots.html#scoped-slots) no se soportan.
 
-- When passing named slots, use the `slot` attribute instead of the `v-slot` directive:
+- Cuando se pasa _slots_ nombrados, utilice el atributo `slot` en vez de la directiva `v-slot`:
 
   ```html
   <my-element>
-    <div slot="named">hello</div>
+    <div slot="named">Hola</div>
   </my-element>
   ```
 
