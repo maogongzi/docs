@@ -212,7 +212,7 @@ import Bar from './MyBar.ce.vue'
 const MyFoo = defineCustomElement(Foo)
 const MyBar = defineCustomElement(Bar)
 
-// export individual elements
+// exportar elementos individuales
 export { MyFoo, MyBar }
 
 export function register() {
@@ -221,21 +221,21 @@ export function register() {
 }
 ```
 
-If you have many components, you can also leverage build tool features such as Vite's [glob import](https://vitejs.dev/guide/features.html#glob-import) or webpack's [`require.context`](https://webpack.js.org/guides/dependency-management/#requirecontext) to load all components from a directory.
+Si tiene muchos componentes, puede también acudir a las características de herramientas de compilación como el [importar globalmente](https://vitejs.dev/guide/features.html#glob-import) de Vite o el [`require.context`](https://webpack.js.org/guides/dependency-management/#requirecontext) de webpack para cargar todos componentes de una carpeta.
 
-## Web Components vs. Vue Components
+## Componentes Web versus Componentes Vue
 
-Some developers believe that framework-proprietary component models should be avoided, and that exclusively using Custom Elements makes an application "future-proof". Here we will try to explain why we believe that this is an overly simplistic take on the problem.
+Algunos desarrolladores piensan que los modelos de componentes vinculados a cada framework deben ser evitados, y que utilizar exclusivamente elementos personalizados hace que una aplicación sea adaptable para el futuro ("future-proof"). Aquí trataremos de explicar porque creemos que este es demasiado simplista sobre el problema.
 
-There is indeed a certain level of feature overlap between Custom Elements and Vue Components: they both allow us to define reusable components with data passing, event emitting, and lifecycle management. However, Web Components APIs are relatively low-level and bare-bones. To build an actual application, we need quite a few additional capabilities which the platform does not cover:
+Hay de verdad un nivel cierto de superposición entre elementos personalizados y componentes Vue: ambos nos permiten definir componentes reutilizables con el paso de dato, la emisión de eventos, y el manejamiento de ciclo de vida. Sin embargo, las APIs de Componentes Web son relativamente de nivel bajo y muy limitado. Para construir una aplicación real, necesitamos un buen número de capacidades adicionales de los que la plataforma no abarca:
 
-- A declarative and efficient templating system;
+- Un sistema declarativa y eficiente de plantillas;
 
-- A reactive state management system that facilitates cross-component logic extraction and reuse;
+- Un sistema reactivo de manejamiento de estados que facilitar la extracción de lógica y reutilización entre componentes;
 
-- A performant way to render the components on the server and hydrate them on the client (SSR), which is important for SEO and [Web Vitals metrics such as LCP](https://web.dev/vitals/). Native custom elements SSR typically involves simulating the DOM in Node.js and then serializing the mutated DOM, while Vue SSR compiles into string concatenation whenever possible, which is much more efficient.
+- Una eficiente manera para renderizar los componentes en el servidor y hidratarlos en el cliente (SSR), lo cual es imporante para SEO y [métrica vitales web como LCP](https://web.dev/vitals/). El SSR nativo de elementos personalizados típicamente involucra simular el DOM en Node.js y luego serializar el DOM mutado, mientras el SSR Vue compila a concatenación de cadena de caracteres siempre que sea posible, lo que es mucho más eficiente.
 
-Vue's component model is designed with these needs in mind as a coherent system.
+El modelo de componentes de Vue es diseñado con estos necesidades en consideración como un sistema coherente.
 
 With a competent engineering team, you could probably build the equivalent on top of native Custom Elements - but this also means you are taking on the long-term maintenance burden of an in-house framework, while losing out on the ecosystem and community benefits of a mature framework like Vue.
 
