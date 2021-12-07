@@ -167,26 +167,26 @@ Dentro del componente, _slots_ pueden renderizarse utilizando el elemento `<slot
 
 #### Provide / Inject
 
-The [Provide / Inject API](/guide/component-provide-inject.html#provide-inject) and its [Composition API equivalent](/api/composition-api.html#provide-inject) also work between Vue-defined custom elements. However, note that this works **only between custom elements**. i.e. a Vue-defined custom element won't be able to inject properties provided by a non-custom-element Vue component.
+La [API de Provide / Inject](/guide/component-provide-inject.html#provide-inject) y sus [equivalentes de la API de Composición](/api/composition-api.html#provide-inject) también funcionan entre elementos personalizados definidos por Vue. Sin embargo, note que este funciona **sólo entre elementos personalizados**. es decir, un elemento personalizado definido por Vue no será capaz de inyectar propiedades proporcionadas por un componente Vue que no sea un elemento personalizado.
 
-### SFC as Custom Element
+### SFC como Elemento Personalizado
 
-`defineCustomElement` also works with Vue Single File Components (SFCs). However, with the default tooling setup, the `<style>` inside the SFCs will still be extracted and merged into a single CSS file during production build. When using an SFC as a custom element, it is often desirable to inject the `<style>` tags into the custom element's shadow root instead.
+`defineCustomElement` también funciona con Componentes de un Solo Archivo de Vue (SFCs). Sin embargo, con las herramientas establecidas por defecto, el `<style>` dentro de los SFCs todavía será extraído y fundido en un solo archivo CSS durante la compilación de producción. Cuando se utiliza un SFC como un elemento personalizado, siempre es recomendable inyectar las etiquetas `<style>` en la raíz de _shadow_ del elemento personalizado en su lugar.
 
-The official SFC toolings support importing SFCs in "custom element mode" (requires `@vitejs/plugin-vue@^1.4.0` or `vue-loader@^16.5.0`). An SFC loaded in custom element mode inlines its `<style>` tags as strings of CSS and exposes them under the component's `styles` option. This will be picked up by `defineCustomElement` and injected into the element's shadow root when instantiated.
+Las herramientas oficiales de SFC soportan importar SFCs mediante el "modo de elemento personalizado" (requiere `@vitejs/plugin-vue@^1.4.0` o `vue-loader@^16.5.0`). Un SFC cargado mediante el modo de elemento personalizado alinea sus etiquetas de `<style>` como cadenas de caracteres de CSS y las expone bajo la opción `styles` del componente. Este será recogido por `defineCustomElement` y inyectado en la raíz de _shadow_ del elemento cuando sea instanciado.
 
-To opt-in to this mode, simply end your component file name with `.ce.vue`:
+Para escoger este modo, simplemente termina el nombre de su archivo de componente con `.ce.vue`:
 
 ```js
 import { defineCustomElement } from 'vue'
 import Example from './Example.ce.vue'
 
-console.log(Example.styles) // ["/* inlined css */"]
+console.log(Example.styles) // ["/* css alineado */"]
 
-// convert into custom element constructor
+// convertirlo en un elemento personalizado
 const ExampleElement = defineCustomElement(Example)
 
-// register
+// registrar
 customElements.define('my-example', ExampleElement)
 ```
 
