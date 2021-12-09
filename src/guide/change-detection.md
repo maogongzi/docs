@@ -1,4 +1,4 @@
-# Change Detection Caveats in Vue 2
+# Advertencias de la Detección de Cambios en Vue 2
 
 > This page applies only to Vue 2.x and below, and assumes you've already read the [Reactivity Section](reactivity.md). Please read that section first.
 
