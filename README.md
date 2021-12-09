@@ -36,7 +36,9 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/introduction.md](src/guide/introduction.md)|Spanish :white_check_mark:|
 |[src/guide/list.md](src/guide/list.md)|Spanish :white_check_mark:|
 |[src/guide/mixins.md](src/guide/mixins.md)|Spanish :white_check_mark:|
+|[src/guide/optimizations.md](src/guide/optimizations.md)|Spanish :white_check_mark:|
 |[src/guide/plugins.md](src/guide/plugins.md)|Spanish :white_check_mark:|
+|[src/guide/reactivity-fundamentals.md](src/guide/reactivity-fundamentals.md)|Spanish :white_check_mark:|
 |[src/guide/reactivity.md](src/guide/reactivity.md)|Spanish :white_check_mark:|
 |[src/guide/render-function.md](src/guide/render-function.md)|Spanish :white_check_mark:|
 |[src/guide/routing.md](src/guide/routing.md)|Spanish :white_check_mark:|
@@ -46,6 +48,7 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/state-management.md](src/guide/state-management.md)|Spanish :white_check_mark:|
 |[src/guide/teleport.md](src/guide/teleport.md)|Spanish :white_check_mark:|
 |[src/guide/template-syntax.md](src/guide/template-syntax.md)|Spanish :white_check_mark:|
+|[src/guide/web-components.md](src/guide/web-components.md)|Spanish :white_check_mark:|
 |[src/search/README.md](src/search/README.md)|Spanish :white_check_mark:|
 |[src/.vuepress/theme/README.md](src/.vuepress/theme/README.md)|English :x:|
 |[src/api/application-api.md](src/api/application-api.md)|English :x:|
@@ -137,9 +140,7 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/migration/vnode-lifecycle-events.md](src/guide/migration/vnode-lifecycle-events.md)|English :x:|
 |[src/guide/migration/watch.md](src/guide/migration/watch.md)|English :x:|
 |[src/guide/mobile.md](src/guide/mobile.md)|English :x:|
-|[src/guide/optimizations.md](src/guide/optimizations.md)|English :x:|
 |[src/guide/reactivity-computed-watchers.md](src/guide/reactivity-computed-watchers.md)|English :x:|
-|[src/guide/reactivity-fundamentals.md](src/guide/reactivity-fundamentals.md)|English :x:|
 |[src/guide/ssr/build-config.md](src/guide/ssr/build-config.md)|English :x:|
 |[src/guide/ssr/getting-started.md](src/guide/ssr/getting-started.md)|English :x:|
 |[src/guide/ssr/hydration.md](src/guide/ssr/hydration.md)|English :x:|
@@ -155,7 +156,6 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/transitions-overview.md](src/guide/transitions-overview.md)|English :x:|
 |[src/guide/transitions-state.md](src/guide/transitions-state.md)|English :x:|
 |[src/guide/typescript-support.md](src/guide/typescript-support.md)|English :x:|
-|[src/guide/web-components.md](src/guide/web-components.md)|English :x:|
 |[src/style-guide/README.md](src/style-guide/README.md)|English :x:|
 |[src/support-vuejs/README.md](src/support-vuejs/README.md)|English :x:|
 
