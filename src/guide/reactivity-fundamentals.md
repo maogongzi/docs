@@ -1,31 +1,31 @@
 # Los Fundamentos de Reactividad
 
-> This section uses [single-file component](single-file-component.html) syntax for code examples
+> Esta sección utiliza el sintaxis de [componente de un solo archivo] para ejemplos de códigos
 
-## Declaring Reactive State
+## Declarar Estado Reactivo
 
-To create a reactive state from a JavaScript object, we can use a `reactive` method:
+Para crear un estado reactivo desde un objeto JavaScript, podemos utilizar el método `reactive`:
 
 ```js
 import { reactive } from 'vue'
 
-// reactive state
+// estado reactivo
 const state = reactive({
   count: 0
 })
 ```
 
-`reactive` is the equivalent of the `Vue.observable()` API in Vue 2.x, renamed to avoid confusion with RxJS observables. Here, the returned state is a reactive object. The reactive conversion is "deep" - it affects all nested properties of the passed object.
+El método `reactive` es el equivalente de la API `Vue.observable()` en Vue 2.x, renombrado para evitar confusión con _RxJS observables_. Aquí, el estado retornado es un objeto reactivo. La conversión es "profundo", afecta todas propiedades anidadas del objeto pasado.
 
-The essential use case for reactive state in Vue is that we can use it during render. Thanks to dependency tracking, the view automatically updates when reactive state changes.
+El caso de uso esencial para estado reactivo en Vue es que podemos utilizarlo durante la renerización. Gracias al seguimiento de dependencias, la vista se actualiza automáticamente cuando el estado reactivo se cambie.
 
-This is the very essence of Vue's reactivity system. When you return an object from `data()` in a component, it is internally made reactive by `reactive()`. The template is compiled into a [render function](render-function.html) that makes use of these reactive properties.
+Esto es la quintaesencia del sistema de reactividad de Vue. Cuando retorna un objeto desde `data()` de un componente, se ha hecho internalmente reactivo mediante `reactive()`. La plantilla es compilada a una [función _render_](render-function.html) que utilice estas propiedades reactivas.
 
-You can learn more about `reactive` in the [Basic Reactivity API's](../api/basic-reactivity.html) section
+Puede aprender más sobre `reactive` en la sección [Básico de la API de Reactividad](../api/basic-reactivity.html)
 
-## Creating Standalone Reactive Values as `refs`
+## Crear valores reactivos individuales como `refs`
 
-Imagine the case where we have a standalone primitive value (for example, a string) and we want to make it reactive. Of course, we could make an object with a single property equal to our string, and pass it to `reactive`. Vue has a method that will do the same for us - it's a `ref`:
+Imagine el caso dónode tengamos un valor primitivo individual (por ejemplo, una cadena de caracteres) y querramos hacerlo reactivo. Por supuesto, podríamos hacer un objeto con una sóla propiedad igual a nuestra cadena de caracteres, y la pasamos a `reactive`. Vue tiene un método que hará el mismo para nosotros, es la `ref`:
 
 ```js
 import { ref } from 'vue'
@@ -33,7 +33,7 @@ import { ref } from 'vue'
 const count = ref(0)
 ```
 
-`ref` will return a reactive and mutable object that serves as a reactive **ref**erence to the internal value it is holding - that's where the name comes from. This object contains the only one property named `value`:
+`ref` retornará un objeto reactivo y mutable que servirá como una referencia reactiva de **ref** para el valor internal que posea, es el lugar dónde el nombre viene. Este objeto contiene la sóla propiedad nombrada `value`:
 
 ```js
 import { ref } from 'vue'
@@ -45,16 +45,16 @@ count.value++
 console.log(count.value) // 1
 ```
 
-### Ref Unwrapping
+### Desenvolver una Ref
 
-When a ref is returned as a property on the render context (the object returned from [setup()](composition-api-setup.html)) and accessed in the template, it automatically shallow unwraps the inner value. Only the nested ref will require `.value` in the template:
+Cuando una _ref_ es retornada como una propiedad en el contexto de renderización (el objeto retornado de [setup()](composition-api-setup.html))) y accesada en la plantilla, se desenvolve automáticamente con poca profundidad (shallow unwraps) el valor internal. Solo la _ref_ anidada requerirá `.value` en la plantilla:
 
 ```vue-html
 <template>
   <div>
     <span>{{ count }}</span>
-    <button @click="count ++">Increment count</button>
-    <button @click="nested.count.value ++">Nested Increment count</button>
+    <button @click="count ++">Incrementar la suma</button>
+    <button @click="nested.count.value ++">Incrementar la suma anidada</button>
   </div>
 </template>
 
