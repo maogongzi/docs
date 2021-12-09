@@ -110,6 +110,7 @@ state.count = otherCount
 console.log(state.count) // 2
 console.log(count.value) // 1
 ```
+
 El desembalaje de _ref_ solo ocurre cuando se encuentre anidada dentro de un `Object` reactivo. Eso no ocurrirá cuando la _ref_ es accesada de un `Array` o un tipo nativo de conjunto como [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map):
 
 ```js
