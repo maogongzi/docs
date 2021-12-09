@@ -91,41 +91,41 @@ const stop = watchEffect(() => {
 stop()
 ```
 
-### Side Effect Invalidation
+### Invalidación de Efectos Secundarios
 
-Sometimes the watched effect function will perform asynchronous side effects that need to be cleaned up when it is invalidated (i.e. state changed before the effects can be completed). The effect function receives an `onInvalidate` function that can be used to register an invalidation callback. This invalidation callback is called when:
+Algunas veces la función observada de _effect_ realizará efectos secundarios asíncronos que necesitan ser limpiados cuando el _effect_ esté invalidado (es decir, el estado cambia antes de que se hayan completados los _effects_). La función de _effect_ recibe una función `onInvalidate` que pueda ser utilizada para registrar un _callback_ de invalidación. Este _callback_ de invalidación es llamado cuando cuando:
 
-- the effect is about to re-run
-- the watcher is stopped (i.e. when the component is unmounted if `watchEffect` is used inside `setup()` or lifecycle hooks)
+- el _effect_ está a punto de reejecutar
+- el observador está detenido (es decir, cuando el componente es desmontado mientras `watchEffect` es utilizada dentro de `setup()` o _hooks_ de ciclo de vida de el)
 
 ```js
 watchEffect(onInvalidate => {
   const token = performAsyncOperation(id.value)
   onInvalidate(() => {
-    // id has changed or watcher is stopped.
-    // invalidate previously pending async operation
+    // id ha cambiado o el observador se ha detenido.
+    // invalidar la operación anterior pendiente asíncrono
     token.cancel()
   })
 })
 ```
 
-We are registering the invalidation callback via a passed-in function instead of returning it from the callback because the return value is important for async error handling. It is very common for the effect function to be an async function when performing data fetching:
+Estamos registrando el _callback_ de invalidación mediante una función pasada en vez de retornarla del _callback_ porque el valor retornado es importante para la manipulación asíncrona de errores. Es muy común que la función de _effect_ sea una función asíncrona cuando se realiza la recuperación de datos:
 
 ```js
 const data = ref(null)
 watchEffect(async onInvalidate => {
   onInvalidate(() => {
     /* ... */
-  }) // we register cleanup function before Promise resolves
+  }) // registramos una función de limpieza antes de que se resuelva el Promise
   data.value = await fetchData(props.id)
 })
 ```
 
-An async function implicitly returns a Promise, but the cleanup function needs to be registered immediately before the Promise resolves. In addition, Vue relies on the returned Promise to automatically handle potential errors in the Promise chain.
+Una función asíncrona implícitamente retorna un Promise, pero la función de limpieza necesita registrarse inmediatamente antes de que se resuelva el Promise. Además, Vue cuenta con el Promise retornado para automáticamente manipular errores potenciales en la cadena de Promise.
 
-### Effect Flush Timing
+### La temporización para tirar de la cadena de los efectos secundarios (Effect Flush Timing)
 
-Vue's reactivity system buffers invalidated effects and flushes them asynchronously to avoid unnecessary duplicate invocation when there are many state mutations happening in the same "tick". Internally, a component's `update` function is also a watched effect. When a user effect is queued, it is by default invoked **before** all component `update` effects:
+El sistema de reactividad de Vue amortigua (buffers) los efectos invalidados y tira de la cadena de ellos asincrónicamente para evitar invocaciones repetidas innecesarias cuando hay muchas mutaciones de estado ocurriendo en el mismo "tic (tick)". Internalmente, la función `update` de un componente es también un efecto observado. Cuando un efecto de usuario se ha puesto en cola, es por defecto invocado **antes** todos efectos de `update` de componente:
 
 ```vue
 <template>
@@ -149,17 +149,17 @@ export default {
 </script>
 ```
 
-In this example:
+En este ejemplo:
 
-- The count will be logged synchronously on initial run.
-- When `count` is mutated, the callback will be called **before** the component has updated.
+- El _count_ será registrado sincrónicamente en la ejecución inicial.
+- Cuando `count` esté mutado, el _callback_ será llamado **antes** de que el componente se haya actualizado.
 
-In cases where a watcher effect needs to be re-run **after** component updates (i.e. when working with [Template Refs](./composition-api-template-refs.md#watching-template-refs)), we can pass an additional `options` object with the `flush` option (default is `'pre'`):
+En casos dónde un _effect_ de observador (watcher effect) necesita reejecutarse **después** de las actualizaciones de componente (es decir, cuando se trabaja con [_refs_ de plantillas](./composition-api-template-refs.md#watching-template-refs)), podemos pasar un objeto adicional `options` con la opción `flush` (cuya valor por defecto es `'pre'`):
 
 ```js
-// fire after component updates so you can access the updated DOM
-// Note: this will also defer the initial run of the effect until the
-// component's first render is finished.
+// disparar después de las actualizaciones de componente, así que puede acceder el DOM actualizado
+// Nota: este también posponerá la ejecución inicial del _effect_ hasta que la
+// primera renderización del componente haya terminado
 watchEffect(
   () => {
     /* ... */
@@ -170,9 +170,9 @@ watchEffect(
 )
 ```
 
-The `flush` option also accepts `'sync'`, which forces the effect to always trigger synchronously. This is however inefficient and should be rarely needed.
+La opción `flush` también acepta `'sync'`, lo cual obliga que el _effect_ siempre dispare sincrónicamente. Este, sin embargo, es ineficiente y rara vez sería necesario.
 
-In Vue >= 3.2.0, `watchPostEffect` and `watchSyncEffect` aliases can also be used to make the code intention more obvious.
+En Vue >= 3.2.0, se puede también utilizar los alias `watchPostEffect` y `watchSyncEffect` para hacer la intención de código más obvia.
 
 ### Watcher Debugging
 
