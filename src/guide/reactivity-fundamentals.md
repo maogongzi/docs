@@ -1,31 +1,31 @@
-# Reactivity Fundamentals
+# Los Fundamentos de Reactividad
 
-> This section uses [single-file component](single-file-component.html) syntax for code examples
+> Esta sección utiliza el sintaxis de [componente de un solo archivo] para ejemplos de códigos
 
-## Declaring Reactive State
+## Declarar Estado Reactivo
 
-To create a reactive state from a JavaScript object, we can use a `reactive` method:
+Para crear un estado reactivo desde un objeto JavaScript, podemos utilizar el método `reactive`:
 
 ```js
 import { reactive } from 'vue'
 
-// reactive state
+// estado reactivo
 const state = reactive({
   count: 0
 })
 ```
 
-`reactive` is the equivalent of the `Vue.observable()` API in Vue 2.x, renamed to avoid confusion with RxJS observables. Here, the returned state is a reactive object. The reactive conversion is "deep" - it affects all nested properties of the passed object.
+El método `reactive` es el equivalente de la API `Vue.observable()` en Vue 2.x, renombrado para evitar confusión con _RxJS observables_. Aquí, el estado retornado es un objeto reactivo. La conversión es "profundo", afecta todas propiedades anidadas del objeto pasado.
 
-The essential use case for reactive state in Vue is that we can use it during render. Thanks to dependency tracking, the view automatically updates when reactive state changes.
+El caso de uso esencial para estado reactivo en Vue es que podemos utilizarlo durante la renerización. Gracias al seguimiento de dependencias, la vista se actualiza automáticamente cuando el estado reactivo se cambie.
 
-This is the very essence of Vue's reactivity system. When you return an object from `data()` in a component, it is internally made reactive by `reactive()`. The template is compiled into a [render function](render-function.html) that makes use of these reactive properties.
+Esto es la quintaesencia del sistema de reactividad de Vue. Cuando retorna un objeto desde `data()` de un componente, se ha hecho internalmente reactivo mediante `reactive()`. La plantilla es compilada a una [función _render_](render-function.html) que utilice estas propiedades reactivas.
 
-You can learn more about `reactive` in the [Basic Reactivity API's](../api/basic-reactivity.html) section
+Puede aprender más sobre `reactive` en la sección [Básico de la API de Reactividad](../api/basic-reactivity.html)
 
-## Creating Standalone Reactive Values as `refs`
+## Crear valores reactivos individuales como `refs`
 
-Imagine the case where we have a standalone primitive value (for example, a string) and we want to make it reactive. Of course, we could make an object with a single property equal to our string, and pass it to `reactive`. Vue has a method that will do the same for us - it's a `ref`:
+Imagine el caso dónode tengamos un valor primitivo individual (por ejemplo, una cadena de caracteres) y querramos hacerlo reactivo. Por supuesto, podríamos hacer un objeto con una sóla propiedad igual a nuestra cadena de caracteres, y la pasamos a `reactive`. Vue tiene un método que hará el mismo para nosotros, es la `ref`:
 
 ```js
 import { ref } from 'vue'
@@ -33,7 +33,7 @@ import { ref } from 'vue'
 const count = ref(0)
 ```
 
-`ref` will return a reactive and mutable object that serves as a reactive **ref**erence to the internal value it is holding - that's where the name comes from. This object contains the only one property named `value`:
+`ref` retornará un objeto reactivo y mutable que servirá como una referencia reactiva de **ref** para el valor internal que posea, es el lugar dónde el nombre viene. Este objeto contiene la sóla propiedad nombrada `value`:
 
 ```js
 import { ref } from 'vue'
@@ -45,16 +45,16 @@ count.value++
 console.log(count.value) // 1
 ```
 
-### Ref Unwrapping
+### Desenvolver una Ref
 
-When a ref is returned as a property on the render context (the object returned from [setup()](composition-api-setup.html)) and accessed in the template, it automatically shallow unwraps the inner value. Only the nested ref will require `.value` in the template:
+Cuando una _ref_ es retornada como una propiedad en el contexto de renderización (el objeto retornado de [setup()](composition-api-setup.html))) y accesada en la plantilla, se desenvolve automáticamente con poca profundidad (shallow unwraps) el valor internal. Solo la _ref_ anidada requerirá `.value` en la plantilla:
 
 ```vue-html
 <template>
   <div>
     <span>{{ count }}</span>
-    <button @click="count ++">Increment count</button>
-    <button @click="nested.count.value ++">Nested Increment count</button>
+    <button @click="count ++">Incrementar la suma</button>
+    <button @click="nested.count.value ++">Incrementar la suma anidada</button>
   </div>
 </template>
 
@@ -76,7 +76,7 @@ When a ref is returned as a property on the render context (the object returned 
 ```
 
 :::tip
-If you don't want to access the actual object instance, you can wrap it in a `reactive`:
+Si no quiere acceder la instancia actual del objeto, puede envolverla en un `reactive`:
 
 ```js
 nested: reactive({
@@ -85,9 +85,9 @@ nested: reactive({
 ```
 :::
 
-### Access in Reactive Objects
+### El Acceso en Objetos Reactivos
 
-When a `ref` is accessed or mutated as a property of a reactive object, it automatically unwraps to the inner value so it behaves like a normal property:
+Cuando una `ref` es accesada o mutada como una propiedad d un objeto reactivo, se desenvolve automáticamente al valor internal, así que se comporte como una propiedad normal:
 
 ```js
 const count = ref(0)
@@ -101,7 +101,7 @@ state.count = 1
 console.log(count.value) // 1
 ```
 
-If a new ref is assigned to a property linked to an existing ref, it will replace the old ref:
+Si una nueva _ref_ es asignada a una propiedad vinculada a una _ref_ existente, reemplazará la _ref_ vieja:
 
 ```js
 const otherCount = ref(2)
@@ -111,60 +111,60 @@ console.log(state.count) // 2
 console.log(count.value) // 1
 ```
 
-Ref unwrapping only happens when nested inside a reactive `Object`. There is no unwrapping performed when the ref is accessed from an `Array` or a native collection type like [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map):
+El desembalaje de _ref_ solo ocurre cuando se encuentre anidada dentro de un `Object` reactivo. Eso no ocurrirá cuando la _ref_ es accesada de un `Array` o un tipo nativo de conjunto como [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map):
 
 ```js
 const books = reactive([ref('Vue 3 Guide')])
-// need .value here
+// requiere .value aquí
 console.log(books[0].value)
 
 const map = reactive(new Map([['count', ref(0)]]))
-// need .value here
+// requiere .value aquí
 console.log(map.get('count').value)
 ```
 
-## Destructuring Reactive State
+## Desestructurar Estado Reactivo
 
-When we want to use a few properties of the large reactive object, it could be tempting to use [ES6 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) to get properties we want:
+Cuando queramos utilizar unas propiedades del gran objeto reactivo, sería tentador utilizar [desestructuración de ES6](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) para obtener propiedades que queramos:
 
 ```js
 import { reactive } from 'vue'
 
 const book = reactive({
-  author: 'Vue Team',
+  author: 'El equipo Vue',
   year: '2020',
-  title: 'Vue 3 Guide',
-  description: 'You are reading this book right now ;)',
-  price: 'free'
+  title: 'La guía de Vue 3',
+  description: 'Está leyendo este libro ahora mismo ;)',
+  price: 'gratis'
 })
 
 let { author, title } = book
 ```
 
-Unfortunately, with such a destructuring the reactivity for both properties would be lost. For such a case, we need to convert our reactive object to a set of refs. These refs will retain the reactive connection to the source object:
+Desafortunadamente, con tal desestructuración las reactividaded para ambos propiedades serían perdidas. Para tal caso, necesitamos convertir nuestro objeto reactivo a un conjunto de _refs_. Estas _refs_ mantendrán la conexión reactiva al objeto de la fuente:
 
 ```js
 import { reactive, toRefs } from 'vue'
 
 const book = reactive({
-  author: 'Vue Team',
+  author: 'El equipo Vue',
   year: '2020',
-  title: 'Vue 3 Guide',
-  description: 'You are reading this book right now ;)',
-  price: 'free'
+  title: 'La guía de Vue 3',
+  description: 'Está leyendo este libro ahora mismo ;)',
+  price: 'gratis'
 })
 
 let { author, title } = toRefs(book)
 
-title.value = 'Vue 3 Detailed Guide' // we need to use .value as title is a ref now
-console.log(book.title) // 'Vue 3 Detailed Guide'
+title.value = 'La guía detallada de Vue 3' // necesitamos utilizar .value debido a que _title_ ahora es una _ref_
+console.log(book.title) // 'La guía detallada de Vue 3'
 ```
 
-You can learn more about `refs` in the [Refs API](../api/refs-api.html#ref) section
+Puede aprender más sobre `refs` en la sección [API de _Refs_](../api/refs-api.html#ref)
 
-## Prevent Mutating Reactive Objects with `readonly`
+## Prevenir Mutar Objetos Reactivos con `readonly`
 
-Sometimes we want to track changes of the reactive object (`ref` or `reactive`) but we also want prevent changing it from a certain place of the application. For example, when we have a [provided](component-provide-inject.html) reactive object, we want to prevent mutating it where it's injected. To do so, we can create a readonly proxy to the original object:
+Algunas veces queremos rastrear cambios del objeto reactivo (`ref` o `reactive`) pero también queremos prevenir cambiarlo de un cierto lugar de la aplicación. Por ejemplo, cuando tenemos un objeto reactivo [proporcionado (provided)](component-provide-inject.html), queremos prevenir mutarlo dónde esté inyectado. Para hacer esto, podemos crear un _proxy_ de solo lectura (readonly) al objeto original:
 
 ```js
 import { reactive, readonly } from 'vue'
@@ -173,9 +173,9 @@ const original = reactive({ count: 0 })
 
 const copy = readonly(original)
 
-// mutating original will trigger watchers relying on the copy
+// mutar el objeto original disparará observadores que dependan de la copia
 original.count++
 
-// mutating the copy will fail and result in a warning
+// mutar la copia fallará y resultará en una advertencia
 copy.count++ // warning: "Set operation on key 'count' failed: target is readonly."
 ```
