@@ -1,10 +1,10 @@
 # _Computed_ y _Watch_
 
-> This section uses [single-file component](single-file-component.html) syntax for code examples
+> Esta sección utiliza el sintaxis de [componente de un solo archivo] para ejemplos de códigos
 
-## Computed values
+## Los valores _Computed_
 
-Sometimes we need state that depends on other state - in Vue this is handled with component [computed properties](computed.html#computed-properties). To directly create a computed value, we can use the `computed` function: it takes a getter function and returns an immutable reactive [ref](reactivity-fundamentals.html#creating-standalone-reactive-values-as-refs) object for the returned value from the getter.
+Algunas veces necesitamos un estado que dependa de un otro, en vue, esto es manejado con las [propiedades computadas](computed.html#computed-properties) de los componentes. Para crear un valor computado directamente, podemos utilizar la función `computed`: toma un función de captador y retorna un objeto de [ref](reactivity-fundamentals.html#creating-standalone-reactive-values-as-refs) reactiva inmutable para el valor retornado desde el captador.
 
 ```js
 const count = ref(1)
@@ -15,7 +15,7 @@ console.log(plusOne.value) // 2
 plusOne.value++ // error
 ```
 
-Alternatively, it can take an object with `get` and `set` functions to create a writable ref object.
+Alternativamente, puede tomar un objeto con funciones `get` y `set` para crear un objeto editable de _ref_.
 
 ```js
 const count = ref(1)
@@ -30,64 +30,64 @@ plusOne.value = 1
 console.log(count.value) // 0
 ```
 
-### Computed Debugging <Badge text="3.2+" />
+### La depuración de _Computed_ <Badge text="3.2+" />
 
-`computed` accepts a second argument with `onTrack` and `onTrigger` options:
+`computed` acepta un segundo argumento con opciones `onTrack` y `onTrigger`:
 
-- `onTrack` will be called when a reactive property or ref is tracked as a dependency.
-- `onTrigger` will be called when the watcher callback is triggered by the mutation of a dependency.
+- `onTrack` será llamado cuando una propiedad reactiva o _ref_ es rastreada como una dependencia.
+- `onTrigger` será llamado cuando el _callback_ del observador es disparado por la mutación de una dependencia.
 
-Both callbacks will receive a debugger event which contains information on the dependency in question. It is recommended to place a `debugger` statement in these callbacks to interactively inspect the dependency:
+Ambos _callbacks_  recibirán un evento de _debugger_ que contiene información sobre la dependencia en cuestión. Es recomendado poner una declaración `debugger` en estos _callbacks_ para inspeccionar interactivamente la dependencia:
 
 ```js
 const plusOne = computed(() => count.value + 1, {
   onTrack(e) {
-    // triggered when count.value is tracked as a dependency
+    // disparado cuando count.value es rastreado como una dependencia
     debugger
   },
   onTrigger(e) {
-    // triggered when count.value is mutated
+    // disparado cuando count.value es mutado
     debugger
   }
 })
 
-// access plusOne, should trigger onTrack
+// al acceder plusOne, se dispararía onTrack
 console.log(plusOne.value)
 
-// mutate count.value, should trigger onTrigger
+// al mutar count.value, se dispararía onTrigger
 count.value++
 ```
 
-`onTrack` and `onTrigger` only work in development mode.
+`onTrack` y `onTrigger` solo funcionan en el modo de desarrollo.
 
 ## `watchEffect`
 
-To apply and _automatically re-apply_ a side effect based on reactive state, we can use the `watchEffect` function. It runs a function immediately while reactively tracking its dependencies and re-runs it whenever the dependencies are changed.
+Para aplicar y _automáticamente reaplicar_ un efecto secundario basado de estado reactivo, podemos utilizar la función `watchEffect`. Ejecuta una función inmediatamente mientras rastrea sus dependencias reactivamente y la reejecuta siempre y cuando las dependencias sean cambiadas.
 
 ```js
 const count = ref(0)
 
 watchEffect(() => console.log(count.value))
-// -> logs 0
+// -> registra 0
 
 setTimeout(() => {
   count.value++
-  // -> logs 1
+  // -> registra 1
 }, 100)
 ```
 
-### Stopping the Watcher
+### Detener el Observador
 
-When `watchEffect` is called during a component's [setup()](composition-api-setup.html) function or [lifecycle hooks](composition-api-lifecycle-hooks.html), the watcher is linked to the component's lifecycle and will be automatically stopped when the component is unmounted.
+Cuando `watchEffect` es llamado durante la función [setup()](composition-api-setup.html) de un componente o sus [_hooks_ de ciclo de vida](composition-api-lifecycle-hooks.html), el observador es vinculado al ciclo de vida del componente y será detenido automáticamente cuando el componente sea desmontado.
 
-In other cases, it returns a stop handle which can be called to explicitly stop the watcher:
+En otros casos, retorna un manejador de detención que pueda ser llamado para explícitamente detener el observador:
 
 ```js
 const stop = watchEffect(() => {
   /* ... */
 })
 
-// later
+// luego
 stop()
 ```
 
