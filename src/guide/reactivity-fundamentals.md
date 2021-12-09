@@ -76,7 +76,7 @@ Cuando una _ref_ es retornada como una propiedad en el contexto de renderizació
 ```
 
 :::tip
-If you don't want to access the actual object instance, you can wrap it in a `reactive`:
+Si no quiere acceder la instancia actual del objeto, puede envolverla en un `reactive`:
 
 ```js
 nested: reactive({
@@ -85,9 +85,9 @@ nested: reactive({
 ```
 :::
 
-### Access in Reactive Objects
+### El Acceso en Objetos Reactivos
 
-When a `ref` is accessed or mutated as a property of a reactive object, it automatically unwraps to the inner value so it behaves like a normal property:
+Cuando una `ref` es accesada o mutada como una propiedad d un objeto reactivo, se desenvolve automáticamente al valor internal, así que se comporte como una propiedad normal:
 
 ```js
 const count = ref(0)
@@ -101,7 +101,7 @@ state.count = 1
 console.log(count.value) // 1
 ```
 
-If a new ref is assigned to a property linked to an existing ref, it will replace the old ref:
+Si una nueva _ref_ es asignada a una propiedad vinculada a una _ref_ existente, reemplazará la _ref_ vieja:
 
 ```js
 const otherCount = ref(2)
@@ -110,61 +110,60 @@ state.count = otherCount
 console.log(state.count) // 2
 console.log(count.value) // 1
 ```
-
-Ref unwrapping only happens when nested inside a reactive `Object`. There is no unwrapping performed when the ref is accessed from an `Array` or a native collection type like [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map):
+El desembalaje de _ref_ solo ocurre cuando se encuentre anidada dentro de un `Object` reactivo. Eso no ocurrirá cuando la _ref_ es accesada de un `Array` o un tipo nativo de conjunto como [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map):
 
 ```js
 const books = reactive([ref('Vue 3 Guide')])
-// need .value here
+// requiere .value aquí
 console.log(books[0].value)
 
 const map = reactive(new Map([['count', ref(0)]]))
-// need .value here
+// requiere .value aquí
 console.log(map.get('count').value)
 ```
 
-## Destructuring Reactive State
+## Desestructurar Estado Reactivo
 
-When we want to use a few properties of the large reactive object, it could be tempting to use [ES6 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) to get properties we want:
+Cuando queramos utilizar unas propiedades del gran objeto reactivo, sería tentador utilizar [desestructuración de ES6](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) para obtener propiedades que queramos:
 
 ```js
 import { reactive } from 'vue'
 
 const book = reactive({
-  author: 'Vue Team',
+  author: 'El equipo Vue',
   year: '2020',
-  title: 'Vue 3 Guide',
-  description: 'You are reading this book right now ;)',
-  price: 'free'
+  title: 'La guía de Vue 3',
+  description: 'Está leyendo este libro ahora mismo ;)',
+  price: 'gratis'
 })
 
 let { author, title } = book
 ```
 
-Unfortunately, with such a destructuring the reactivity for both properties would be lost. For such a case, we need to convert our reactive object to a set of refs. These refs will retain the reactive connection to the source object:
+Desafortunadamente, con tal desestructuración las reactividaded para ambos propiedades serían perdidas. Para tal caso, necesitamos convertir nuestro objeto reactivo a un conjunto de _refs_. Estas _refs_ mantendrán la conexión reactiva al objeto de la fuente:
 
 ```js
 import { reactive, toRefs } from 'vue'
 
 const book = reactive({
-  author: 'Vue Team',
+  author: 'El equipo Vue',
   year: '2020',
-  title: 'Vue 3 Guide',
-  description: 'You are reading this book right now ;)',
-  price: 'free'
+  title: 'La guía de Vue 3',
+  description: 'Está leyendo este libro ahora mismo ;)',
+  price: 'gratis'
 })
 
 let { author, title } = toRefs(book)
 
-title.value = 'Vue 3 Detailed Guide' // we need to use .value as title is a ref now
-console.log(book.title) // 'Vue 3 Detailed Guide'
+title.value = 'La guía detallada de Vue 3' // necesitamos utilizar .value debido a que _title_ ahora es una _ref_
+console.log(book.title) // 'La guía detallada de Vue 3'
 ```
 
-You can learn more about `refs` in the [Refs API](../api/refs-api.html#ref) section
+Puede aprender más sobre `refs` en la sección [API de _Refs_](../api/refs-api.html#ref)
 
-## Prevent Mutating Reactive Objects with `readonly`
+## Prevenir Mutar Objetos Reactivos con `readonly`
 
-Sometimes we want to track changes of the reactive object (`ref` or `reactive`) but we also want prevent changing it from a certain place of the application. For example, when we have a [provided](component-provide-inject.html) reactive object, we want to prevent mutating it where it's injected. To do so, we can create a readonly proxy to the original object:
+Algunas veces queremos rastrear cambios del objeto reactivo (`ref` o `reactive`) pero también queremos prevenir cambiarlo de un cierto lugar de la aplicación. Por ejemplo, cuando tenemos un objeto reactivo [proporcionado (provided)](component-provide-inject.html), queremos prevenir mutarlo dónde esté inyectado. Para hacer esto, podemos crear un _proxy_ de solo lectura (readonly) al objeto original:
 
 ```js
 import { reactive, readonly } from 'vue'
@@ -173,9 +172,9 @@ const original = reactive({ count: 0 })
 
 const copy = readonly(original)
 
-// mutating original will trigger watchers relying on the copy
+// mutar el objeto original disparará observadores que dependan de la copia
 original.count++
 
-// mutating the copy will fail and result in a warning
+// mutar la copia fallará y resultará en una advertencia
 copy.count++ // warning: "Set operation on key 'count' failed: target is readonly."
 ```
