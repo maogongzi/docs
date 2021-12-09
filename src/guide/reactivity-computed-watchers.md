@@ -1,4 +1,4 @@
-# Computed and Watch
+# _Computed_ y _Watch_
 
 > This section uses [single-file component](single-file-component.html) syntax for code examples
 
