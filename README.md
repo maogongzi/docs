@@ -9,6 +9,7 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 | Filename | Language
 |---|---|
 |[src/README.md](src/README.md)|Spanish :white_check_mark:|
+|[src/guide/change-detection.md](src/guide/change-detection.md)|Spanish :white_check_mark:|
 |[src/guide/class-and-style.md](src/guide/class-and-style.md)|Spanish :white_check_mark:|
 |[src/guide/component-attrs.md](src/guide/component-attrs.md)|Spanish :white_check_mark:|
 |[src/guide/component-basics.md](src/guide/component-basics.md)|Spanish :white_check_mark:|
@@ -38,6 +39,7 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/mixins.md](src/guide/mixins.md)|Spanish :white_check_mark:|
 |[src/guide/optimizations.md](src/guide/optimizations.md)|Spanish :white_check_mark:|
 |[src/guide/plugins.md](src/guide/plugins.md)|Spanish :white_check_mark:|
+|[src/guide/reactivity-computed-watchers.md](src/guide/reactivity-computed-watchers.md)|Spanish :white_check_mark:|
 |[src/guide/reactivity-fundamentals.md](src/guide/reactivity-fundamentals.md)|Spanish :white_check_mark:|
 |[src/guide/reactivity.md](src/guide/reactivity.md)|Spanish :white_check_mark:|
 |[src/guide/render-function.md](src/guide/render-function.md)|Spanish :white_check_mark:|
@@ -99,7 +101,6 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/a11y-resources.md](src/guide/a11y-resources.md)|English :x:|
 |[src/guide/a11y-semantics.md](src/guide/a11y-semantics.md)|English :x:|
 |[src/guide/a11y-standards.md](src/guide/a11y-standards.md)|English :x:|
-|[src/guide/change-detection.md](src/guide/change-detection.md)|English :x:|
 |[src/guide/contributing/doc-style-guide.md](src/guide/contributing/doc-style-guide.md)|English :x:|
 |[src/guide/contributing/translations.md](src/guide/contributing/translations.md)|English :x:|
 |[src/guide/contributing/writing-guide.md](src/guide/contributing/writing-guide.md)|English :x:|
@@ -140,7 +141,6 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/migration/vnode-lifecycle-events.md](src/guide/migration/vnode-lifecycle-events.md)|English :x:|
 |[src/guide/migration/watch.md](src/guide/migration/watch.md)|English :x:|
 |[src/guide/mobile.md](src/guide/mobile.md)|English :x:|
-|[src/guide/reactivity-computed-watchers.md](src/guide/reactivity-computed-watchers.md)|English :x:|
 |[src/guide/ssr/build-config.md](src/guide/ssr/build-config.md)|English :x:|
 |[src/guide/ssr/getting-started.md](src/guide/ssr/getting-started.md)|English :x:|
 |[src/guide/ssr/hydration.md](src/guide/ssr/hydration.md)|English :x:|
