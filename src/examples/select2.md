@@ -1,5 +1,5 @@
-# Wrapper Component Example
+# Ejemplo de Componente Envuelto
 
-> In this example we are integrating a 3rd party jQuery plugin (select2) by wrapping it inside a custom component.
+> En este ejemplo estamos integrando un plugin de jQuery de terceros (select2) envolviéndolo dentro de un componente personalizado.
 
-<common-codepen-snippet title="Vue 3 Wrapper Component Example" slug="eYZpwOB" tab="js,result" />
+<common-codepen-snippet title="Ejemplo de Componente Envuelto de Vue 3" slug="eYZpwOB" tab="js,result" />
