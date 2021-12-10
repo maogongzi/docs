@@ -9,6 +9,15 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 | Filename | Language
 |---|---|
 |[src/README.md](src/README.md)|Spanish :white_check_mark:|
+|[src/examples/commits.md](src/examples/commits.md)|Spanish :white_check_mark:|
+|[src/examples/elastic-header.md](src/examples/elastic-header.md)|Spanish :white_check_mark:|
+|[src/examples/grid-component.md](src/examples/grid-component.md)|Spanish :white_check_mark:|
+|[src/examples/markdown.md](src/examples/markdown.md)|Spanish :white_check_mark:|
+|[src/examples/modal.md](src/examples/modal.md)|Spanish :white_check_mark:|
+|[src/examples/select2.md](src/examples/select2.md)|Spanish :white_check_mark:|
+|[src/examples/svg.md](src/examples/svg.md)|Spanish :white_check_mark:|
+|[src/examples/todomvc.md](src/examples/todomvc.md)|Spanish :white_check_mark:|
+|[src/examples/tree-view.md](src/examples/tree-view.md)|Spanish :white_check_mark:|
 |[src/guide/change-detection.md](src/guide/change-detection.md)|Spanish :white_check_mark:|
 |[src/guide/class-and-style.md](src/guide/class-and-style.md)|Spanish :white_check_mark:|
 |[src/guide/component-attrs.md](src/guide/component-attrs.md)|Spanish :white_check_mark:|
@@ -37,6 +46,7 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/introduction.md](src/guide/introduction.md)|Spanish :white_check_mark:|
 |[src/guide/list.md](src/guide/list.md)|Spanish :white_check_mark:|
 |[src/guide/mixins.md](src/guide/mixins.md)|Spanish :white_check_mark:|
+|[src/guide/mobile.md](src/guide/mobile.md)|Spanish :white_check_mark:|
 |[src/guide/optimizations.md](src/guide/optimizations.md)|Spanish :white_check_mark:|
 |[src/guide/plugins.md](src/guide/plugins.md)|Spanish :white_check_mark:|
 |[src/guide/reactivity-computed-watchers.md](src/guide/reactivity-computed-watchers.md)|Spanish :white_check_mark:|
@@ -88,15 +98,6 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/cookbook/debugging-in-vscode.md](src/cookbook/debugging-in-vscode.md)|English :x:|
 |[src/cookbook/editable-svg-icons.md](src/cookbook/editable-svg-icons.md)|English :x:|
 |[src/cookbook/index.md](src/cookbook/index.md)|English :x:|
-|[src/examples/commits.md](src/examples/commits.md)|English :x:|
-|[src/examples/elastic-header.md](src/examples/elastic-header.md)|English :x:|
-|[src/examples/grid-component.md](src/examples/grid-component.md)|English :x:|
-|[src/examples/markdown.md](src/examples/markdown.md)|English :x:|
-|[src/examples/modal.md](src/examples/modal.md)|English :x:|
-|[src/examples/select2.md](src/examples/select2.md)|English :x:|
-|[src/examples/svg.md](src/examples/svg.md)|English :x:|
-|[src/examples/todomvc.md](src/examples/todomvc.md)|English :x:|
-|[src/examples/tree-view.md](src/examples/tree-view.md)|English :x:|
 |[src/guide/a11y-basics.md](src/guide/a11y-basics.md)|English :x:|
 |[src/guide/a11y-resources.md](src/guide/a11y-resources.md)|English :x:|
 |[src/guide/a11y-semantics.md](src/guide/a11y-semantics.md)|English :x:|
@@ -140,7 +141,6 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/migration/v-on-native-modifier-removed.md](src/guide/migration/v-on-native-modifier-removed.md)|English :x:|
 |[src/guide/migration/vnode-lifecycle-events.md](src/guide/migration/vnode-lifecycle-events.md)|English :x:|
 |[src/guide/migration/watch.md](src/guide/migration/watch.md)|English :x:|
-|[src/guide/mobile.md](src/guide/mobile.md)|English :x:|
 |[src/guide/ssr/build-config.md](src/guide/ssr/build-config.md)|English :x:|
 |[src/guide/ssr/getting-started.md](src/guide/ssr/getting-started.md)|English :x:|
 |[src/guide/ssr/hydration.md](src/guide/ssr/hydration.md)|English :x:|
