@@ -1,5 +1,5 @@
-# SVG Graph
+# Gráfico SVG
 
-> This example showcases a combination of custom component, computed property, two-way binding and SVG support.
+> Este ejemplo muestra una combinación de un componente personalizado, propiedad computada, vinculación de dos direcciones y soporte SVG.
 
-<common-codepen-snippet title="Vue 3 SVG Graph Example" slug="XWdmLWM" tab="js,result" />
+<common-codepen-snippet title="Ejemplo de Gráfico SVG de Vue 3" slug="XWdmLWM" tab="js,result" />

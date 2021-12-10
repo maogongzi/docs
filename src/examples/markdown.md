@@ -1,5 +1,5 @@
-# Markdown Editor
+# Editor de _Markdown_
 
-> A simple Markdown editor
+> Un editor sencillo de _markdown_
 
-<common-codepen-snippet title="Vue 3 Markdown Editor" slug="poReOvE" :height="474" tab="js,result" :preview="false" :editable="false" />
+<common-codepen-snippet title="Editor de Markdown en Vue 3" slug="poReOvE" :height="474" tab="js,result" :preview="false" :editable="false" />
