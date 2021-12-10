@@ -1,10 +1,10 @@
-# Computed and Watch
+# _Computed_ y _Watch_
 
-> This section uses [single-file component](single-file-component.html) syntax for code examples
+> Esta sección utiliza el sintaxis de [componente de un solo archivo] para ejemplos de códigos
 
-## Computed values
+## Los valores _Computed_
 
-Sometimes we need state that depends on other state - in Vue this is handled with component [computed properties](computed.html#computed-properties). To directly create a computed value, we can use the `computed` function: it takes a getter function and returns an immutable reactive [ref](reactivity-fundamentals.html#creating-standalone-reactive-values-as-refs) object for the returned value from the getter.
+Algunas veces necesitamos un estado que dependa de un otro, en vue, esto es manejado con las [propiedades computadas](computed.html#computed-properties) de los componentes. Para crear un valor computado directamente, podemos utilizar la función `computed`: toma un función de captador y retorna un objeto de [ref](reactivity-fundamentals.html#creating-standalone-reactive-values-as-refs) reactiva inmutable para el valor retornado desde el captador.
 
 ```js
 const count = ref(1)
@@ -15,7 +15,7 @@ console.log(plusOne.value) // 2
 plusOne.value++ // error
 ```
 
-Alternatively, it can take an object with `get` and `set` functions to create a writable ref object.
+Alternativamente, puede tomar un objeto con funciones `get` y `set` para crear un objeto editable de _ref_.
 
 ```js
 const count = ref(1)
@@ -30,102 +30,102 @@ plusOne.value = 1
 console.log(count.value) // 0
 ```
 
-### Computed Debugging <Badge text="3.2+" />
+### La depuración de _Computed_ <Badge text="3.2+" />
 
-`computed` accepts a second argument with `onTrack` and `onTrigger` options:
+`computed` acepta un segundo argumento con opciones `onTrack` y `onTrigger`:
 
-- `onTrack` will be called when a reactive property or ref is tracked as a dependency.
-- `onTrigger` will be called when the watcher callback is triggered by the mutation of a dependency.
+- `onTrack` será llamado cuando una propiedad reactiva o _ref_ es rastreada como una dependencia.
+- `onTrigger` será llamado cuando el _callback_ del observador es disparado por la mutación de una dependencia.
 
-Both callbacks will receive a debugger event which contains information on the dependency in question. It is recommended to place a `debugger` statement in these callbacks to interactively inspect the dependency:
+Ambos _callbacks_  recibirán un evento de _debugger_ que contiene información sobre la dependencia en cuestión. Es recomendado poner una declaración `debugger` en estos _callbacks_ para inspeccionar interactivamente la dependencia:
 
 ```js
 const plusOne = computed(() => count.value + 1, {
   onTrack(e) {
-    // triggered when count.value is tracked as a dependency
+    // disparado cuando count.value es rastreado como una dependencia
     debugger
   },
   onTrigger(e) {
-    // triggered when count.value is mutated
+    // disparado cuando count.value es mutado
     debugger
   }
 })
 
-// access plusOne, should trigger onTrack
+// al acceder plusOne, se dispararía onTrack
 console.log(plusOne.value)
 
-// mutate count.value, should trigger onTrigger
+// al mutar count.value, se dispararía onTrigger
 count.value++
 ```
 
-`onTrack` and `onTrigger` only work in development mode.
+`onTrack` y `onTrigger` solo funcionan en el modo de desarrollo.
 
 ## `watchEffect`
 
-To apply and _automatically re-apply_ a side effect based on reactive state, we can use the `watchEffect` function. It runs a function immediately while reactively tracking its dependencies and re-runs it whenever the dependencies are changed.
+Para aplicar y _automáticamente reaplicar_ un efecto secundario basado de estado reactivo, podemos utilizar la función `watchEffect`. Ejecuta una función inmediatamente mientras rastrea sus dependencias reactivamente y la reejecuta siempre y cuando las dependencias sean cambiadas.
 
 ```js
 const count = ref(0)
 
 watchEffect(() => console.log(count.value))
-// -> logs 0
+// -> registra 0
 
 setTimeout(() => {
   count.value++
-  // -> logs 1
+  // -> registra 1
 }, 100)
 ```
 
-### Stopping the Watcher
+### Detener el Observador
 
-When `watchEffect` is called during a component's [setup()](composition-api-setup.html) function or [lifecycle hooks](composition-api-lifecycle-hooks.html), the watcher is linked to the component's lifecycle and will be automatically stopped when the component is unmounted.
+Cuando `watchEffect` es llamado durante la función [setup()](composition-api-setup.html) de un componente o sus [_hooks_ de ciclo de vida](composition-api-lifecycle-hooks.html), el observador es vinculado al ciclo de vida del componente y será detenido automáticamente cuando el componente sea desmontado.
 
-In other cases, it returns a stop handle which can be called to explicitly stop the watcher:
+En otros casos, retorna un manejador de detención que pueda ser llamado para explícitamente detener el observador:
 
 ```js
 const stop = watchEffect(() => {
   /* ... */
 })
 
-// later
+// luego
 stop()
 ```
 
-### Side Effect Invalidation
+### Invalidación de Efectos Secundarios
 
-Sometimes the watched effect function will perform asynchronous side effects that need to be cleaned up when it is invalidated (i.e. state changed before the effects can be completed). The effect function receives an `onInvalidate` function that can be used to register an invalidation callback. This invalidation callback is called when:
+Algunas veces la función observada de _effect_ realizará efectos secundarios asíncronos que necesitan ser limpiados cuando el _effect_ esté invalidado (es decir, el estado cambia antes de que se hayan completados los _effects_). La función de _effect_ recibe una función `onInvalidate` que pueda ser utilizada para registrar un _callback_ de invalidación. Este _callback_ de invalidación es llamado cuando cuando:
 
-- the effect is about to re-run
-- the watcher is stopped (i.e. when the component is unmounted if `watchEffect` is used inside `setup()` or lifecycle hooks)
+- el _effect_ está a punto de reejecutar
+- el observador está detenido (es decir, cuando el componente es desmontado mientras `watchEffect` es utilizada dentro de `setup()` o _hooks_ de ciclo de vida de el)
 
 ```js
 watchEffect(onInvalidate => {
   const token = performAsyncOperation(id.value)
   onInvalidate(() => {
-    // id has changed or watcher is stopped.
-    // invalidate previously pending async operation
+    // id ha cambiado o el observador se ha detenido.
+    // invalidar la operación anterior pendiente asíncrono
     token.cancel()
   })
 })
 ```
 
-We are registering the invalidation callback via a passed-in function instead of returning it from the callback because the return value is important for async error handling. It is very common for the effect function to be an async function when performing data fetching:
+Estamos registrando el _callback_ de invalidación mediante una función pasada en vez de retornarla del _callback_ porque el valor retornado es importante para la manipulación asíncrona de errores. Es muy común que la función de _effect_ sea una función asíncrona cuando se realiza la recuperación de datos:
 
 ```js
 const data = ref(null)
 watchEffect(async onInvalidate => {
   onInvalidate(() => {
     /* ... */
-  }) // we register cleanup function before Promise resolves
+  }) // registramos una función de limpieza antes de que se resuelva el Promise
   data.value = await fetchData(props.id)
 })
 ```
 
-An async function implicitly returns a Promise, but the cleanup function needs to be registered immediately before the Promise resolves. In addition, Vue relies on the returned Promise to automatically handle potential errors in the Promise chain.
+Una función asíncrona implícitamente retorna un Promise, pero la función de limpieza necesita registrarse inmediatamente antes de que se resuelva el Promise. Además, Vue cuenta con el Promise retornado para automáticamente manipular errores potenciales en la cadena de Promise.
 
-### Effect Flush Timing
+### La temporización para tirar de la cadena de los efectos secundarios (Effect Flush Timing)
 
-Vue's reactivity system buffers invalidated effects and flushes them asynchronously to avoid unnecessary duplicate invocation when there are many state mutations happening in the same "tick". Internally, a component's `update` function is also a watched effect. When a user effect is queued, it is by default invoked **before** all component `update` effects:
+El sistema de reactividad de Vue amortigua (buffers) los efectos invalidados y tira de la cadena de ellos asincrónicamente para evitar invocaciones repetidas innecesarias cuando hay muchas mutaciones de estado ocurriendo en el mismo "tic (tick)". Internalmente, la función `update` de un componente es también un efecto observado. Cuando un efecto de usuario se ha puesto en cola, es por defecto invocado **antes** todos efectos de `update` de componente:
 
 ```vue
 <template>
@@ -149,17 +149,17 @@ export default {
 </script>
 ```
 
-In this example:
+En este ejemplo:
 
-- The count will be logged synchronously on initial run.
-- When `count` is mutated, the callback will be called **before** the component has updated.
+- El _count_ será registrado sincrónicamente en la ejecución inicial.
+- Cuando `count` esté mutado, el _callback_ será llamado **antes** de que el componente se haya actualizado.
 
-In cases where a watcher effect needs to be re-run **after** component updates (i.e. when working with [Template Refs](./composition-api-template-refs.md#watching-template-refs)), we can pass an additional `options` object with the `flush` option (default is `'pre'`):
+En casos dónde un _effect_ de observador (watcher effect) necesita reejecutarse **después** de las actualizaciones de componente (es decir, cuando se trabaja con [_refs_ de plantillas](./composition-api-template-refs.md#watching-template-refs)), podemos pasar un objeto adicional `options` con la opción `flush` (cuya valor por defecto es `'pre'`):
 
 ```js
-// fire after component updates so you can access the updated DOM
-// Note: this will also defer the initial run of the effect until the
-// component's first render is finished.
+// disparar después de las actualizaciones de componente, así que puede acceder el DOM actualizado
+// Nota: este también posponerá la ejecución inicial del _effect_ hasta que la
+// primera renderización del componente haya terminado
 watchEffect(
   () => {
     /* ... */
@@ -170,23 +170,23 @@ watchEffect(
 )
 ```
 
-The `flush` option also accepts `'sync'`, which forces the effect to always trigger synchronously. This is however inefficient and should be rarely needed.
+La opción `flush` también acepta `'sync'`, lo cual obliga que el _effect_ siempre dispare sincrónicamente. Este, sin embargo, es ineficiente y rara vez sería necesario.
 
-In Vue >= 3.2.0, `watchPostEffect` and `watchSyncEffect` aliases can also be used to make the code intention more obvious.
+En Vue >= 3.2.0, se puede también utilizar los alias `watchPostEffect` y `watchSyncEffect` para hacer la intención de código más obvia.
 
-### Watcher Debugging
+### Depuración de Observador (Watcher Debugging)
 
-The `onTrack` and `onTrigger` options can be used to debug a watcher's behavior.
+Las opciones `onTrack` y `onTrigger` pueden ser utilizadas para depurar el comportamiento de un observador.
 
-- `onTrack` will be called when a reactive property or ref is tracked as a dependency.
-- `onTrigger` will be called when the watcher callback is triggered by the mutation of a dependency.
+- `onTrack` será llamado cuando una propiedad reactiva o _ref_ es rastreada como una dependencia.
+- `onTrigger` será llamado cuando el _callback_ del observador esté disparado por la mutación de una dependencia.
 
-Both callbacks will receive a debugger event which contains information on the dependency in question. It is recommended to place a `debugger` statement in these callbacks to interactively inspect the dependency:
+Ambos _callbacks_ recibirán un evento de depuración que contenga información sobre la dependencia en cuestión. Es recomendado poner una declaración `debugger` en estos _callbacks_ para inspeccionar la dependencia interactivamente:
 
 ```js
 watchEffect(
   () => {
-    /* side effect */
+    /* efecto secundario */
   },
   {
     onTrigger(e) {
@@ -196,24 +196,24 @@ watchEffect(
 )
 ```
 
-`onTrack` and `onTrigger` only work in development mode.
+`onTrack` y `onTrigger` sólo funcionan en el modo de desarrollo.
 
 ## `watch`
 
-The `watch` API is the exact equivalent of the component [watch](computed.html#watchers) property. `watch` requires watching a specific data source and applies side effects in a separate callback function. It also is lazy by default - i.e. the callback is only called when the watched source has changed.
+La API `watch` es el exacto equivalente de la propiedad [watch](computed.html#watchers) de los componentes. `watch` requiere observar una fuente específica de dato y aplicar efectos secundarios in una función separada de _callback_. También es perezosa por defecto, es decir, el _callback_ sólo es llamado cuando la fuente observada se haya cambiada.
 
-- Compared to [watchEffect](#watcheffect), `watch` allows us to:
+- Comparado con [watchEffect](#watcheffect), `watch` nos permite:
 
-  - Perform the side effect lazily;
-  - Be more specific about what state should trigger the watcher to re-run;
-  - Access both the previous and current value of the watched state.
+  - realizar el efecto secundario perezosamente;
+  - ser más específico sobre cuál estado debe disparar el observador para que se reejecute;
+  - Acceder tanto el valor previo como el corriente del estado observado.
 
-### Watching a Single Source
+### Observar un Solo Fuente
 
-A watcher data source can either be a getter function that returns a value, or directly a `ref`:
+La fuente de dato de un observador puede ser tanto una función de captador que retorna un valor como directamente a `ref`:
 
 ```js
-// watching a getter
+// observar un captador
 const state = reactive({ count: 0 })
 watch(
   () => state.count,
@@ -222,16 +222,16 @@ watch(
   }
 )
 
-// directly watching a ref
+// observar directamente una _ref_
 const count = ref(0)
 watch(count, (count, prevCount) => {
   /* ... */
 })
 ```
 
-### Watching Multiple Sources
+### Observar Múltiples Fuentes
 
-A watcher can also watch multiple sources at the same time using an array:
+On observador puede también observar múltiples fuentes al mismo tiempo utilizando una matriz:
 
 ```js
 const firstName = ref('')
@@ -241,11 +241,11 @@ watch([firstName, lastName], (newValues, prevValues) => {
   console.log(newValues, prevValues)
 })
 
-firstName.value = 'John' // logs: ["John", ""] ["", ""]
-lastName.value = 'Smith' // logs: ["John", "Smith"] ["John", ""]
+firstName.value = 'John' // registra: ["John", ""] ["", ""]
+lastName.value = 'Smith' // registra: ["John", "Smith"] ["John", ""]
 ```
 
-However, if you are changing both watched sources simultaneously in the same function, the watcher will be executed only once:
+Sin embargo, si está cambiando ambos fuentes observadas simultáneamente en la misma función, el observador será ejecutado solo una vez:
 
 ```js{9-13}
 setup() {
@@ -259,28 +259,28 @@ setup() {
   const changeValues = () => {
     firstName.value = 'John'
     lastName.value = 'Smith'
-    // logs: ["John", "Smith"] ["", ""]
+    // registra: ["John", "Smith"] ["", ""]
   }
 
   return { changeValues }
 }
 ```
 
-Note that multiple synchronous changes will only trigger the watcher once.
+Note que múltiples cambios sícronos solo dispararán el observador una vez.
 
-It is possible to force the watcher to trigger after every change by using the setting `flush: 'sync'`, though that isn't usually recommended. Alternatively, [nextTick](/api/global-api.html#nexttick) can be used to wait for the watcher to run before making further changes. e.g.:
+Es posible obligar el observador disparar después cada cambio mediante utilizar la configuración `flush: 'sync'`, aunque no es recomendado generalmente. Alternativamente, [nextTick](/api/global-api.html#nexttick) puede ser utilizada para esperar hasta que se ejecute el observador antes de haga más cambios, p. ej.:
 
 ```js
 const changeValues = async () => {
-  firstName.value = 'John' // logs: ["John", ""] ["", ""]
+  firstName.value = 'John' // registra: ["John", ""] ["", ""]
   await nextTick()
-  lastName.value = 'Smith' // logs: ["John", "Smith"] ["John", ""]
+  lastName.value = 'Smith' // registra: ["John", "Smith"] ["John", ""]
 }
 ```
 
-### Watching Reactive Objects
+### Observar Objetos Reactivos
 
-Using a watcher to compare values of an array or object that are reactive requires that it has a copy made of just the values.
+Para comparar valores de una matriz reactiva o un objeto reactivo utilizando un observador, se requiere que tiene una copia hecha de solo los valores.
 
 ```js
 const numbers = reactive([1, 2, 3, 4])
@@ -292,10 +292,10 @@ watch(
   }
 )
 
-numbers.push(5) // logs: [1,2,3,4,5] [1,2,3,4]
+numbers.push(5) // registra: [1,2,3,4,5] [1,2,3,4]
 ```
 
-Attempting to check for changes of properties in a deeply nested object or array will still require the `deep` option to be true:
+Tratar de verificar cambios de propiedades en un objeto o una matriz anidado profundamente todavía requerirá de que la opción `deep` sea `true`:
 
 ```js
 const state = reactive({
@@ -320,10 +320,10 @@ watch(
   { deep: true }
 )
 
-state.attributes.name = 'Alex' // Logs: "deep" "Alex" "Alex"
+state.attributes.name = 'Alex' // registra: "deep" "Alex" "Alex"
 ```
 
-However, watching a reactive object or array will always return a reference to the current value of that object for both the current and previous value of the state. To fully watch deeply nested objects and arrays, a deep copy of values may be required. This can be achieved with a utility such as [lodash.cloneDeep](https://lodash.com/docs/4.17.15#cloneDeep)
+Sin embargo, observar un objeto o una matriz reactivo siempre retornará una referencia al valor corriente de ese objeto para tanto el valor corriente como el valor previo del estado. Para complementamente observar profundamente objetos y matrices anidados, una copia profunda de valores sería necesaria. Esto se puede lograr con una utilidad como [lodash.cloneDeep](https://lodash.com/docs/4.17.15#cloneDeep)
 
 ```js
 import _ from 'lodash'
@@ -342,9 +342,9 @@ watch(
   }
 )
 
-state.attributes.name = 'Alex' // Logs: "Alex" ""
+state.attributes.name = 'Alex' // registra: "Alex" ""
 ```
 
-### Shared Behavior with `watchEffect`
+### Comportamiento Compartido con `watchEffect`
 
-`watch` shares behavior with [`watchEffect`](#watcheffect) in terms of [manual stoppage](#stopping-the-watcher), [side effect invalidation](#side-effect-invalidation) (with `onInvalidate` passed to the callback as the 3rd argument instead), [flush timing](#effect-flush-timing) and [debugging](#watcher-debugging).
+`watch` comparte comportamiento con [`watchEffect`](#watcheffect) en términos de [detención manual (manual stoppage)](#stopping-the-watcher), [invalidación de efecto secundario (side effect invalidation)](#side-effect-invalidation) (con `onInvalidate` pasado al _callback_ como el tercero argumento en su lugar), [temporización para tirar de la cadena de los efectos secundarios (flush timing)](#effect-flush-timing) y [depuración](#watcher-debugging).

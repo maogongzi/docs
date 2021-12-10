@@ -154,8 +154,8 @@ computed: {
 }
 ```
 
-::: tip Note
-Tenga en cuenta que los objetos y las matrices en JavaScript se pasan por referencia, por lo que si la _prop_ es una matriz u objeto, mutar el objeto o la matriz mismo dentro del componente secundario **afectará** el estado del padre.
+::: warning Warning
+Tenga en cuenta que los objetos y las matrices en JavaScript se pasan por referencia, por lo que si la _prop_ es una matriz u objeto, mutar el objeto o la matriz mismo dentro del componente secundario **afectará** el estado del padre y Vue no es capaz de advertirle contra esto. Como regla general, debería evitar mutar cualquiera _prop_, incluso objetos y matrices debido a que hacerlo ignora la vinculación de dato de una sola dirección y podría generar resultados no deseados.
 :::
 
 ## Validación de _props_
