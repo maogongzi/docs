@@ -1,5 +1,5 @@
-# Grid Component
+# Componente de Rejilla
 
-> This is an example of creating a reusable grid component and using it with external data.
+> Este es un ejemplo para crear un componente de rejilla reutilizable y utilizarlo con datos externos.
 
-<common-codepen-snippet title="Vue 3 Grid Component Example" slug="BaKbowJ" tab="js,result" />
+<common-codepen-snippet title="Ejemplo de Componente de Rejilla de Vue 3" slug="BaKbowJ" tab="js,result" />
