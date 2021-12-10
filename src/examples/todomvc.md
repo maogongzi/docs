@@ -1,9 +1,9 @@
 # TodoMVC
 
-> This is a fully spec-compliant TodoMVC implementation in under 120 effective lines of JavaScript (excluding comments and blank lines).
+> Esta es una implementación de TodoMVC que cumple en su totalidad con las especificaciones en menos de 120 líneas efectivas de JavaScript (excluyendo comentarios y líneas en blanco).
 
 :::warning
-Note that if your web browser is configured to block 3rd-party data/cookies, the example below will not work, as the **localStorage** data will fail to be saved.
+Note que si su navegador web está configurado para bloquear datos/cookies de terceros, el ejemplo de abajo no funcionará, debido a que no se guardará los datos en **localStorage**.
 :::
 
-<common-codepen-snippet title="Vue 3 TodoMVC" slug="Yzqyozj" tab="js,result" />
+<common-codepen-snippet title="TodoMVC en Vue 3" slug="Yzqyozj" tab="js,result" />
