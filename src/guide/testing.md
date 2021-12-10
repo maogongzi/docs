@@ -1,165 +1,165 @@
-# Testing
+# Pruebas
 
-## Introduction
+## Introducción
 
-When it comes to building reliable applications, tests can play a critical role in an individual or team's ability to build new features, refactor code, fix bugs, etc. While there are many schools of thought with testing, there are three categories often discussed in the context of web applications:
+Cuando se refiere a desarrollar aplicaciones de confianza, las pruebas pueden jugar un papel fundamental en la habilidad de un individuo o equipo para desarrollar nuevas características, refactorizar código, corregir errores, etc. Aunque existen muchas escuelas de pensamiento con las pruebas, hay tres categorías a menudo discutidas en el contexto de aplicaciones web:
 
-- Unit Testing
-- Component Testing
-- End-To-End (E2E) Testing
+- Pruebas Unitarias
+- Pruebas de Componente
+- Pruebas Punto-a-Punto (E2E)
 
-This section aims to provide guidance to navigating the testing ecosystem and choosing the right tools for your Vue application or component library.
+Esta sección busca proveer una guía para navegar el ecosistema de pruebas y elegir las herramientas adecuadas para su aplicación Vue o librería de componente.
 
-## Unit Testing
+## Pruebas Unitarias
 
-### Introduction
+### Introducción
 
-Unit tests allow you to test individual units of code in isolation. The purpose of unit testing is to provide developers with confidence in their code. By writing thorough, meaningful tests, you achieve the confidence that as new features are built or your code is refactored your application will remain functional and stable.
+Las pruebas unitarias le permiten probar unidades individuales de código aisladas. El proósito de las pruebas unitarias es garantizar a los desarrolladores la confianza en su código. Escribiendo minuciosamente, pruebas significativas, logra la confianza de que a medida que se crean nuevas funciones o se refactoriza su código, su aplicación seguirá siendo funcional y estable.
 
-Unit testing a Vue application does not significantly differ from testing other types of applications.
+Realizar pruebas unitarias en una aplicación Vue no difiere significativamente de probar otro tipo de aplicaciones.
 
-### Choosing Your Framework
+### Elegir su Framework
 
-Since unit testing advice is often framework-agnostic, here are some basic guidelines to keep in mind when evaluating which unit testing tool is best for your application.
+Debido a que los consejos de pruebas unitarias son a menudo agnóstico al framework, aquí son unas lineamientos para tener en cuenta cuando evalua cuál herramienta de prueba uitaria es mejor para su aplicación.
 
-#### First-class error reporting
+#### Reporte de errores de primera-clase
 
-When tests fail, it is critical that your unit testing framework provides useful errors. This is the job of the assertion library. An assertion with high-quality error messages helps minimize the amount of time it takes to debug the problem. In addition to simply telling you what test is failing, assertion libraries provide context for why a test fails, e.g., what is expected vs what was received.
+Cuando las pruebas fallan, es crítico que su framework de pruebas unitarias provea errores útiles. Este es el trabajo de una librería de aserción. Una aserción con un mensaje de error de alta calidad ayuda a minimizar la cantidad de tiempo que gaste para depurar el problema. Además de simplemente decirle cuál prueba está fallando, estas deberían proveerle contexto de porqué una prueba falla, por ejemplo, cuál es el valor esperado versus el valor recibido.
 
-Some unit testing frameworks, like Jest, include assertion libraries. Others, like Mocha, require you to install assertion libraries separately (usually Chai).
+Algunos frameworks de pruebas unitarias, como Jest, incluyen librerías de aserción. Otros, como Mocha, requieren que instale librerías de aserción por separado (usualmente Chai).
 
-#### Active community and team
+#### Comunidad Activa y equipo
 
-Since the majority of unit testing frameworks are open-source, having a community that is active can be critical to some teams that will be maintaining their tests for a long period of time and needs to ensure that a project will be actively maintained. In addition, having an active community has the benefit of providing more support whenever you run into issues.
+Como la mayoría de los framework de pruebas unitarias son de código abierto, tener una comunidad que es activa puede ser crítico para algunos equipos que mantendrán sus pruebas por un largo período de tiempo y necesitar estar seguros de que un proyecto será mantenido activamente. Además, tener una comunidad activa tiene el beneficio de proveer más soporte cuando ocurra un problema.
 
 ### Frameworks
 
-While there are many tools in the ecosystem, here are some common unit testing tools that are being used in the Vue.js ecosystem.
+Aunque existen muchas herramientas en el ecosistema, aquí están algunas herramientas comunes de pruebas unitarias que están siendo utilizadas en el ecosistema de Vue.js.
 
 #### Jest
 
-Jest is a JavaScript test framework that is focused on simplicity. One of its unique features is the ability to take snapshots of tests in order to provide an alternative means of verifying units of your application.
+Jest es un framework de pruebas de JavaScript que se enfoca en la simplicidad. Una de sus características únicas es la habilidad de tomar instantáneas de pruebas para proveer un medio alternativo de verificar las unidades de su aplicación.
 
-**Resources:**
+**Recursos:**
 
-- [Official Jest Website](https://jestjs.io)
-- [Official Vue 2 CLI Plugin - Jest](https://cli.vuejs.org/core-plugins/unit-jest.html)
+- [Sitio Web Oficial de Jest](https://jestjs.io)
+- [Plugin Oficial de Línea de Comandos para Vue 2 - Jest](https://cli.vuejs.org/core-plugins/unit-jest.html)
 
 #### Mocha
 
-Mocha is a JavaScript test framework that is focused on being flexible. Because of this flexibility, it allows you to choose different libraries to fulfill other common features such as spying (e.g., Sinon) and assertions (e.g., Chai). Another unique feature of Mocha is that it can also execute tests in the browser in addition to Node.js.
+Mocha es un framework de pruebas de JavaScript enfocado en ser flexible. Por esta flexibilidad, le permite elegir diferentes librerías para cumplir con otras características comunes como espiando (p. ej., Sinon) y aserciones (p. ej., Chai). Otra característica única de Mocha es que también puede ejecutar pruebas en el navegador además de Node.js.
 
-**Resources:**
+**Recursos:**
 
-- [Official Mocha Website](https://mochajs.org)
-- [Official Vue CLI Plugin - Mocha](https://cli.vuejs.org/core-plugins/unit-mocha.html)
+- [Sitio Web Oficial de Mocha](https://mochajs.org)
+- [Plugin Oficial de Línea de Comandos para Vue - Mocha](https://cli.vuejs.org/core-plugins/unit-mocha.html)
 
-## Component Testing
+## Pruebas de Componente
 
-### Introduction
+### Introducción
 
-To test most Vue components, they must be mounted to the DOM (either virtual or real) in order to fully assert that they are working. This is another framework-agnostic concept. As a result, component testing frameworks were created to give users the ability to do this reliably while also providing Vue-specific conveniences such as integrations for Vuex, Vue Router, and other Vue plugins.
+Para probar la mayoría de componentes Vue, estos deben estar montados en el DOM (ya sea virtual o real) para afirmar completamente que están funcionando. Esto es otro concepto agnóstico al framework. Como resultado, los frameworks de pruebas fueron creados para dar a los usuarios la habilidad de realizar esto en una forma confiable mientras proveen también conveniencias específicas de Vue como las integraciones para Vuex, Vue Router y otros plugins de Vue.
 
-### Choosing Your Framework
+### Elegir su Framework
 
-The following section provides guidelines on things to keep in mind when evaluating which component testing framework is best for your application.
+La siguiente sección provee lineamientos en cosas a tomar en cuenta cuando se evalúe cuál framework para pruebas en componentes es mejor para su aplicación.
 
-#### Optimal compatibility with the Vue ecosystem
+#### Compatibilidad Óptima con el ecosistema de Vue
 
-It should be no surprise that one of the first criteria is that a component testing library should have is being as compatible with the Vue ecosystem as possible. While this may seem comprehensive, some key integration areas to keep in mind include single file components (SFCs), Vuex, Vue Router, and any other Vue specific plugins that your application relies on.
+No debería ser ninguna sorpresa que uno de los primeros criterios es que una librería de pruebas de componentes debería ser lo más compatible posible con el ecosistema de Vue. Aunque esto pueda parecer comprensivo, algunas áreas de integración claves a tomar en cuenta incluyen componentes de un solo archivo (SFCs), Vuex, Vue Router, y cualquier otro plugin específico de Vue del que dependa su aplicación.
 
-#### First-class error reporting
+#### Reporte de errores de primera-clase
 
-When tests fail, it is critical that your component testing framework provides useful error logs that help to minimize the amount of time it takes to debug the problem. In addition to simply telling you what test fails, they should also provide context for why a test fails, e.g., what is expected vs what was received.
+Cuando las pruebas fallan, es crítico que su framework de pruebas de componentes provea registros de errores útiles para ayudar a minimizar el tiempo que toma a depurar el problema. Además de simplemente decirle cuál prueba está fallando, estos deberían proveerle contexto de por qué una prueba falla, por ejemplo, cuál es el valor esperado versus el valor recibido.
 
-### Recommendations
+### Recomendaciones
 
-#### Vue Testing Library (@testing-library/vue)
+#### Librería de Pruebas de Vue (@testing-library/vue)
 
-Vue Testing Library is a set of tools focused on testing components without relying on implementation details. Built with accessibility in mind, its approach also makes refactoring a breeze.
+La librería de pruebas de Vue se compone de una serie de herramientas enfocadas en probar componentes sin depender en los detalles de implementación. Desarrollada con accesibilidad en mente, su enfoque también hace la refactorización un proceso fácil.
 
-Its guiding principle is that the more tests resemble the way software is used, the more confidence they can provide.
+Su principio guía es que mientras más pruebas se parezcan a la forma en que se utiliza el software, más confianza pueden proveer.
 
-**Resources:**
+**Recursos:**
 
-- [Official Vue Testing Library Website](https://testing-library.com/docs/vue-testing-library/intro)
+- [Sitio Web Oficial de la Librería de Pruebas de Vue](https://testing-library.com/docs/vue-testing-library/intro)
 
-#### Vue Test Utils
+#### Utilidades de Prueba de Vue
 
-Vue Test Utils is the official low-level component testing library that was written to provide users access to Vue specific APIs. If you are new to testing Vue applications, we would recommend using Vue Testing Library, which is an abstraction over Vue Test Utils.
+Las Utilidades de Prueba de Vue es la librería oficial de pruebas de componentes de bajo nivel que fue escrita para proveer a los usuarios acceso a las APIs específicas de Vue. Si es nuevo en pruebas de aplicaciones Vue, le recomendamos utilizar la Librería de Pruebas de Vue, la cual es una abstracción sobre Utilidades de Prueba de Vue.
 
-**Resources:**
+**Recursos:**
 
-- [Official Vue Test Utils Documentation](https://vue-test-utils.vuejs.org)
-- [Vue Testing Handbook](https://lmiller1990.github.io/vue-testing-handbook/v3/#what-is-this-guide) by Lachlan Miller
+- [Documentación Oficial de Utilidades de Prueba de Vue](https://vue-test-utils.vuejs.org)
+- [Manual de Pruebas de Vue](https://lmiller1990.github.io/vue-testing-handbook/v3/#what-is-this-guide) por Lachlan Miller
 
-## End-to-End (E2E) Testing
+## Pruebas Punto-a-Punto (E2E)
 
-### Introduction
+### Introducción
 
-While unit tests provide developers with some degree of confidence, unit and component tests are limited in their abilities to provide holistic coverage of an application when deployed to production. As a result, end-to-end (E2E) tests provide coverage on what is arguably the most important aspect of an application: what happens when users actually use your applications.
+Aunque las pruebas unitarias proveen a los desarrolladores con un cierto grado de confianza, las pruebas unitarias y de componentes están limitadas por sus habilidades para proporcionar una cobertura holística de una aplicación cuando es desplegada a producción. Como resultado, las pruebas punto-a-punto (E2E) proveen cobertura en lo que, posiblemente, es el aspecto más importante de una aplicación: qué pasa cuando los usuarios utilizan sus aplicaciones.
 
-In other words, E2E tests validate all of the layers in your application. This not only includes your frontend code, but all associated backend services and infrastructure that are more representative of the environment that your users will be in. By testing how user actions impact your application, E2E tests are often the key to higher confidence in whether an application is functioning properly or not.
+En otras palabras, las pruebas punto-a-punto validan todas las capas de su aplicación. Esto no incluye únicamente su código de frontend, sino todos los servicios asociados al backend y la infraestructura que son más representativos del entorno en el que estarán sus usuarios. Mediante las pruebas de cómo las acciones del usuario impacta su aplicación, las pruebas punto-a-punto son a menudo la clave para mayor confianza en si una aplicación está funcionando apropiadamente o no.
 
-### Choosing Your Framework
+### Elegir su Framework
 
 While end-to-end (E2E) testing on the web has gained a negative reputation for unreliable (flaky) tests and slowing down development processes, modern E2E tools have made strides forward to create more reliable, interactive, and useful tests. When choosing an E2E testing framework, the following sections provide some guidance on things to keep in mind when choosing a testing framework for your application.
 
-#### Cross-browser testing
+#### Pruebas en Varios Navegadores
 
-One of the primary benefits that end-to-end (E2E) testing is known for is its ability to test your application across multiple browsers. While it may seem desirable to have 100% cross-browser coverage, it is important to note that cross browser testing has diminishing returns on a team's resources due the additional time and machine power required to run them consistently. As a result, it is important to be mindful of this trade-off when choosing the amount of cross-browser testing your application needs.
+Uno de los beneficios principales por los que son conocidas las pruebas punto-a-punto (E2E) es por su habilidad para probar su aplicación en múltiples navegadores. Aunque puede parecer deseable tener cobertura del 100% en varios navegadores, es importante notar que las pruebas en varios navegadores tienen reducciones en el rendimiento sobre los recursos de un equipo debido al tiempo adicional y poder computacional requerido para correrlas consistentemente. Como resultado, es importante ser consciente de esta compensación cuando se elija la cantidad de pruebas en varios navegadores que su aplicación necesita. 
 
 ::: tip
-A recent development in for catching browser-specific issues is using application monitoring and error reporting tools (e.g., Sentry, LogRocket, etc.) for browsers that are not as commonly used (e.g., < IE11, older Safari versions, etc.).
+Un reciente desarrollo en la captura de problemas específicos de navegadores es utilizar la monitorización de aplicación y herramientas de reporte de error (p. ej., Sentry, LogRocket, etc.)  para navegadores que no son tan comúnmente utilizados (p. ej., < IE11, viejas versiones de Safari, etc.).
 :::
 
-#### Faster feedback loops
+#### Bucles de retroalimentación más rápidos
 
-One of the primary problems with end-to-end (E2E) tests and development is that running the entire suite takes a long time. Typically, this is only done in continuous integration and deployment (CI/CD) pipelines. Modern E2E testing frameworks have helped to solve this by adding features like parallelization, which allows for CI/CD pipelines to often run magnitudes faster than before. In addition, when developing locally, the ability to selectively run a single test for the page you are working on while also providing hot reloading of tests can help to boost a developer's workflow and productivity.
+Uno de los principales problemas con las pruebas punto-a-punto (E2E) y el desarrollo es que correr la suite de pruebas entera toma un largo tiempo. Típicamente, esto es realizado solamente en procesos de integración continua y despliegue (CI/CD). Los frameworks moderno de pruebas E2E han ayudado a resolver esto añadiendo características como paralelización, lo que permite a los procesos de CI/CD ejecutar mangnitudes más ráido que antes. Adicionalmente, cuando se desarrolla localmente, la habilidad para ejecutar una prueba selectivamente para la página en la que está trabajando mientras se provee también recarga en caliente de pruebas puede ayudar a acelerar el flujo de trabajo y la productividad de un desarrollador.
 
-#### First class debugging experience
+#### Experiencia de Depuración de primera clase
 
-While developers have traditionally relied on scanning logs in a terminal window to help determine what went wrong in a test, modern end-to-end (E2E) test frameworks allow developers to leverage tools that they are already familiar with, e.g. browser developer tools.
+Aunque los desarrolladores tradicionalmente dependían de escanear bitácoras en una ventana de terminal para ayudar a determinar qué salió mal en una prueba, los frameworks modernos para pruebas punto-a-punto (E2E) les permiten a los desarrolladores apalancar herramientas con las que están familiarizados, p. ej. herramientas de desarrollo en el navegador. 
 
-#### Visibility in headless mode
+#### Visibilidad en modo sin cabeza
 
-When end-to-end (E2E) tests are run in continuous integration / deployment pipelines, they are often run in headless browsers (i.e., no visible browser is opened for the user to watch). As a result, when errors occur, a critical feature that modern E2E testing frameworks provide 1st class support for is the ability to see snapshots and/or videos of your applications during various testing stages in order to provide insight into why errors are happening. Historically, it was tedious to maintain these integrations.
+Cuando las pruebas punto-a-punto (E2E) son ejecutadas en procesos de integración continua / despliegue, estas son usualmente ejecutadas en navegadores sin cabeza (es decir, no se abre un navegador visible para que el usuario lo vea). Como resultado, cuando los errores ocurren, una característica crítica para la cual los frameworks modernos de pruebas proveen soporte de primera clase es la habilidad de ver las instantáneas y/o videos de sus aplicaciones durante varias etapas de las pruebas para proveer información sobre por qué ocurren los errores. Históricamente, era tedioso mantener estas integraciones.
 
-### Recommendations
+### Recomendaciones
 
-While there are many tools in the ecosystem, here are some common end-to-end (E2E) testing frameworks that are being used in the Vue.js ecosystem.
+Aunque existen muchas herramientas en el ecosistema, aquí están algunos frameworks comunes para pruebas punto-a-punto (E2E) que están siendo utilizadas en el ecosistema de Vue.js.
 
 #### Cypress.io
 
-Cypress.io is a testing framework that aims to enhance developer productivity by enabling developers to reliably test their applications while providing a first class developer experience.
+Cypress.io es un framework para pruebas que apunta a mejorar la productividad del desarrollador permitiéndoles probar sus aplicaciones con confianza mientras provee una experiencia de primera clase al desarrollador.
 
-**Resources:**
+**Recursos:**
 
-- [Cypress' Official Website](https://www.cypress.io)
-- [Official Vue CLI Cypress Plugin](https://cli.vuejs.org/core-plugins/e2e-cypress.html)
-- [Cypress Testing Library](https://github.com/testing-library/cypress-testing-library)
+- [Sitio Web Oficial de Cypress](https://www.cypress.io)
+- [Plugin Oficial de Cypress para la Interfaz de Línea de Comandos de Vue CLI](https://cli.vuejs.org/core-plugins/e2e-cypress.html)
+- [Librería de Pruebas de Cypress](https://github.com/testing-library/cypress-testing-library)
 
 #### Nightwatch.js
 
-Nightwatch.js is an end-to-end testing framework that can be used to test web applications and websites, as well as Node.js unit and integration testing.
+Nightwatch.js es un framework de pruebas punto-a-punto que puede ser utilizado para probar aplicaciones y sitios web, así como pruebas unitarias y de integración en Node.js.
 
-**Resources:**
+**Recursos:**
 
-- [Nightwatch's Official Website](https://nightwatchjs.org)
-- [Official Vue CLI Nightwatch Plugin](https://cli.vuejs.org/core-plugins/e2e-nightwatch.html)
+- [Sitio Web Oficial de Nightwatch](https://nightwatchjs.org)
+- [Plugin Oficial de Nightwatch para la Interfaz de Línea de Comandos de Vue CLI](https://cli.vuejs.org/core-plugins/e2e-nightwatch.html)
 
 #### Puppeteer
 
-Puppeteer is a Node library that provides a high-level API to control the browser and can pair with other test runners (e.g., Jest) to test your application.
+Puppeteer es una librería de Node que provee una API de alto nivel para controlar el navegador y puede utilizarse a la par con otros corredores de prueba (p. ej., Jest) para probar su aplicación.
 
-**Resources:**
+**Recursos:**
 
-- [Puppeteer's Official Website](https://pptr.dev)
+- [Sitio Web Oficial de Puppeteer](https://pptr.dev)
 
 #### TestCafe
 
-TestCafe is a Node.js based end-to-end framework that aims to provide easy setup so that developers can focus on creating tests that are easy to write and reliable.
+TestCafe es un framework para pruebas punto-a-punto basado en Node.js que apunta a proveer una preparación fácil para que los desarrolladores puedan enfocarse en crear pruebas que son fáciles de escribir y confiables.
 
-**Resources:**
+**Recursos:**
 
-- [TestCafe's Official Website](https://devexpress.github.io/testcafe/)
+- [Sitio Web Oficial de TestCafe](https://devexpress.github.io/testcafe/)
