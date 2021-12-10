@@ -1,12 +1,12 @@
-# Soporte de TypeScript
+# Soporte para TypeScript
 
-> [Vue CLI](https://cli.vuejs.org) provides built-in TypeScript tooling support.
+> [Vue CLI](https://cli.vuejs.org) provee soporte integrado para herramientas de TypeScript.
 
-## Official Declaration in NPM Packages
+## Declaración Oficial en Paquetes NPM
 
-A static type system can help prevent many potential runtime errors as applications grow, which is why Vue 3 is written in TypeScript. This means you don't need any additional tooling to use TypeScript with Vue - it has first-class citizen support.
+Un sistema de tipos estático ayuda a prevenir muchos errores potenciales en tiempo de ejecución a medida que crecen las aplicaciones, razón por la cual Vue 3 está escrito en TypeScript. Esto significa que no necesita ninguna herramienta adicional para utilizar TypeScript con Vue, debido a que posee soporte de primera clase para su uso.
 
-## Recommended Configuration
+## Configuración Recomendada
 
 ```js
 // tsconfig.json
@@ -14,7 +14,7 @@ A static type system can help prevent many potential runtime errors as applicati
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    // this enables stricter inference for data properties on `this`
+    // esto habilita la inferencia estricta para las propiedades de datos en `this`
     "strict": true,
     "jsx": "preserve",
     "moduleResolution": "node"
@@ -22,13 +22,13 @@ A static type system can help prevent many potential runtime errors as applicati
 }
 ```
 
-Note that you have to include `strict: true` (or at least `noImplicitThis: true` which is a part of `strict` flag) to leverage type checking of `this` in component methods otherwise it is always treated as `any` type.
+Note que tiene que incluir `strict: true` (o al menos `noImplicitThis: true` que es parte de la bandera `strict`) para apalancar la revisión de tipos de `this` en métodos de componente, de lo contrario es siempre tratado como tipo `any`.
 
-See [TypeScript compiler options docs](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for more details.
+Vea [documentación de opciones del compilador de TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.html) para más detalles.
 
-## Webpack Configuration
+## Configuración de Webpack
 
-If you are using a custom Webpack configuration `ts-loader` needs to be configured to parse `<script lang="ts">` blocks in `.vue` files:
+Si está utilizando una configuración personalizada de Webpack, se requiere configurar `ts-loader` para analizar bloques `<script lang="ts">` en archivos `.vue`:
 
 ```js{10}
 // webpack.config.js
@@ -51,24 +51,24 @@ module.exports = {
       ...
 ```
 
-## Development Tooling
+## Herramientas de Desarrollo
 
-### Project Creation
+### Creación de Proyecto
 
-[Vue CLI](https://github.com/vuejs/vue-cli) can generate new projects that use TypeScript. To get started:
+[Vue CLI](https://github.com/vuejs/vue-cli) puede generar nuevos proyectos que utilicen TypeScript. Para empezar:
 
 ```bash
-# 1. Install Vue CLI, if it's not already installed
+# 1. Instale Vue CLI, si aún no está instalado
 npm install --global @vue/cli
 
-# 2. Create a new project, then choose the "Manually select features" option
+# 2. Cree un nuevo proyecto, luego elija la opción "Seleccionar características manualmente (Manually select features)"
 vue create my-project-name
 
-# If you already have a Vue CLI project without TypeScript, please add a proper Vue CLI plugin:
+# Si ya tiene un proyecto Vue CLI sin TypeScript, por favor añada un plugin apropiado de Vue CLI:
 vue add typescript
 ```
 
-Make sure that `script` part of the component has TypeScript set as a language:
+Asegúrese de que la parte `script` del componente tiene TypeScript como lenguaje:
 
 ```html
 <script lang="ts">
@@ -76,7 +76,7 @@ Make sure that `script` part of the component has TypeScript set as a language:
 </script>
 ```
 
-Or, if you want to combine TypeScript with a [JSX `render` function](/guide/render-function.html#jsx):
+O, si quiere combinar TypeScript con una [función `render` de JSX](/guide/render-function.html#jsx):
 
 ```html
 <script lang="tsx">
@@ -84,39 +84,39 @@ Or, if you want to combine TypeScript with a [JSX `render` function](/guide/rend
 </script>
 ```
 
-### Editor Support
+### Soporte para Editores de Código
 
-For developing Vue applications with TypeScript, we strongly recommend using [Visual Studio Code](https://code.visualstudio.com/), which provides great out-of-the-box support for TypeScript. If you are using [single-file components](./single-file-component.html) (SFCs), get the awesome [Volar extension](https://github.com/johnsoncodehk/volar), which provides TypeScript inference inside SFCs and many other great features.
+Para desarrollar aplicaciones Vue con TypeScript, recomendamos fuertemente utilizar [Visual Studio Code](https://code.visualstudio.com/), que provee soporte genial integrado para TypeScript. Si está utilizando [componentes de un solo archivo](./single-file-component.html) (SFCs), obtenga la asombrosa [extención Volar](https://github.com/johnsoncodehk/volar), que provee inferencia de TypeScript dentro de SFCs y muchas otras características geniales.
 
-[WebStorm](https://www.jetbrains.com/webstorm/) also provides out-of-the-box support for both TypeScript and Vue.
+[WebStorm](https://www.jetbrains.com/webstorm/) también provee soporte integrado para ambos, TypeScript y Vue.
 
-## Defining Vue Components
+## Definir Componentes Vue
 
-To let TypeScript properly infer types inside Vue component options, you need to define components with `defineComponent` global method:
+Para dejar que TypeScript infiera apropiadamente los tipos dentro de opciones de componentes Vue, necesita definir componentes con el método global `defineComponent`:
 
 ```ts
 import { defineComponent } from 'vue'
 
 const Component = defineComponent({
-  // type inference enabled
+  // inferencia de tipos habilitada
 })
 ```
 
-If you're using [single-file components](/guide/single-file-component.html) then this would typically be written as:
+Si está utilizando [componentes de un solo archivo](./single-file-component.html), entonces sería escrito típicamente como lo siguiente:
 
 ```vue
 <script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  // type inference enabled
+  // inferencia de tipos habilitada
 })
 </script>
 ```
 
-## Using with Options API
+## Utilizando con la API de Opciones
 
-TypeScript should be able to infer most of the types without defining types explicitly. For example, if you have a component with a number `count` property, you will have an error if you try to call a string-specific method on it:
+TypeScript debería ser capaz de inferir la mayoría de los tipos sin definirlos explícitamente. Por ejemplo, si tiene un componente con una propiedad numérica `count`, tendrá un error si intenta llamar un método específico de cadenas de caracteres en ella:
 
 ```ts
 const Component = defineComponent({
@@ -126,12 +126,13 @@ const Component = defineComponent({
     }
   },
   mounted() {
-    const result = this.count.split('') // => Property 'split' does not exist on type 'number'
+    const result = this.count.split('') // => La propiedad 'split' no existe en el tipo 'number'
   }
 })
 ```
 
-If you have a complex type or interface, you can cast it using [type assertion](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions):
+Si tiene un tipo o interfaz compleja, puede realizar un _cast_ utilizando [aserción de tipos](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions):
+
 
 ```ts
 interface Book {
@@ -144,8 +145,8 @@ const Component = defineComponent({
   data() {
     return {
       book: {
-        title: 'Vue 3 Guide',
-        author: 'Vue Team',
+        title: 'Guía de Vue 3',
+        author: 'Equipo Vue',
         year: 2020
       } as Book
     }
@@ -153,30 +154,30 @@ const Component = defineComponent({
 })
 ```
 
-### Augmenting Types for `globalProperties`
+### Aumentar Tipos para `globalProperties`
 
-Vue 3 provides a [`globalProperties` object](../api/application-config.html#globalproperties) that can be used to add a global property that can be accessed in any component instance. For example, a [plugin](./plugins.html#writing-a-plugin) might want to inject a shared global object or function.
+Vue 3 proporciona un [objeto `globalProperties`](../api/application-config.html#globalproperties) que puede ser utilizado para agregar una propiedad global que puede ser accesado en cualquiera instancia de componente. Por ejemplo, un [plugin](./plugins.html#writing-a-plugin) podría querer inyectar un objeto global o función compartido.
 
 ```ts
-// User Definition
+// Definición por el usuario
 import axios from 'axios'
 
 const app = Vue.createApp({})
 app.config.globalProperties.$http = axios
 
-// Plugin for validating some data
+// Plugin para validar algunos datos
 export default {
   install(app, options) {
     app.config.globalProperties.$validate = (data: object, rule: object) => {
-      // check whether the object meets certain rules
+      // comprobar si el objeto cumple con ciertas reglas
     }
   }
 }
 ```
 
-In order to tell TypeScript about these new properties, we can use [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+Para informar a TypeScript estas nuevas propiedades, podemos utilizar [aumentación de módulos](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
-In the above example, we could add the following type declaration:
+En el ejemplo arriba, podríamos agregar la siguiente declaración de tipo:
 
 ```ts
 import axios from 'axios'
@@ -189,19 +190,19 @@ declare module '@vue/runtime-core' {
 }
 ```
 
-We can put this type declaration in the same file, or in a project-wide `*.d.ts` file (for example, in the `src/typings` folder that is automatically loaded by TypeScript). For library/plugin authors, this file should be specified in the `types` property in `package.json`.
+Podemos poner esta declaración de tipo en el mismo archivo, o en un archivo `*.d.ts` para todo el proyecto (por ejemplo, en la carpeta `src/typings` que está cargada automáticamente por TypeScript). Para autores de librerías/plugins, este archivo debe ser especificado en la propiedad `types` en `package.json`.
 
-::: warning Make sure the declaration file is a TypeScript module
-In order to take advantage of module augmentation, you will need to ensure there is at least one top-level `import` or `export` in your file, even if it is just `export {}`.
+::: warning
+Asegúrase de que el archivo de declaración es un módulo de TypeScript para aprovechar la aumentación de módulos, necesitará asegurar que hay al menos un `import` o `export` de nivel superior en su archivo, incluso si es solo `export {}`.
 
-[In TypeScript](https://www.typescriptlang.org/docs/handbook/modules.html), any file containing a top-level `import` or `export` is considered a 'module'. If type declaration is made outside of a module, it will overwrite the original types rather than augmenting them.
+[En TypeScript](https://www.typescriptlang.org/docs/handbook/modules.html), cualquier archivo que contiene un `import` o `export` de nivel superior es considerado un 'módulo'. Si la declaración de tipo es hecha afuera de un módulo, sobrescribirá los tipos originales en vez de aumentarlos.
 :::
 
-For more information about the `ComponentCustomProperties` type, see its [definition in `@vue/runtime-core`](https://github.com/vuejs/vue-next/blob/2587f36fe311359e2e34f40e8e47d2eebfab7f42/packages/runtime-core/src/componentOptions.ts#L64-L80) and [the TypeScript unit tests](https://github.com/vuejs/vue-next/blob/master/test-dts/componentTypeExtensions.test-d.tsx) to learn more.
+Para más información sobre el tipo `ComponentCustomProperties`, vea su [definición en `@vue/runtime-core`](https://github.com/vuejs/vue-next/blob/2587f36fe311359e2e34f40e8e47d2eebfab7f42/packages/runtime-core/src/componentOptions.ts#L64-L80) y [pruebas unitarias de TypeScript](https://github.com/vuejs/vue-next/blob/master/test-dts/componentTypeExtensions.test-d.tsx) para aprender más.
 
-### Annotating Return Types
+### Anotar Tipos de Dato de Retorno
 
-Because of the circular nature of Vue’s declaration files, TypeScript may have difficulties inferring the types of computed. For this reason, you may need to annotate the return type of computed properties.
+Debido a la naturaleza circular de los archivos de declaración de Vue, TypeScript puede tener dificultades infiriendo los tipos de valores calculados. Por esta razón, puede tener que anotar el tipo de dato de retorno de propiedades calculadas.
 
 ```ts
 import { defineComponent } from 'vue'
@@ -213,12 +214,12 @@ const Component = defineComponent({
     }
   },
   computed: {
-    // needs an annotation
+    // necesita una anotación
     greeting(): string {
       return this.message + '!'
     },
 
-    // in a computed with a setter, getter needs to be annotated
+    // en un valor calculado con un establecedor, el captador necesita ser anotado
     greetingUppercased: {
       get(): string {
         return this.greeting.toUpperCase()
@@ -231,9 +232,9 @@ const Component = defineComponent({
 })
 ```
 
-### Annotating Props
+### Anotar Propiedades
 
-Vue does a runtime validation on props with a `type` defined. To provide these types to TypeScript, we need to cast the constructor with `PropType`:
+Vue realiza una validación en tiempo de ejecución en propiedades con un `type` definido. Para proporcionar estos tipos a TypeScript, necesitamos hacer _cast_ al constructor con `PropType`:
 
 ```ts
 import { defineComponent, PropType } from 'vue'
