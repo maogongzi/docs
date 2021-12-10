@@ -1,3 +1,3 @@
-# Elastic Header Example
+# Ejemplo de Encabezado Elástico
 
-<common-codepen-snippet title="Vue 3 Elastic Draggable Header Example" slug="PoWpdWY" :height="474" tab="js,result" :preview="false" :editable="false" />
+<common-codepen-snippet title="Ejemplo de Encabezado Elástico Arrastrable en Vue 3" slug="PoWpdWY" :height="474" tab="js,result" :preview="false" :editable="false" />
