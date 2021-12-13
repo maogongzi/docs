@@ -1,11 +1,13 @@
 # Transiciones de Estado
 
-Vue's transition system offers many simple ways to animate entering, leaving, and lists, but what about animating your data itself? For example:
+El sistema de transición de Vue ofrece muchas maneras simples para animar la entrada, salida y las listas, pero ¿qué hay de animar su dato mismo? Por ejemplo:
 
-- numbers and calculations
-- colors displayed
-- the positions of SVG nodes
-- the sizes and other properties of elements
+- números y calculaciones
+- colores mostrados
+- las posiciones de nodos SVG
+- los tamaños y otras propiedades de un elemento
+
+Todos de estos son tanto almacenados como números crudos como 
 
 All of these are either already stored as raw numbers or can be converted into numbers. Once we do that, we can animate these state changes using 3rd-party libraries to tween state, in combination with Vue's reactivity and component systems.
 
