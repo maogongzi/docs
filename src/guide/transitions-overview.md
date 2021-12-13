@@ -11,17 +11,17 @@ Cubriremos todos estos y más en las próximas tres secciones en el guía. Sin e
 
 En la próxima sección, hablaremos de algunas animaciones y transiciones web básicas, y dejaremos algunas enlaces a los recursos para exploración adicional. Si está ya familiar con animación web y cómo los principios se funcionarían con algunas directivas Vue, siéntese libre de saltar la próxima sección. Para alguien más buscando aprender un poco más sobre animaciones web básicas antes de profundizarse, siga leyiendo.
 
-## Class-based Animations & Transitions
+## Animaciones y Transiciones Basadas en Clases
 
-Though the `<transition>` component can be wonderful for components entering and leaving, you can also activate an animation without mounting a component, by adding a conditional class.
+Aunque el componente `<transition>` pueda ser fantástico para componentes que entren y salgan, puede también activar una animación sin montar un componente, mediante agregar una clase condicional.
 
 ```html
 <div id="demo">
-  Push this button to do something you shouldn't be doing:<br />
+  Pulsa este botón para hacer algo no deba hacer<br />
 
   <div :class="{ shake: noActivated }">
-    <button @click="noActivated = true">Click me</button>
-    <span v-if="noActivated">Oh no!</span>
+    <button @click="noActivated = true">Hazme clic</button>
+    <span v-if="noActivated">¡Oh no!</span>
   </div>
 </div>
 ```
@@ -70,11 +70,11 @@ const Demo = {
 Vue.createApp(Demo).mount('#demo')
 ```
 
-<common-codepen-snippet title="Create animation with a class" slug="ff45b91caf7a98c8c9077ad8ab539260" tab="css,result" :editable="false" :preview="false" />
+<common-codepen-snippet title="Crear animación con una clase" slug="ff45b91caf7a98c8c9077ad8ab539260" tab="css,result" :editable="false" :preview="false" />
 
-## Transitions with Style Bindings
+## Transiciones con Vinculaciones de Estilos
 
-Some transition effects can be applied by interpolating values, for instance by binding a style to an element while an interaction occurs. Take this example for instance:
+Algunos efectos de transición pueden ser aplicados mediante interpolar valores, por ejemplo, a través de vincular un estilo a un elemento mientras una interacción ocurra. Toma este por ejemplo:
 
 ```html
 <div id="demo">
@@ -83,7 +83,7 @@ Some transition effects can be applied by interpolating values, for instance by 
     :style="{ backgroundColor: `hsl(${x}, 80%, 50%)` }"
     class="movearea"
   >
-    <h3>Move your mouse across the screen...</h3>
+    <h3>Mover su ratón a lo largo de la pantalla...</h3>
     <p>x: {{x}}</p>
   </div>
 </div>
@@ -112,29 +112,29 @@ const Demo = {
 Vue.createApp(Demo).mount('#demo')
 ```
 
-<common-codepen-snippet title="Interpolation with style bindings" slug="JjGezQY" :editable="false" />
+<common-codepen-snippet title="interpolación con vinculaciones de estilos" slug="JjGezQY" :editable="false" />
 
-In this example, we are creating animation through the use of interpolation, attached to the mouse movement. The CSS transition is applied to the element as well, to let the element know what kind of easing to use while it's updating.
+En este ejemplo, estamos creando animación a través del uso de interpolación, adjunto al movimiento del ratón. La transición CSS es aplicada al elemento también, para informar al elemento qué tipo de _easing_ para utilizar mientras se esté actualizando.
 
-## Performance
+## Rendimiento
 
-You may notice that the animations shown above are using things like `transforms`, and applying strange properties like `perspective`- why were they built that way instead of just using `margin` and `top` etc?
+Podría notar que las animaciones demostrados arriba están utilizando algo como `transforms`, y aplicando propiedades raras como `perspective`, ¿porqué están construidas en esa manera en vez de solo utilizar `margin` y `top`, etc.?
 
-We can create extremely smooth animations on the web by being aware of performance. We want to hardware accelerate elements when we can, and use properties that don't trigger repaints. Let's go over some of how we can accomplish this.
+Podemos crear animaciones extremadamente lisas en el web mediante tomar en cuenta de la rendimiento. Queremos acelerar elementos por _hardwares_ cuando podamos, y utilizar propiedades que no disparen _repintas (repaints)_. Repasemos algunos de cómo podamos hacerlo.
 
-### Transform and Opacity
+### _Transform_ y _Opacity_
 
-We can check resources like [CSS-Triggers](https://csstriggers.com/) to see which properties will trigger repaints if we animate them. Here, if you look under `transform`, you will see:
+Podemos revisar recursos como [CSS-Triggers](https://csstriggers.com/) para ver cuales propiedades dispararán _repintas_ si los animamos. Aquí, si está buscando bajo `transform`, podrá ver:
 
-> Changing transform does not trigger any geometry changes or painting, which is very good. This means that the operation can likely be carried out by the compositor thread with the help of the GPU.
+> Cambiar _transform_ no dispara cualquier cambio de geometría o pintura, lo que es muy bien. Este significa que la operación se puede llevar a cabo mediante el subproceso de compositor con el ayudo de GPU.
 
-Opacity behaves similarly. Thus, they are ideal candidates for movement on the web.
+_Opacity_ se comporta de manera similar. Por tanto, son candidatos ideales para movimientos en el web.
 
-### Hardware Acceleration
+### Aceleración de _Hardware_
 
-Properties such as `perspective`, `backface-visibility`, and `transform: translateZ(x)` will allow the browser to know you need hardware acceleration.
+Las propiedades como `perspective`, `backface-visibility`, y `transform: translateZ(x)` le permitirán al navegador saber que necesite la aceleración de _hardware_.
 
-If you wish to hardware-accelerate an element, you can apply any of these properties (not all are necessary, only one):
+Si quiere acelear un elemento por _hardware_, puede aplicar cualquier de estas propiedades (no necesita aplicar todos, uno es suficiente):
 
 ```css
 perspective: 1000px;
@@ -142,13 +142,13 @@ backface-visibility: hidden;
 transform: translateZ(0);
 ```
 
-Many JS libraries like GreenSock will assume you want hardware acceleration and will apply them by default, so you do not need to set them manually.
+Muchas librerías de JS como GreenSock asumirá que querra aceleración de _hardware_ y las aplicará por defecto, por eso, no necesita establecerlos manualmente.
 
-## Timing
+## Temporización (Timing)
 
-For simple UI transitions, meaning from just one state to another with no intermediary states, it's common to use timings between 0.1s and 0.4s, and most folks find that _0.25s_ tends to be a sweet spot. Can you use that timing for everything? No, not really. If you have something that needs to move a greater distance or has more steps or state changes, 0.25s is not going to work as well and you will have to be much more intentional, and the timing will need to be more unique. That doesn't mean you can't have nice defaults that you repeat within your application, though.
+Para transiciones UI simples, significa que solo de un estado al otro sin estados intermediarios, es común utilizar temporizaciones entre 0.1s y 0.4s, y la mayoría de la gente encuentra que _0.25s_ tiende a ser un punto ideal. ¿Puede utilizar la misma temporización para todos? No, en realidad no. Si tiene algo que necesita moverse una distancia grande o tiene más pasos o cambios de estados, 0.25s no va a funcionar como piense y tiene que ser más específico, y la temporización necesitará ser más única. Sin embargo, eso no significa que no pueda tener valores ideales por defecto que pueda repetir dentro de su aplicación.
 
-You may also find that entrances look better with slightly more time than an exit. The user typically is being guided during the entrance, and is a little less patient upon exit because they want to go on their way.
+Puede también encontrar que las entradas se parecen mejor con un poco más tiempo que la salida. El usuario típicamente está guiado durante la entrada, pero poco paciente al salir porque quiere seguir sus vías.
 
 ## Easing
 
