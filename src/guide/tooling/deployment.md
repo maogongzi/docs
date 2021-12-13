@@ -113,4 +113,4 @@ Refiérase a las documentaciones respectivas de las herramientas de compilación
 
 ## Rastregar Errores de Tiempo de Ejecución
 
-Si un error de tiempo de ejecución ocurre durante la renderización de un componente, será pasado a la función de configuración global `app.config.errorHandler` si se haya establecido. Podría ser una buena idea apalancar este _hook_ junto con un servicios de seguimiento de errores como [Sentry](https://sentry.io), lo cual proporciona [una integración oficial](https://sentry.io/for/vue/) para Vue. 
+Si un error de tiempo de ejecución ocurre durante la renderización de un componente, será pasado a la función de configuración global `app.config.errorHandler` si se haya establecido. Podría ser una buena idea apalancar este _hook_ junto con un servicios de seguimiento de errores como [Sentry](https://sentry.io), lo cual proporciona [una integración oficial](https://sentry.io/for/vue/) para Vue.
