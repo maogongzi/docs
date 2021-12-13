@@ -82,7 +82,7 @@ Si **no** quiere que el componente herede automáticamente los atributos, puede 
 
 El escenario común para deshabilitar la herencia de un atributo es cuando los atributos necesitan aplicarse a los otros elementos al lado del nodo raíz.
 
-A través de establecer la opción `inheritAttrs` a `false`, puede aplicar atributos provenientes de la propiedad `$attrs` del componente a los otros elementos en vez del nodo raíz, la cual incluye todos los atributos que no sean incluido por las propiedades `props` y `emits` del componente (p. ej. `class`, `style`, escuchadores de `v-on`, etc.)
+A través de establecer la opción `inheritAttrs` a `false`, puede luego aplicar atributos al elemento eligido por usted mediante utilizar la propiedad `$attrs` del componente, la cual incluye todos los atributos que no sean incluidos por las propiedades `props` y `emits` del componente (p. ej. `class`, `style`, escuchadores de `v-on`, etc.).
 
 Utilicemos nuestro componente _date-picker_ desde la [sección anterior](#attribute-inheritance), en el evento necesitamos aplicar todos los atributos que no son _props_ al elemento `input` en vez del elemento raíz `div`, esto puede ser logrado mediante utilizar la abreviatura `v-bind`.
 
