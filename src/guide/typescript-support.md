@@ -258,15 +258,14 @@ const Component = defineComponent({
       required: true
     },
     metadata: {
-      type: null // metadata is typed as any
+      type: null // metadata es tipado como _any_
     }
   }
 })
 ```
 
 ::: warning
-Because of a [design limitation](https://github.com/microsoft/TypeScript/issues/38845) in TypeScript when it comes
-to type inference of function expressions, you have to be careful with `validator` and `default` values for objects and arrays:
+Debido a  una [limitación de diseño](https://github.com/microsoft/TypeScript/issues/38845) en TypeScript cuando se trata de inferencia de tipo de expresiones de función, tiene que ser cuidadoso con valores `validator` y `default` para objetos y matrices: 
 :::
 
 ```ts
@@ -281,18 +280,18 @@ const Component = defineComponent({
   props: {
     bookA: {
       type: Object as PropType<Book>,
-      // Make sure to use arrow functions
+      // Asegúrese de utilizar funciones de flecha
       default: () => ({
-        title: 'Arrow Function Expression'
+        title: 'Expresión de Función de Flecha'
       }),
       validator: (book: Book) => !!book.title
     },
     bookB: {
       type: Object as PropType<Book>,
-      // Or provide an explicit this parameter
+      // O proporciona una parámetro explícito de _this_
       default(this: void) {
         return {
-          title: 'Function Expression'
+          title: 'Expresión de Función'
         }
       },
       validator(this: void, book: Book) {
@@ -303,33 +302,33 @@ const Component = defineComponent({
 })
 ```
 
-### Annotating Emits
+### Anotar los Emitidos
 
-We can annotate a payload for the emitted event. Also, all non-declared emitted events will throw a type error when called:
+Podemos anotar un _payload_ para el evento emitido, también, todos los eventos emitidos non declarados lanzarán un error de tipo cuando sean llamados:
 
 ```ts
 const Component = defineComponent({
   emits: {
     addBook(payload: { bookName: string }) {
-      // perform runtime validation
+      // realizar validación en tiempo de ejecución
       return payload.bookName.length > 0
     }
   },
   methods: {
     onSubmit() {
       this.$emit('addBook', {
-        bookName: 123 // Type error!
+        bookName: 123 // ¡error de tipo!
       })
 
-      this.$emit('non-declared-event') // Type error!
+      this.$emit('non-declared-event') // ¡error de tipo!
     }
   }
 })
 ```
 
-## Using with Composition API
+## Utilizar con la API de Composición
 
-On `setup()` function, you don't need to pass a typing to `props` parameter as it will infer types from `props` component option.
+En función `setup()`, no necesita pasar un tipo al parámetro `props`, debido a que inferirá tipos de la opción `props` del componente.
 
 ```ts
 import { defineComponent } from 'vue'
@@ -343,15 +342,15 @@ const Component = defineComponent({
   },
 
   setup(props) {
-    const result = props.message.split('') // correct, 'message' is typed as a string
-    const filtered = props.message.filter(p => p.value) // an error will be thrown: Property 'filter' does not exist on type 'string'
+    const result = props.message.split('') // correcto, 'message' es tipado como una cadena de caracteres
+    const filtered = props.message.filter(p => p.value) // se lanzará un error:: Property 'filter' does not exist on type 'string'
   }
 })
 ```
 
-### Typing `refs`
+### Tipar las `refs`
 
-Refs infer the type from the initial value:
+Las `refs` inferirán el tipo del valor inicial:
 
 ```ts
 import { defineComponent, ref } from 'vue'
@@ -360,26 +359,26 @@ const Component = defineComponent({
   setup() {
     const year = ref(2020)
 
-    const result = year.value.split('') // => Property 'split' does not exist on type 'number'
+    const result = year.value.split('') // => La propiedad 'split' no existe en tipo 'number'
   }
 })
 ```
 
-Sometimes we may need to specify complex types for a ref's inner value. We can do that by simply passing a generic argument when calling ref to override the default inference:
+Algunas veces necesitaríamos especificar tipos complejos para el valor interno de una _ref_. Podemos hacerlo mediante pasar un argumento genérico cuando se llame la _ref_ para sobreescribir la inferencia por defecto:
 
 ```ts
-const year = ref<string | number>('2020') // year's type: Ref<string | number>
+const year = ref<string | number>('2020') // el tipo de _year_: Ref<string | number>
 
-year.value = 2020 // ok!
+year.value = 2020 // ¡ya!
 ```
 
 ::: tip Note
-If the type of the generic is unknown, it's recommended to cast `ref` to `Ref<T>`.
+Si el tipo del genérico es incógnito, es recomendado fundir `ref` a `Ref<T>`.
 :::
 
-### Typing Template Refs
+### Tipar las Refs de Plantillas
 
-Sometimes you might need to annotate a template ref for a child component in order to call its public method. For example, we have a `MyModal` child component with a method that opens the modal:
+Algunas veces tendría que anotar una _ref_ de plantilla para un componente secundario para llamar su método público. Por ejemplo, tenemos un componente secundario llamado `MyModal` con un método que abre el modal:
 
 ```ts
 import { defineComponent, ref } from 'vue'
@@ -397,7 +396,7 @@ const MyModal = defineComponent({
 })
 ```
 
-We want to call this method via a template ref from the parent component:
+Queremos llamar este método mediante una _ref_ de plantilla desde el componente padre:
 
 ```ts
 import { defineComponent, ref } from 'vue'
@@ -419,7 +418,7 @@ const app = defineComponent({
     MyModal
   },
   template: `
-    <button @click="openModal">Open from parent</button>
+    <button @click="openModal">Abrir desde el padre</button>
     <my-modal ref="modal" />
   `,
   setup() {
@@ -433,7 +432,7 @@ const app = defineComponent({
 })
 ```
 
-While this will work, there is no type information about `MyModal` and its available methods. To fix this, you should use `InstanceType` when creating a ref:
+Mientras este funcionará, no hay información de tipo sobre `MyModal` y sus métodos disponibles. Para arreglarlo, debería utilizar `InstanceType` cuando cree una _ref_:
 
 ```ts
 setup() {
@@ -446,11 +445,11 @@ setup() {
 }
 ```
 
-Please note that you would also need to use [optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) or any other way to check that `modal.value` is not undefined.
+Por favor tenga en cuenta que debería también utilizar [encadenamiento opcional (optional chaining)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) o cualquier otra manera para verificar que `modal.value` no esté `undefined`.
 
-### Typing `reactive`
+### Tipar `reactive`
 
-When typing a `reactive` property, we can use interfaces:
+Cuando se tipe una propiedad `reactive`, podemos utilizar interfaces:
 
 ```ts
 import { defineComponent, reactive } from 'vue'
@@ -463,18 +462,18 @@ interface Book {
 export default defineComponent({
   name: 'HelloWorld',
   setup() {
-    const book = reactive<Book>({ title: 'Vue 3 Guide' })
+    const book = reactive<Book>({ title: 'Guía de Vue 3' })
     // or
-    const book: Book = reactive({ title: 'Vue 3 Guide' })
+    const book: Book = reactive({ title: 'Guía de Vue 3' })
     // or
-    const book = reactive({ title: 'Vue 3 Guide' }) as Book
+    const book = reactive({ title: 'Guía de Vue 3' }) as Book
   }
 })
 ```
 
-### Typing `computed`
+### Tipar `computed`
 
-Computed values will automatically infer the type from returned value
+Los valores de _computed_ automáticamente inferirán el tipo del valor retornado.
 
 ```ts
 import { defineComponent, ref, computed } from 'vue'
@@ -484,17 +483,17 @@ export default defineComponent({
   setup() {
     let count = ref(0)
 
-    // read-only
+    // de solo lectura
     const doubleCount = computed(() => count.value * 2)
 
-    const result = doubleCount.value.split('') // => Property 'split' does not exist on type 'number'
+    const result = doubleCount.value.split('') // => La propiedad 'split' no existe en el tipo 'number'
   }
 })
 ```
 
-### Typing Event Handlers
+### Tipar manejadores de Eventos
 
-When dealing with native DOM events, it might be useful to type the argument we pass to the handler correctly. Let's take a look at this example:
+Cuando se trate de eventos DOM nativos, sería útil tipar el argumento que pasemos al manejador correctamente. Echemos un vistazo a este ejemplo:
 
 ```vue
 <template>
@@ -506,9 +505,9 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   setup() {
-    // `evt` will be of type `any`
+    // `evt` será tipado como `any`
     const handleChange = evt => {
-      console.log(evt.target.value) // TS will throw an error here
+      console.log(evt.target.value) // TS va a lanzar un error aquí
     }
 
     return { handleChange }
@@ -517,7 +516,7 @@ export default defineComponent({
 </script>
 ```
 
-As you can see, without annotating the `evt` argument correctly, TypeScript will throw an error when we try to access the value of the `<input>` element. The solution is to cast the event target with a correct type:
+Como puede ver, sin anotar el argumento `evt` correctamente, TypeScript lanzará un error cuando tratemos de acceder el valor del elemento `<input>`. La solución es fundir el objeto del evento con un tipo correcto:
 
 ```ts
 const handleChange = (evt: Event) => {
