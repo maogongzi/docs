@@ -1,4 +1,4 @@
-# State Transitions
+# Transiciones de Estado
 
 Vue's transition system offers many simple ways to animate entering, leaving, and lists, but what about animating your data itself? For example:
 
