@@ -150,41 +150,41 @@ Para transiciones UI simples, significa que solo de un estado al otro sin estado
 
 Puede también encontrar que las entradas se parecen mejor con un poco más tiempo que la salida. El usuario típicamente está guiado durante la entrada, pero poco paciente al salir porque quiere seguir sus vías.
 
-## Easing
+## _Easing_
 
-Easing is an important way to convey depth in an animation. One of the most common mistakes newcomers to animation make is to use `ease-in` for entrances, and `ease-out` for exits. You'll actually need the opposite.
+_Easing_ es una manera importante para expresar profundidad en una animación. Uno de los errores más comunes que los principiantes de animación cometen es elegir `ease-in` para entradas, y `ease-out` para salidas. De hecho necesitará lo contrario.
 
-If we were to apply these states to a transition, it would look something like this:
+Si fuéramos a aplicar estos estados a una transición, se vería algo como esto:
 
 ```css
 .button {
   background: #1b8f5a;
-  /* applied to the initial state, so this transition will be applied to the return state */
+  /* aplicado al estado inicial, así que esta transición será aplicada al estado de retornar */
   transition: background 0.25s ease-in;
 }
 
 .button:hover {
   background: #3eaf7c;
-  /* applied to the hover state, so this transition will be applied when a hover is triggered */
+  /* aplicado al estado de _hover_, así que esta transición será aplicada cuando un _hover_ sea disparado */
   transition: background 0.35s ease-out;
 }
 ```
 
-<common-codepen-snippet title="Transition Ease Example" slug="996a9665131e7902327d350ca8a655ac" tab="css,result" :editable="false" :preview="false" />
+<common-codepen-snippet title="Ejemplo de Transición de Ease" slug="996a9665131e7902327d350ca8a655ac" tab="css,result" :editable="false" :preview="false" />
 
-Easing can also convey the quality of material being animated. Take this pen for example, which ball do you think is hard and which is soft?
+_Easing_ puede también expresar la cualidad del material que se anime. Toma este _pen_ por ejemplo, ¿cuál bola piensa que es dura y cuál es blanda? 
 
-<common-codepen-snippet title="Bouncing Ball Demo" slug="wvgqyyW" :height="500" :editable="false" />
+<common-codepen-snippet title="Demostración de bola que está rebotando" slug="wvgqyyW" :height="500" :editable="false" />
 
-You can get a lot of unique effects and make your animation very stylish by adjusting your easing. CSS allows you to modify this by adjusting the cubic-bezier function's parameters, [this playground](https://cubic-bezier.com/#.17,.67,.83,.67) by Lea Verou is very helpful for exploring this.
+Puede obtener un montón de efectos únicos y elabora su animación muy de moda mediante ajustar su _easing_. CSS le permite modificar este mediante ajustar los parámetros de la función _cubic-bezier_, [este _playground_](https://cubic-bezier.com/#.17,.67,.83,.67) por Lea Verou es múy útil para explorar esto.
+ 
+Aunque puede realizar efectos grandes para animación simple con los dos manejadores ofrecidos por el _ease_ de _cubic-bezier_, JavaScript permite múltiples manejadores, y por lo tanto, permite mucho más variaciones.
 
-Though you can achieve great effects for simple animation with the two handles the cubic-bezier ease offers, JavaScript allows multiple handles, and therefore, allows for much more variance.
+![Comparación de Ease](/images/css-vs-js-ease.svg)
 
-![Ease Comparison](/images/css-vs-js-ease.svg)
+Toma un efecto de rebote, por ejemplo. En CSS tenemos que declarar cada _keyframe_, arriba y abajo. En JavaScript, podemos expresar todo de ese movimiento dentro del _ease_, a través de declarar `bounce` en el [GreenSock API (GSAP)](https://greensock.com/) (otras librerías de JS tienen otras tipos de _easing_ por defecto).
 
-Take a bounce, for instance. In CSS we have to declare each keyframe, up and down. In JavaScript, we can express all of that movement within the ease, by declaring `bounce` in the [GreenSock API (GSAP)](https://greensock.com/) (other JS libraries have other types of easing defaults).
-
-Here is the code used for a bounce in CSS (example from animate.css):
+Aquí es el código utilizado para un rebote en CSS (ejemplo proviene de animate.css):
 
 ```css
 @keyframes bounceInDown {
@@ -224,15 +224,15 @@ Here is the code used for a bounce in CSS (example from animate.css):
 }
 ```
 
-And here is the same bounce in JS using GreenSock:
+Y aquí es el mismo rebote en JS utilizando GreenSock:
 
 ```js
 gsap.from(element, { duration: 1, ease: 'bounce.out', y: -500 })
 ```
 
-We'll be using GreenSock in some of the examples in the sections following. They have a great [ease visualizer](https://greensock.com/ease-visualizer) that will help you build nicely crafted eases.
+Vamos a utilizar GreenSock en algunos de los ejemplos en las secciones siguientes. Tienen un excelente [visualizador de _ease_](https://greensock.com/ease-visualizer) que le ayudará hacer _eases_ bien hechos a mano.
 
-## Further Reading
-
-- [Designing Interface Animation: Improving the User Experience Through Animation by Val Head](https://www.amazon.com/dp/B01J4NKSZA/)
-- [Animation at Work by Rachel Nabors](https://abookapart.com/products/animation-at-work)
+## Lectura Adicional
+ 
+- [Diseñar Animación de Interfaz: Mejorar la Experiencia de Usuario Mediante Animación por Val Head](https://www.amazon.com/dp/B01J4NKSZA/)
+- [Animación en el trabajo por Rachel Nabors](https://abookapart.com/products/animation-at-work)
