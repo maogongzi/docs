@@ -1,4 +1,4 @@
-# List Transitions
+# Transiciones de Listas
 
 So far, we've managed transitions for:
 
