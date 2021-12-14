@@ -62,6 +62,8 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/template-syntax.md](src/guide/template-syntax.md)|Spanish :white_check_mark:|
 |[src/guide/testing.md](src/guide/testing.md)|Spanish :white_check_mark:|
 |[src/guide/tooling/deployment.md](src/guide/tooling/deployment.md)|Spanish :white_check_mark:|
+|[src/guide/transitions-enterleave.md](src/guide/transitions-enterleave.md)|Spanish :white_check_mark:|
+|[src/guide/transitions-list.md](src/guide/transitions-list.md)|Spanish :white_check_mark:|
 |[src/guide/transitions-overview.md](src/guide/transitions-overview.md)|Spanish :white_check_mark:|
 |[src/guide/transitions-state.md](src/guide/transitions-state.md)|Spanish :white_check_mark:|
 |[src/guide/typescript-support.md](src/guide/typescript-support.md)|Spanish :white_check_mark:|
@@ -154,8 +156,6 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/ssr/server.md](src/guide/ssr/server.md)|English :x:|
 |[src/guide/ssr/structure.md](src/guide/ssr/structure.md)|English :x:|
 |[src/guide/ssr/universal.md](src/guide/ssr/universal.md)|English :x:|
-|[src/guide/transitions-enterleave.md](src/guide/transitions-enterleave.md)|English :x:|
-|[src/guide/transitions-list.md](src/guide/transitions-list.md)|English :x:|
 |[src/style-guide/README.md](src/style-guide/README.md)|English :x:|
 |[src/support-vuejs/README.md](src/support-vuejs/README.md)|English :x:|
 
