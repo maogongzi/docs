@@ -501,13 +501,13 @@ Ahora actualicemos las transiciones para nuestros botones on/off con `out-in`:
 
 Con sólo agregar un atributo, hemos arreglado la transición original sin tener que agregar estilos especiales.
 
-We can use this to coordinate more expressive movement, such as a folding card, as demonstrated below. It's actually two elements transitioning between each other, but since the beginning and end states are scaling the same: horizontally to 0, it appears like one fluid movement. This type of sleight-of-hand can be very useful for realistic UI microinteractions:
+Podemos utilizarlo para coordinar movimientos más expresivos, como una tarjeta que está doblando, como demostrado abajo. En realidad son dos elementos que aplican transiciones entre cada uno, debido a que los estados iniciales y finales se escalan al mismo nivel: horizontalmente a 0, se ve como un movimiento fluido. Este tipo de juego de manos puede ser muy útil para microinteracciones realistas de Interfaz de Usuario:
 
-<common-codepen-snippet title="Transition Modes Flip Cards" slug="76e344bf057bd58b5936bba260b787a8" :editable="false" />
+<common-codepen-snippet title="Modos de Transición de Tarjetas de doble cara (Flip Cards)" slug="76e344bf057bd58b5936bba260b787a8" :editable="false" />
 
-## Transitioning Between Components
+## Transiciones entre Componentes
 
-Transitioning between components is even simpler - we don't even need the `key` attribute. Instead, we wrap a [dynamic component](component-basics.html#dynamic-components):
+Aplicar transición entre componentes es aún más fácil, no necesitamos el atributo `key`, en su lugar, envolvemos un [componente dinámico](component-basics.html#dynamic-components):
 
 ```html
 <div id="demo">
@@ -528,10 +528,10 @@ const Demo = {
   },
   components: {
     'v-a': {
-      template: '<div>Component A</div>'
+      template: '<div>Componente A</div>'
     },
     'v-b': {
-      template: '<div>Component B</div>'
+      template: '<div>Componente B</div>'
     }
   }
 }
@@ -551,4 +551,4 @@ Vue.createApp(Demo).mount('#demo')
 }
 ```
 
-<common-codepen-snippet title="Transitioning between components" slug="WNwVxZw" tab="html,result" theme="39028" />
+<common-codepen-snippet title="Transiciones entre Componentes" slug="WNwVxZw" tab="html,result" theme="39028" />
