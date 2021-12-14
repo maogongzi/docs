@@ -1,6 +1,6 @@
-# Application Config
+# Configuración de Aplicación 
 
-Every Vue application exposes a `config` object that contains the configuration settings for that application:
+Cada aplicación Vue expone un objeto `config` que contiene la configuración para esta aplicación:
 
 ```js
 const app = createApp({})
@@ -8,35 +8,35 @@ const app = createApp({})
 console.log(app.config)
 ```
 
-You can modify its properties, listed below, before mounting your application.
+Puede modificar sus propiedades, enumerada abajo, antes de montar su aplicación.
 
 ## errorHandler
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Default:** `undefined`
+- **Valor Por Defecto:** `undefined`
 
-- **Usage:**
+- **Uso:**
 
 ```js
 app.config.errorHandler = (err, vm, info) => {
-  // handle error
-  // `info` is a Vue-specific error info, e.g. which lifecycle hook
-  // the error was found in
+  // manejar errores
+  // `info` es un error de información especificado para Vue, p. ej. en qué hook de ciclo de vida
+  // se encontró el error
 }
 ```
 
-Assign a handler for uncaught errors during component render function and watchers. The handler gets called with the error and the application instance.
+Asignar una manejador para errores no capturados durante la función _render_ y los observadores del componente. El manejador será llamado con el error y la instancia de aplicación.
 
-> Error tracking services [Sentry](https://sentry.io/for/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) provide official integrations using this option.
+> Los servicios de seguimiento de errores [Sentry](https://sentry.io/for/vue/) y [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) proporcionan integraciones oficiales utilizando esta opción.
 
 ## warnHandler
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Default:** `undefined`
+- **Valor Por Defecto:** `undefined`
 
-- **Usage:**
+- **Uso:**
 
 ```js
 app.config.warnHandler = function(msg, vm, trace) {
@@ -48,11 +48,11 @@ Assign a custom handler for runtime Vue warnings. Note this only works during de
 
 ## globalProperties
 
-- **Type:** `[key: string]: any`
+- **Tipo:** `[key: string]: any`
 
-- **Default:** `undefined`
+- **Valor Por Defecto:** `undefined`
 
-- **Usage:**
+- **Uso:**
 
 ```js
 app.config.globalProperties.foo = 'bar'
@@ -79,11 +79,11 @@ app.config.globalProperties.$http = () => {}
 
 ## optionMergeStrategies
 
-- **Type:** `{ [key: string]: Function }`
+- **Tipo:** `{ [key: string]: Function }`
 
-- **Default:** `{}`
+- **Valor Por Defecto:** `{}`
 
-- **Usage:**
+- **Uso:**
 
 ```js
 const app = createApp({
@@ -111,9 +111,9 @@ The merge strategy receives the value of that option defined on the parent and c
 
 ## performance
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `false`
+- **Valor Por Defecto:** `false`
 
 - **Usage**:
 
@@ -121,7 +121,7 @@ Set this to `true` to enable component init, compile, render and patch performan
 
 ## compilerOptions <Badge text="3.1+" />
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
 Configure runtime compiler options. Values set on this object will be passed to the in-browser template compiler and affect every component in the configured app. Note you can also override these options on a per-component basis using the [`compilerOptions` option](/api/options-misc.html#compileroptions).
 
@@ -135,11 +135,11 @@ This config option is only respected when using the full build (i.e. the standal
 
 ### compilerOptions.isCustomElement
 
-- **Type:** `(tag: string) => boolean`
+- **Tipo:** `(tag: string) => boolean`
 
-- **Default:** `undefined`
+- **Valor Por Defecto:** `undefined`
 
-- **Usage:**
+- **Uso:**
 
 ```js
 // any element starting with 'ion-' will be recognized as a custom one
@@ -152,11 +152,11 @@ Specifies a method to recognize custom elements defined outside of Vue (e.g., us
 
 ### compilerOptions.whitespace
 
-- **Type:** `'condense' | 'preserve'`
+- **Tipo:** `'condense' | 'preserve'`
 
-- **Default:** `'condense'`
+- **Valor Por Defecto:** `'condense'`
 
-- **Usage:**
+- **Uso:**
 
 ```js
 app.config.compilerOptions.whitespace = 'preserve'
@@ -172,11 +172,11 @@ Setting the value to `'preserve'` will disable (2) and (3).
 
 ### compilerOptions.delimiters
 
-- **Type:** `Array<string>`
+- **Tipo:** `Array<string>`
 
-- **Default:** `{{ "['\u007b\u007b', '\u007d\u007d']" }}`
+- **Valor Por Defecto:** `{{ "['\u007b\u007b', '\u007d\u007d']" }}`
 
-- **Usage:**
+- **Uso:**
 
 ```js
 // Delimiters changed to ES6 template string style
@@ -189,11 +189,11 @@ Typically this is used to avoid conflicting with server-side frameworks that als
 
 ### compilerOptions.comments
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `false`
+- **Valor Por Defecto:** `false`
 
-- **Usage:**
+- **Uso:**
 
 ```js
 app.config.compilerOptions.comments = true
