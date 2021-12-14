@@ -60,6 +60,11 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/state-management.md](src/guide/state-management.md)|Spanish :white_check_mark:|
 |[src/guide/teleport.md](src/guide/teleport.md)|Spanish :white_check_mark:|
 |[src/guide/template-syntax.md](src/guide/template-syntax.md)|Spanish :white_check_mark:|
+|[src/guide/testing.md](src/guide/testing.md)|Spanish :white_check_mark:|
+|[src/guide/tooling/deployment.md](src/guide/tooling/deployment.md)|Spanish :white_check_mark:|
+|[src/guide/transitions-overview.md](src/guide/transitions-overview.md)|Spanish :white_check_mark:|
+|[src/guide/transitions-state.md](src/guide/transitions-state.md)|Spanish :white_check_mark:|
+|[src/guide/typescript-support.md](src/guide/typescript-support.md)|Spanish :white_check_mark:|
 |[src/guide/web-components.md](src/guide/web-components.md)|Spanish :white_check_mark:|
 |[src/search/README.md](src/search/README.md)|Spanish :white_check_mark:|
 |[src/.vuepress/theme/README.md](src/.vuepress/theme/README.md)|English :x:|
@@ -149,13 +154,8 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/guide/ssr/server.md](src/guide/ssr/server.md)|English :x:|
 |[src/guide/ssr/structure.md](src/guide/ssr/structure.md)|English :x:|
 |[src/guide/ssr/universal.md](src/guide/ssr/universal.md)|English :x:|
-|[src/guide/testing.md](src/guide/testing.md)|English :x:|
-|[src/guide/tooling/deployment.md](src/guide/tooling/deployment.md)|English :x:|
 |[src/guide/transitions-enterleave.md](src/guide/transitions-enterleave.md)|English :x:|
 |[src/guide/transitions-list.md](src/guide/transitions-list.md)|English :x:|
-|[src/guide/transitions-overview.md](src/guide/transitions-overview.md)|English :x:|
-|[src/guide/transitions-state.md](src/guide/transitions-state.md)|English :x:|
-|[src/guide/typescript-support.md](src/guide/typescript-support.md)|English :x:|
 |[src/style-guide/README.md](src/style-guide/README.md)|English :x:|
 |[src/support-vuejs/README.md](src/support-vuejs/README.md)|English :x:|
 
