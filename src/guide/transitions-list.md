@@ -1,25 +1,25 @@
 # Transiciones de Listas
 
-So far, we've managed transitions for:
+Hasta ahora, hemos manejado transiciones para:
 
-- Individual nodes
-- Multiple nodes where only 1 is rendered at a time
+- Nodos individuales
+- Múltiples nodos dónde solo uno de ellos está renderizado cada vez.
 
-So what about for when we have a whole list of items we want to render simultaneously, for example with `v-for`? In this case, we'll use the `<transition-group>` component. Before we dive into an example though, there are a few things that are important to know about this component:
+¿Qué pasa con la situación cuando tenemos una lista entera de elementos que queramos renderizar simultáneamente, por ejemplo con `v-for`? En este caso, utilizaremos el componente `<transition-group>`. Antes de que nos profundicemos en un ejemplo, hay unas cosas que son importantes para saber de este componente:
 
-- By default, it doesn't render a wrapper element, but you can specify an element to be rendered with the `tag` attribute.
-- [Transition modes](/guide/transitions-enterleave.html#transition-modes) are not available, because we are no longer alternating between mutually exclusive elements.
-- Elements inside are **always required** to have a unique `key` attribute.
-- CSS transition classes will be applied to inner elements and not to the group/container itself.
+- Por defecto, no renderiza un elemento de envoltorio, pero puede especificar un elemento para ser renderizado con el atributo `tag`.
+- Los [modos de transición](/guide/transitions-enterleave.html#transition-modes) no son disponibles, porque ya no estamos alternando entre elementos exclusivos mutualmente.
+- Los elementos dentro son **siempre requeridos** para tener un atributo `key` único.
+- Las clases de transición de CSS serán aplicadas a los elementos internos y no al grupo/contenedor mismo.
 
-## List Entering/Leaving Transitions
+## Transiciones de Entrar/Salir de Lista
 
-Now let's dive into an example, transitioning entering and leaving using the same CSS classes we've used previously:
+Ahora dejemos profundizarnos en un ejemplo, aplicar transición de entrada y salida utilizando las mismas clases CSS que hemos utilizado anteriormente:
 
 ```html
 <div id="list-demo">
-  <button @click="add">Add</button>
-  <button @click="remove">Remove</button>
+  <button @click="add">Agregar</button>
+  <button @click="remove">Eliminar</button>
   <transition-group name="list" tag="p">
     <span v-for="item in items" :key="item" class="list-item">
       {{ item }}
@@ -68,21 +68,21 @@ Vue.createApp(Demo).mount('#list-demo')
 }
 ```
 
-<common-codepen-snippet title="Transition List" slug="e1cea580e91d6952eb0ae17bfb7c379d" tab="js,result" :editable="false" :preview="false" />
+<common-codepen-snippet title="Aplicar transición a la lista" slug="e1cea580e91d6952eb0ae17bfb7c379d" tab="js,result" :editable="false" :preview="false" />
 
-There's one problem with this example. When you add or remove an item, the ones around it instantly snap into their new place instead of smoothly transitioning. We'll fix that later.
+Hay un problema sobre este ejemplo. Cuando agrega o elimina un elemento, los otros alrededor de el se encajan instantáneamente en sus nuevos lugares en ves de una transición suave. Vamos a arreglarlo más adelante.
 
-## List Move Transitions
+## Transiciones de Movimiento de Lista
 
-The `<transition-group>` component has another trick up its sleeve. It can not only animate entering and leaving, but also changes in position. The only new concept you need to know to use this feature is the addition of **the `v-move` class**, which is added when items are changing positions. Like the other classes, its prefix will match the value of a provided `name` attribute and you can also manually specify a class with the `move-class` attribute.
+El componente `<transition-group>` tiene otra trampa bajo la manga. No solo puede animar la entrada y salida, sino también cambios de posición. El único nuevo concepto que tiene que saber para utilizar esta característica es la adición de **la `v-move` clase**, lo que es agregado cuando los elementos son cambiando sus posiciones. Al igual que otras clases, su prefijo coincidirá el valor de un atributo `name` proporcionado y puede también manualmente especificar una clase con el atributo `move-class`.
 
-This class is mostly useful for specifying the transition timing and easing curve, as you'll see below:
+Esta clase es principalmente útil para especificar la temporización de transición y la curva de _easing_, como lo que puede ver a continuación:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
 
 <div id="flip-list-demo">
-  <button @click="shuffle">Shuffle</button>
+  <button @click="shuffle">Barajar</button>
   <transition-group name="flip-list" tag="ul">
     <li v-for="item in items" :key="item">
       {{ item }}
@@ -114,19 +114,19 @@ Vue.createApp(Demo).mount('#flip-list-demo')
 }
 ```
 
-<common-codepen-snippet title="Transition-group example" slug="049211673d3c185fde6b6eceb8baebec" tab="html,result" :editable="false" :preview="false" />
+<common-codepen-snippet title="Ejemplo de transition-group" slug="049211673d3c185fde6b6eceb8baebec" tab="html,result" :editable="false" :preview="false" />
 
-This might seem like magic, but under the hood, Vue is using an animation technique called [FLIP](https://aerotwist.com/blog/flip-your-animations/) to smoothly transition elements from their old position to their new position using transforms.
+Este se parecería mágico, pero bajo el capó, Vue está utilizando una técnica de animación llamada [FLIP](https://aerotwist.com/blog/flip-your-animations/) para aplicar transiciones a elementos suavemente desde sus posiciones viejos a sus posiciones nuevos utilizando _transforms_.
 
-We can combine this technique with our previous implementation to animate every possible change to our list!
+¡Podemos combinar esta técnica con nuestra implementación previa para animar cada cambio posible a nuestra lista!
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
 
 <div id="list-complete-demo" class="demo">
-  <button @click="shuffle">Shuffle</button>
-  <button @click="add">Add</button>
-  <button @click="remove">Remove</button>
+  <button @click="shuffle">Barajar</button>
+  <button @click="add">Agregar</button>
+  <button @click="remove">Eliminar</button>
   <transition-group name="list-complete" tag="p">
     <span v-for="item in items" :key="item" class="list-complete-item">
       {{ item }}
