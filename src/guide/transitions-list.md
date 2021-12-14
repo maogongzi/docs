@@ -180,19 +180,19 @@ Vue.createApp(Demo).mount('#list-complete-demo')
 }
 ```
 
-<common-codepen-snippet title="Transition-group example" slug="373b4429eb5769ae2e6d097fd954fd08" tab="js,result" :editable="false" :preview="false" />
+<common-codepen-snippet title="Ejemplo de transition-group" slug="373b4429eb5769ae2e6d097fd954fd08" tab="js,result" :editable="false" :preview="false" />
 
 ::: tip
-One important note is that these FLIP transitions do not work with elements set to `display: inline`. As an alternative, you can use `display: inline-block` or place elements in a flex context.
+Una nota importante es que estas transiciones de FLIP no funcionan con elementos establecidos como `display: inline`. Como alternativa puede utilizar `display: inline-block` o poner elementos dentro de un contexto _flex_.
 :::
 
-These FLIP animations are also not limited to a single axis. Items in a multidimensional grid can be [transitioned too](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-list-move-transitions):
+Estas animaciones de FLIP no son limitadas a un solo eje. Se pueden aplicar [transiciones también](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-list-move-transitions) a los elementos en una rejilla multidimensional:
 
-TODO: example
+TODO: ejemplo
 
-## Staggering List Transitions
+## Escalonar Transiciones de Lista
 
-By communicating with JavaScript transitions through data attributes, it's also possible to stagger transitions in a list:
+A través de comunicar con las transiciones de JavaScript mediante atributos de dato, también es posible escalonar transiciones en una list:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
@@ -267,15 +267,15 @@ const Demo = {
 Vue.createApp(Demo).mount('#demo')
 ```
 
-<common-codepen-snippet title="Staggered Lists" slug="c2fc5107bd3025ceadea049b3ee44ec0" tab="js,result" :editable="false" :preview="false" />
+<common-codepen-snippet title="Listas escalonadas" slug="c2fc5107bd3025ceadea049b3ee44ec0" tab="js,result" :editable="false" :preview="false" />
 
-## Reusable Transitions
+## Transiciones Reutilizables
 
-Transitions can be reused through Vue's component system. To create a reusable transition, all you have to do is place a `<transition>` or `<transition-group>` component at the root, then pass any children into the transition component.
+Las transiciones pueden ser reutilizadas a lo largo del sistema de componentes de Vue. Para crear una transición reutilizable, lo único que tiene que hacer es poner un componente `<transition>` o `<transition-group>` al raíz, luego pasar cualquier hijo al componente de transición.
 
-TODO: refactor to Vue 3
+TODO: refactorizar a Vue 3
 
-Here's an example using a template component:
+Aquí es un ejemplo utilizando un componente de plantilla:
 
 ```js
 Vue.component('my-special-transition', {
@@ -300,7 +300,7 @@ Vue.component('my-special-transition', {
 })
 ```
 
-And [functional components](render-function.html#functional-components) are especially well-suited to this task:
+Y [componentes funcionales](render-function.html#functional-components) son especialmente bien adaptados a esta tarea:
 
 ```js
 Vue.component('my-special-transition', {
@@ -325,9 +325,9 @@ Vue.component('my-special-transition', {
 })
 ```
 
-## Dynamic Transitions
+## Transiciones Dinámicas
 
-Yes, even transitions in Vue are data-driven! The most basic example of a dynamic transition binds the `name` attribute to a dynamic property.
+Sí, ¡incluso las transiciones en Vue son impulsadas por dato! El más básico ejemplo de una transición dinámica vincula el atributo `name` a una propiedad dinámica.
 
 ```html
 <transition :name="transitionName">
@@ -335,17 +335,17 @@ Yes, even transitions in Vue are data-driven! The most basic example of a dynami
 </transition>
 ```
 
-This can be useful when you've defined CSS transitions/animations using Vue's transition class conventions and want to switch between them.
+Este puede ser útil cuando ha definido transiciones/animaciones CSS utilizando las convenciones de clase de transición de Vue y quiere intercambiar entre ellos.
 
-Really though, any transition attribute can be dynamically bound. And it's not only attributes. Since event hooks are methods, they have access to any data in the context. That means depending on the state of your component, your JavaScript transitions can behave differently.
+Realmente sin embargo, cualquier atributo de transición puede ser vinculado dinámicamente. Y no sólo limitado a los atributos. Debido a que los _hooks_ de eventos son métodos, tienen acceso a cualquier dato en el contexto. Eso significa que depende del estado de su componente, sus transiciones de JavaScript pueden comportarse diferentemente.
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 
 <div id="dynamic-fade-demo" class="demo">
-  Fade In:
+  Fundido de entrada:
   <input type="range" v-model="fadeInDuration" min="0" :max="maxFadeDuration" />
-  Fade Out:
+  Fundido de salida:
   <input
     type="range"
     v-model="fadeOutDuration"
@@ -358,12 +358,12 @@ Really though, any transition attribute can be dynamically bound. And it's not o
     @enter="enter"
     @leave="leave"
   >
-    <p v-if="show">hello</p>
+    <p v-if="show">hola</p>
   </transition>
   <button v-if="stop" @click="stop = false; show = false">
-    Start animating
+    Empezar la animación
   </button>
-  <button v-else @click="stop = true">Stop it!</button>
+  <button v-else @click="stop = true">¡deténgalo!</button>
 </div>
 ```
 
@@ -419,6 +419,6 @@ const app = Vue.createApp({
 app.mount('#dynamic-fade-demo')
 ```
 
-TODO: example
+TODO: ejemplo
 
-Finally, the ultimate way of creating dynamic transitions is through components that accept props to change the nature of the transition(s) to be used. It may sound cheesy, but the only limit really is your imagination.
+Por fin, la manera última de crear transiciones dinámicas es mediante componentes que acepten _props_ para cambiar la natura de las transiciones listas para utilizar. Por cursi que suene, pero la sola limitación de hecho es su imaginación.
