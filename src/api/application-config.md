@@ -1,6 +1,6 @@
 # Configuración de Aplicación 
 
-Cada aplicación Vue expone un objeto `config` que contiene la configuración para esta aplicación:
+Cada aplicación Vue expone un objeto `config` que contenga la configuración para dicha aplicación:
 
 ```js
 const app = createApp({})
@@ -21,12 +21,12 @@ Puede modificar sus propiedades, enumeradas abajo, antes de montar su aplicació
 ```js
 app.config.errorHandler = (err, vm, info) => {
   // manejar errores
-  // `info` es un error de información específica de Vue, p. ej. en cual hook de ciclo de vida
+  // `info` es un error de información específico de Vue, p. ej. en cual hook de ciclo de vida
   // se encontró el error
 }
 ```
 
-Asignar un manejador para errores no capturados durante la función _render_ y los observadores del componente. El manejador será llamado con el error y la instancia de aplicación.
+Asigna un manejador para errores no capturados durante la función _render_ y los observadores del componente. El manejador será llamado con el error y la instancia de aplicación.
 
 > Los servicios de seguimiento de errores [Sentry](https://sentry.io/for/vue/) y [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) proporcionan integraciones oficiales utilizando esta opción.
 
@@ -64,7 +64,7 @@ app.component('child-component', {
 })
 ```
 
-Agregar una propiedad global que puede ser accesada en cualquiera instancia de componente dentro de la aplicación. La propiedad del componente tendrá prioridad cuando hay claves contradictorios.
+Agrega una propiedad global que puede ser accesada en cualquiera instancia de componente dentro de la aplicación. La propiedad del componente tendrá prioridad cuando hay claves contradictorios.
 
 Este puede reemplazar la extensión `Vue.prototype` de Vue 2.x:
 
@@ -105,7 +105,7 @@ app.mixin({
 
 Define estrategias de fusión (merge) para opciones personalizadas.
 
-La estrategia de fusión recibe el valor de aquella opción definida en el padre y las instancias del hijo como primer y segundo parámetro respectivamente.
+La estrategia de fusión recibe el valor de aquella opción definido en las instancias del padre y hijo como primer y segundo parámetro respectivamente.
 
 - **Vea también:** [Estrategias de fusión de opciones personalizadas](../guide/mixins.html#custom-option-merge-strategies)
 
@@ -117,7 +117,7 @@ La estrategia de fusión recibe el valor de aquella opción definida en el padre
 
 - **Uso**:
 
-Establézcalo en `true` para habilitar el seguimiento del rendimiento de inicio, compilación, renderización y parche del componente en el panal de _performance/timeline_ del _devtool_ del navegador. Solo funciona en modo de desarrollo y navegadores que admiten la API [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark).
+Establézcalo en `true` para habilitar el seguimiento del rendimiento de inicio, compilación, renderización y parche del componente en el panal de _performance/timeline_ del _devtool_ del navegador. Solo funciona en modo de desarrollo y en navegadores que admiten la API [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark).
 
 
 ## compilerOptions <Badge text="3.1+" />
@@ -127,9 +127,9 @@ Establézcalo en `true` para habilitar el seguimiento del rendimiento de inicio,
 Configurar opciones de compilador de tiempo de ejecución. Los valores establecidos en este objeto serán pasados al compilador de plantillas en el navegador y afectarán cada componente en la aplicación configurada. Note que puede también sobreescribir estas opciones sobre la base de per componente utilizando la [opción `compilerOptions`](/api/options-misc.html#compileroptions).
 
 ::: tip Important
-Esta opción de configuración solo se respeta cuando se utilice la compilación completa (es decir, el `vue.js` independiente que puede compilar plantillas dentro del navegador). Si está utilizando la compilación de solo tiempo de ejecución con una configuración de compilación, las opciones del compilador deben pasarse a `@vue/compiler-dom` mediante las configuraciones de herramienta de compilación en su lugar.
+Esta opción de configuración solo se respeta cuando se utilice la compilación completa (es decir, el `vue.js` independiente que puede compilar plantillas dentro del navegador). Si está utilizando la compilación de solo tiempo de ejecución con una configuración de compilación, las opciones del compilador deben ser pasadas a `@vue/compiler-dom` mediante las configuraciones de herramienta de compilación en su lugar.
 
-- para `vue-loader`: [pasar por la opción de cargador (loader) `compilerOptions`](https://vue-loader.vuejs.org/options.html#compileroptions). Vea también [cómo configurarlo en `vue-cli`](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader).
+- para `vue-loader`: [pasar mediante la opción de cargador (loader) `compilerOptions`](https://vue-loader.vuejs.org/options.html#compileroptions). Vea también [cómo configurarlo en `vue-cli`](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader).
 
 - para `vite`: [pasar mediante las opciones de `@vitejs/plugin-vue`](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#example-for-passing-options-to-vuecompiler-dom).
 :::
@@ -147,7 +147,7 @@ Esta opción de configuración solo se respeta cuando se utilice la compilación
 app.config.compilerOptions.isCustomElement = tag => tag.startsWith('ion-')
 ```
 
-Esta opción especifica una método para reconocer elementos personalizadas definidos afuera de Vue (p. e.j. utilizando las APIs de Componentes Web). Si un componente cumple esta condición, no necesitará registración local o global y Vue no lanzará una advertencia sobre un `Unknown custom element` (Elemento personalizado desconocido).
+Especifica un método para reconocer elementos personalizadas definidos afuera de Vue (p. e.j. utilizando las APIs de Componentes Web). Si un componente cumple esta condición, no necesitará registración local o global y Vue no lanzará una advertencia sobre un `Unknown custom element` (Elemento personalizado desconocido).
 
 > Note que todas etiquetas HTML y SVG nativas no necesitan ser coincididas en esta función, el intérprete (parser) Vue realiza esta comprobación automáticamente.
 
@@ -184,7 +184,7 @@ Al establecer el valor a `'preserve'`, se deshabilitarán (2) y (3).
 app.config.compilerOptions.delimiters = ['${', '}']    
 ```
 
-Esta opción establece los delimitadores utilizados para la interpolación de texo dentro de la plantilla.
+Establece los delimitadores utilizados para la interpolación de texo dentro de la plantilla.
 
 Típicamente esta es utilizada para evitar conflictos con frameworks del lado del servidor que también utilice el sintaxis _mustache_.
 
