@@ -1,6 +1,6 @@
 # API de Aplicación
 
-In Vue 3, APIs that globally mutate Vue's behavior are now moved to application instances created by the new `createApp` method. In addition, their effects are now scoped to that specific application's instance:
+En Vue 3, las APIs que mutan globalmente el comportamiento de Vue son ahora movidos a la instancia de aplicación creada por el nuevo método `createApp`. Además, sus efectos son ahora limitados a la instancia de esa aplicación específica.
 
 ```js
 import { createApp } from 'vue'
