@@ -124,14 +124,14 @@ Establézcalo en `true` para habilitar el seguimiento del rendimiento de inicio,
 
 - **Tipo:** `Object`
 
-Configure runtime compiler options. Values set on this object will be passed to the in-browser template compiler and affect every component in the configured app. Note you can also override these options on a per-component basis using the [`compilerOptions` option](/api/options-misc.html#compileroptions).
+Configurar opciones de compilador de tiempo de ejecución. Los valores establecidos en este objeto serán pasados al compilador de plantillas en el navegador y afectarán cada componente en la aplicación configurada. Note que puede también sobreescribir estas opciones sobre la base de per componente utilizando la [opción `compilerOptions`](/api/options-misc.html#compileroptions).
 
 ::: tip Important
-This config option is only respected when using the full build (i.e. the standalone `vue.js` that can compile templates in the browser). If you are using the runtime-only build with a build setup, compiler options must be passed to `@vue/compiler-dom` via build tool configurations instead.
+Esta opción de configuración solo se respeta cuando se utilice la compilación completa (es decir, el `vue.js` independiente que puede compilar plantillas dentro del navegador). Si está utilizando la compilación de solo tiempo de ejecución con una configuración de compilación, las opciones del compilador deben pasarse a `@vue/compiler-dom` mediante las configuraciones de herramienta de compilación en su lugar.
 
-- For `vue-loader`: [pass via the `compilerOptions` loader option](https://vue-loader.vuejs.org/options.html#compileroptions). Also see [how to configure it in `vue-cli`](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader).
+- para `vue-loader`: [pasar por la opción de cargador (loader) `compilerOptions`](https://vue-loader.vuejs.org/options.html#compileroptions). Vea también [cómo configurarlo en `vue-cli`](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader).
 
-- For `vite`: [pass via `@vitejs/plugin-vue` options](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#example-for-passing-options-to-vuecompiler-dom).
+- para `vite`: [pasar mediante las opciones de `@vitejs/plugin-vue`](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#example-for-passing-options-to-vuecompiler-dom).
 :::
 
 ### compilerOptions.isCustomElement
@@ -143,7 +143,7 @@ This config option is only respected when using the full build (i.e. the standal
 - **Uso:**
 
 ```js
-// any element starting with 'ion-' will be recognized as a custom one
+// cualquier elemento empieza con 'ion-' será reconocido como un elemento personalizado
 app.config.compilerOptions.isCustomElement = tag => tag.startsWith('ion-')
 ```
 
