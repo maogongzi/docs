@@ -1,6 +1,6 @@
-# Application Config
+# Configuración de Aplicación 
 
-Every Vue application exposes a `config` object that contains the configuration settings for that application:
+Cada aplicación Vue expone un objeto `config` que contenga la configuración para dicha aplicación:
 
 ```js
 const app = createApp({})
@@ -8,51 +8,51 @@ const app = createApp({})
 console.log(app.config)
 ```
 
-You can modify its properties, listed below, before mounting your application.
+Puede modificar sus propiedades, enumeradas abajo, antes de montar su aplicación.
 
 ## errorHandler
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Default:** `undefined`
+- **Por Defecto:** `undefined`
 
-- **Usage:**
+- **Uso:**
 
 ```js
 app.config.errorHandler = (err, vm, info) => {
-  // handle error
-  // `info` is a Vue-specific error info, e.g. which lifecycle hook
-  // the error was found in
+  // manejar errores
+  // `info` es un error de información específico de Vue, p. ej. en cual hook de ciclo de vida
+  // se encontró el error
 }
 ```
 
-Assign a handler for uncaught errors during component render function and watchers. The handler gets called with the error and the application instance.
+Asigna un manejador para errores no capturados durante la función _render_ y los observadores del componente. El manejador será llamado con el error y la instancia de aplicación.
 
-> Error tracking services [Sentry](https://sentry.io/for/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) provide official integrations using this option.
+> Los servicios de seguimiento de errores [Sentry](https://sentry.io/for/vue/) y [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) proporcionan integraciones oficiales utilizando esta opción.
 
 ## warnHandler
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Default:** `undefined`
+- **Por Defecto:** `undefined`
 
-- **Usage:**
+- **Uso:**
 
 ```js
 app.config.warnHandler = function(msg, vm, trace) {
-  // `trace` is the component hierarchy trace
+  // `trace` es la traza de la jerarquía de componentes
 }
 ```
 
-Assign a custom handler for runtime Vue warnings. Note this only works during development and is ignored in production.
+Asigna un manejador personalizado para advertencias en tiempo de ejecución. Note que solo funciona en desarrollo y es ignorado en producción.
 
 ## globalProperties
 
-- **Type:** `[key: string]: any`
+- **Tipo:** `[key: string]: any`
 
-- **Default:** `undefined`
+- **Por Defecto:** `undefined`
 
-- **Usage:**
+- **Uso:**
 
 ```js
 app.config.globalProperties.foo = 'bar'
@@ -64,26 +64,26 @@ app.component('child-component', {
 })
 ```
 
-Adds a global property that can be accessed in any component instance inside the application. The component’s property will take priority when there are conflicting keys.
+Agrega una propiedad global que puede ser accesada en cualquiera instancia de componente dentro de la aplicación. La propiedad del componente tendrá prioridad cuando hay claves contradictorios.
 
-This can replace Vue 2.x `Vue.prototype` extending:
+Este puede reemplazar la extensión `Vue.prototype` de Vue 2.x:
 
 ```js
-// Before
+// antes
 Vue.prototype.$http = () => {}
 
-// After
+// después
 const app = createApp({})
 app.config.globalProperties.$http = () => {}
 ```
 
 ## optionMergeStrategies
 
-- **Type:** `{ [key: string]: Function }`
+- **Tipo:** `{ [key: string]: Function }`
 
-- **Default:** `{}`
+- **Por Defecto:** `{}`
 
-- **Usage:**
+- **Uso:**
 
 ```js
 const app = createApp({
@@ -93,116 +93,117 @@ const app = createApp({
 })
 
 app.config.optionMergeStrategies.hello = (parent, child) => {
-  return `Hello, ${child}`
+  return `Hola, ${child}`
 }
 
 app.mixin({
   hello: 'Vue'
 })
 
-// 'Hello, Vue'
+// 'Hola, Vue'
 ```
 
-Define merging strategies for custom options.
+Define estrategias de fusión (merge) para opciones personalizadas.
 
-The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively.
+La estrategia de fusión recibe el valor de aquella opción definido en las instancias del padre y hijo como primer y segundo parámetro respectivamente.
 
-- **See also:** [Custom Option Merging Strategies](../guide/mixins.html#custom-option-merge-strategies)
+- **Vea también:** [Estrategias de fusión de opciones personalizadas](../guide/mixins.html#custom-option-merge-strategies)
 
 ## performance
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `false`
+- **Por Defecto:** `false`
 
-- **Usage**:
+- **Uso**:
 
-Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool performance/timeline panel. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
+Establézcalo en `true` para habilitar el seguimiento del rendimiento de inicio, compilación, renderización y parche del componente en el panal de _performance/timeline_ del _devtool_ del navegador. Solo funciona en modo de desarrollo y en navegadores que admiten la API [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark).
+
 
 ## compilerOptions <Badge text="3.1+" />
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-Configure runtime compiler options. Values set on this object will be passed to the in-browser template compiler and affect every component in the configured app. Note you can also override these options on a per-component basis using the [`compilerOptions` option](/api/options-misc.html#compileroptions).
+Configurar opciones de compilador de tiempo de ejecución. Los valores establecidos en este objeto serán pasados al compilador de plantillas en el navegador y afectarán cada componente en la aplicación configurada. Note que puede también sobreescribir estas opciones sobre la base de per componente utilizando la [opción `compilerOptions`](/api/options-misc.html#compileroptions).
 
 ::: tip Important
-This config option is only respected when using the full build (i.e. the standalone `vue.js` that can compile templates in the browser). If you are using the runtime-only build with a build setup, compiler options must be passed to `@vue/compiler-dom` via build tool configurations instead.
+Esta opción de configuración solo se respeta cuando se utilice la compilación completa (es decir, el `vue.js` independiente que puede compilar plantillas dentro del navegador). Si está utilizando la compilación de solo tiempo de ejecución con una configuración de compilación, las opciones del compilador deben ser pasadas a `@vue/compiler-dom` mediante las configuraciones de herramienta de compilación en su lugar.
 
-- For `vue-loader`: [pass via the `compilerOptions` loader option](https://vue-loader.vuejs.org/options.html#compileroptions). Also see [how to configure it in `vue-cli`](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader).
+- para `vue-loader`: [pasar mediante la opción de cargador (loader) `compilerOptions`](https://vue-loader.vuejs.org/options.html#compileroptions). Vea también [cómo configurarlo en `vue-cli`](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader).
 
-- For `vite`: [pass via `@vitejs/plugin-vue` options](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#example-for-passing-options-to-vuecompiler-dom).
+- para `vite`: [pasar mediante las opciones de `@vitejs/plugin-vue`](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#example-for-passing-options-to-vuecompiler-dom).
 :::
 
 ### compilerOptions.isCustomElement
 
-- **Type:** `(tag: string) => boolean`
+- **Tipo:** `(tag: string) => boolean`
 
-- **Default:** `undefined`
+- **Por Defecto:** `undefined`
 
-- **Usage:**
+- **Uso:**
 
 ```js
-// any element starting with 'ion-' will be recognized as a custom one
+// cualquier elemento empieza con 'ion-' será reconocido como un elemento personalizado
 app.config.compilerOptions.isCustomElement = tag => tag.startsWith('ion-')
 ```
 
-Specifies a method to recognize custom elements defined outside of Vue (e.g., using the Web Components APIs). If component matches this condition, it won't need local or global registration and Vue won't throw a warning about an `Unknown custom element`.
+Especifica un método para reconocer elementos personalizadas definidos afuera de Vue (p. e.j. utilizando las APIs de Componentes Web). Si un componente cumple esta condición, no necesitará registración local o global y Vue no lanzará una advertencia sobre un `Unknown custom element` (Elemento personalizado desconocido).
 
-> Note that all native HTML and SVG tags don't need to be matched in this function - Vue parser performs this check automatically.
+> Note que todas etiquetas HTML y SVG nativas no necesitan ser coincididas en esta función, el intérprete (parser) Vue realiza esta comprobación automáticamente.
 
 ### compilerOptions.whitespace
 
-- **Type:** `'condense' | 'preserve'`
+- **Tipo:** `'condense' | 'preserve'`
 
-- **Default:** `'condense'`
+- **Por Defecto:** `'condense'`
 
-- **Usage:**
+- **Uso:**
 
 ```js
 app.config.compilerOptions.whitespace = 'preserve'
 ```
 
-By default, Vue removes/condenses whitespaces between template elements to produce more efficient compiled output:
+Por defecto, Vue elimina/comprime espacios en blanco entre elementos de plantilla para generar resultado compilado más efficiente:
 
-1. Leading / ending whitespaces inside an element are condensed into a single space
-2. Whitespaces between elements that contain newlines are removed
-3. Consecutive whitespaces in text nodes are condensed into a single space
+1. Los espacios en blanco iniciales / finales dentro de un elemento son comprimidos en un solo espacio de blanco
+2. Los espacios en blanco entre elementos que contienen saltos de línea son eliminados.
+3. Espacios en blanco consecutivos en nodos de texto son comprimidos en un solo espacio de blancl
 
-Setting the value to `'preserve'` will disable (2) and (3).
+Al establecer el valor a `'preserve'`, se deshabilitarán (2) y (3).
 
 ### compilerOptions.delimiters
 
-- **Type:** `Array<string>`
+- **Tipo:** `Array<string>`
 
-- **Default:** `{{ "['\u007b\u007b', '\u007d\u007d']" }}`
+- **Por Defecto:** `{{ "['\u007b\u007b', '\u007d\u007d']" }}`
 
-- **Usage:**
+- **Uso:**
 
 ```js
-// Delimiters changed to ES6 template string style
+// Cambia los delimitadores al estilo de plantillas de cadena de caracteres de ES6
 app.config.compilerOptions.delimiters = ['${', '}']    
 ```
 
-Sets the delimiters used for text interpolation within the template.
+Establece los delimitadores utilizados para la interpolación de texo dentro de la plantilla.
 
-Typically this is used to avoid conflicting with server-side frameworks that also use mustache syntax.
+Típicamente esta es utilizada para evitar conflictos con frameworks del lado del servidor que también utilice el sintaxis _mustache_.
 
 ### compilerOptions.comments
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `false`
+- **Por Defecto:** `false`
 
-- **Usage:**
+- **Uso:**
 
 ```js
 app.config.compilerOptions.comments = true
 ```
 
-By default, Vue will remove HTML comments inside templates in production. Setting this option to `true` will force Vue to preserve comments even in production. Comments are always preserved during development.
+Por defecto, Vue eliminará comentarios HTML dentro de plantillas en modo de producción. Al establecer esta opción a `true`, Vue será forzado a preservar comentarios incluso en modo de producción. Comentarios son siempre preservados durante el desarrollo.
 
-This option is typically used when Vue is used with other libraries that rely on HTML comments.
+Esta opción es típicamente utilizada cuando Vue es utilizado con otras librerías que dependan de comentarios HTML.
 
 ## isCustomElement <Badge text="deprecated" type="warning"/>
 
-Deprecated in 3.1.0. Use [`compilerOptions.isCustomElement`](#compileroptions-iscustomelement) instead.
+Obsoleto en 3.1.0. Utilice [`compilerOptions.isCustomElement`](#compileroptions-iscustomelement) en su lugar.
