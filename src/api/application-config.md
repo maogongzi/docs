@@ -14,7 +14,7 @@ Puede modificar sus propiedades, enumerada abajo, antes de montar su aplicación
 
 - **Tipo:** `Function`
 
-- **Valor Por Defecto:** `undefined`
+- **Por Defecto:** `undefined`
 
 - **Uso:**
 
@@ -34,7 +34,7 @@ Asignar una manejador para errores no capturados durante la función _render_ y 
 
 - **Tipo:** `Function`
 
-- **Valor Por Defecto:** `undefined`
+- **Por Defecto:** `undefined`
 
 - **Uso:**
 
@@ -50,7 +50,7 @@ Assign a custom handler for runtime Vue warnings. Note this only works during de
 
 - **Tipo:** `[key: string]: any`
 
-- **Valor Por Defecto:** `undefined`
+- **Por Defecto:** `undefined`
 
 - **Uso:**
 
@@ -81,7 +81,7 @@ app.config.globalProperties.$http = () => {}
 
 - **Tipo:** `{ [key: string]: Function }`
 
-- **Valor Por Defecto:** `{}`
+- **Por Defecto:** `{}`
 
 - **Uso:**
 
@@ -113,7 +113,7 @@ The merge strategy receives the value of that option defined on the parent and c
 
 - **Tipo:** `boolean`
 
-- **Valor Por Defecto:** `false`
+- **Por Defecto:** `false`
 
 - **Usage**:
 
@@ -137,7 +137,7 @@ This config option is only respected when using the full build (i.e. the standal
 
 - **Tipo:** `(tag: string) => boolean`
 
-- **Valor Por Defecto:** `undefined`
+- **Por Defecto:** `undefined`
 
 - **Uso:**
 
@@ -154,7 +154,7 @@ Specifies a method to recognize custom elements defined outside of Vue (e.g., us
 
 - **Tipo:** `'condense' | 'preserve'`
 
-- **Valor Por Defecto:** `'condense'`
+- **Por Defecto:** `'condense'`
 
 - **Uso:**
 
@@ -174,7 +174,7 @@ Setting the value to `'preserve'` will disable (2) and (3).
 
 - **Tipo:** `Array<string>`
 
-- **Valor Por Defecto:** `{{ "['\u007b\u007b', '\u007d\u007d']" }}`
+- **Por Defecto:** `{{ "['\u007b\u007b', '\u007d\u007d']" }}`
 
 - **Uso:**
 
@@ -191,7 +191,7 @@ Typically this is used to avoid conflicting with server-side frameworks that als
 
 - **Tipo:** `boolean`
 
-- **Valor Por Defecto:** `false`
+- **Por Defecto:** `false`
 
 - **Uso:**
 
