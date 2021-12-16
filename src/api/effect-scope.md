@@ -1,4 +1,4 @@
-# Effect Scope API <Badge text="3.2+" />
+# API del Alcance de Efectos <Badge text="3.2+" />
 
 :::info
 Effect scope is an advanced API primarily intended for library authors. For details on how to leverage this API, please consult its corresponding [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md).

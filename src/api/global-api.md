@@ -2,7 +2,7 @@
 sidebarDepth: 1
 ---
 
-# Global API
+# API Global
 
 If you're using a CDN build then the functions of the global API are accessible via the global `Vue` object. e.g.:
 

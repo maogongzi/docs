@@ -1,4 +1,4 @@
-# Composition API
+# API de Composición
 
 > This section uses [single-file component](../guide/single-file-component.html) syntax for code examples
 

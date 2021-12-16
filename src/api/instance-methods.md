@@ -1,4 +1,4 @@
-# Instance Methods
+# Métodos de Instancias
 
 ## $watch
 

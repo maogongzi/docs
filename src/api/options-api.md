@@ -1,10 +1,10 @@
-# Options API
+# API de Opciones
 
-The Options API contains the following sections:
+La API de Opciones contiene las secciones siguientes:
 
-- [Data](/api/options-data.html)
+- [Dato](/api/options-data.html)
 - [DOM](/api/options-dom.html)
-- [Lifecycle Hooks](/api/options-lifecycle-hooks.html)
-- [Assets](/api/options-assets.html)
-- [Composition](/api/options-composition.html)
-- [Miscellaneous](/api/options-misc.html)
+- [_Hooks_ de ciclo de vida](/api/options-lifecycle-hooks.html)
+- [Bienes (Assets)](/api/options-assets.html)
+- [Composición](/api/options-composition.html)
+- [Misceláneo](/api/options-misc.html)

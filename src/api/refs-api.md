@@ -1,4 +1,4 @@
-# Refs
+# _Refs_
 
 > This section uses [single-file component](../guide/single-file-component.html) syntax for code examples
 

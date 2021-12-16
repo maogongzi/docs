@@ -1,4 +1,4 @@
-# Configuración de Aplicación 
+# Configuración de Aplicación
 
 Cada aplicación Vue expone un objeto `config` que contenga la configuración para dicha aplicación:
 
