@@ -147,9 +147,9 @@ Esta opción de configuración solo se respeta cuando se utilice la compilación
 app.config.compilerOptions.isCustomElement = tag => tag.startsWith('ion-')
 ```
 
-Specifies a method to recognize custom elements defined outside of Vue (e.g., using the Web Components APIs). If component matches this condition, it won't need local or global registration and Vue won't throw a warning about an `Unknown custom element`.
+Esta opción especifica una método para reconocer elementos personalizadas definidos afuera de Vue (p. e.j. utilizando las APIs de Componentes Web). Si un componente cumple esta condición, no necesitará registración local o global y Vue no lanzará una advertencia sobre un `Unknown custom element` (Elemento personalizado desconocido).
 
-> Note that all native HTML and SVG tags don't need to be matched in this function - Vue parser performs this check automatically.
+> Note que todas etiquetas HTML y SVG nativas no necesitan ser coincididas en esta función, el intérprete (parser) Vue realiza esta comprobación automáticamente.
 
 ### compilerOptions.whitespace
 
@@ -163,13 +163,13 @@ Specifies a method to recognize custom elements defined outside of Vue (e.g., us
 app.config.compilerOptions.whitespace = 'preserve'
 ```
 
-By default, Vue removes/condenses whitespaces between template elements to produce more efficient compiled output:
+Por defecto, Vue elimina/comprime espacios en blanco entre elementos de plantilla para generar resultado compilado más efficiente:
 
-1. Leading / ending whitespaces inside an element are condensed into a single space
-2. Whitespaces between elements that contain newlines are removed
-3. Consecutive whitespaces in text nodes are condensed into a single space
+1. Los espacios en blanco iniciales / finales dentro de un elemento son comprimidos en un solo espacio de blanco
+2. Los espacios en blanco entre elementos que contienen saltos de línea son eliminados.
+3. Espacios en blanco consecutivos en nodos de texto son comprimidos en un solo espacio de blancl
 
-Setting the value to `'preserve'` will disable (2) and (3).
+Al establecer el valor a `'preserve'`, se deshabilitarán (2) y (3).
 
 ### compilerOptions.delimiters
 
@@ -180,13 +180,13 @@ Setting the value to `'preserve'` will disable (2) and (3).
 - **Uso:**
 
 ```js
-// Delimiters changed to ES6 template string style
+// Cambia los delimitadores al estilo de plantillas de cadena de caracteres de ES6
 app.config.compilerOptions.delimiters = ['${', '}']    
 ```
 
-Sets the delimiters used for text interpolation within the template.
+Esta opción establece los delimitadores utilizados para la interpolación de texo dentro de la plantilla.
 
-Typically this is used to avoid conflicting with server-side frameworks that also use mustache syntax.
+Típicamente esta es utilizada para evitar conflictos con frameworks del lado del servidor que también utilice el sintaxis _mustache_.
 
 ### compilerOptions.comments
 
@@ -200,10 +200,10 @@ Typically this is used to avoid conflicting with server-side frameworks that als
 app.config.compilerOptions.comments = true
 ```
 
-By default, Vue will remove HTML comments inside templates in production. Setting this option to `true` will force Vue to preserve comments even in production. Comments are always preserved during development.
+Por defecto, Vue eliminará comentarios HTML dentro de plantillas en modo de producción. Al establecer esta opción a `true`, Vue será forzado a preservar comentarios incluso en modo de producción. Comentarios son siempre preservados durante el desarrollo.
 
-This option is typically used when Vue is used with other libraries that rely on HTML comments.
+Esta opción es típicamente utilizada cuando Vue es utilizado con otras librerías que dependan de comentarios HTML.
 
 ## isCustomElement <Badge text="deprecated" type="warning"/>
 
-Deprecated in 3.1.0. Use [`compilerOptions.isCustomElement`](#compileroptions-iscustomelement) instead.
+Obsoleto en 3.1.0. Utilice [`compilerOptions.isCustomElement`](#compileroptions-iscustomelement) en su lugar.
