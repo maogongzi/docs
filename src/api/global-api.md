@@ -4,33 +4,33 @@ sidebarDepth: 1
 
 # API Global
 
-If you're using a CDN build then the functions of the global API are accessible via the global `Vue` object. e.g.:
+Si está utilizando una compilación de CDN, luego las funciones de la API global son disponibles mediante el objeto global `Vue`. p. ej.:
 
 ```js
 const { createApp, h, nextTick } = Vue
 ```
 
-If you're using ES modules then they can be imported directly:
+Si está utilizando módulos ES, luego pueden ser importados directamente:
 
 ```js
 import { createApp, h, nextTick } from 'vue'
 ```
 
-Global functions that handle reactivity, such as `reactive` and `ref`, are documented separately. See [Reactivity API](/api/reactivity-api.html) for those functions.
+Las funciones globales que se encargan de la reactividad, como `reactive` y `ref`, son documentadas por separado. Vea [API de Reactividad](/api/reactivity-api.html) para estas funciones.
 
 ## createApp
 
-Returns an application instance which provides an application context. The entire component tree mounted by the application instance share the same context.
+Retorna una instancia de aplicación que proporciona un contexto de aplicación. El árbol completo de componentes montado por la instancia de aplicación comparte el mismo contexto.
 
 ```js
 const app = createApp({})
 ```
 
-You can chain other methods after `createApp`, they can be found in [Application API](./application-api.html)
+Puede encadenar otros métodos después de `createApp`, los cuales se pueden encontrar en [API de Aplicación](./application-api.html)
 
-### Arguments
+### Argumentos
 
-The function receives a root component options object as a first parameter:
+La función recibe un objeto de opciones de componente raíz como el primer parámetro:
 
 ```js
 const app = createApp({
@@ -45,7 +45,7 @@ const app = createApp({
 })
 ```
 
-With the second parameter, we can pass root props to the application:
+Con el segundo parámetro, podemos pasar _props_ raíz a la aplicación:
 
 ```js
 const app = createApp(
@@ -58,14 +58,14 @@ const app = createApp(
 
 ```html
 <div id="app">
-  <!-- Will display 'Evan' -->
+  <!-- se mostrará 'Evan' -->
   {{ username }}
 </div>
 ```
 
-The root props are raw props, much like those passed to [`h`](#h) to create a VNode. In addition to component props, they can also include attributes and event listeners to be applied to the root component.
+Las _props_ raíz son _props_ crudas, muy similar a esos pasados a [`h`](#h) para crear un VNode. Además de _props_ de componente, pueden también incluir atributos y escuchadores de evento que se van a aplicar al componente raíz.
 
-### Typing
+### Tipar
 
 ```ts
 interface Data {
@@ -80,39 +80,39 @@ export type CreateAppFunction<HostElement> = (
 
 ## h
 
-Returns a "virtual node", usually abbreviated to **VNode**: a plain object which contains information describing to Vue what kind of node it should render on the page, including descriptions of any child nodes. It is intended for manually written [render functions](../guide/render-function.md):
+Retorna un "nodo virtual", usualmente abreviado a **VNode**: un objeto plano que contiene información describiendo a Vue qué tipo de nodo se debe renderizar en la página, incluyendo descripciones de cualquier nodo hijo. Es destinado para [funciones de _render_](../guide/render-function.md) escritos manualmente:
 
 ```js
 render() {
-  return h('h1', {}, 'Some title')
+  return h('h1', {}, 'Algún título')
 }
 ```
 
-### Arguments
+### Argumentos
 
-Accepts three arguments: `type`, `props` and `children`
+Acepta tres argumentos: `type`, `props` y `children`
 
 #### type
 
-- **Type:** `String | Object | Function`
+- **Tipo:** `String | Object | Function`
 
-- **Details:**
+- **Detalles:**
 
   An HTML tag name, a component, an async component, or a functional component. Using function returning null would render a comment. This parameter is required
 
 #### props
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-- **Details:**
+- **Detalles:**
 
   An object corresponding to the attributes, props and events we would use in a template. Optional
 
 #### children
 
-- **Type:** `String | Array | Object`
+- **Tipo:** `String | Array | Object`
 
-- **Details:**
+- **Detalles:**
 
   Children VNodes, built using `h()`, or using strings to get "text VNodes" or an object with slots. Optional
 
@@ -304,9 +304,9 @@ Accepts one argument: `name`
 
 #### name
 
-- **Type:** `String`
+- **Tipo:** `String`
 
-- **Details:**
+- **Detalles:**
 
   The name of a loaded component.
 
@@ -333,9 +333,9 @@ Accepts one argument: `component`
 
 #### component
 
-- **Type:** `String | Object (component’s options object)`
+- **Tipo:** `String | Object (component’s options object)`
 
-- **Details:**
+- **Detalles:**
 
   For more details, refer to the documentation on [Dynamic Components](../guide/component-dynamic-async.html).
 
@@ -367,9 +367,9 @@ Accepts one argument: `name`
 
 #### name
 
-- **Type:** `String`
+- **Tipo:** `String`
 
-- **Details:**
+- **Detalles:**
 
   The name of a loaded directive.
 
@@ -398,17 +398,17 @@ Accepts two arguments: `vnode` and `directives`.
 
 #### vnode
 
-- **Type:** `vnode`
+- **Tipo:** `vnode`
 
-- **Details:**
+- **Detalles:**
 
   A virtual node, usually created with `h()`.
 
 #### directives
 
-- **Type:** `Array`
+- **Tipo:** `Array`
 
-- **Details:**
+- **Detalles:**
 
   An array of directives.
 
@@ -471,17 +471,17 @@ Accepts two arguments: `HostNode` and `HostElement`
 
 #### HostNode
 
-- **Type:** `Node`
+- **Tipo:** `Node`
 
-- **Details:**
+- **Detalles:**
 
   The node in the host environment.
 
 #### HostElement
 
-- **Type:** `Element`
+- **Tipo:** `Element`
 
-- **Details:**
+- **Detalles:**
 
   The element in the host environment.
 
@@ -575,9 +575,9 @@ Accepts one argument: `name`
 
 #### name
 
-- **Type:** `String`
+- **Tipo:** `String`
 
-- **Details:**
+- **Detalles:**
 
   The name of the CSS module. Defaults to `'$style'`.
 
