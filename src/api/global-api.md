@@ -98,7 +98,7 @@ Acepta tres argumentos: `type`, `props` y `children`
 
 - **Detalles:**
 
-  An HTML tag name, a component, an async component, or a functional component. Using function returning null would render a comment. This parameter is required
+  Un nombre de etiqueta HTML, un componente, un componente asíncrono, o un componente funcional. Se renderizaría un comentario al utilizar una función que retorne _null_. Este parámetro es requerido
 
 #### props
 
@@ -106,7 +106,7 @@ Acepta tres argumentos: `type`, `props` y `children`
 
 - **Detalles:**
 
-  An object corresponding to the attributes, props and events we would use in a template. Optional
+  Un objeto correspondiente a los atributos, _props_ y eventos que podríamos utilizar en una plantilla. Opcional
 
 #### children
 
@@ -114,12 +114,12 @@ Acepta tres argumentos: `type`, `props` y `children`
 
 - **Detalles:**
 
-  Children VNodes, built using `h()`, or using strings to get "text VNodes" or an object with slots. Optional
+  VNodes hijos, construidos utilizando `h()`, o cadenas de caracteres para obtener "VNodes de texto" o un objeto con _slots_. Opcional
 
   ```js
   h('div', {}, [
-    'Some text comes first.',
-    h('h1', 'A headline'),
+    'Se va algún texto primero.',
+    h('h1', 'Un titular'),
     h(MyComponent, {
       someProp: 'foobar'
     })
