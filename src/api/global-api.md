@@ -128,11 +128,11 @@ Acepta tres argumentos: `type`, `props` y `children`
 
 ## defineComponent
 
-Implementation-wise `defineComponent` does nothing but return the object passed to it. However, in terms of typing, the returned value has a synthetic type of a constructor for manual render function, TSX and IDE tooling support.
+Cuando se trate de la implementación, `defineComponent` no nace nada sino retorna el objeto pasado a el. Sin embargo, en términos de tipar, el valor retornado tiene un constructor de tipo sintético para función manual de _render_, TSX y soporte de herramienta de IDE.
 
-### Arguments
+### Argumentos
 
-An object with component options
+Un objeto con opciones de componente
 
 ```js
 import { defineComponent } from 'vue'
@@ -149,7 +149,7 @@ const MyComponent = defineComponent({
 })
 ```
 
-Or a `setup` function, function name will be used as component name
+O una función `setup`, el nombre de la función será utilizado como nombre de componente
 
 ```js
 import { defineComponent, ref } from 'vue'
@@ -162,11 +162,11 @@ const HelloWorld = defineComponent(function HelloWorld() {
 
 ## defineAsyncComponent
 
-Creates an async component that will be loaded only when it's necessary.
+Crea un componente asíncrono que se va a cargar solo cuando sea necesario.
 
-### Arguments
+### Argumentos
 
-For basic usage, `defineAsyncComponent` can accept a factory function returning a `Promise`. Promise's `resolve` callback should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed.
+Para uso básico, `defineAsyncComponent` puede aceptar una función de fábrica que retorne un `Promise`. El _callback_ `resolve` del Promise será llamado cuando haya recuperado su definición de componente desde el servidor. Puede también llamar `reject(reason)` para indicar que la carga haya fallado.
 
 ```js
 import { defineAsyncComponent } from 'vue'
@@ -178,7 +178,7 @@ const AsyncComp = defineAsyncComponent(() =>
 app.component('async-component', AsyncComp)
 ```
 
-When using [local registration](../guide/component-registration.html#local-registration), you can also directly provide a function that returns a `Promise`:
+Cuando utiliza [registración local](../guide/component-registration.html#local-registration), puede también proporcionar directamente una función que retorne u `Promise`:
 
 ```js
 import { createApp, defineAsyncComponent } from 'vue'
@@ -193,24 +193,24 @@ createApp({
 })
 ```
 
-For advanced usage, `defineAsyncComponent` can accept an object:
+Para uso avanzado, `defineAsyncComponent` puede aceptar un objeto:
 
-The `defineAsyncComponent` method can also return an object of the following format:
+El método `defineAsyncComponent` puede también retornar un objeto del formato siguiente:
 
 ```js
 import { defineAsyncComponent } from 'vue'
 
 const AsyncComp = defineAsyncComponent({
-  // The factory function
+  // La función de fábrica
   loader: () => import('./Foo.vue'),
-  // A component to use while the async component is loading
+  // Un componente para utilizar mientras se carga el componente asíncrono
   loadingComponent: LoadingComponent,
-  // A component to use if the load fails
+  // Un componente para utilizar si la carga falla
   errorComponent: ErrorComponent,
-  // Delay before showing the loading component. Default: 200ms.
+  // La demora antes de mostrar el componente de cargamente. Por defecto: 200ms.
   delay: 200,
-  // The error component will be displayed if a timeout is
-  // provided and exceeded. Default: Infinity.
+  // El componente de error será mostrado si un tiempo fuera sea
+  // proporcionado y excedido. Por defector: Infinity.
   timeout: 3000,
   // Defining if component is suspensible. Default: true.
   suspensible: false,
@@ -298,7 +298,7 @@ render() {
 }
 ```
 
-### Arguments
+### Argumentos
 
 Accepts one argument: `name`
 
@@ -327,7 +327,7 @@ render () {
 }
 ```
 
-### Arguments
+### Argumentos
 
 Accepts one argument: `component`
 
@@ -361,7 +361,7 @@ render () {
 }
 ```
 
-### Arguments
+### Argumentos
 
 Accepts one argument: `name`
 
@@ -392,7 +392,7 @@ return withDirectives(h('div'), [
 ])
 ```
 
-### Arguments
+### Argumentos
 
 Accepts two arguments: `vnode` and `directives`.
 
@@ -465,7 +465,7 @@ const { render, createApp } = createRenderer<Node, Element>({
 })
 ```
 
-### Arguments
+### Argumentos
 
 Accepts two arguments: `HostNode` and `HostElement`
 
@@ -569,7 +569,7 @@ export default {
 
 For more information about using CSS modules, see [SFC Style Features: `<style module>`](/api/sfc-style.html#style-module).
 
-### Arguments
+### Argumentos
 
 Accepts one argument: `name`
 
