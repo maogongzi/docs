@@ -1,4 +1,4 @@
-# Directives
+# Directivas
 
 ## v-text
 

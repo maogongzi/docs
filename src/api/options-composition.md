@@ -1,4 +1,4 @@
-# Composition
+# Composición
 
 ## mixins
 
