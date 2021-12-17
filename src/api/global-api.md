@@ -212,35 +212,35 @@ const AsyncComp = defineAsyncComponent({
   // El componente de error será mostrado si un tiempo fuera sea
   // proporcionado y excedido. Por defector: Infinity.
   timeout: 3000,
-  // Defining if component is suspensible. Default: true.
+  // Definir si el componente soporta suspenderse (suspensible). Por defecto: true.
   suspensible: false,
   /**
    *
-   * @param {*} error Error message object
-   * @param {*} retry A function that indicating whether the async component should retry when the loader promise rejects
-   * @param {*} fail  End of failure
-   * @param {*} attempts Maximum allowed retries number
+   * @param {*} error Objeto de mensaje de error
+   * @param {*} retry Una función que indica si el componente asíncrono deba reintentar cuando el _promise_ de cargador rechace
+   * @param {*} fail  Terminar de fallo
+   * @param {*} attempts El tiempo máximo permitido para reintentar
    */
   onError(error, retry, fail, attempts) {
     if (error.message.match(/fetch/) && attempts <= 3) {
-      // retry on fetch errors, 3 max attempts
+      // reintentar cuando se produce un fallo de recuperar, al máximo 3 intentos
       retry()
     } else {
-      // Note that retry/fail are like resolve/reject of a promise:
-      // one of them must be called for the error handling to continue.
+      // Note que retry/fail se comportan como resolve/reject de un promise:
+      // uno de ellos debe ser llamado para continuar la manipulación de errores
       fail()
     }
   },
 })
 ```
 
-**See also**: [Dynamic and Async components](../guide/component-dynamic-async.html)
+**Vea también**: [Componentes Dinámicos & Asíncronos](../guide/component-dynamic-async.html)
 
 ## defineCustomElement <Badge text="3.2+" />
 
-This method accepts the same argument as [`defineComponent`](#definecomponent), but instead returns a native [Custom Element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) that can be used within any framework, or with no frameworks at all.
+Este método acepta el mismo argumento como [`defineComponent`](#definecomponent), pero en cambio retorna un [Elemento Personalizado](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) nativo que pueda ser utilizado dentro de cualquier _framework_, o sin frameworks por completo.
 
-Usage example:
+Ejemplo de uso:
 
 ```html
 <my-vue-element></my-vue-element>
@@ -250,39 +250,39 @@ Usage example:
 import { defineCustomElement } from 'vue'
 
 const MyVueElement = defineCustomElement({
-  // normal Vue component options here
+  // opciones normales de componente Vue aquí
   props: {},
   emits: {},
   template: `...`,
 
-  // defineCustomElement only: CSS to be injected into shadow root
-  styles: [`/* inlined css */`]
+  // sólo para defineCustomElement: el CSS para ser inyectado en raíz de _shadow_
+  styles: [`/* css alineado */`]
 })
 
-// Register the custom element.
-// After registration, all `<my-vue-element>` tags on the page will be upgraded.
+// Registrar el elemento personalizado.
+// Después de la registración, todas etiquetas `<my-vue-element>` en la página serán actualizadas.
 customElements.define('my-vue-element', MyVueElement)
 
-// You can also programmatically instantiate the element:
-// (can only be done after registration)
+// Puede también programáticamente instanciar el elemento:
+// (solo puede hacerlo después de la registración)
 document.body.appendChild(
   new MyVueElement({
-    // initial props (optional)
+    // props iniciales (opcional)
   })
 )
 ```
 
-For more details on building Web Components with Vue, especially with Single File Components, see [Vue and Web Components](/guide/web-components.html#building-custom-elements-with-vue).
+Para más detalles sobre construir componentes web con Vue, especialmente con componentes de un solo archivo, vea [Vue y Componentes Web](/guide/web-components.html#building-custom-elements-with-vue).
 
 ## resolveComponent
 
 :::warning
-`resolveComponent` can only be used within `render` or `setup` functions.
+`resolveComponent` solo puede ser utilizado dentro de funciones `render` o `setup`.
 :::
 
-Allows resolving a `component` by its name, if it is available in the current application instance.
+Permite resolver un componente por su nombre, si es disponible en la instancia corriente de aplicación.
 
-Returns a `Component` or the argument `name` when not found.
+Retorna un componente o el argumento `name` si no se encuentra uno.
 
 ```js
 const app = createApp({})
@@ -300,7 +300,7 @@ render() {
 
 ### Argumentos
 
-Accepts one argument: `name`
+Acepta un argumento: `name`
 
 #### name
 
@@ -308,17 +308,17 @@ Accepts one argument: `name`
 
 - **Detalles:**
 
-  The name of a loaded component.
+  El nombre de un componente cargado.
 
 ## resolveDynamicComponent
 
 :::warning
-`resolveDynamicComponent` can only be used within `render` or `setup` functions.
+`resolveDynamicComponent` solo puede ser utilizado dentro de funciones `render` o `setup`.
 :::
 
-Allows resolving a `component` by the same mechanism that `<component :is="">` employs.
+Permite resolver un componente por el mismo mecanismo utilizado por `<component :is="">`.
 
-Returns the resolved `Component` or a newly created `VNode` with the component name as the node tag. Will raise a warning if the `Component` was not found.
+Retorna un componente resuelto o un `VNode` recién creado con el nombre del componente como la etiqueta del nodo. Lanzará una advertencia si no se encuentra el componente.
 
 ```js
 import { resolveDynamicComponent } from 'vue'
@@ -329,25 +329,25 @@ render () {
 
 ### Argumentos
 
-Accepts one argument: `component`
+Acepta un argumento: `component`
 
 #### component
 
-- **Tipo:** `String | Object (component’s options object)`
+- **Tipo:** `String | Object (el objeto de opciones del componente)`
 
 - **Detalles:**
 
-  For more details, refer to the documentation on [Dynamic Components](../guide/component-dynamic-async.html).
+  Para más detalles, refiérase a la documentación sobre [Componentes Dinámicos & Asíncronos](../guide/component-dynamic-async.html).
 
 ## resolveDirective
 
 :::warning
-`resolveDirective` can only be used within `render` or `setup` functions.
+`resolveDirective` solo puede ser utilizado dentro de funciones `render` o `setup`.
 :::
 
-Allows resolving a `directive` by its name, if it is available in the current application instance.
+Permite resolver una directiva por su nombre, si es disponible en la instancia corriente de aplicación.
 
-Returns a `Directive` or `undefined` when not found.
+Retorna una directiva o `undefined` cuando no se encuentra una.
 
 ```js
 const app = createApp({})
@@ -363,7 +363,7 @@ render () {
 
 ### Argumentos
 
-Accepts one argument: `name`
+Acepta un argumento: `name`
 
 #### name
 
@@ -371,15 +371,15 @@ Accepts one argument: `name`
 
 - **Detalles:**
 
-  The name of a loaded directive.
+  El nombre de la directiva cargada.
 
 ## withDirectives
 
 :::warning
-`withDirectives` can only be used within `render` or `setup` functions.
+`withDirectives` solo puede ser utilizado dentro de funciones `render` o `setup`.
 :::
 
-Allows applying directives to a **VNode**. Returns a VNode with the applied directives.
+Permite aplicar directivas a un **VNode**. Retorna un VNode con las directivas aplicadas.
 
 ```js
 import { withDirectives, resolveDirective } from 'vue'
@@ -394,7 +394,7 @@ return withDirectives(h('div'), [
 
 ### Argumentos
 
-Accepts two arguments: `vnode` and `directives`.
+Acepta dos argumentos: `vnode` y `directives`.
 
 #### vnode
 
@@ -402,7 +402,7 @@ Accepts two arguments: `vnode` and `directives`.
 
 - **Detalles:**
 
-  A virtual node, usually created with `h()`.
+  Un nodo virtual, usualmente creado por `h()`.
 
 #### directives
 
@@ -410,25 +410,25 @@ Accepts two arguments: `vnode` and `directives`.
 
 - **Detalles:**
 
-  An array of directives.
+  Una matriz de directivas.
 
-  Each directive itself is an array, which allows for up to 4 indexes to be defined as seen in the following examples.
+  Cada directiva es en sí mismo una matriz, lo cual permite un máximo de 4 índices definidos como se ve en el ejemplo siguiente.
 
-  - `[directive]` - The directive by itself. Required.
+  - `[directive]` - La directiva por sí mismo. Requerida.
 
   ```js
   const MyDirective = resolveDirective('MyDirective')
   const nodeWithDirectives = withDirectives(h('div'), [[MyDirective]])
   ```
 
-  - `[directive, value]` - The above, plus a value of type `any` to be assigned to the directive
+  - `[directive, value]` - como se describe arriba, más un valor de tipo `any` para ser asignado a la directiva
 
   ```js
   const MyDirective = resolveDirective('MyDirective')
   const nodeWithDirectives = withDirectives(h('div'), [[MyDirective, 100]])
   ```
 
-  - `[directive, value, arg]` - The above, plus a `String` argument, ie. `click` in `v-on:click`
+  - `[directive, value, arg]` - como se describe arriba, más un argumento `String`, p. ej. `click` en `v-on:click`
 
   ```js
   const MyDirective = resolveDirective('MyDirective')
@@ -437,7 +437,7 @@ Accepts two arguments: `vnode` and `directives`.
   ])
   ```
 
-  - `[directive, value, arg, modifiers]` - The above, plus a `key: value` pair `Object` defining any modifiers.
+  - `[directive, value, arg, modifiers]` - como se describe arriba, más un `Object` con pares `key: value` para definir cualquieres modificadores.
 
   ```js
   const MyDirective = resolveDirective('MyDirective')
@@ -448,14 +448,12 @@ Accepts two arguments: `vnode` and `directives`.
 
 ## createRenderer
 
-The createRenderer function accepts two generic arguments:
-`HostNode` and `HostElement`, corresponding to Node and Element types in the
-host environment.
+La función `createRenderer` acepta dos argumentos genéricos:
+`HostNode` y `HostElement`, correspondiente a tipos Node y Element en el entorno de acogida.
 
-For example, for runtime-dom, HostNode would be the DOM
-`Node` interface and HostElement would be the DOM `Element` interface.
+Por ejemplo, para _runtime-dom_, HostNode sería la interfaz `Node` de DOM y HostElement sería la interfaz `Element` de DOM.
 
-Custom renderers can pass in the platform specific types like this:
+Se puede pasar tipos específicos de la plataforma a renderizadores personalizados como esto:
 
 ```ts
 import { createRenderer } from 'vue'
@@ -467,7 +465,7 @@ const { render, createApp } = createRenderer<Node, Element>({
 
 ### Argumentos
 
-Accepts two arguments: `HostNode` and `HostElement`
+Acepta dos argumentos: `HostNode` y `HostElement`
 
 #### HostNode
 
@@ -475,7 +473,7 @@ Accepts two arguments: `HostNode` and `HostElement`
 
 - **Detalles:**
 
-  The node in the host environment.
+  El nodo en el entorno de acogida.
 
 #### HostElement
 
@@ -483,11 +481,11 @@ Accepts two arguments: `HostNode` and `HostElement`
 
 - **Detalles:**
 
-  The element in the host environment.
+  El elemento en el entorno de acogida.
 
 ## nextTick
 
-Defer the callback to be executed after the next DOM update cycle. Use it immediately after you’ve changed some data to wait for the DOM update.
+Diferir la ejecución del _callback_ hasta después el proximo ciclo de actualización de DOM. Utilícelo inmediatamente después de que haya cambiado algún dato para esperar a la actualización de DOM.
 
 ```js
 import { createApp, nextTick } from 'vue'
@@ -504,13 +502,13 @@ const app = createApp({
 })
 ```
 
-**See also**: [`$nextTick` instance method](instance-methods.html#nexttick)
+**Vea también**: [el método de instancia `$nextTick`](instance-methods.html#nexttick)
 
 ## mergeProps
 
-Takes multiple objects containing VNode props and merges them into a single object. A newly created object is returned, the objects passed as arguments are not modified.
+Toma múltiples objetos que contienen _props_ de VNode y fundirlos en un solo objeto. Retorna un objeto recién creado, los objetos pasados como argumentos no se modifican.
 
-Any number of objects can be passed, with properties from later arguments taking precedence. Event listeners are handled specially, as are `class` and `style`, with the values of these properties being merged rather than overwritten.
+Cualquier número de objetos pueden ser pasados, con las propiedades que previenen de argumentos posteriores toman precedencia. Los escuchadores de evento son manejados especialmente, así como `class` y `style`, siendo los valores de estas propiedades fundidos en vez de sobreescritos.
 
 ```js
 import { h, mergeProps } from 'vue'
@@ -521,7 +519,7 @@ export default {
   render() {
     const props = mergeProps(
       {
-        // The class will be merged with any class from $attrs
+        // La clase será fundida con cualquier clase proviene de $attrs
         class: 'active'
       },
       this.$attrs
@@ -535,10 +533,10 @@ export default {
 ## useCssModule
 
 :::warning
-`useCssModule` can only be used within `render` or `setup` functions.
+`useCssModule` solo puede ser utilizado dentro de funciones `render` o `setup`.
 :::
 
-Allows CSS modules to be accessed within the [`setup`](/api/composition-api.html#setup) function of a [single-file component](/guide/single-file-component.html):
+Permite que los módulos CSS puedan ser accesados dentro de la función [`setup`](/api/composition-api.html#setup) de un [componente de un solo archivo](/guide/single-file-component.html):
 
 ```vue
 <script>
@@ -567,11 +565,11 @@ export default {
 </style>
 ```
 
-For more information about using CSS modules, see [SFC Style Features: `<style module>`](/api/sfc-style.html#style-module).
+Para más información sobre utilizar módulos CSS, vea [Característica de Estilos de SFC: `<style module>`](/api/sfc-style.html#style-module).
 
 ### Argumentos
 
-Accepts one argument: `name`
+Acepta un argumento: `name`
 
 #### name
 
@@ -579,11 +577,11 @@ Accepts one argument: `name`
 
 - **Detalles:**
 
-  The name of the CSS module. Defaults to `'$style'`.
+  El nombre del módulo CSS, por defecto `'$style'`.
 
 ## version
 
-Provides the installed version of Vue as a string.
+Proporciona el vesión de Vue instalado como una cadena de caracteres.
 
 ```js
 const version = Number(Vue.version.split('.')[0])
@@ -593,8 +591,8 @@ if (version === 3) {
 } else if (version === 2) {
   // Vue 2
 } else {
-  // Unsupported versions of Vue
+  // versiones de Vue no soportados
 }
 ```
 
-**See also**: [Application API - version](/api/application-api.html#version)
+**Vea también**: [API de Aplicación - versión](/api/application-api.html#version)
