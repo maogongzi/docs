@@ -2,9 +2,9 @@
 
 ## data
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
   The function that returns a data object for the component instance. In `data`, we don't recommend to observe objects with their own stateful behavior like browser API objects and prototype properties. A good idea would be to have here just a plain object that represents component data.
 
@@ -36,13 +36,13 @@
   data: vm => ({ a: vm.myProp })
   ```
 
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+- **Vea también:** [Reactivity in Depth](../guide/reactivity.html)
 
 ## props
 
-- **Type:** `Array<string> | Object`
+- **Tipo:** `Array<string> | Object`
 
-- **Details:**
+- **Detalles:**
 
   A list/hash of attributes that are exposed to accept data from the parent component. It has an Array-based simple syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
 
@@ -84,13 +84,13 @@
   })
   ```
 
-- **See also:** [Props](../guide/component-props.html)
+- **Vea también:** [Props](../guide/component-props.html)
 
 ## computed
 
-- **Type:** `{ [key: string]: Function | { get: Function, set: Function } }`
+- **Tipo:** `{ [key: string]: Function | { get: Function, set: Function } }`
 
-- **Details:**
+- **Detalles:**
 
   Computed properties to be mixed into the component instance. All getters and setters have their `this` context automatically bound to the component instance.
 
@@ -135,13 +135,13 @@
   console.log(vm.aDouble) // => 4
   ```
 
-- **See also:** [Computed Properties](../guide/computed.html)
+- **Vea también:** [Computed Properties](../guide/computed.html)
 
 ## methods
 
-- **Type:** `{ [key: string]: Function }`
+- **Tipo:** `{ [key: string]: Function }`
 
-- **Details:**
+- **Detalles:**
 
   Methods to be mixed into the component instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the component instance.
 
@@ -169,13 +169,13 @@
   console.log(vm.a) // => 2
   ```
 
-- **See also:** [Event Handling](../guide/events.html)
+- **Vea también:** [Event Handling](../guide/events.html)
 
 ## watch
 
-- **Type:** `{ [key: string]: string | Function | Object | Array}`
+- **Tipo:** `{ [key: string]: string | Function | Object | Array}`
 
-- **Details:**
+- **Detalles:**
 
   An object where keys are reactive properties to watch — examples include [data](/api/options-data.html#data-2) or [computed](/api/options-data.html#computed) properties — and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The component instance will call `$watch()` for each entry in the object at instantiation. See [$watch](instance-methods.html#watch) for more information about the `deep`, `immediate` and `flush` options.
 
@@ -252,19 +252,19 @@
   Note that _you should not use an arrow function to define a watcher_ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the component instance as you expect and `this.updateAutocomplete` will be undefined.
   :::
 
-- **See also:** [Watchers](../guide/computed.html#watchers)
+- **Vea también:** [Watchers](../guide/computed.html#watchers)
 
 ## emits
 
-- **Type:** `Array<string> | Object`
+- **Tipo:** `Array<string> | Object`
 
-- **Details:**
+- **Detalles:**
 
   A list/hash of custom events that can be emitted from the component. It has an array-based simple syntax and an alternative Object-based syntax that allows to configure an event validation.
 
   In Object-based syntax, the value of each property can either be `null` or a validator function. The validation function will receive the additional arguments passed to the `$emit` call. For example, if `this.$emit('foo', 1)` is called, the corresponding validator for `foo` will receive the argument `1`. The validator function should return a boolean to indicate whether the event arguments are valid.
 
-- **Usage:**
+- **Uso:**
 
   ```js
   const app = createApp({})
@@ -300,13 +300,13 @@
   Events listed in the `emits` option **will not** be inherited by the root element of the component and also will be excluded from the `$attrs` property.
   :::
 
-* **See also:** [Attribute Inheritance](../guide/component-attrs.html#attribute-inheritance)
+* **Vea también:** [Attribute Inheritance](../guide/component-attrs.html#attribute-inheritance)
 
 ## expose <Badge text="3.2+" />
 
-- **Type:** `Array<string>`
+- **Tipo:** `Array<string>`
 
-- **Details:**
+- **Detalles:**
 
   A list of properties to expose on the public component instance.
 
@@ -314,7 +314,7 @@
 
   Properties defined by Vue itself, such as `$el` and `$parent`, will always be available on the public instance and don't need to be listed.
 
-- **Usage:**
+- **Uso:**
 
   ```js
   export default {
@@ -336,4 +336,4 @@
   }
   ```
 
-- **See also:** [defineExpose](/api/sfc-script-setup.html#defineexpose)
+- **Vea también:** [defineExpose](/api/sfc-script-setup.html#defineexpose)
