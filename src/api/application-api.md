@@ -339,4 +339,4 @@ setTimeout(() => app.unmount(), 5000)
   }
   ```
 
-- **See also**: [Global API - version](/api/global-api.html#version)
+- **Vea también**: [API Global - versión](/api/global-api.html#version)
