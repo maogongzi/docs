@@ -2,39 +2,39 @@
 
 ## template
 
-- **Type:** `string`
+- **Tipo:** `string`
 
-- **Details:**
+- **Detalles:**
 
-  A string template to be used as the markup for the component instance. The template will **replace** the `innerHTML` of mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
+  Una plantilla de cadena de caracteres que puede ser utilizada como etiquetado para la instancia de componente. La plantilla **reemplzará** el `innerHTML` del elemento montado. Cualquier etiquetado existente dentro del elemento montado será ignorado, a menos que los _slots_ de distribución de contenido son presentes en la plantilla.
 
-  If the string starts with `#` it will be used as a `querySelector` and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+  Si la cadena de caracteres empieza con `#`, será utilizada como un `querySelector` y se utiliza el innerHTML del elemento eligido como la cadena de caracteres de plantilla. Este permite el uso del truco común `<script type="x-template">` para incluir plantillas.
 
   :::tip Note
-  From a security perspective, you should only use Vue templates that you can trust. Never use user-generated content as your template.
+  Desde una perspectiva de seguridad, debería solo utilizar plantillas de Vue en que confía. Nunca utilice contenido generado por el usuario como su plantilla.
   :::
 
   :::tip Note
-  If render function is present in the Vue option, the template will be ignored.
+  Si se encuentra función de _render_ en la opción Vue, la plantilla será ignorada.
   :::
 
-- **See also:**
-  - [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
-  - [Content Distribution with Slots](../guide/component-basics.html#content-distribution-with-slots)
+- **Vea también:**
+  - [Diagrama de Ciclo de Vida](../guide/instance.html#lifecycle-diagram)
+  - [Distribución de contenido con Slots](../guide/component-basics.html#content-distribution-with-slots)
 
 ## render
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  An alternative to string templates allowing you to leverage the full programmatic power of JavaScript.
+  Una alternativa para plantillas de cadena de caracteres permitíendole apalancar el poder programático completo de JavaScript.
 
-- **Usage:**
+- **Uso:**
 
   ```html
   <div id="app" class="demo">
-    <my-title blog-title="A Perfect Vue"></my-title>
+    <my-title blog-title="Un Vue Perfecto"></my-title>
   </div>
   ```
 
@@ -45,8 +45,8 @@
   app.component('my-title', {
     render() {
       return h(
-        'h1', // tag name,
-        this.blogTitle // tag content
+        'h1', // nombre de la etiqueta,
+        this.blogTitle // contenido de la etiqueta
       )
     },
     props: {
@@ -61,7 +61,7 @@
   ```
 
   :::tip Note
-  The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element
+  La función `render` tiene prioridad sobre la función _render_ compilada desde la opción `template` o las plantillas HTML dentro del DOM del elemento montado.
   :::
 
-- **See also:** [Render Functions](../guide/render-function.html)
+- **Vea también:** [Funciones de Renderización](../guide/render-function.html)
