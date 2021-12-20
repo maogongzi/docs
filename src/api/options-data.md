@@ -6,21 +6,21 @@
 
 - **Detalles:**
 
-  The function that returns a data object for the component instance. In `data`, we don't recommend to observe objects with their own stateful behavior like browser API objects and prototype properties. A good idea would be to have here just a plain object that represents component data.
+  La función que retorna un objeto de dato para la instancia del componente. En `data`, no recomendamos observar objetos que poseen sus comportamientos propios con estado como los objetos de API del navegador y las propiedades de _prototype_. Una buena idea sería mantener aquí solo un objeto plano que represente los datos del componente.
 
-  Once observed, you can no longer add reactive properties to the root data object. It is therefore recommended to declare all root-level reactive properties upfront, before creating the instance.
+  Una vez observado, ya no puede agregar propiedades reactivas al objeto raíz de dato. Por lo tanto, es recomendado declarar todas propiedades reactivas de nivel raíz por adelantado, antes de crear la instancia.
 
-  After the instance is created, the original data object can be accessed as `vm.$data`. The component instance also proxies all the properties found on the data object, so `vm.a` will be equivalent to `vm.$data.a`.
+  Después de que se ha creado la instancia, el objeto original de dato puede ser accesado como `vm.$data`. La instancia del componente también delega todas las propiedades encontradas en el objeto de dato, así que `vm.a` será equivalente a `vm.$data.a`.
 
-  Properties that start with `_` or `$` will **not** be proxied on the component instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
+  Las propiedades que empiezan con `_` o `$` **no** serán delegadas en la instancia del componente porque pueden entrar en conflicto con las propiedades internales y métodos de API de Vue. Tendrá que accederlas como `vm.$data._property`.
 
-- **Example:**
+- **Ejemplo:**
 
   ```js
-  // direct instance creation
+  // crear una instancia directamente
   const data = { a: 1 }
 
-  // The object is added to a component instance
+  // El objeto es agregado a una instancia de componente
   const vm = createApp({
     data() {
       return data
@@ -30,13 +30,13 @@
   console.log(vm.a) // => 1
   ```
 
-  Note that if you use an arrow function with the `data` property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
+  Note que si utiliza una función de flecha con la propiedad `data`, `this` no será la instancia del componente, pero puede también acceder la instancia como el primero argumento de la función:
 
   ```js
   data: vm => ({ a: vm.myProp })
   ```
 
-- **Vea también:** [Reactivity in Depth](../guide/reactivity.html)
+- **Vea también:** [Reactividad en profundidad](../guide/reactivity.html)
 
 ## props
 
@@ -44,34 +44,34 @@
 
 - **Detalles:**
 
-  A list/hash of attributes that are exposed to accept data from the parent component. It has an Array-based simple syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
+  Una lista/_hash_ de atributos que son expuestos para aceptar dato del componente padre. Tiene una sintaxis simple basada de _Array_ y una sintaxis alternativa basada de _Object_ que permite configuraciones avanzadas tales como comprobación de tipos, validación personalizada y valores por defecto.
 
-  With Object-based syntax, you can use following options:
+  Con la sintaxis basada de _Object_, puede utilizar las siguientes opciones:
 
-  - `type`: can be one of the following native constructors: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, any custom constructor function or an array of those. Will check if a prop has a given type, and will throw a warning if it doesn't. [More information](../guide/component-props.html#prop-types) on prop types.
+  - `type`: puede ser uno de los siguientes constructores nativos: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, cualquiera función de constructor personalizada u una matriz de estos. Comprobará si una _prop_ tiene un tipo dado, y lanzará una advertencia si no lo tiene. [Más información](../guide/component-props.html#prop-types) sobre tipos de _prop_.
   - `default`: `any`
-    Specifies a default value for the prop. If the prop is not passed, this value will be used instead. Object or array defaults must be returned from a factory function.
+    Especifica un valor por defector para la _prop_. Si la _prop_ no es pasada, este valor será utilizado en su lugar. Los valores por defecto de objeto or matriz deben retornarse de una función de fábrica.
   - `required`: `Boolean`
-    Defines if the prop is required. In a non-production environment, a console warning will be thrown if this value is truthy and the prop is not passed.
+    Define si la _prop_ es requerida. En un entorno que no es de producción, una advertencia de consola será lanzada si este valor es verdadero y la _prop_ no es pasada.
   - `validator`: `Function`
-    Custom validator function that takes the prop value as the sole argument. In a non-production environment, a console warning will be thrown if this function returns a falsy value (i.e. the validation fails). You can read more about prop validation [here](../guide/component-props.html#prop-validation).
+    Función personalizada de validador que toma el valor de la _prop_ como el argumento solo. En un entorno que no es de producción, una advertencia será lanzada si esta función retorna un valor falso (p. ej. se falla la validación). Puede leer más sobre la validación de _prop_ [aquí](../guide/component-props.html#prop-validation).
 
-- **Example:**
+- **Ejemplo:**
 
   ```js
   const app = createApp({})
 
-  // simple syntax
+  // la sintaxis simple
   app.component('props-demo-simple', {
     props: ['size', 'myMessage']
   })
 
-  // object syntax with validation
+  // La sintaxis de objeto con validación
   app.component('props-demo-advanced', {
     props: {
-      // type check
+      // comprobación de tipo
       height: Number,
-      // type check plus other validations
+      // comprobación de tipo más otras validaciones
       age: {
         type: Number,
         default: 0,
@@ -84,7 +84,7 @@
   })
   ```
 
-- **Vea también:** [Props](../guide/component-props.html)
+- **Vea también:** [_Props_](../guide/component-props.html)
 
 ## computed
 
@@ -92,9 +92,9 @@
 
 - **Detalles:**
 
-  Computed properties to be mixed into the component instance. All getters and setters have their `this` context automatically bound to the component instance.
+  Las propiedades computadas para ser fundidas en la instancia de componente. Todos captadores y establecedores tienen sus contextos de `this` automáticamente vinculados a la instancia de componente.
 
-  Note that if you use an arrow function with a computed property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
+  Note que si utiliza una función de flecha con una propiedad computada, `this` no será la instancia de componente, pero puede también acceder la instancia como el primero argumento de la función:
 
   ```js
   computed: {
@@ -102,9 +102,9 @@
   }
   ```
 
-  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will **not** be updated.
+  Las propiedades computadas son almacenadas en _cache_, y solo recalculadas cuando se cambien las dependencias reactivas. Note que si una cierta dependencia es afuera del alcance de la instancia (es decir, non reactiva), la propiedad computada **no** será actualizada.
 
-- **Example:**
+- **Ejemplo:**
 
   ```js
   const app = createApp({
@@ -112,11 +112,11 @@
       return { a: 1 }
     },
     computed: {
-      // get only
+      // solo captador
       aDouble() {
         return this.a * 2
       },
-      // both get and set
+      // captador y establecedor
       aPlus: {
         get() {
           return this.a + 1
@@ -135,7 +135,7 @@
   console.log(vm.aDouble) // => 4
   ```
 
-- **Vea también:** [Computed Properties](../guide/computed.html)
+- **Vea también:** [Propiedades Computadas](../guide/computed.html)
 
 ## methods
 
@@ -143,13 +143,13 @@
 
 - **Detalles:**
 
-  Methods to be mixed into the component instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the component instance.
+  Métodos para ser fundidas en la instancia de componente. Puede acceder estos métodos directamente en la instancia VM, o utilizarlos en expresiones directivas. Todos métodos tendrán sus contextos de `this` automáticamente vinculados a la instancia de componente.
 
   :::tip Note
-  Note that **you should not use an arrow function to define a method** (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the component instance as you expect and `this.a` will be undefined.
+  Note que **no debe utilizar una función de flecha para definir un método** (p. ej. `plus: () => this.a++`). La razón es que las funciones de flecha vinculan al contexto padre, así que `this` no será la instancia de componente como usted espere y `this.a` será _undefined_.
   :::
 
-- **Example:**
+- **Ejemplo:**
 
   ```js
   const app = createApp({
@@ -169,7 +169,7 @@
   console.log(vm.a) // => 2
   ```
 
-- **Vea también:** [Event Handling](../guide/events.html)
+- **Vea también:** [Manejo de Eventos](../guide/events.html)
 
 ## watch
 
@@ -177,9 +177,9 @@
 
 - **Detalles:**
 
-  An object where keys are reactive properties to watch — examples include [data](/api/options-data.html#data-2) or [computed](/api/options-data.html#computed) properties — and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The component instance will call `$watch()` for each entry in the object at instantiation. See [$watch](instance-methods.html#watch) for more information about the `deep`, `immediate` and `flush` options.
+  Un objeto dónde las claves son propiedades reactivas para observar, los ejemplos incluyen propiedades de [_data_](/api/options-data.html#data-2) o [_computed_](/api/options-data.html#computed), y los valores son los _callbacks_ correspondientes. El valore puede también ser una cadena de caracteres del nombre de un método, o un objeto que contiene opciones adicionales. La instancia de componente llamará `$watch()` para cada entrada del objeto cuando se instancie. Vea [$watch](instance-methods.html#watch) para más información sobre las opciones `deep`, `immediate` y `flush`.
 
-- **Example:**
+- **Ejemplo:**
 
   ```js
   const app = createApp({
@@ -195,39 +195,39 @@
       }
     },
     watch: {
-      // watching top-level property
+      // Observar propiedades de nivel superior
       a(val, oldVal) {
         console.log(`new: ${val}, old: ${oldVal}`)
       },
-      // string method name
+      // nombre de método de cadena de caracteres
       b: 'someMethod',
-      // the callback will be called whenever any of the watched object properties change regardless of their nested depth
+      // el callback será llamado siempre que cualquiera de las propiedades del objeto observado se cambie, sin tener en cuenta sus profundidades anidadas.
       c: {
         handler(val, oldVal) {
-          console.log('c changed')
+          console.log('c se ha cambiado')
         },
         deep: true
       },
-      // watching a single nested property:
+      // Observar una sola propiedad anidada:
       'c.d': function (val, oldVal) {
-        // do something
+        // hacer algo
       },
-      // the callback will be called immediately after the start of the observation
+      // el callback será llamado inmediatamente después del inicio de la observación
       e: {
         handler(val, oldVal) {
-          console.log('e changed')
+          console.log('e se ha cambiado')
         },
         immediate: true
       },
-      // you can pass array of callbacks, they will be called one-by-one
+      // puede pasar una matriz de callbacks, serán llamado uno por uno
       f: [
         'handle1',
         function handle2(val, oldVal) {
-          console.log('handle2 triggered')
+          console.log('handle2 disparado')
         },
         {
           handler: function handle3(val, oldVal) {
-            console.log('handle3 triggered')
+            console.log('handle3 disparado')
           }
           /* ... */
         }
@@ -235,10 +235,10 @@
     },
     methods: {
       someMethod() {
-        console.log('b changed')
+        console.log('b se ha cambiado')
       },
       handle1() {
-        console.log('handle 1 triggered')
+        console.log('handle 1 disparado')
       }
     }
   })
@@ -249,10 +249,10 @@
   ```
 
   ::: tip Note
-  Note that _you should not use an arrow function to define a watcher_ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the component instance as you expect and `this.updateAutocomplete` will be undefined.
+  Note que _no debe utilizar una función de flecha para definir un observador_ (p. ej. `searchQuery: newValue => this.updateAutocomplete(newValue)`). La razón es que las funciones de flecha vinculan al contexto padre, así que `this` no será la instancia de componente como usted espere y `this.updateAutocomplete` será _undefined_.
   :::
 
-- **Vea también:** [Watchers](../guide/computed.html#watchers)
+- **Vea también:** [Observadores](../guide/computed.html#watchers)
 
 ## emits
 
@@ -260,9 +260,9 @@
 
 - **Detalles:**
 
-  A list/hash of custom events that can be emitted from the component. It has an array-based simple syntax and an alternative Object-based syntax that allows to configure an event validation.
+  Una lista/_hash_ de eventos personalizados que pueden ser emitidos del componente. Tiene una sintaxis simple basada de _Array_ y una sintaxis alternativa basada de _Object_ que permite configurar una validación de evento.
 
-  In Object-based syntax, the value of each property can either be `null` or a validator function. The validation function will receive the additional arguments passed to the `$emit` call. For example, if `this.$emit('foo', 1)` is called, the corresponding validator for `foo` will receive the argument `1`. The validator function should return a boolean to indicate whether the event arguments are valid.
+  En la sintaxis basada de _Object_, el valor de cada propiedad puede ser tanto `null` como una función de validador. La función de validación recibirá los argumentos adicionales pasados a la llamada `$emit`. Por ejemplo, si `this.$emit('foo', 1)` es llamado, el validador correspondiente para `foo` recibirá el argumento `1`. La función de validador debe retornar un booleano para indicar si los argumentos de evento sean válidos o no.
 
 - **Uso:**
 
