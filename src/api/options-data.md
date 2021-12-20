@@ -269,7 +269,7 @@
   ```js
   const app = createApp({})
 
-  // Array syntax
+  // La sintaxis de Array
   app.component('todo-item', {
     emits: ['check'],
     created() {
@@ -277,18 +277,18 @@
     }
   })
 
-  // Object syntax
+  // la sintaxis de Object
   app.component('reply-form', {
     emits: {
-      // no validation
+      // sin validación
       click: null,
 
-      // with validation
+      // con validación
       submit: payload => {
         if (payload.email && payload.password) {
           return true
         } else {
-          console.warn(`Invalid submit event payload!`)
+          console.warn(`¡Cargamento inválido de evento submit!`)
           return false
         }
       }
@@ -297,10 +297,10 @@
   ```
 
   ::: tip Note
-  Events listed in the `emits` option **will not** be inherited by the root element of the component and also will be excluded from the `$attrs` property.
+  Eventos enumerados en la opción `emits` **no** serán heredados por el elemento raíz del componente y también serán excluidos de la propiedad `$attrs`.
   :::
 
-* **Vea también:** [Attribute Inheritance](../guide/component-attrs.html#attribute-inheritance)
+* **Vea también:** [Herencia de Atributos](../guide/component-attrs.html#attribute-inheritance)
 
 ## expose <Badge text="3.2+" />
 
@@ -308,18 +308,19 @@
 
 - **Detalles:**
 
+  Una lista de propiedades para exponer en la instancia pública del componente.
   A list of properties to expose on the public component instance.
 
-  By default, the public instance accessed via [`$refs`](/api/instance-properties.html#refs), [`$parent`](/api/instance-properties.html#parent), or [`$root`](/api/instance-properties.html#root) is the same as the internal component instance that's used by the template. The `expose` option restricts the properties that can be accessed via the public instance.
+  Por defecto, la instancia pública accesada mediante [`$refs`](/api/instance-properties.html#refs), [`$parent`](/api/instance-properties.html#parent), o [`$root`](/api/instance-properties.html#root) es la mísma como la instancia internal de componente utilizada por la plantilla. La opción `expose` limita las propiedades que puedan ser accesadas mediante la instancia pública.
 
-  Properties defined by Vue itself, such as `$el` and `$parent`, will always be available on the public instance and don't need to be listed.
+  Las propiedades definidas por Vue mismo, tales como `$el` y `$parent`, serán siempre disponibles en la instancia pública y no necesitan ser enumeradas.
 
 - **Uso:**
 
   ```js
   export default {
-    // increment will be exposed but count
-    // will only be accessible internally
+    // _increment_ será expuesto pero _count_
+    // será solo disponible internalmente
     expose: ['increment'],
 
     data() {
