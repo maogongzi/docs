@@ -67,7 +67,7 @@ Sería mucho mejor si pudiéramos colocar junto el código relacionado a la mism
 
 ## Aspectos Básicos de la API de Composición
 
-Ahora que sabemos el **porqué** podemos entrar en el **cómo**. Para comenzar trabajar con la API de Composición primero necesitamos un lugar donde la podamos utilizar. En un componente Vue, nosotros llamamos a este lugar el `setup`.
+Ahora que sabemos el **porqué**, podemos entrar en el **cómo**. Para comenzar trabajar con la API de Composición primero necesitamos un lugar donde la podamos utilizar. En un componente Vue, nosotros llamamos a este lugar el `setup`.
 
 ### Opción de Componente `setup`
 

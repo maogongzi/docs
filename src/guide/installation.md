@@ -17,9 +17,9 @@ Las notas de lanzamiento detalladas para cada versión se encuentran en [GitHub]
 
 ## Vue Devtools
 
-> Actualmente en fase Beta - Vuex y la integración con Router aún son trabajo en progreso
+> Actualmente en fase Beta - La integración con Vuex y Router aún son trabajo en progreso
  
-<VideoLesson href="https://vueschool.io/lessons/using-vue-dev-tools-with-vuejs-3?friend=vuejs" title="Aprender como instalar Vue Devtools en Vue School">Aprender como instalar y utilizar Vue Devtools en un lección gratis de Vue School</VideoLesson>
+<VideoLesson href="https://vueschool.io/lessons/using-vue-dev-tools-with-vuejs-3?friend=vuejs" title="Aprender como instalar Vue Devtools en Vue School">Aprender como instalar y utilizar Vue Devtools en una lección gratis de Vue School</VideoLesson>
 
 Cuando utiliza Vue, recomendamos instalar también las [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) en su navegador, permitiéndole inspeccionar y depurar sus aplicaciones Vue mediante una interfaz más amigable al usuario.
 
@@ -115,6 +115,15 @@ $ yarn create vite <project-name> --template vue
 $ cd <project-name>
 $ yarn
 $ yarn dev
+```
+
+o con pnpm:
+
+```bash
+$ pnpm create vite <project-name> -- --template vue
+$ cd <project-name>
+$ pnpm install
+$ pnpm dev
 ```
 
 ## Explicación de las Distintas Compilaciones
