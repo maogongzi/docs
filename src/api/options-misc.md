@@ -2,25 +2,25 @@
 
 ## name
 
-- **Type:** `string`
+- **Tipo:** `string`
 
-- **Details:**
+- **Detalles:**
 
-  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with [`app.component`](/api/application-api.html#component), the global ID is automatically set as its name.
+  Les permite a los componentes a invocar a sí mísmos recursivamente en sus plantillas. Note que cuando un componente es registrado globalmente con [`app.component`](/api/application-api.html#component), el ID global es establecido globalmente como su nombre.
 
-  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
+  Otro beneficio de especificar una opción `name` es para depurar. Los componentes nombrados resultarán en mensajes de advertencias más útiles. También, al inspectar una aplicación en [vue-devtools](https://github.com/vuejs/vue-devtools), los componentes anónimos se mostrarán como `<AnonymousComponent>`, lo que no es muy útil. A través de proporcionar la opción `name`, podrá obtener un árbol de componentes con más detalles.
 
 ## inheritAttrs
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `true`
+- **Por Defecto:** `true`
 
-- **Details:**
+- **Detalles:**
 
-  By default, parent scope attribute bindings that are not recognized as props will "fallthrough". This means that when we have a single-root component, these bindings will be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property and can be explicitly bound to a non-root element using `v-bind`.
+  Por defecto, las vinculaciones de atributos del alcance padre que no son reconocidos como _props_ podrán "caerse (fallthrough)". Este significa que cuando tenemos un componente de un solo raíz, estas vinculaciones serán aplicadas al elemento raíz del componente hijo como atributos HTML normales. Cuando se fabrica un componente que envolve un elemento objetivo u otro componente, este no siempre sería el comportamiento deseado. A través de establecer `inheritAttrs` como `false`, este comportamiento por defecto puede ser deshabilitado. Los atributos son disponibles mediante la propiedad de instancia `$attrs` y pueden ser vinculados explícitamente a un elemento que no es el raíz utilizando `v-bind`.
 
-- **Usage:**
+- **Uso:**
 
   ```js
   app.component('base-input', {
@@ -40,17 +40,17 @@
   })
   ```
 
-- **See also:** [Disabling Attribute Inheritance](../guide/component-attrs.html#disabling-attribute-inheritance)
+- **Vea también:** [Deshabilitar la herencia de atributos](../guide/component-attrs.html#disabling-attribute-inheritance)
 
 ## compilerOptions <Badge text="3.1+" />
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-- **Details:**
+- **Detalles:**
 
-  This is the component-level equivalent of the [app-level `compilerOptions` config](/api/application-config.html#compileroptions).
+  Esta es el equivalente de nivel componente de la [configuración de nivel aplicación `compilerOptions`](/api/application-config.html#compileroptions).
 
-- **Usage:**
+- **Uso:**
 
   ```js
   const Foo = {
@@ -63,9 +63,9 @@
   ```
 
   ::: tip Important
-  Similar to the app-level `compilerOptions` config, this option is only respected when using the full build with in-browser template compilation.
+  Similar a la configuración de nivel aplicación `compilerOptions`, esta opción solo se respete cuando se utiliza la compilación completa con la compilación de plantillas en navegadores.
   :::
 
 ## delimiters <Badge text="deprecated" type="warning" />
 
-Deprecated in 3.1.0. Use `compilerOptions.delimiters` instead.
+Obsoleta en 3.1.0. Utilice `compilerOptions.delimiters` en su lugar.

@@ -2,13 +2,13 @@
 
 ## directives
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-- **Details:**
+- **Detalles:**
 
-  A hash of directives to be made available to the component instance.
+  Un _hash_ de directivas que se hacen disponibles en la instancia de componente.
 
-- **Usage:**
+- **Uso:**
 
   ```js
   const app = createApp({})
@@ -25,17 +25,17 @@
   })
   ```
 
-- **See also:** [Custom Directives](../guide/custom-directive.html)
+- **Vea también:** [Directivas Personalizadas](../guide/custom-directive.html)
 
 ## components
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-- **Details:**
+- **Detalles:**
 
-  A hash of components to be made available to the component instance.
+  Un _hash_ de componentes que se hacen disponibles en la instancia de componente.
 
-- **Usage:**
+- **Uso:**
 
   ```js
   const Foo = {
@@ -50,4 +50,4 @@
   })
   ```
 
-- **See also:** [Components](../guide/component-basics.html)
+- **Vea también:** [Básicos de Componentes](../guide/component-basics.html)

@@ -14,8 +14,10 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/api/global-api.md](src/api/global-api.md)|Spanish :white_check_mark:|
 |[src/api/index.md](src/api/index.md)|Spanish :white_check_mark:|
 |[src/api/options-api.md](src/api/options-api.md)|Spanish :white_check_mark:|
+|[src/api/options-assets.md](src/api/options-assets.md)|Spanish :white_check_mark:|
 |[src/api/options-data.md](src/api/options-data.md)|Spanish :white_check_mark:|
 |[src/api/options-dom.md](src/api/options-dom.md)|Spanish :white_check_mark:|
+|[src/api/options-misc.md](src/api/options-misc.md)|Spanish :white_check_mark:|
 |[src/api/reactivity-api.md](src/api/reactivity-api.md)|Spanish :white_check_mark:|
 |[src/examples/commits.md](src/examples/commits.md)|Spanish :white_check_mark:|
 |[src/examples/elastic-header.md](src/examples/elastic-header.md)|Spanish :white_check_mark:|
@@ -86,10 +88,8 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/api/effect-scope.md](src/api/effect-scope.md)|English :x:|
 |[src/api/instance-methods.md](src/api/instance-methods.md)|English :x:|
 |[src/api/instance-properties.md](src/api/instance-properties.md)|English :x:|
-|[src/api/options-assets.md](src/api/options-assets.md)|English :x:|
 |[src/api/options-composition.md](src/api/options-composition.md)|English :x:|
 |[src/api/options-lifecycle-hooks.md](src/api/options-lifecycle-hooks.md)|English :x:|
-|[src/api/options-misc.md](src/api/options-misc.md)|English :x:|
 |[src/api/refs-api.md](src/api/refs-api.md)|English :x:|
 |[src/api/sfc-script-setup.md](src/api/sfc-script-setup.md)|English :x:|
 |[src/api/sfc-spec.md](src/api/sfc-spec.md)|English :x:|
