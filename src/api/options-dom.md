@@ -2,9 +2,9 @@
 
 ## template
 
-- **Type:** `string`
+- **Tipo:** `string`
 
-- **Details:**
+- **Detalles:**
 
   A string template to be used as the markup for the component instance. The template will **replace** the `innerHTML` of mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
 
@@ -18,19 +18,19 @@
   If render function is present in the Vue option, the template will be ignored.
   :::
 
-- **See also:**
+- **Vea también:**
   - [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
   - [Content Distribution with Slots](../guide/component-basics.html#content-distribution-with-slots)
 
 ## render
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
   An alternative to string templates allowing you to leverage the full programmatic power of JavaScript.
 
-- **Usage:**
+- **Uso:**
 
   ```html
   <div id="app" class="demo">
@@ -64,4 +64,4 @@
   The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element
   :::
 
-- **See also:** [Render Functions](../guide/render-function.html)
+- **Vea también:** [Render Functions](../guide/render-function.html)
