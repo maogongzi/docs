@@ -50,11 +50,11 @@
 
   - `type`: puede ser uno de los siguientes constructores nativos: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, cualquiera función de constructor personalizada u una matriz de estos. Comprobará si una _prop_ tiene un tipo dado, y lanzará una advertencia si no lo tiene. [Más información](../guide/component-props.html#prop-types) sobre tipos de _prop_.
   - `default`: `any`
-    Especifica un valor por defector para la _prop_. Si la _prop_ no es pasada, este valor será utilizado en su lugar. Los valores por defecto de objeto or matriz deben retornarse de una función de fábrica.
+    Especifica un valor por defecto para la _prop_. Si la _prop_ no es pasada, este valor será utilizado en su lugar. Los valores por defecto de objeto or matriz deben retornarse de una función de fábrica.
   - `required`: `Boolean`
     Define si la _prop_ es requerida. En un entorno que no es de producción, una advertencia de consola será lanzada si este valor es verdadero y la _prop_ no es pasada.
   - `validator`: `Function`
-    Función personalizada de validador que toma el valor de la _prop_ como el argumento solo. En un entorno que no es de producción, una advertencia será lanzada si esta función retorna un valor falso (p. ej. se falla la validación). Puede leer más sobre la validación de _prop_ [aquí](../guide/component-props.html#prop-validation).
+    Función personalizada de validador que toma el valor de la _prop_ como el argumento solo. En un entorno que no es de producción, una advertencia será lanzada si esta función retorna un valor falso (es decir, se falla la validación). Puede leer más sobre la validación de _prop_ [aquí](../guide/component-props.html#prop-validation).
 
 - **Ejemplo:**
 
@@ -102,7 +102,7 @@
   }
   ```
 
-  Las propiedades computadas son almacenadas en _cache_, y solo recalculadas cuando se cambien las dependencias reactivas. Note que si una cierta dependencia es afuera del alcance de la instancia (es decir, non reactiva), la propiedad computada **no** será actualizada.
+  Las propiedades computadas son almacenadas en _cache_, y solo recalculadas cuando se cambien las dependencias reactivas. Note que si una cierta dependencia es afuera del alcance de la instancia (es decir, no reactiva), la propiedad computada **no** será actualizada.
 
 - **Ejemplo:**
 
