@@ -1,46 +1,46 @@
 # _Hooks_ de ciclo de vida
 
 :::tip Note
-All lifecycle hooks automatically have their `this` context bound to the instance, so that you can access data, computed properties, and methods. This means **you should not use an arrow function to define a lifecycle method** (e.g. `created: () => this.fetchTodos()`). The reason is arrow functions bind the parent context, so `this` will not be the component instance as you expect and `this.fetchTodos` will be undefined.
+Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `this` vinculados a la instancia, así que puede acceder dato, propiedades computadas y métodos. Este significa que **no debe utilizar funciones de flecha para definir un método de ciclo de vida** (p. ej. `created: () => this.fetchTodos()`). La razón es que las funciones de flecha vinculan al contexto padre, así que `this` no será la instancia de componente como usted espere y `this.fetchTodos` será _undefined_.
 :::
 
 ## beforeCreate
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
   Called synchronously immediately after the instance has been initialized, before data observation and event/watcher setup.
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
+- **Vea también:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
 
 ## created
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
   Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, the mounting phase has not been started, and the `$el` property will not be available yet.
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
+- **Vea también:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
 
 ## beforeMount
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
   Called right before the mounting begins: the `render` function is about to be called for the first time.
 
   **This hook is not called during server-side rendering.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
+- **Vea también:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
 
 ## mounted
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
   Called after the instance has been mounted, where element, passed to [`app.mount`](/api/application-api.html#mount) is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
 
@@ -57,25 +57,25 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   **This hook is not called during server-side rendering.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
+- **Vea también:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
 
 ## beforeUpdate
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
   Called when data changes, before the DOM is patched. This is a good place to access the existing DOM before an update, e.g. to remove manually added event listeners.
 
   **This hook is not called during server-side rendering, because only the initial render is performed server-side.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
+- **Vea también:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
 
 ## updated
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
   Called after a data change causes the virtual DOM to be re-rendered and patched.
 
@@ -94,63 +94,63 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   **This hook is not called during server-side rendering.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
+- **Vea también:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
 
 ## activated
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
   Called when a kept-alive component is activated.
 
   **This hook is not called during server-side rendering.**
 
-- **See also:**
+- **Vea también:**
   - [Dynamic Components - keep-alive](../guide/component-dynamic-async.html#dynamic-components-with-keep-alive)
 
 ## deactivated
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
   Called when a kept-alive component is deactivated.
 
   **This hook is not called during server-side rendering.**
 
-- **See also:**
+- **Vea también:**
   - [Dynamic Components - keep-alive](../guide/component-dynamic-async.html#dynamic-components-with-keep-alive)
 
 ## beforeUnmount
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
   Called right before a component instance is unmounted. At this stage the instance is still fully functional.
 
   **This hook is not called during server-side rendering.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
+- **Vea también:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
 
 ## unmounted
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
   Called after a component instance has been unmounted. When this hook is called, all directives of the component instance have been unbound, all event listeners have been removed, and all child component instances have also been unmounted.
 
   **This hook is not called during server-side rendering.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
+- **Vea también:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
 
 ## errorCaptured
 
-- **Type:** `(err: Error, instance: Component, info: string) => ?boolean`
+- **Tipo:** `(err: Error, instance: Component, info: string) => ?boolean`
 
-- **Details:**
+- **Detalles:**
 
   Called when an error from any descendent component is captured. The hook receives three arguments: the error, the component instance that triggered the error, and a string containing information on where the error was captured. The hook can return `false` to stop the error from propagating further.
 
@@ -170,13 +170,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ## renderTracked
 
-- **Type:** `(e: DebuggerEvent) => void`
+- **Tipo:** `(e: DebuggerEvent) => void`
 
-- **Details:**
+- **Detalles:**
 
   Called when virtual DOM re-render is tracked. The hook receives a `debugger event` as an argument. This event tells you what operation tracked the component and the target object and key of that operation.
 
-- **Usage:**
+- **Uso:**
 
   ```html
   <div id="app">
@@ -216,13 +216,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ## renderTriggered
 
-- **Type:** `(e: DebuggerEvent) => void`
+- **Tipo:** `(e: DebuggerEvent) => void`
 
-- **Details:**
+- **Detalles:**
 
   Called when virtual DOM re-render is triggered. Similarly to [`renderTracked`](#rendertracked), receives a `debugger event` as an argument. This event tells you what operation triggered the re-rendering and the target object and key of that operation.
 
-- **Usage:**
+- **Uso:**
 
   ```html
   <div id="app">
