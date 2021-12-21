@@ -10,9 +10,9 @@ Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `thi
 
 - **Detalles:**
 
-  Called synchronously immediately after the instance has been initialized, before data observation and event/watcher setup.
+  Llamado sincrónicamente inmediatamente después de que la instancia se haya inicializada, antes la observación de dato y la configuración de eventos/observadores.
 
-- **Vea también:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#lifecycle-diagram)
 
 ## created
 
@@ -20,9 +20,9 @@ Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `thi
 
 - **Detalles:**
 
-  Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, the mounting phase has not been started, and the `$el` property will not be available yet.
+  LLamado sincrónicamente después de que la instancia se haya creada. En esta fase, la instancia ya ha terminado procesar las opciones, lo que significa que las siguientes se han establecidas: observación de dato, propiedades computadas, métodos, _callbacks_ de observación/evento. Sin embargo, la fase de montaje no se ha empezada, y la propiedad `$el` no será disponible todavía.
 
-- **Vea también:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#lifecycle-diagram)
 
 ## beforeMount
 
@@ -30,11 +30,11 @@ Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `thi
 
 - **Detalles:**
 
-  Called right before the mounting begins: the `render` function is about to be called for the first time.
+  Llamado justo antes de que se empiece el montaje: la función `render` está a punto de ser llamada por la primera vez.
 
-  **This hook is not called during server-side rendering.**
+  **Este _hook_ no se llama durante la renderización del lado de servidor.**
 
-- **Vea también:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#lifecycle-diagram)
 
 ## mounted
 
@@ -42,22 +42,22 @@ Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `thi
 
 - **Detalles:**
 
-  Called after the instance has been mounted, where element, passed to [`app.mount`](/api/application-api.html#mount) is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
+  Llamado después de que la instancia se haya montada, dónde el elemento pasado a [`app.mount`](/api/application-api.html#mount) esté reemplazado por la recién creada `vm.$el`. Si la instancia raíz es montada a un elemento en el documento, `vm.$el` también será en el documento cuando `mounted` esté llamado.
 
-  Note that `mounted` does **not** guarantee that all child components have also been mounted. If you want to wait until the entire view has been rendered, you can use [vm.$nextTick](../api/instance-methods.html#nexttick) inside of `mounted`:
+  Note que `mounted` **no** garantiza que todos componentes hijos también se han montados. Si quiere esperar hasta que la vista entera se haya rerenderizada, puede utilizar [vm.$nextTick](../api/instance-methods.html#nexttick) en vez de `mounted`:
 
   ```js
   mounted() {
     this.$nextTick(function () {
-      // Code that will run only after the
-      // entire view has been rendered
+      // El código que solo se ejecute después de
+      // que la vista entera se haya rerenderizada
     })
   }
   ```
 
-  **This hook is not called during server-side rendering.**
+  **Este _hook_ no se llama durante la renderización del lado de servidor.**
 
-- **Vea también:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#lifecycle-diagram)
 
 ## beforeUpdate
 
@@ -65,11 +65,11 @@ Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `thi
 
 - **Detalles:**
 
-  Called when data changes, before the DOM is patched. This is a good place to access the existing DOM before an update, e.g. to remove manually added event listeners.
+  Llamado cuando se cambie el dato, antes de que el DOM sea parcheado. Este es un buen lugar para acceder el DOM existente antes de una actualización, p. ej. eliminar escuchadores de evento agregados manualmente.
 
-  **This hook is not called during server-side rendering, because only the initial render is performed server-side.**
+  **Este _hook_ no se llama durante la renderización del lado de servidor. Porque sólo la renderización inicial es realizada del lado de servidor.**
 
-- **Vea también:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#lifecycle-diagram)
 
 ## updated
 
@@ -77,24 +77,24 @@ Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `thi
 
 - **Detalles:**
 
-  Called after a data change causes the virtual DOM to be re-rendered and patched.
+  Llamado después de que un cambio de dato provoque que el DOM virtual sea rerenderizado y parcheado.
 
-  The component's DOM will have been updated when this hook is called, so you can perform DOM-dependent operations here. However, in most cases you should avoid changing state inside the hook. To react to state changes, it's usually better to use a [computed property](./options-data.html#computed) or [watcher](./options-data.html#watch) instead.
+  El DOM del componente se habrá actualizado cuando este _hook_ sea llamado, así que puede realizar operaciones que dependen del DOM aquí. Sin embargo, en la mayoría de casos debería evitar cambiar el estado dentro del _hook_. Para reaccionar a cambios de estado, es usualmente mejor utilizar una [propiedad computada](./options-data.html#computed) o [observador](./options-data.html#watch) en su lugar.
 
-  Note that `updated` does **not** guarantee that all child components have also been re-rendered. If you want to wait until the entire view has been re-rendered, you can use [vm.$nextTick](../api/instance-methods.html#nexttick) inside of `updated`:
+  Note que `updated` **no** garantiza que todos componentes hijos también se han rerenderizados. Si quiere esperar hasta que la vista entera se haya rerenderizada, puede utilizar [vm.$nextTick](../api/instance-methods.html#nexttick) en vez de `updated`:
 
   ```js
   updated() {
     this.$nextTick(function () {
-      // Code that will run only after the
-      // entire view has been re-rendered
+      // El código que solo se ejecute después de
+      // que la vista entera se haya rerenderizada
     })
   }
   ```
 
-  **This hook is not called during server-side rendering.**
+  **Este _hook_ no se llama durante la renderización del lado de servidor.**
 
-- **Vea también:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#lifecycle-diagram)
 
 ## activated
 
@@ -102,12 +102,12 @@ Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `thi
 
 - **Detalles:**
 
-  Called when a kept-alive component is activated.
+  Llamado cuando un componente de _keep-alive_ sea activado.
 
-  **This hook is not called during server-side rendering.**
+  **Este _hook_ no se llama durante la renderización del lado de servidor.**
 
 - **Vea también:**
-  - [Dynamic Components - keep-alive](../guide/component-dynamic-async.html#dynamic-components-with-keep-alive)
+  - [`keep-alive` con Componentes Dinámicos](../guide/component-dynamic-async.html#dynamic-components-with-keep-alive)
 
 ## deactivated
 
@@ -115,12 +115,12 @@ Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `thi
 
 - **Detalles:**
 
-  Called when a kept-alive component is deactivated.
+  Llamado cuando un componente de _keep-alive_ sea desactivado.
 
-  **This hook is not called during server-side rendering.**
+  **Este _hook_ no se llama durante la renderización del lado de servidor.**
 
 - **Vea también:**
-  - [Dynamic Components - keep-alive](../guide/component-dynamic-async.html#dynamic-components-with-keep-alive)
+  - [`keep-alive` con Componentes Dinámicos](../guide/component-dynamic-async.html#dynamic-components-with-keep-alive)
 
 ## beforeUnmount
 
@@ -128,11 +128,11 @@ Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `thi
 
 - **Detalles:**
 
-  Called right before a component instance is unmounted. At this stage the instance is still fully functional.
+  Llamado justo antes de que una instancia de componente sea desmontada. En esta fase la instancia es todavía funcional.
 
-  **This hook is not called during server-side rendering.**
+  **Este _hook_ no se llama durante la renderización del lado de servidor.**
 
-- **Vea también:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#lifecycle-diagram)
 
 ## unmounted
 
@@ -140,11 +140,11 @@ Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `thi
 
 - **Detalles:**
 
-  Called after a component instance has been unmounted. When this hook is called, all directives of the component instance have been unbound, all event listeners have been removed, and all child component instances have also been unmounted.
+  Llamado después de que una instancia de componente se haya desmontada. Cuando este _hook_ sea llamado, todas directivas de la instancia del componente se hayan desvinculadas, todos escuchadores de evento se hayan eliminados, y todas instancias de componentes hijos también se hayan desmontadas.
 
-  **This hook is not called during server-side rendering.**
+  **Este _hook_ no se llama durante la renderización del lado de servidor.**
 
-- **Vea también:** [Lifecycle Diagram](../guide/instance.html#lifecycle-diagram)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#lifecycle-diagram)
 
 ## errorCaptured
 
@@ -152,7 +152,7 @@ Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `thi
 
 - **Detalles:**
 
-  Called when an error from any descendent component is captured. The hook receives three arguments: the error, the component instance that triggered the error, and a string containing information on where the error was captured. The hook can return `false` to stop the error from propagating further.
+  Llamado cuando un error de cualquier componente secundario sea capturado. El _hook_ recibe tres argumentos: el error, la instancia de componente que disparó el error, y una cadena de caracteres que contiene información sobre dónde el error fuera capturado. El _hook_ puede retornar `false` para dejar el error de propagarse más lejos.
 
   :::tip
   You can modify component state in this hook. However, it is important to have conditionals in your template or render function that short circuits other content when an error has been captured; otherwise the component will be thrown into an infinite render loop.
