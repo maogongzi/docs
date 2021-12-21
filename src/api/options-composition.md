@@ -2,9 +2,9 @@
 
 ## mixins
 
-- **Type:** `Array<Object>`
+- **Tipo:** `Array<Object>`
 
-- **Details:**
+- **Detalles:**
 
   The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options like normal instance objects, and they will be merged against the eventual options using the certain option merging logic. For example, if your mixin contains a `created` hook and the component itself also has one, both functions will be called.
 
@@ -14,7 +14,7 @@
   In Vue 2, mixins were the primary mechanism for creating reusable chunks of component logic. While mixins continue to be supported in Vue 3, the [Composition API](/guide/composition-api-introduction.html) is now the preferred approach for code reuse between components.
   :::
 
-- **Example:**
+- **Ejemplo:**
 
   ```js
   const mixin = {
@@ -34,13 +34,13 @@
   // => 2
   ```
 
-- **See also:** [Mixins](../guide/mixins.html)
+- **Vea también:** [Mixins](../guide/mixins.html)
 
 ## extends
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-- **Details:**
+- **Detalles:**
 
   Allows one component to extend another, inheriting its component options.
 
@@ -50,7 +50,7 @@
 
   As with `mixins`, any options will be merged using the relevant merge strategy.
 
-- **Example:**
+- **Ejemplo:**
 
   ```js
   const CompA = { ... }
@@ -63,12 +63,12 @@
 
 ## provide / inject
 
-- **Type:**
+- **Tipo:**
 
   - **provide:** `Object | () => Object`
   - **inject:** `Array<string> | { [key: string]: string | Symbol | Object }`
 
-- **Details:**
+- **Detalles:**
 
   This pair of options are used together to allow an ancestor component to serve as a dependency injector for all its descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain. If you are familiar with React, this is very similar to React's `context` feature.
 
@@ -85,7 +85,7 @@
 
   > Note: the `provide` and `inject` bindings are NOT reactive. This is intentional. However, if you pass down a reactive object, properties on that object do remain reactive.
 
-- **Example:**
+- **Ejemplo:**
 
   ```js
   // parent component providing 'foo'
@@ -189,11 +189,11 @@
   }
   ```
 
-- **See also:** [Provide / Inject](../guide/component-provide-inject.html)
+- **Vea también:** [Provide / Inject](../guide/component-provide-inject.html)
 
 ## setup
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
 The `setup` function is a new component option. It serves as the entry point for using the Composition API inside components.
 
@@ -201,7 +201,7 @@ The `setup` function is a new component option. It serves as the entry point for
 
   `setup` is called right after the initial props resolution when a component instance is created. Lifecycle-wise, it is called before the [beforeCreate](./options-lifecycle-hooks.html#beforecreate) hook.
 
-- **Usage with Templates**
+- **Uso con Plantillas**
 
   If `setup` returns an object, the properties on the object will be merged on to the render context for the component's template:
 
@@ -230,7 +230,7 @@ The `setup` function is a new component option. It serves as the entry point for
 
   Note that [refs](refs-api.html#ref) returned from `setup` are automatically unwrapped when accessed in the template so there's no need for `.value` in templates.
 
-- **Usage with Render Functions / JSX**
+- **Uso con Funciones Render / JSX**
 
   `setup` can also return a render function, which can directly make use of reactive state declared in the same scope:
 
@@ -247,7 +247,7 @@ The `setup` function is a new component option. It serves as the entry point for
   }
   ```
 
-- **Arguments**
+- **Argumentos**
 
   The function receives the resolved props as its first argument:
 
@@ -348,4 +348,4 @@ The `setup` function is a new component option. It serves as the entry point for
 
   - Having `props` as a separate argument makes it easier to type it individually without messing up the types of other properties on the context. It also makes it possible to keep a consistent signature across `setup`, `render` and plain functional components with TSX support.
 
-- **See also:** [Composition API](composition-api.html)
+- **Vea también:** [Composition API](composition-api.html)
