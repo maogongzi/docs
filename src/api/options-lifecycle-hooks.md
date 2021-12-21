@@ -155,18 +155,18 @@ Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `thi
   Llamado cuando un error de cualquier componente secundario sea capturado. El _hook_ recibe tres argumentos: el error, la instancia de componente que disparó el error, y una cadena de caracteres que contiene información sobre dónde el error fuera capturado. El _hook_ puede retornar `false` para dejar el error de propagarse más lejos.
 
   :::tip
-  You can modify component state in this hook. However, it is important to have conditionals in your template or render function that short circuits other content when an error has been captured; otherwise the component will be thrown into an infinite render loop.
+  Puede modificar el estado de componente en este _hook_, Sin embargo, es importante tener declaraciones condicionales (conditionals) en su plantilla o función _render_ que puedan saltarse otros contenidos cuando un error haya sido capturado, de lo contrario el componente puede entrar en un bucle infinito de renderización.
   :::
 
-  **Error Propagation Rules**
+  **Reglas de Propagación de Error**
 
-  - By default, all errors are still sent to the global `config.errorHandler` if it is defined, so that these errors can still be reported to an analytics service in a single place.
+  - Por defecto, todos errores son todavía enviados al manejador global `config.errorHandler` si está definido, así que estos errores pueden todavía ser entregados a un servicio de análisis en un solo lugar.
 
-  - If multiple `errorCaptured` hooks exist on a component's inheritance chain or parent chain, all of them will be invoked on the same error.
+  - Si múltiples _hooks_ de `errorCaptured` existen en la cadena de herencia o en la cadena de padres de un componente, todos ellos serán invocados sobre el mismo error.
 
-  - If the `errorCaptured` hook itself throws an error, both this error and the original captured error are sent to the global `config.errorHandler`.
+  - Si el _hook_ `errorCaptured` mismo lanza un error, tanto este error como el error original capturado son enviados al manejador global `config.errorHandler`.
 
-  - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or the global `config.errorHandler` from being invoked for this error.
+  - Un hook `errorCaptured` puede retornar `false` para dejar el error de propagarse más lejos. Esto es escencialmente decir que "este error ha sido manejado y debe ser ignorado." Prevendrá cualquieres _hooks_ adicionales de `errorCaptured` o el manejador global `config.errorHandler` de ser invocados sobre este error.
 
 ## renderTracked
 
@@ -174,14 +174,14 @@ Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `thi
 
 - **Detalles:**
 
-  Called when virtual DOM re-render is tracked. The hook receives a `debugger event` as an argument. This event tells you what operation tracked the component and the target object and key of that operation.
+  Llamado cuando la rerenderización de DOM virtual está rastreada. El _hook_ recibe un `debugger event` (evento de depuración) como un argumento. Este evento le informa qué operación rastreó el componente y el objeto de destino y clave de la operación.
 
 - **Uso:**
 
   ```html
   <div id="app">
-    <button v-on:click="addToCart">Add to cart</button>
-    <p>Cart({{ cart }})</p>
+    <button v-on:click="addToCart">Añadir al carrito</button>
+    <p>Carrito({{ cart }})</p>
   </div>
   ```
 
@@ -194,7 +194,7 @@ Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `thi
     },
     renderTracked({ key, target, type }) {
       console.log({ key, target, type })
-      /* This will be logged when component is rendered for the first time:
+      /* Este será registrado cuando el componente sea renderizado por la primera vez:
       {
         key: "cart",
         target: {
@@ -220,14 +220,14 @@ Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `thi
 
 - **Detalles:**
 
-  Called when virtual DOM re-render is triggered. Similarly to [`renderTracked`](#rendertracked), receives a `debugger event` as an argument. This event tells you what operation triggered the re-rendering and the target object and key of that operation.
+  Llamado cuando la rerenderización de DOM virtual está rastreada. Similar a [`renderTracked`](#rendertracked), recibe un `debugger event` como un argumento. Este evento le informa qué operación disparó la rerenderización y el objeto de destino y clave de la operación.
 
 - **Uso:**
 
   ```html
   <div id="app">
-    <button v-on:click="addToCart">Add to cart</button>
-    <p>Cart({{ cart }})</p>
+    <button v-on:click="addToCart">Añadir al carrito</button>
+    <p>Carrito({{ cart }})</p>
   </div>
   ```
 
@@ -244,7 +244,7 @@ Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `thi
     methods: {
       addToCart() {
         this.cart += 1
-        /* This will cause renderTriggered call
+        /* Este causará el llamado de renderTriggered
           {
             key: "cart",
             target: {
