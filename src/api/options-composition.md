@@ -6,12 +6,12 @@
 
 - **Detalles:**
 
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options like normal instance objects, and they will be merged against the eventual options using the certain option merging logic. For example, if your mixin contains a `created` hook and the component itself also has one, both functions will be called.
+  La opción `mixins` acepta una matriz de objetos _mixin_. Estos objetos _mixin_ pueden contener opciones de instancia como objetos normales de instancias, y serán fundidos contra las opciones eventuales utilizando la cierta lógica para fundir opciones. Por ejemplo, si su _mixin_ contiene un _hook_ `created` y el componente mismo también tiene uno, ambos funciones serán llamados.
 
-  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+  Los _hooks_ _mixin_ son llamados en el order que son proporcionados, y llamados antes de los propios hooks del componente.
 
   :::info
-  In Vue 2, mixins were the primary mechanism for creating reusable chunks of component logic. While mixins continue to be supported in Vue 3, the [Composition API](/guide/composition-api-introduction.html) is now the preferred approach for code reuse between components.
+  En Vue 2, mixins fueron el principal mecanismo para crear fragmentos reutilizables de lógica de componente. Mientras mixins siguen siendo soportado en Vue 3, la [API de Composición](/guide/composition-api-introduction.html) ahora es el enfoque preferido para la reutilización de código entre componentes.
   :::
 
 - **Ejemplo:**
@@ -42,13 +42,13 @@
 
 - **Detalles:**
 
-  Allows one component to extend another, inheriting its component options.
+  Permite un componente de extender otro, heredando sus opciones de componente.
 
-  From an implementation perspective, `extends` is almost identical to `mixins`. The component specified by `extends` will be treated as though it were the first mixin.
+  Desde una perspectiva de implementación, `extends` es casi igual a `mixins`. El componente especificado por `extends` será tratado como si sea el primero mixin.
 
-  However, `extends` and `mixins` express different intents. The `mixins` option is primarily used to compose chunks of functionality, whereas `extends` is primarily concerned with inheritance.
+  Sin embargo, `extends` y `mixins` expresan intenciones diferentes. La opcion `mixins` es principalmente utilizada para componer fragmentos de funcionalidad, mientras `extends` se ocupa principalmente de herencia.
 
-  As with `mixins`, any options will be merged using the relevant merge strategy.
+  Como con `mixins`, cualquieras opciones serán fundidas utilizando la estrategia relevante de fundir.
 
 - **Ejemplo:**
 
@@ -70,25 +70,25 @@
 
 - **Detalles:**
 
-  This pair of options are used together to allow an ancestor component to serve as a dependency injector for all its descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain. If you are familiar with React, this is very similar to React's `context` feature.
+  Este par de opciones son utilizadas juntos para permitir un componente ancestro para servir como un inyector de dependencias para todos sus descendientes, sin tener en cuenta la profundidad de jerarquía de componente, siempre y cuando son en la misma cadena padre. Si está familizar con React, este es muy similar a la característica `context` de React.
 
-  The `provide` option should be an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use ES2015 Symbols as keys in this object, but only in environments that natively support `Symbol` and `Reflect.ownKeys`.
+  La opción `provide` debería ser un objeto u una función que retorna un objeto. Este objeto contiene las propiedades que son disponibles para inyección a sus descendientes. Puede utilizar los Symbols de ES2015 como claves en este objeto, pero solo en entornos que originalmente soportan `Symbol` y `Reflect.ownKeys`.
 
-  The `inject` option should be either:
+  La opción `inject` debería ser cualquier de las siguientes:
 
-  - an array of strings, or
-  - an object where the keys are the local binding name and the value is either:
-    - the key (string or Symbol) to search for in available injections, or
-    - an object where:
-      - the `from` property is the key (string or Symbol) to search for in available injections, and
-      - the `default` property is used as fallback value
+  - una matriz de cadenas de caracteres, o
+  - un objeto dónode las claves son los nombres locales de vinculación y el valor es cualquier de estos:
+    - la clave (cadena de caracteres o Symbol) para buscar en inyecciones disponibles, o
+    - un objeto dónde:
+      - la propiedad `from` es la clave (cadena de caracteres o Symbol) para buscar en inyecciones disponibles, y
+      - la propiedad `default` es utilizada como un valor por defecto (fallback)
 
-  > Note: the `provide` and `inject` bindings are NOT reactive. This is intentional. However, if you pass down a reactive object, properties on that object do remain reactive.
+  > Note que las vinculaciones de `provide` y `inject` NO son reactivas. Este es deliberado. Sin embargo, si pasa un objeto reactivo, las propiedades de ese objeto mantienen reactivas.
 
 - **Ejemplo:**
 
   ```js
-  // parent component providing 'foo'
+  // el componente padre proporciona 'foo'
   const Provider = {
     provide: {
       foo: 'bar'
@@ -96,7 +96,7 @@
     // ...
   }
 
-  // child component injecting 'foo'
+  // el componente hijo inyecta 'foo'
   const Child = {
     inject: ['foo'],
     created() {
@@ -106,7 +106,7 @@
   }
   ```
 
-  With ES2015 Symbols, function `provide` and object `inject`:
+  Con Symbols de ES2015, función `provide` y objeto `inject`:
 
   ```js
   const s = Symbol()
@@ -125,7 +125,7 @@
   }
   ```
 
-  Using an injected value as the default for a prop:
+  Utilizando un valor inyectado como el valor por defecto para una _prop_:
 
   ```js
   const Child = {
@@ -140,7 +140,7 @@
   }
   ```
 
-  Using an injected value as data entry:
+  Utilizando un valor inyectado como una entrada de dato:
 
   ```js
   const Child = {
@@ -153,7 +153,7 @@
   }
   ```
 
-  Injections can be optional with default value:
+  Las inyecciones pueden ser opcionales con valores por defecto:
 
   ```js
   const Child = {
@@ -163,7 +163,7 @@
   }
   ```
 
-  If it needs to be injected from a property with a different name, use `from` to denote the source property:
+  Si necesita inyectar una propiedad con un diferente nombre, utilice `from` para denotar la propiedad origional:
 
   ```js
   const Child = {
@@ -176,7 +176,7 @@
   }
   ```
 
-  Similar to prop defaults, you need to use a factory function for non-primitive values:
+  Similar a los valores por defecto de _prop_, necesita utilizar una función de fábrica para los valores que no son primitivos:
 
   ```js
   const Child = {
@@ -195,15 +195,15 @@
 
 - **Tipo:** `Function`
 
-The `setup` function is a new component option. It serves as the entry point for using the Composition API inside components.
+La función `setup` es una nueva opción de componente. Sirve como la punta de entrada para utilizar la API de Composición dentro de componentes.
 
 - **Invocation Timing**
 
-  `setup` is called right after the initial props resolution when a component instance is created. Lifecycle-wise, it is called before the [beforeCreate](./options-lifecycle-hooks.html#beforecreate) hook.
+  `setup` es llamado justo después de la resolución inicial de _props_ cuando una instancia de componente sea creada. Lo mismo como el ciclo de vida, es llamado antes del hook [beforeCreate](./options-lifecycle-hooks.html#beforecreate) hook.
 
 - **Uso con Plantillas**
 
-  If `setup` returns an object, the properties on the object will be merged on to the render context for the component's template:
+  Si `setup` retorna un objeto, las propiedades del objeto serán fundidas en el contexto de renderización para la plantilla del componente:
 
   ```html
   <template>
@@ -218,7 +218,7 @@ The `setup` function is a new component option. It serves as the entry point for
         const count = ref(0)
         const object = reactive({ foo: 'bar' })
 
-        // expose to template
+        // exponer a la plantilla
         return {
           count,
           object
@@ -228,11 +228,11 @@ The `setup` function is a new component option. It serves as the entry point for
   </script>
   ```
 
-  Note that [refs](refs-api.html#ref) returned from `setup` are automatically unwrapped when accessed in the template so there's no need for `.value` in templates.
+  Note que [refs](refs-api.html#ref) retornadas de `setup` son automáticamente desenvueltas cuand accesadas en la plantilla, así que no es necesario escribir `.value` en las plantillas.
 
 - **Uso con Funciones Render / JSX**
 
-  `setup` can also return a render function, which can directly make use of reactive state declared in the same scope:
+  `setup` puede también retornar una función _render_, lo que puede directamente aprovecha estados reactivos declarados en el mismo alcance:
 
   ```js
   import { h, ref, reactive } from 'vue'
@@ -249,7 +249,7 @@ The `setup` function is a new component option. It serves as the entry point for
 
 - **Argumentos**
 
-  The function receives the resolved props as its first argument:
+  La función recibe las _props_ resueltas como su primer argumento:
 
   ```js
   export default {
@@ -262,7 +262,7 @@ The `setup` function is a new component option. It serves as the entry point for
   }
   ```
 
-  Note this `props` object is reactive - i.e. it is updated when new props are passed in, and can be observed and reacted upon using `watchEffect` or `watch`:
+  Note que este objeto `props` es reactivo, es decir, es actualizado cuando nuevas _props_ son pasados adentro, y puede ser observado y reaccionado según utilizar `watchEffect` o `watch`:
 
   ```js
   export default {
@@ -271,13 +271,13 @@ The `setup` function is a new component option. It serves as the entry point for
     },
     setup(props) {
       watchEffect(() => {
-        console.log(`name is: ` + props.name)
+        console.log(`El nombre es: ` + props.name)
       })
     }
   }
   ```
 
-  However, do NOT destructure the `props` object, as it will lose reactivity:
+  Sin embargo, NO desestructure el objeto `props`, debido a que se perderá la reactividad:
 
   ```js
   export default {
@@ -286,15 +286,15 @@ The `setup` function is a new component option. It serves as the entry point for
     },
     setup({ name }) {
       watchEffect(() => {
-        console.log(`name is: ` + name) // Will not be reactive!
+        console.log(`El nombre es: ` + name) // ¡Será reactivo!
       })
     }
   }
   ```
 
-  The `props` object is immutable for userland code during development (will emit warning if user code attempts to mutate it).
+  El objeto `props` es inmutable para código del lado de usuario durante desarrollo (lanzará advertencias si el código de usuario trate de mutarlo).
 
-  The second argument provides a context object which exposes various objects and functions that might be useful in `setup`:
+  El segundo argumento proporciona un objeto de contexto que exponga varios objetos y funciones que podrían ser útiles en `setup`:
 
   ```js
   const MyComponent = {
@@ -307,22 +307,22 @@ The `setup` function is a new component option. It serves as the entry point for
   }
   ```
 
-  `attrs`, `slots`, and `emit` are equivalent to the instance properties [`$attrs`](/api/instance-properties.html#attrs), [`$slots`](/api/instance-properties.html#slots), and [`$emit`](/api/instance-methods.html#emit) respectively.
+  `attrs`, `slots`, y `emit` son equivalentes a las propiedades de instancia [`$attrs`](/api/instance-properties.html#attrs), [`$slots`](/api/instance-properties.html#slots), y [`$emit`](/api/instance-methods.html#emit), respectivamente. 
 
-  `attrs` and `slots` are proxies to the corresponding values on the internal component instance. This ensures they always expose the latest values even after updates so that we can destructure them without worrying about accessing a stale reference:
+  `attrs` y `slots` son _proxies_ a los valores correspondientes en la instancia internal de componente. Este asegura que siempre exponen los últimos valores, incluso detrás actualizaciones, así que podemos desestructurarlos sin preocuparnos por acceder una referencia obsoleta:
 
   ```js
   const MyComponent = {
     setup(props, { attrs }) {
-      // a function that may get called at a later stage
+      // Una función que podría ser llamada en una fase posterior
       function onClick() {
-        console.log(attrs.foo) // guaranteed to be the latest reference
+        console.log(attrs.foo) // garantizado como la última referencia
       }
     }
   }
   ```
 
-  `expose`, added in Vue 3.2, is a function that allows specific properties to be exposed via the public component instance. By default, the public instance retrieved using refs, `$parent`, or `$root` is equivalent to the internal instance used by the template. Calling `expose` will create a separate public instance with the properties specified:
+  `expose`, agregado en Vue 3.2, es una función que permite especificar propiedades para ser expuestas mediante la instancia pública de componente. Por defecto, la instancia pública de componente recuperada utilizando refs, `$parent`, o `$root` es equivalente a la instancia internal utilizada por la plantilla. Llamar `expose` creará una instancia pública separada con las propiedades especificadas:
 
   ```js
   const MyComponent = {
@@ -331,21 +331,21 @@ The `setup` function is a new component option. It serves as the entry point for
       const reset = () => count.value = 0
       const increment = () => count.value++
 
-      // Only reset will be available externally, e.g. via $refs
+      // solo _reset_ será disponible externamente, p. ej. mediante $refs
       expose({
         reset
       })
 
-      // Internally, the template has access to count and increment
+      // Internamente, la plantilla tiene acceso a _count_ y _increment_
       return { count, increment }
     }
   }
   ```
 
-  There are a number of reasons for placing `props` as a separate first argument instead of including it in the context:
+  Hay un número de razones para poner `props` como un primero argumento separado en vez de incluirlo en el contexto:
 
-  - It's much more common for a component to use `props` than the other properties, and very often a component uses only `props`.
+  - Es mucho más común para un componente para utilizar `props` que otras propiedades, y muy a menudo un componente utiliza sólo `props`.
 
-  - Having `props` as a separate argument makes it easier to type it individually without messing up the types of other properties on the context. It also makes it possible to keep a consistent signature across `setup`, `render` and plain functional components with TSX support.
+  - Tener `props` como un argumento separado lo hace más fácil para tiparlo individualmente sin confundir con los tipos de otras propiedades en el contexto. También lo hace posible mantener una signatura consistente entre `setup`, `render` y componentes planos funcionales con soporte de TSX.
 
-- **Vea también:** [Composition API](composition-api.html)
+- **Vea también:** [API de Composición](composition-api.html)
