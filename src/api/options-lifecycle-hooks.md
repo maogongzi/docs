@@ -244,7 +244,7 @@ Todos los _hooks_ de ciclo de vida automáticamente tienen sus contextos de `thi
     methods: {
       addToCart() {
         this.cart += 1
-        /* Este causará el llamado de renderTriggered
+        /* Este causará la llamada de renderTriggered
           {
             key: "cart",
             target: {
