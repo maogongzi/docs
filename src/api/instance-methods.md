@@ -2,22 +2,22 @@
 
 ## $watch
 
-- **Arguments:**
+- **Argumentos:**
 
   - `{string | Function} source`
   - `{Function | Object} callback`
-  - `{Object} options (optional)`
+  - `{Object} options (opcional)`
     - `{boolean} deep`
     - `{boolean} immediate`
     - `{string} flush`
 
-- **Returns:** `{Function} unwatch`
+- **Retorna:** `{Function} unwatch`
 
-- **Usage:**
+- **Uso:**
 
-  Watch a reactive property or a computed function on the component instance for changes. The callback gets called with the new value and the old value for the given property. We can only pass top-level `data`, `props`, or `computed` property name as a string. For more complex expressions or nested properties, use a function instead.
+  Observar los cambios de una propiedad reactiva o una función computada en la instancia de componente. El _callback_ será llamado con el valor nuevo y viejo para la propiedad dada. Podemos solo pasar nombres de las propiedades de nivel superior `data`, `props`, o `computed` como una cadena de caracteres. Para más expresiones complejas o propiedades anidadas, utilice una función en su lugar.
 
-- **Example:**
+- **Ejemplo:**
 
   ```js
   const app = createApp({
@@ -32,67 +32,68 @@
       }
     },
     created() {
-      // top-level property name
+      // nombre de una propiedad de nivel superior
       this.$watch('a', (newVal, oldVal) => {
-        // do something
+        // hacer algo
       })
 
-      // function for watching a single nested property
+      // función para observar una sola propiedad anidada
       this.$watch(
         () => this.c.d,
         (newVal, oldVal) => {
-          // do something
+          // hacer algo
         }
       )
 
-      // function for watching a complex expression
+      // función para observar una expresion compleja
       this.$watch(
-        // every time the expression `this.a + this.b` yields a different result,
-        // the handler will be called. It's as if we were watching a computed
-        // property without defining the computed property itself
+        // cada vez la expresión `this.a + this.b` produce un resulto diferente,
+        // el manejador será llamado. Es como si estuviéramos observando una propiedad
+        // computada sin definir la propiedad computada mísma
         () => this.a + this.b,
         (newVal, oldVal) => {
-          // do something
+          // hacer algo
         }
       )
     }
   })
   ```
 
-  When watched value is an object or array, any changes to its properties or elements won't trigger the watcher because they reference the same object/array:
+  Cuando el valor observado es un objeto o matriz, cualquieres cambios a sus propiedades o elementos no dispararán el observador porque se refieren al mismo objeto/matriz:
 
   ```js
   const app = createApp({
     data() {
       return {
         article: {
-          text: 'Vue is awesome!'
+          text: '¡Vue es genial!'
         },
-        comments: ['Indeed!', 'I agree']
+        comments: ['¡De verdad!', 'Estoy de acuerdo']
       }
     },
     created() {
       this.$watch('article', () => {
-        console.log('Article changed!')
+        console.log('El artículo ha cambiado!')
       })
 
       this.$watch('comments', () => {
-        console.log('Comments changed!')
+        console.log('Los comentarios han cambiado!')
       })
     },
     methods: {
-      // These methods won't trigger a watcher because we changed only a property of object/array,
-      // not the object/array itself
+
+      // Estos métodos no dispararán un observador porque cambiamos solo una propiedad del objeto/matriz,
+      // en vez de sí mísmo
       changeArticleText() {
-        this.article.text = 'Vue 3 is awesome'
+        this.article.text = 'Vue 3 es genial'
       },
       addComment() {
-        this.comments.push('New comment')
+        this.comments.push('Nuevo comentario')
       },
 
-      // These methods will trigger a watcher because we replaced object/array completely
+      // Estos métodos dispararán un observador porque reemplazamos el objeto/matriz completamente
       changeWholeArticle() {
-        this.article = { text: 'Vue 3 is awesome' }
+        this.article = { text: 'Vue 3 es genial' }
       },
       clearComments() {
         this.comments = []
@@ -101,7 +102,7 @@
   })
   ```
 
-  `$watch` returns an unwatch function that stops firing the callback:
+  `$watch` retorna una función de quitar observación (unwatch) que deje disparar el _callback_:
 
   ```js
   const app = createApp({
@@ -115,39 +116,39 @@
   const vm = app.mount('#app')
 
   const unwatch = vm.$watch('a', cb)
-  // later, teardown the watcher
+  // luego, derrumba el observador
   unwatch()
   ```
 
-- **Option: deep**
+- **Opción: deep**
 
-  To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. This option also can be used to watch array mutations.
+  Para también detectar cambios de valores anidados dentro de objetos, necesita pasar `deep: true` en el argumento de opciones. Esta opción también puede ser utilizada para observar mutaciones de matriz.
 
-  > Note: when mutating (rather than replacing) an Object or an Array and watch with deep option, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.
+  > Note que cuando mute (en vez de reemplace) un objeto o matriz y observe con la opción _deep_, el valor viejo será igual como el valor nuevo porque se refieren al mismo objeto/matriz. Vue no posee una copia del valor antes de que se mute.
 
   ```js
   vm.$watch('someObject', callback, {
     deep: true
   })
   vm.someObject.nestedValue = 123
-  // callback is fired
+  // callback es disparado
   ```
 
-- **Option: immediate**
+- **Opción: immediate**
 
-  Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
+  Pasar `immediate: true` en la opción disparará el _callback_ inmediatamente con el valor corriente de la expresión:
 
   ```js
   vm.$watch('a', callback, {
     immediate: true
   })
-  // `callback` is fired immediately with current value of `a`
+  // `callback` es disparado inmediatamente con el valor corriente de `a`
   ```
 
-  Note that with `immediate` option you won't be able to unwatch the given property on the first callback call.
+  Note que con opción `immediate` no será capaz de quitar la observación a una propiedad dada en la primera llamada de _callback_.
 
   ```js
-  // This will cause an error
+  // Este resultará un error
   const unwatch = vm.$watch(
     'value',
     function() {
@@ -158,7 +159,7 @@
   )
   ```
 
-  If you still want to call an unwatch function inside the callback, you should check its availability first:
+  Si todavía quiere llamar una función de quitar observación dentro del _callback_, debería comprobar su disponibilidad primero:
 
   ```js
   let unwatch = null
@@ -175,38 +176,38 @@
   )
   ```
 
-- **Option: flush**
+- **Opción: flush**
 
-  The `flush` option allows for greater control over the timing of the callback. It can be set to `'pre'`, `'post'` or `'sync'`.
+  La opción `flush` permite un mayor control sobre la temporizción del _callback_. Puede establecerse como `'pre'`, `'post'` o `'sync'`.
 
-  The default value is `'pre'`, which specifies that the callback should be invoked before rendering. This allows the callback to update other values before the template runs.
+  El valor por defecto es `'pre'`, lo que especifica que el _callback_ debe ser invocado antes de la renderización. Este permite que el _callback_ actualice otros valores antes de que se ejecute la plantilla.
 
-  The value `'post'` can be used to defer the callback until after rendering. This should be used if the callback needs access to the updated DOM or child components via `$refs`.
+  El valor `'post'` puede ser utilizado para diferir el callback hasta después de la renderización. Este debería ser utilizado si el _callback_ necesite acceso al DOM actualizado o los componentes hijos mediante `$refs`.
 
-  If `flush` is set to `'sync'`, the callback will be called synchronously, as soon as the value changes.
+  Si `flush` se establece como `'sync'`, el _callback_ será llamado sincrónicamente, tan pronto como se cambie el valor.
 
-  For both `'pre'` and `'post'`, the callback is buffered using a queue. The callback will only be added to the queue once, even if the watched value changes multiple times. The interim values will be skipped and won't be passed to the callback.
+  Para `'pre'` y `'post'`, el _callback_ es amortiguado utilizando una cola. El _callback_ será agregado a la cola una sola vez, incluso si el valor observado se ha cambiado múltiples veces. El valor intermedio se omitirá y no se pasará al _callback_.
 
-  Buffering the callback not only improves performance but also helps to ensure data consistency. The watchers won't be triggered until the code performing the data updates has finished.
+  Amortiguar el _callback_ no solo mejorar el rendimiento sino también ayuda a asegurarse la consistencia de dato. Los observadores no serán disparados hasta que se haya terminado el código que realice las actualizaciones de dato.
 
-  `'sync'` watchers should be used sparingly, as they don't have these benefits.
+  Los observadores de `'sync'` deberían ser utilizados con moderación, como no poseen estos beneficios.
 
-  For more information about `flush` see [Effect Flush Timing](../guide/reactivity-computed-watchers.html#effect-flush-timing).
+  Para más información sobre `flush` véase [la temporización para tirar de la cadena de los efectos secundarios](../guide/reactivity-computed-watchers.html#effect-flush-timing).
 
-- **See also:** [Watchers](../guide/computed.html#watchers)
+- **Vea también:** [Observadores](../guide/computed.html#watchers)
 
 ## $emit
 
-- **Arguments:**
+- **Argumentos:**
 
   - `{string} eventName`
-  - `...args (optional)`
+  - `...args (opcional)`
 
-  Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
+  Disparar un evento en la instancia corriente. Cualquieres argumentos adicionales serán pasados a la función _callback_ del escuchador.
 
-- **Examples:**
+- **Ejemplos:**
 
-  Using `$emit` with only an event name:
+  Utilizar `$emit` con solo un nombre de evento:
 
   ```html
   <div id="emit-example-simple">
@@ -218,7 +219,7 @@
   const app = createApp({
     methods: {
       sayHi() {
-        console.log('Hi!')
+        console.log('¡Hola!')
       }
     }
   })
@@ -227,7 +228,7 @@
     emits: ['welcome'],
     template: `
       <button v-on:click="$emit('welcome')">
-        Click me to be welcomed
+        Hazme clic para recibir bienvenidas
       </button>
     `
   })
@@ -235,7 +236,7 @@
   app.mount('#emit-example-simple')
   ```
 
-  Using `$emit` with additional arguments:
+  Utilizar `$emit` con argumentos adicionales:
 
   ```html
   <div id="emit-example-argument">
@@ -256,14 +257,14 @@
     emits: ['advise'],
     data() {
       return {
-        adviceText: 'Some advice'
+        adviceText: 'Cierto consejo'
       }
     },
     template: `
       <div>
         <input type="text" v-model="adviceText">
         <button v-on:click="$emit('advise', adviceText)">
-          Click me for sending advice
+          Hazme clic para enviar un consejo
         </button>
       </div>
     `
@@ -272,27 +273,27 @@
   app.mount('#emit-example-argument')
   ```
 
-- **See also:**
-  - [`emits` option](./options-data.html#emits)
-  - [Emitting a Value With an Event](../guide/component-basics.html#emitting-a-value-with-an-event)
+- **Vea también:**
+  - [la opción `emits`](./options-data.html#emits)
+  - [Emitir un valor con un Evento](../guide/component-basics.html#emitting-a-value-with-an-event)
 
 ## $forceUpdate
 
-- **Usage:**
+- **Uso:**
 
-  Force the component instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
+  Forzar la rerenderización de la instancia de componente. Note que no aafecta a todos componentes hijos, solo la instancia mísma y los componentes hijos con contenidos de _slot_ insertados.
 
 ## $nextTick
 
-- **Arguments:**
+- **Argumentos:**
 
-  - `{Function} callback (optional)`
+  - `{Function} callback (opcional)`
 
-- **Usage:**
+- **Uso:**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+  Diferir la ejecución del _callback_ hasta el próximo ciclo de actualización DOM. Utilícelo inmediatamente después de que haya cambiado unos datos para esperar la actualización DOM. Esto es lo mismo como el método global `nextTick`, excepto que el contexto `this` del _callback_ sea vinculado automáticamente a la instancia que llame a este método.
 
-- **Example:**
+- **Ejemplo:**
 
   ```js
   createApp({
@@ -300,12 +301,12 @@
     methods: {
       // ...
       example() {
-        // modify data
+        // modificar dato
         this.message = 'changed'
-        // DOM is not updated yet
+        // DOM aún no es actualizado
         this.$nextTick(function() {
-          // DOM is now updated
-          // `this` is bound to the current instance
+          // DOM ya es actualizado
+          // `this` es vinculado a la instancia corriente
           this.doSomethingElse()
         })
       }
@@ -313,4 +314,4 @@
   })
   ```
 
-- **See also:** [nextTick](global-api.html#nexttick)
+- **Vea también:** [nextTick](global-api.html#nexttick)
