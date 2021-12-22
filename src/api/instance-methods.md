@@ -2,7 +2,7 @@
 
 ## $watch
 
-- **Arguments:**
+- **Argumentos:**
 
   - `{string | Function} source`
   - `{Function | Object} callback`
@@ -11,13 +11,13 @@
     - `{boolean} immediate`
     - `{string} flush`
 
-- **Returns:** `{Function} unwatch`
+- **Retorna:** `{Function} unwatch`
 
-- **Usage:**
+- **Uso:**
 
   Watch a reactive property or a computed function on the component instance for changes. The callback gets called with the new value and the old value for the given property. We can only pass top-level `data`, `props`, or `computed` property name as a string. For more complex expressions or nested properties, use a function instead.
 
-- **Example:**
+- **Ejemplo:**
 
   ```js
   const app = createApp({
@@ -193,11 +193,11 @@
 
   For more information about `flush` see [Effect Flush Timing](../guide/reactivity-computed-watchers.html#effect-flush-timing).
 
-- **See also:** [Watchers](../guide/computed.html#watchers)
+- **Vea también:** [Watchers](../guide/computed.html#watchers)
 
 ## $emit
 
-- **Arguments:**
+- **Argumentos:**
 
   - `{string} eventName`
   - `...args (optional)`
@@ -272,27 +272,27 @@
   app.mount('#emit-example-argument')
   ```
 
-- **See also:**
+- **Vea también:**
   - [`emits` option](./options-data.html#emits)
   - [Emitting a Value With an Event](../guide/component-basics.html#emitting-a-value-with-an-event)
 
 ## $forceUpdate
 
-- **Usage:**
+- **Uso:**
 
   Force the component instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
 
 ## $nextTick
 
-- **Arguments:**
+- **Argumentos:**
 
   - `{Function} callback (optional)`
 
-- **Usage:**
+- **Uso:**
 
   Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
 
-- **Example:**
+- **Ejemplo:**
 
   ```js
   createApp({
@@ -313,4 +313,4 @@
   })
   ```
 
-- **See also:** [nextTick](global-api.html#nexttick)
+- **Vea también:** [nextTick](global-api.html#nexttick)
