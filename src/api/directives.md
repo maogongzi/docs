@@ -146,7 +146,7 @@
 
   `v-for` también funciona con valores que implementan el [Protocolo Iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol), incluyendo el `Map` y `Set` nativo.
 
-  El uso más detallado para `v-for` es explicado en la sección del guía del enlace abajo.
+  El uso más detallado para `v-for` es explicado en la sección del guía referenciada abajo.
 
 - **Vea también:**
   - [Renderización de lista](../guide/list.html)
@@ -245,54 +245,54 @@
 
 - **Modificadores:**
 
-  - `.camel` - transform the kebab-case attribute name into camelCase.
-  - `.prop` - force a binding to be set as a DOM property. <Badge text="3.2+"/>
-  - `.attr` - force a binding to be set as a DOM attribute. <Badge text="3.2+"/>
+  - `.camel` - transforma el nombre del atributo de _kebab-case_ a _camelCase_.
+  - `.prop` - forzar una vinculación para establecerse como una propiedad DOM. <Badge text="3.2+"/>
+  - `.attr` - forzar una vinculación para establecerse como un atributo DOM. <Badge text="3.2+"/>
 
 - **Uso:**
 
-  Dynamically bind one or more attributes, or a component prop to an expression.
+  Vincula dinámicamente uno o más atributos, o una _prop_ de componente a una expresión.
 
-  When used to bind the `class` or `style` attribute, it supports additional value types such as Array or Objects. See linked guide section below for more details.
+  Cuando se utiliza para vincular el atributo `class` o `style`, soporta tipos adicionales de valor tales como _Array_ u _Object_. Vea la sección del guía referenciada abajo para más detalles.
 
-  When used for prop binding, the prop must be properly declared in the child component.
+  Cuando se utiliza para vincular una _prop_, la _prop_ debe ser declarada en el componente hijo de forma acorde.
 
-  When used without an argument, can be used to bind an object containing attribute name-value pairs. Note in this mode `class` and `style` does not support Array or Objects.
+  Cuando se utiliza sin argumento, puede ser utilizado para vincular un objeto que contenga pares nombre-valor de atributos. Note que en este modo los atributos `class` y `style` no soportan _Array_ u _Object_.
 
 - **Ejemplo:**
 
   ```html
-  <!-- bind an attribute -->
+  <!-- vincular un atributo -->
   <img v-bind:src="imageSrc" />
 
-  <!-- dynamic attribute name -->
+  <!-- nombre de atributo dinámico -->
   <button v-bind:[key]="value"></button>
 
-  <!-- shorthand -->
+  <!-- abreviación -->
   <img :src="imageSrc" />
 
-  <!-- shorthand dynamic attribute name -->
+  <!-- abreviación de nombre de atributo dinámico -->
   <button :[key]="value"></button>
 
-  <!-- with inline string concatenation -->
+  <!-- con concatenación en línea de cadena de caracteres -->
   <img :src="'/path/to/images/' + fileName" />
 
-  <!-- class binding -->
+  <!-- vinculación del atributo class -->
   <div :class="{ red: isRed }"></div>
   <div :class="[classA, classB]"></div>
   <div :class="[classA, { classB: isB, classC: isC }]"></div>
 
-  <!-- style binding -->
+  <!-- vinculación del atributo style -->
   <div :style="{ fontSize: size + 'px' }"></div>
   <div :style="[styleObjectA, styleObjectB]"></div>
 
-  <!-- binding an object of attributes -->
+  <!-- vincular un objeto de atributos -->
   <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
 
-  <!-- prop binding. "prop" must be declared in my-component. -->
+  <!-- vinculación de _prop_. "prop" debe ser declarada en my-component. -->
   <my-component :prop="someThing"></my-component>
 
-  <!-- pass down parent props in common with a child component -->
+  <!-- pasar las props del padre al componente hijo  -->
   <child-component v-bind="$props"></child-component>
 
   <!-- XLink -->
