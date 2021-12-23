@@ -232,7 +232,7 @@ La sintaxis de matriz para `:style` permite que aplique múltiples objetos de es
 
 ### Prefijarse Automáticamente
 
-Cuando utiliza una propiedad de CSS que requiere un [prefijo específico del vendor](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) en `:style`, Vue va automáticamente añadir el prefijo apropiado. Lo hace Vue mediante comprobar en el tiempo de ejecución para ver cuales propiedades de estilo son suportado en el navegador corriente. Si el navegador no suporta una propiedad particular, varios variantes prefijados serán comprodados para tratar de encontrar uno que sea soportado.
+Cuando utiliza una propiedad de CSS que requiere un [prefijo específico del vendor](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) en `:style`, Vue va automáticamente añadir el prefijo apropiado. Lo hace Vue mediante comprobar en el tiempo de ejecución para ver cuales propiedades de estilo son suportado en el navegador actual. Si el navegador no suporta una propiedad particular, varios variantes prefijados serán comprodados para tratar de encontrar uno que sea soportado.
 
 ### Múltiples Valores
 

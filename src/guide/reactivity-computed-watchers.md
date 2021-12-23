@@ -206,7 +206,7 @@ La API `watch` es el exacto equivalente de la propiedad [watch](computed.html#wa
 
   - realizar el efecto secundario perezosamente;
   - ser más específico sobre cuál estado debe disparar el observador para que se reejecute;
-  - Acceder tanto el valor previo como el corriente del estado observado.
+  - Acceder tanto el valor previo como el actual del estado observado.
 
 ### Observar un Solo Fuente
 
@@ -323,7 +323,7 @@ watch(
 state.attributes.name = 'Alex' // registra: "deep" "Alex" "Alex"
 ```
 
-Sin embargo, observar un objeto o una matriz reactivo siempre retornará una referencia al valor corriente de ese objeto para tanto el valor corriente como el valor previo del estado. Para complementamente observar profundamente objetos y matrices anidados, una copia profunda de valores sería necesaria. Esto se puede lograr con una utilidad como [lodash.cloneDeep](https://lodash.com/docs/4.17.15#cloneDeep)
+Sin embargo, observar un objeto o una matriz reactivo siempre retornará una referencia al valor actual de ese objeto para tanto el valor actual como el valor previo del estado. Para complementamente observar profundamente objetos y matrices anidados, una copia profunda de valores sería necesaria. Esto se puede lograr con una utilidad como [lodash.cloneDeep](https://lodash.com/docs/4.17.15#cloneDeep)
 
 ```js
 import _ from 'lodash'

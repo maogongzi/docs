@@ -126,7 +126,7 @@ Vue.nextTick(function() {
 })
 ```
 
-Hay también el método de instancias `vm.$nextTick()`, lo que es especialmente útil dentro de los componentes, debido a que no requiere el `Vue` global y el contexto `this` de su _callback_ será automáticamente vinculado a la corriente instancia de componente:
+Hay también el método de instancias `vm.$nextTick()`, lo que es especialmente útil dentro de los componentes, debido a que no requiere el `Vue` global y el contexto `this` de su _callback_ será automáticamente vinculado a la instancia actual de componente:
 
 ```js
 Vue.component('example', {

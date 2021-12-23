@@ -136,13 +136,13 @@
 
 - **Opción: immediate**
 
-  Pasar `immediate: true` en la opción disparará el _callback_ inmediatamente con el valor corriente de la expresión:
+  Pasar `immediate: true` en la opción disparará el _callback_ inmediatamente con el valor actual de la expresión:
 
   ```js
   vm.$watch('a', callback, {
     immediate: true
   })
-  // `callback` es disparado inmediatamente con el valor corriente de `a`
+  // `callback` es disparado inmediatamente con el valor actual de `a`
   ```
 
   Note que con opción `immediate` no será capaz de quitar la observación a una propiedad dada en la primera llamada de _callback_.
@@ -203,7 +203,7 @@
   - `{string} eventName`
   - `...args (opcional)`
 
-  Disparar un evento en la instancia corriente. Cualquieres argumentos adicionales serán pasados a la función _callback_ del escuchador.
+  Disparar un evento en la instancia actual. Cualquieres argumentos adicionales serán pasados a la función _callback_ del escuchador.
 
 - **Ejemplos:**
 
@@ -306,7 +306,7 @@
         // DOM aún no es actualizado
         this.$nextTick(function() {
           // DOM ya es actualizado
-          // `this` es vinculado a la instancia corriente
+          // `this` es vinculado a la instancia actual
           this.doSomethingElse()
         })
       }

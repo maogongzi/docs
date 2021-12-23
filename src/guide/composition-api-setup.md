@@ -194,4 +194,4 @@ El método `increment` podría luego ser disponible en el componente padre media
 
 ## Uso de `this`
 
-**Dentro de `setup()`, `this` no será una referencia a la instancia activa corriente** Dado que `setup()` es llamada antes de que las otras opciones del componente sean resueltas, `this` dentro de `setup()` se comportará diferente que `this` en otras opciones. Esto puede causar confusiones al utilizar `setup()` junto con la API de Opciones.
+**Dentro de `setup()`, `this` no será una referencia a la instancia activa actual** Dado que `setup()` es llamada antes de que las otras opciones del componente sean resueltas, `this` dentro de `setup()` se comportará diferente que `this` en otras opciones. Esto puede causar confusiones al utilizar `setup()` junto con la API de Opciones.
