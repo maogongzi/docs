@@ -280,7 +280,7 @@ Para más detalles sobre construir componentes web con Vue, especialmente con co
 `resolveComponent` solo puede ser utilizado dentro de funciones `render` o `setup`.
 :::
 
-Permite resolver un componente por su nombre, si es disponible en la instancia corriente de aplicación.
+Permite resolver un componente por su nombre, si es disponible en la instancia actual de aplicación.
 
 Retorna un componente o el argumento `name` si no se encuentra uno.
 
@@ -345,7 +345,7 @@ Acepta un argumento: `component`
 `resolveDirective` solo puede ser utilizado dentro de funciones `render` o `setup`.
 :::
 
-Permite resolver una directiva por su nombre, si es disponible en la instancia corriente de aplicación.
+Permite resolver una directiva por su nombre, si es disponible en la instancia actual de aplicación.
 
 Retorna una directiva o `undefined` cuando no se encuentra una.
 

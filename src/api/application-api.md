@@ -174,7 +174,7 @@ Aparte de `el`, debería tratar estos argumentos como de solo lectura y nunca mo
 
 - **Uso:**
 
-  Aplicar un _mixin_ en el alcance entero de la aplicación. Una vez registrado se pueden utilizar en la plantilla de cualquier componente dentro de la aplicación corriente. Este puede ser utilizado por los autores de _plugins_ para inyectar comportamientos personalizados en componentes. **No es recomendado en el código de aplicación**.
+  Aplicar un _mixin_ en el alcance entero de la aplicación. Una vez registrado se pueden utilizar en la plantilla de cualquier componente dentro de la aplicación actual. Este puede ser utilizado por los autores de _plugins_ para inyectar comportamientos personalizados en componentes. **No es recomendado en el código de aplicación**.
 
 - **Vea también:** [Mixin Global](../guide/mixins.html#global-mixin)
 

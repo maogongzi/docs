@@ -16,7 +16,7 @@
 
 - **Detalles:**
 
-  Un objeto representa las _props_ corrientes que un componente ha recibido. La instancia de componente delega acceso a las propiedades en su objeto de _props_.
+  Un objeto representa las _props_ actuales que un componente ha recibido. La instancia de componente delega acceso a las propiedades en su objeto de _props_.
 
 ## $el
 
@@ -38,7 +38,7 @@
 
 - **Detalles:**
 
-  Las opciones de instanciación utilizadas para la instancia corriente de componente. Esta es útil cuando quiere incluir propiedades personalizadas en las opciones:
+  Las opciones de instanciación utilizadas para la instancia actual de componente. Esta es útil cuando quiere incluir propiedades personalizadas en las opciones:
 
   ```js
   const app = createApp({
@@ -57,7 +57,7 @@
 
 - **Detalles:**
 
-  La instancia padre, si la instancia corriente tienen una.
+  La instancia padre, si la instancia actual tienen una.
 
 ## $root
 
@@ -67,7 +67,7 @@
 
 - **Detalles:**
 
-  La instancia raíz de componente del árbol corriente de componente. Si la instancia corriente no tiene padres este valor va a ser sí mísmo.
+  La instancia raíz de componente del árbol actual de componente. Si la instancia actual no tiene padres este valor va a ser sí mísmo.
 
 ## $slots
 

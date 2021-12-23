@@ -4,7 +4,7 @@
 
 > Esta guía asume que usted ya ha leído [Provide / Inject](component-provide-inject.html), la [Introducción de la API de Composición](composition-api-introduction.html), [Fundamentos de la Reactividad](reactivity-fundamentals.html).
 
-También podemos utilizar [provide / inject](component-provide-inject.html) con la API de Composición. Ambos solo pueden ser invocados durante el [`setuo()`](composition-api-setup.html) con una instance activa corriente.
+También podemos utilizar [provide / inject](component-provide-inject.html) con la API de Composición. Ambos solo pueden ser invocados durante el [`setuo()`](composition-api-setup.html) con una instance activa actual.
 
 ## Explicación del Escenario
 
