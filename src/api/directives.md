@@ -299,90 +299,91 @@
   <svg><a :xlink:special="foo"></a></svg>
   ```
 
-  When setting a binding on an element, Vue by default checks whether the element has the key defined as a property using an `in` operator check. If the property is defined, Vue will set the value as a DOM property instead of an attribute. This should work in most cases, but you can override this behavior by explicitly using `.prop` or `.attr` modifiers. This is sometimes necessary, especially when [working with custom elements](/guide/web-components.html#passing-dom-properties).
+  Cuando se establece una vinculación en un elemento, Vue por defecto comproba si el elemento tenga el clave definido como propiedad utilizando un operador `in`. Si la propiedad es definida, Vue establecerá el valor como propiedad DOM en vez de un atributo. Este funcionaría en la mayoría de casos, pero puede sobreescribir este comportamiento mediante explícitamente utilizar los modificadores `.prop` o `.attr`. Este es a veces necesario, especialmente cuando [se trabaje con elementos personalizados](/guide/web-components.html#passing-dom-properties).
 
-  The `.prop` modifier also has a dedicated shorthand, `.`:
+
+  El modificador `.prop` también tiene una abreviación dedicada, `.`:
 
   ```html
   <div :someProperty.prop="someObject"></div>
 
-  <!-- equivalent to -->
+  <!-- es equivalente a -->
   <div .someProperty="someObject"></div>
   ```
 
-  The `.camel` modifier allows camelizing a `v-bind` attribute name when using in-DOM templates, e.g. the SVG `viewBox` attribute:
+  El modificador `.camel` permite transformar el nombre de un atributo de `v-bind` a _camelCase_ cuando se utilice plantillas en DOM, p. ej. el atributo SVG `viewBox`:
 
   ```html
   <svg :view-box.camel="viewBox"></svg>
   ```
 
-  `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
+  `.camel` no es necesario si usted utiliza plantillas de cadena de caracteres, o compila utilizando `vue-loader`/`vuetify`.
 
 - **Vea también:**
-  - [Class and Style Bindings](../guide/class-and-style.html)
-  - [Components - Props](../guide/component-basics.html#passing-data-to-child-components-with-props)
+  - [Vinculaciones de Clases y Estilos](../guide/class-and-style.html)
+  - [Componentes - Props](../guide/component-basics.html#passing-data-to-child-components-with-props)
 
 ## v-model
 
-- **Espera:** varies based on value of form inputs element or output of components
+- **Espera:** varía basado en valores de entradas de formularios o salidas de componentes
 
 - **Limitado a:**
 
   - `<input>`
   - `<select>`
   - `<textarea>`
-  - components
+  - componentes
 
 - **Modificadores:**
 
-  - [`.lazy`](../guide/forms.html#lazy) - listen to `change` events instead of `input`
-  - [`.number`](../guide/forms.html#number) - cast valid input string to numbers
-  - [`.trim`](../guide/forms.html#trim) - trim input
+  - [`.lazy`](../guide/forms.html#lazy) - escucha un evento `change` en vez de `input`
+  - [`.number`](../guide/forms.html#number) - castea valor de entrada válida de cadena de caracteres a número
+  - [`.trim`](../guide/forms.html#trim) - recorte el valor de entrada
 
 - **Uso:**
 
-  Create a two-way binding on a form input element or a component. For detailed usage and other notes, see the Guide section linked below.
+  Crea una vinculación bidireccional (_two way binding_) en un elemento de entrada de formulario o componente. Por más detalles de su uso y otras notas, vea la sección de guía referenciada abajo.
 
 - **Vea también:**
-  - [Form Input Bindings](../guide/forms.html)
-  - [Components - Form Input Components using Custom Events](../guide/component-custom-events.html#v-model-arguments)
+  - [Vinculación de Entradas de Formularios](../guide/forms.html)
+  - [Componentes - Componentes de Entrada de Formulario Utilizando Eventos Personalizados](../guide/component-custom-events.html#v-model-arguments)
 
 ## v-slot
 
 - **Abreviación:** `#`
 
-- **Espera:** JavaScript expression that is valid in a function argument position (supports destructuring in [supported environments](../guide/component-slots.html#destructuring-slot-props)). Optional - only needed if expecting props to be passed to the slot.
+- **Espera:** expresión JavaScript que es válida en un posición de argumento de función (soporta desestructuración en [entornos soportados](../guide/component-slots.html#destructuring-slot-props)). Opcional - solo requerido si se espere pasar props al _slot_.
 
-- **Argumento:** slot name (optional, defaults to `default`)
+- **Argumento:** nombre del _slot_ (opcional, por defecto `default`)
 
 - **Limitado a:**
 
   - `<template>`
-  - [components](../guide/component-slots.html#abbreviated-syntax-for-lone-default-slots) (for a lone default slot with props)
+  - [components](../guide/component-slots.html#abbreviated-syntax-for-lone-default-slots) (para un solo slot por defecto con props)
 
 - **Uso:**
 
-  Denote named slots or slots that expect to receive props.
+  Denota slots nombrados o slots que esperan recibir props.
 
 - **Ejemplo:**
 
   ```html
-  <!-- Named slots -->
+  <!-- slots nombrados -->
   <base-layout>
     <template v-slot:header>
-      Header content
+      Contenido del encabezado
     </template>
 
     <template v-slot:default>
-      Default slot content
+      Contenido del slot por defecto
     </template>
 
     <template v-slot:footer>
-      Footer content
+      Contenido del pie de página
     </template>
   </base-layout>
 
-  <!-- Named slot that receives props -->
+  <!-- slot nombrado que recibe props -->
   <infinite-scroll>
     <template v-slot:item="slotProps">
       <div class="item">
@@ -391,38 +392,38 @@
     </template>
   </infinite-scroll>
 
-  <!-- Default slot that receive props, with destructuring -->
+  <!-- slot por defecto que recibe props, con desestructuración -->
   <mouse-position v-slot="{ x, y }">
-    Mouse position: {{ x }}, {{ y }}
+    La posición del ratón: {{ x }}, {{ y }}
   </mouse-position>
   ```
 
-  For more details, see the links below.
+  Para más detalles, vea las enlaces abajo.
 
 - **Vea también:**
-  - [Components - Slots](../guide/component-slots.html)
+  - [Componentes - Slots](../guide/component-slots.html)
 
 ## v-pre
 
-- **Does not expect expression**
+- **No espera una expresión**
 
 - **Uso:**
 
-  Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
+  Saltea la compilación para este elemento y todos sus hijos. Usted puede utilizar esto para mostrar etiquetas _mustache_ crudas. Saltear una gran cantidad de nodos sin directivas en ellos también puede acelerar el tiempo de compilación.
 
 - **Ejemplo:**
 
   ```html
-  <span v-pre>{{ this will not be compiled }}</span>
+  <span v-pre>{{ esto no será compilado }}</span>
   ```
 
 ## v-cloak
 
-- **Does not expect expression**
+- **No espera una expresión**
 
 - **Uso:**
 
-  This directive will remain on the element until the associated component instance finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the component instance is ready.
+  Esta directiva permanecerá en el elemento hasta que la instancia Vue asociada termine su compilación. Combinada con reglas de CSS tal como `[v-cloak] { display: none }`, esta directiva puede ser utilizada para esconder vinculaciones _mustache_ no compiladas hasta que la instancia de Vue este lista.
 
 - **Ejemplo:**
 
@@ -438,36 +439,36 @@
   </div>
   ```
 
-  The `<div>` will not be visible until the compilation is done.
+  El `<div>` no será visible hasta que la compilación haya terminado.
 
 ## v-once
 
-- **Does not expect expression**
+- **No espera una expresión**
 
 - **Detalles:**
 
-  Render the element and component **once** only. On subsequent re-renders, the element/component and all its children will be treated as static content and skipped. This can be used to optimize update performance.
+  Renderiza el elemento/componente solo **una** vez. En renderizaciones posteriores, el elemento/componente y todos sus hijos serán tratados como contenido estático, y por lo tanto, salteados. Esto puede ser utilizado para optimizar el rendimiento de actualización.
 
   ```html
-  <!-- single element -->
-  <span v-once>This will never change: {{msg}}</span>
-  <!-- the element have children -->
+  <!-- un solo elemento -->
+  <span v-once>Esto nunca cambiará: {{msg}}</span>
+  <!-- n elemento con hijos -->
   <div v-once>
     <h1>comment</h1>
     <p>{{msg}}</p>
   </div>
-  <!-- component -->
+  <!-- componente -->
   <my-component v-once :comment="msg"></my-component>
-  <!-- `v-for` directive -->
+  <!-- directiva `v-for` -->
   <ul>
     <li v-for="i in list" v-once>{{i}}</li>
   </ul>
   ```
 
-  Since 3.2, you can also memoize part of the template with invalidation conditions using [`v-memo`](#v-memo).
+  Desde la versión 3.2, puede también memorizar parte de la plantilla con condiciones de invalidación utilizando [`v-memo`](#v-memo).
 
 - **Vea también:**
-  - [Data Binding Syntax - interpolations](../guide/template-syntax.html#text)
+  - [Sintaxis de Vinculación de Dato - Interpolaciones](../guide/template-syntax.html#text)
   - [v-memo](#v-memo)
 
 ## v-memo <Badge text="3.2+" />
@@ -476,7 +477,7 @@
 
 - **Detalles:**
 
-  Memoize a sub-tree of the template. Can be used on both elements and components. The directive expects a fixed-length array of dependency values to compare for the memoization. If every value in the array was the same as last render, then updates for the entire sub-tree will be skipped. For example:
+  Memorizar un subárbol de la plantilla. Puede ser utilizada tanto en elementos como en componentes. La directiva espera una matriz de tamaño fijo de valores de dependencia para comparar para la memorización. Si cada valor de la matriz fue el mismo como el anterior renderizado, las actualizaciones para el subárbol entero será salteado. Por ejemplo:
 
   ```html
   <div v-memo="[valueA, valueB]">
@@ -484,32 +485,32 @@
   </div>
   ```
 
-  When the component re-renders, if both `valueA` and `valueB` remain the same, all updates for this `<div>` and its children will be skipped. In fact, even the Virtual DOM VNode creation will also be skipped since the memoized copy of the sub-tree can be reused.
+  Cuando el componente se rerenderice, si `valueA` y `valueB` siguen siendo los mismos, todas actualizaciones para este `<div>` y sus hijos serán salteados. De hecho, incluso la creación del VNode DOM virtual será también salteada debido a que la copia memorizada del subárbol pueda ser reutilizada.
 
-  It is important to specify the memoization array correctly, otherwise we may skip updates that should indeed be applied. `v-memo` with an empty dependency array (`v-memo="[]"`) would be functionally equivalent to `v-once`.
+  Es importante especificar la matriz de memorización correctmente, de lo contrario podemos saltear actualizaciones que deberían ser aplicadas. `v-memo` con una matriz vacía de dependencia (`v-memo="[]"`) sería en la práctica equivalente a `v-once`.
 
-  **Usage with `v-for`**
+  **Uso con `v-for`**
 
-  `v-memo` is provided solely for micro optimizations in performance-critical scenarios and should be rarely needed. The most common case where this may prove helpful is when rendering large `v-for` lists (where `length > 1000`):
+  `v-memo` es proporcionada solamente para optimizaciones micros en escenarios que sea crítico el rendimiento y rara vez sería necesaria. El caso má común dónde este puede ser útil es cuando se renderice listas grandes de `v-for` (dónde `length > 1000`):
 
   ```html
   <div v-for="item in list" :key="item.id" v-memo="[item.id === selected]">
-    <p>ID: {{ item.id }} - selected: {{ item.id === selected }}</p>
-    <p>...more child nodes</p>
+    <p>ID: {{ item.id }} - seleccionados: {{ item.id === selected }}</p>
+    <p>...más nodos hijos</p>
   </div>
   ```
 
-  When the component's `selected` state changes, a large amount of VNodes will be created even though most of the items remained exactly the same. The `v-memo` usage here is essentially saying "only update this item if it went from non-selected to selected, or the other way around". This allows every unaffected item to reuse its previous VNode and skip diffing entirely. Note we don't need to include `item.id` in the memo dependency array here since Vue automatically infers it from the item's `:key`.
+  Cuando el estado `selected` del componente se cambie, un gran cantidad de VNodes serán creados aunque la mayoría de los elementos siguen siendo exactamente los mismos. El uso de `v-memo` aquí es escencialmente decir que "solo actualiza este elemento si se haya cambiado desde el estado no seleccionado al estado seleccionado, y viceversa". Este permite que cada elemento no afecto reutilice su previo VNode y saltee el proceso "diffing" (comparar) completamente. Note que no necesitamos incluir `item.id` en la matriz de dependencia de _memo_ aquí debido a que Vue le infiere automáticamente del atributo `:key` del elemento.
 
   :::warning
-  When using `v-memo` with `v-for`, make sure they are used on the same element. **`v-memo` does not work inside `v-for`.**
+  Cuando se utilice `v-memo` con `v-for`, asegure que sean utilizadas en el mismo elemento. **`v-memo` no funciona dentro de `v-for`.**
   :::
 
-  `v-memo` can also be used on components to manually prevent unwanted updates in certain edge cases where the child component update check has been de-optimized. But again, it is the developer's responsibility to specify correct dependency arrays to avoid skipping necessary updates.
+  `v-memo` puede también ser utilizada en componentes para manualmente detener actualizaciones no deseadas en ciertos casos extremos dónde la comprobación de actualización del componente hijo haya sido salteada. Pero, de nuevo, es la responsabilidad del desarrollador para especificar matrices correctas de dependencias para evitar saltear actualizaciones necesarias. 
 
 - **Vea también:**
   - [v-once](#v-once)
 
 ## v-is <Badge text="deprecated" type="warning" />
 
-Deprecated in 3.1.0. Use [`is` attribute with `vue:` prefix](/api/special-attributes.html#is) instead.
+Obsoleta en 3.1.0. Utilice [atributo `is` con el prefijo `vue:`](/api/special-attributes.html#is) en su lugar.
