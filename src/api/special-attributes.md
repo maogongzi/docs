@@ -2,13 +2,13 @@
 
 ## key
 
-- **Expects:** `number | string | symbol`
+- **Espera:** `number | string | symbol`
 
-  The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify VNodes when comparing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
+  El atributo especial `key` es utilizado principalmente como una pista para el algoritmo del DOM virtual de Vue para identificar VNodes cuando se compara nuevas listas de nodos contra listas antiguas. Sin claves, Vue utiliza un algoritmo que minimiza el movimiento de elementos e intenta parchar/reutilizar elementos del mismo tipo in situ lo más posible. Con claves, este reordenará elementos basado en el orden de cambio de las claves, y los elementos con claves que ya no estén presentes, siempre serán removidos/destruidos.
 
-  Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
+  Hijos de un mismo padre en común siempre deben tener **claves únicas**. Claves duplicadas causarán errores de renderización.
 
-  The most common use case is combined with `v-for`:
+  El caso de uso más común es combinado con `v-for`:
 
   ```html
   <ul>
@@ -16,12 +16,12 @@
   </ul>
   ```
 
-  It can also be used to force replacement of an element/component instead of reusing it. This can be useful when you want to:
+  También puede ser utilizado para forzar el reemplazo de un elemento/componente en vez de reutilizar el mismo. Esto puede ser útil cuando usted desee:
 
-  - Properly trigger lifecycle hooks of a component
-  - Trigger transitions
+  - Lanzar apropiadamente _hooks_ de ciclo de vida de un componente
+  - Lanzar transiciones
 
-  For example:
+  Por ejemplo:
 
   ```html
   <transition>
@@ -29,47 +29,47 @@
   </transition>
   ```
 
-  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+  Cuando `text` cambie, el `<span>` siempre será reemplazado en vez de parchado, por lo cual, una transición será lanzada.
 
 ## ref
 
-- **Expects:** `string | Function`
+- **Espera:** `string | Function`
 
-  `ref` is used to register a reference to an element or a child component. The reference will be registered under the parent component's `$refs` object. If used on a plain DOM element, the reference will be that element; if used on a child component, the reference will be component instance:
+  `ref` es utilizado para registrar una referencia a un elemento o a un componente hijo. La referencia será registrada bajo el objeto `$refs` del componente padre. Si se utiliza en un elemento DOM plano, la referencia será a dicho elemento; si se utiliza en un componente hijo, la referencia será a la instancia de dicha componente:
 
   ```html
-  <!-- vm.$refs.p will be the DOM node -->
+  <!-- vm.$refs.p será el nodo DOM -->
   <p ref="p">hello</p>
 
-  <!-- vm.$refs.child will be the child component instance -->
+  <!-- vm.$refs.child será la intancia del componente hijo -->
   <child-component ref="child"></child-component>
 
-  <!-- When bound dynamically, we can define ref as a callback function, passing the element or component instance explicitly -->
+  <!-- Cuando se vincule dinámicamente, podemos definir ref como una función callback, pasando el elemento o la instancia de componente explícitamente -->
   <child-component :ref="(el) => child = el"></child-component>
   ```
 
-  An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you cannot access them on the initial render - they don't exist yet! `$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
+  Una nota importante sobre el tiempo de registro de _ref_: dado que las _refs_ mismas son creadas como resultado de la función de renderización, usted no puede acceder a las mismas en la renderización inicial - estas no existen todavía! También, `refs` no es reactivo, por lo tanto, no intente utilizarlo en plantillas para vinculaciones de datos (_data-binding_).
 
-- **See also:** [Child Component Refs](../guide/component-template-refs.html)
+- **Vea también:** [Referencias a Componentes Hijos](../guide/component-template-refs.html)
 
 ## is
 
-- **Expects:** `string | Object (component’s options object)`
+- **Espera:** `string | Object (el objeto de opciones de un componente)`
 
-  Used for [dynamic components](../guide/component-dynamic-async.html).
+  Utilizado para [componente dinámicos](../guide/component-dynamic-async.html).
 
-  For example:
+  Por ejemplo:
 
   ```html
-  <!-- component changes when currentView changes -->
+  <!-- el componente cambia cuando currentView cambie -->
   <component :is="currentView"></component>
   ```
 
-- **Usage on native elements** <Badge text="3.1+" />
+- **Uso en elementos nativos** <Badge text="3.1+" />
 
-  When the `is` attribute is used on a native HTML element, it will be interpreted as a [Customized built-in element](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-customized-builtin-example), which is a native web platform feature.
+  Cuando se utilice el atributo `is` en un elemento HTML nativo, será interpretado como un [elemento integrado personalizado](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-customized-builtin-example), lo que es una característica nativa de la plataforma web.
 
-  There is, however, a use case where you may need Vue to replace a native element with a Vue component, as explained in [DOM Template Parsing Caveats](/guide/component-basics.html#dom-template-parsing-caveats). You can prefix the value of the `is` attribute with `vue:` so that Vue will render the element as a Vue component instead:
+  Hay, sin embargo, un caso de usuario dónde necesitaría que Vue reemplace un elemento nativo con un componente Vue, como se ha explicado en [advertencias de analísis de plantillas DOM](/guide/component-basics.html#dom-template-parsing-caveats). Puede prefijar el valor del atributo `is` con `vue:`, así que Vue renderizará el elemento como un componente Vue en su lugar:
 
   ```html
   <table>
@@ -77,6 +77,6 @@
   </table>
   ```
 
-- **See also:**
-  - [Dynamic Components](../guide/component-dynamic-async.html)
-  - [RFC explaining the change from Vue 2](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0027-custom-elements-interop.md#customized-built-in-elements)
+- **Vea también:**
+  - [Components Dinámicos](../guide/component-dynamic-async.html)
+  - [RFC que explica los cambios desde Vue 2](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0027-custom-elements-interop.md#customized-built-in-elements)
