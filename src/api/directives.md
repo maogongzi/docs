@@ -2,13 +2,13 @@
 
 ## v-text
 
-- **Expects:** `string`
+- **Espera:** `string`
 
-- **Details:**
+- **Detalles:**
 
   Updates the element's [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent). If you need to update the part of `textContent`, you should use [mustache interpolations](/guide/template-syntax.html#text) instead
 
-- **Example:**
+- **Ejemplo:**
 
   ```html
   <span v-text="msg"></span>
@@ -16,13 +16,13 @@
   <span>{{msg}}</span>
   ```
 
-- **See also:** [Data Binding Syntax - Interpolations](../guide/template-syntax.html#text)
+- **Vea también:** [Data Binding Syntax - Interpolations](../guide/template-syntax.html#text)
 
 ## v-html
 
-- **Expects:** `string`
+- **Espera:** `string`
 
-- **Details:**
+- **Detalles:**
 
   Updates the element's [innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML). **Note that the contents are inserted as plain HTML - they will not be compiled as Vue templates**. If you find yourself trying to compose templates using `v-html`, try to rethink the solution by using components instead.
 
@@ -32,31 +32,31 @@
 
   In [single-file components](../guide/single-file-component.html), `scoped` styles will not apply to content inside `v-html`, because that HTML is not processed by Vue's template compiler. If you want to target `v-html` content with scoped CSS, you can instead use [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html) or an additional, global `<style>` element with a manual scoping strategy such as BEM.
 
-- **Example:**
+- **Ejemplo:**
 
   ```html
   <div v-html="'<h1>Hello World</h1>'"></div>
   ```
 
-- **See also:** [Data Binding Syntax - Interpolations](../guide/template-syntax.html#raw-html)
+- **Vea también:** [Data Binding Syntax - Interpolations](../guide/template-syntax.html#raw-html)
 
 ## v-show
 
-- **Expects:** `any`
+- **Espera:** `any`
 
-- **Usage:**
+- **Uso:**
 
   Toggles the element's `display` CSS property based on the truthy-ness of the expression value.
 
   This directive triggers transitions when its condition changes.
 
-- **See also:** [Conditional Rendering - v-show](../guide/conditional.html#v-show)
+- **Vea también:** [Conditional Rendering - v-show](../guide/conditional.html#v-show)
 
 ## v-if
 
-- **Expects:** `any`
+- **Espera:** `any`
 
-- **Usage:**
+- **Uso:**
 
   Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
 
@@ -64,15 +64,15 @@
 
   When used together, `v-if` has a higher priority than `v-for`. We don't recommend using these two directives together on one element — see the [list rendering guide](../guide/list.html#v-for-with-v-if) for details.
 
-- **See also:** [Conditional Rendering - v-if](../guide/conditional.html#v-if)
+- **Vea también:** [Conditional Rendering - v-if](../guide/conditional.html#v-if)
 
 ## v-else
 
 - **Does not expect expression**
 
-- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+- **Restricción:** previous sibling element must have `v-if` or `v-else-if`.
 
-- **Usage:**
+- **Uso:**
 
   Denote the "else block" for `v-if` or a `v-if`/`v-else-if` chain.
 
@@ -85,15 +85,15 @@
   </div>
   ```
 
-- **See also:** [Conditional Rendering - v-else](../guide/conditional.html#v-else)
+- **Vea también:** [Conditional Rendering - v-else](../guide/conditional.html#v-else)
 
 ## v-else-if
 
-- **Expects:** `any`
+- **Espera:** `any`
 
-- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+- **Restricción:** previous sibling element must have `v-if` or `v-else-if`.
 
-- **Usage:**
+- **Uso:**
 
   Denote the "else if block" for `v-if`. Can be chained.
 
@@ -112,13 +112,13 @@
   </div>
   ```
 
-- **See also:** [Conditional Rendering - v-else-if](../guide/conditional.html#v-else-if)
+- **Vea también:** [Conditional Rendering - v-else-if](../guide/conditional.html#v-else-if)
 
 ## v-for
 
-- **Expects:** `Array | Object | number | string | Iterable`
+- **Espera:** `Array | Object | number | string | Iterable`
 
-- **Usage:**
+- **Uso:**
 
   Render the element or template block multiple times based on the source data. The directive's value must use the special syntax `alias in expression` to provide an alias for the current element being iterated on:
 
@@ -148,18 +148,18 @@
 
   The detailed usage for `v-for` is explained in the guide section linked below.
 
-- **See also:**
+- **Vea también:**
   - [List Rendering](../guide/list.html)
 
 ## v-on
 
-- **Shorthand:** `@`
+- **Abreviación:** `@`
 
-- **Expects:** `Function | Inline Statement | Object`
+- **Espera:** `Function | Inline Statement | Object`
 
-- **Argument:** `event`
+- **Argumento:** `event`
 
-- **Modifiers:**
+- **Modificadores:**
 
   - `.stop` - call `event.stopPropagation()`.
   - `.prevent` - call `event.preventDefault()`.
@@ -172,7 +172,7 @@
   - `.middle` - only trigger handler for middle button mouse events.
   - `.passive` - attaches a DOM event with `{ passive: true }`.
 
-- **Usage:**
+- **Uso:**
 
   Attaches an event listener to the element. The event type is denoted by the argument. The expression can be a method name, an inline statement, or omitted if there are modifiers present.
 
@@ -182,7 +182,7 @@
 
   `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
 
-- **Example:**
+- **Ejemplo:**
 
   ```html
   <!-- method handler -->
@@ -231,25 +231,25 @@
   <my-component @my-event="handleThis(123, $event)"></my-component>
   ```
 
-- **See also:**
+- **Vea también:**
   - [Event Handling](../guide/events.html)
   - [Components - Custom Events](../guide/component-basics.html#listening-to-child-components-events)
 
 ## v-bind
 
-- **Shorthand:** `:` or `.` (when using `.prop` modifier)
+- **Abreviación:** `:` or `.` (when using `.prop` modifier)
 
-- **Expects:** `any (with argument) | Object (without argument)`
+- **Espera:** `any (with argument) | Object (without argument)`
 
-- **Argument:** `attrOrProp (optional)`
+- **Argumento:** `attrOrProp (optional)`
 
-- **Modifiers:**
+- **Modificadores:**
 
   - `.camel` - transform the kebab-case attribute name into camelCase.
   - `.prop` - force a binding to be set as a DOM property. <Badge text="3.2+"/>
   - `.attr` - force a binding to be set as a DOM attribute. <Badge text="3.2+"/>
 
-- **Usage:**
+- **Uso:**
 
   Dynamically bind one or more attributes, or a component prop to an expression.
 
@@ -259,7 +259,7 @@
 
   When used without an argument, can be used to bind an object containing attribute name-value pairs. Note in this mode `class` and `style` does not support Array or Objects.
 
-- **Example:**
+- **Ejemplo:**
 
   ```html
   <!-- bind an attribute -->
@@ -318,53 +318,53 @@
 
   `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
 
-- **See also:**
+- **Vea también:**
   - [Class and Style Bindings](../guide/class-and-style.html)
   - [Components - Props](../guide/component-basics.html#passing-data-to-child-components-with-props)
 
 ## v-model
 
-- **Expects:** varies based on value of form inputs element or output of components
+- **Espera:** varies based on value of form inputs element or output of components
 
-- **Limited to:**
+- **Limitado a:**
 
   - `<input>`
   - `<select>`
   - `<textarea>`
   - components
 
-- **Modifiers:**
+- **Modificadores:**
 
   - [`.lazy`](../guide/forms.html#lazy) - listen to `change` events instead of `input`
   - [`.number`](../guide/forms.html#number) - cast valid input string to numbers
   - [`.trim`](../guide/forms.html#trim) - trim input
 
-- **Usage:**
+- **Uso:**
 
   Create a two-way binding on a form input element or a component. For detailed usage and other notes, see the Guide section linked below.
 
-- **See also:**
+- **Vea también:**
   - [Form Input Bindings](../guide/forms.html)
   - [Components - Form Input Components using Custom Events](../guide/component-custom-events.html#v-model-arguments)
 
 ## v-slot
 
-- **Shorthand:** `#`
+- **Abreviación:** `#`
 
-- **Expects:** JavaScript expression that is valid in a function argument position (supports destructuring in [supported environments](../guide/component-slots.html#destructuring-slot-props)). Optional - only needed if expecting props to be passed to the slot.
+- **Espera:** JavaScript expression that is valid in a function argument position (supports destructuring in [supported environments](../guide/component-slots.html#destructuring-slot-props)). Optional - only needed if expecting props to be passed to the slot.
 
-- **Argument:** slot name (optional, defaults to `default`)
+- **Argumento:** slot name (optional, defaults to `default`)
 
-- **Limited to:**
+- **Limitado a:**
 
   - `<template>`
   - [components](../guide/component-slots.html#abbreviated-syntax-for-lone-default-slots) (for a lone default slot with props)
 
-- **Usage:**
+- **Uso:**
 
   Denote named slots or slots that expect to receive props.
 
-- **Example:**
+- **Ejemplo:**
 
   ```html
   <!-- Named slots -->
@@ -399,18 +399,18 @@
 
   For more details, see the links below.
 
-- **See also:**
+- **Vea también:**
   - [Components - Slots](../guide/component-slots.html)
 
 ## v-pre
 
 - **Does not expect expression**
 
-- **Usage:**
+- **Uso:**
 
   Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
 
-- **Example:**
+- **Ejemplo:**
 
   ```html
   <span v-pre>{{ this will not be compiled }}</span>
@@ -420,11 +420,11 @@
 
 - **Does not expect expression**
 
-- **Usage:**
+- **Uso:**
 
   This directive will remain on the element until the associated component instance finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the component instance is ready.
 
-- **Example:**
+- **Ejemplo:**
 
   ```css
   [v-cloak] {
@@ -444,7 +444,7 @@
 
 - **Does not expect expression**
 
-- **Details:**
+- **Detalles:**
 
   Render the element and component **once** only. On subsequent re-renders, the element/component and all its children will be treated as static content and skipped. This can be used to optimize update performance.
 
@@ -466,15 +466,15 @@
 
   Since 3.2, you can also memoize part of the template with invalidation conditions using [`v-memo`](#v-memo).
 
-- **See also:**
+- **Vea también:**
   - [Data Binding Syntax - interpolations](../guide/template-syntax.html#text)
   - [v-memo](#v-memo)
 
 ## v-memo <Badge text="3.2+" />
 
-- **Expects:** `Array`
+- **Espera:** `Array`
 
-- **Details:**
+- **Detalles:**
 
   Memoize a sub-tree of the template. Can be used on both elements and components. The directive expects a fixed-length array of dependency values to compare for the memoization. If every value in the array was the same as last render, then updates for the entire sub-tree will be skipped. For example:
 
@@ -507,7 +507,7 @@
 
   `v-memo` can also be used on components to manually prevent unwanted updates in certain edge cases where the child component update check has been de-optimized. But again, it is the developer's responsibility to specify correct dependency arrays to avoid skipping necessary updates.
 
-- **See also:**
+- **Vea también:**
   - [v-once](#v-once)
 
 ## v-is <Badge text="deprecated" type="warning" />
