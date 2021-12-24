@@ -2,7 +2,7 @@
 
 ## Introducción
 
-A `*.vue` file is a custom file format that uses HTML-like syntax to describe a Vue component. Each `*.vue` file consists of three types of top-level language blocks: `<template>`, `<script>`, and `<style>`, and optionally additional custom blocks:
+Un archivo `*.vue` es un formato de archivo personalizado utilizando sintaxis similar a HTML para describir un componente Vue. Cada archivo `*.vue` consiste de tres tipos de bloques de lenguaje de nivel superior: `<template>`, `<script>`, y `<style>`, y opcionalmente bloques personalizados adicionales:
 
 ```vue
 <template>
@@ -13,7 +13,7 @@ A `*.vue` file is a custom file format that uses HTML-like syntax to describe a 
 export default {
   data() {
     return {
-      msg: 'Hello world!'
+      msg: '¡Hola mundo!'
     }
   }
 }
@@ -26,7 +26,7 @@ export default {
 </style>
 
 <custom1>
-  This could be e.g. documentation for the component.
+  Este podría ser p. ej. documentación para el componente.
 </custom1>
 ```
 
@@ -34,23 +34,23 @@ export default {
 
 ### `<template>`
 
-- Each `*.vue` file can contain at most one top-level `<template>` block at a time.
+- Cada archivo `*.vue` puede contener a lo más un bloque `<template>` de nivel superior al mismo tiempo.
 
-- Contents will be extracted and passed on to `@vue/compiler-dom`, pre-compiled into JavaScript render functions, and attached to the exported component as its `render` option.
+- Los contenidos será extraidos y pasados a `@vue/compiler-dom`, precompilados a funciones JavaScript de _render_, y adjuntados al componente exportado como su opción `render`.
 
 ### `<script>`
 
-- Each `*.vue` file can contain at most one `<script>` block at a time (excluding [`<script setup>`](/api/sfc-script-setup.html)).
+- Cada archivo `*.vue` puede contener a lo más un bloque `<script>` al mismo tiempo (excepto [`<script setup>`](/api/sfc-script-setup.html)).
 
-- The script is executed as an ES Module.
+- El script es ejecutado como un módulo ES.
 
-- The **default export** should be a Vue component options object, either as a plain object or as the return value of [defineComponent](/api/global-api.html#definecomponent).
+- La **exportación por defecto** debe ser un objeto de opciones de componente Vue, tanto un objeto plano como el valor retornado de [defineComponent](/api/global-api.html#definecomponent).
 
 ### `<script setup>`
 
-- Each `*.vue` file can contain at most one `<script setup>` block at a time (excluding normal `<script>`).
+- Cada archivo `*.vue` puede contener a lo más un bloque `<script setup>` al mismo tiempo (excepto el `<script>` normal).
 
-- The script is pre-processed and used as the component's `setup()` function, which means it will be executed **for each instance of the component**. Top-level bindings in `<script setup>` are automatically exposed to the template. For more details, see [dedicated documentation on `<script setup>`](/api/sfc-script-setup).
+- El script es preprocesado y utilizado como la función `setup()` del componente, lo que significa que será ejecutado **para cada instancia del componente**. Las vinculaciones de nivel superior en `<script setup>` son automáticamente expuestos a la plantilla. Para más detalles, vea [documentación dedicada sobre `<script setup>`](/api/sfc-script-setup).
 
 ### `<style>`
 
