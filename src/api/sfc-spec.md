@@ -1,6 +1,6 @@
-# SFC Syntax Specification
+# Especificación de la Sintaxis SFC
 
-## Intro
+## Introducción
 
 A `*.vue` file is a custom file format that uses HTML-like syntax to describe a Vue component. Each `*.vue` file consists of three types of top-level language blocks: `<template>`, `<script>`, and `<style>`, and optionally additional custom blocks:
 
@@ -30,7 +30,7 @@ export default {
 </custom1>
 ```
 
-## Language Blocks
+## Bloques de Lenguaje
 
 ### `<template>`
 
@@ -58,7 +58,7 @@ export default {
 
 - A `<style>` tag can have `scoped` or `module` attributes (see [SFC Style Features](/api/sfc-style) for more details) to help encapsulate the styles to the current component. Multiple `<style>` tags with different encapsulation modes can be mixed in the same component.
 
-### Custom Blocks
+### Bloques Personalizados
 
 Additional custom blocks can be included in a `*.vue` file for any project-specific needs, for example a `<docs>` block. Some real-world examples of custom blocks include:
 
@@ -68,7 +68,7 @@ Additional custom blocks can be included in a `*.vue` file for any project-speci
 
 Handling of Custom Blocks will depend on tooling - if you want to build your own custom block integrations, see [SFC Tooling](/api/sfc-tooling.html#custom-blocks-integration) for more details.
 
-## Automatic `name` Inference
+## Inferencia de `name` Automática
 
 An SFC automatically infers the component's name from its **filename** in the following cases:
 
@@ -76,7 +76,7 @@ An SFC automatically infers the component's name from its **filename** in the fo
 - DevTools inspection
 - Recursive self-reference. E.g. a file named `FooBar.vue` can refer to itself as `<FooBar/>` in its template. This has lower priority than explicity registered/imported components.
 
-## Pre-Processors
+## Preprocesadores (Pre-Processors)
 
 Blocks can declare pre-processor languages using the `lang` attribute. The most common case is using TypeScript for the `<script>` block:
 
@@ -107,7 +107,7 @@ Note the intergration with pre-processors may differ based on the toolchain. Che
 - [Vue CLI](https://cli.vuejs.org/guide/css.html#pre-processors)
 - [webpack + vue-loader](https://vue-loader.vuejs.org/guide/pre-processors.html#using-pre-processors)
 
-## Src Imports
+## Importaciones de _Src_
 
 If you prefer splitting up your `*.vue` components into multiple files, you can use the `src` attribute to import an external file for a language block:
 
@@ -134,6 +134,6 @@ Beware that `src` imports follow the same path resolution rules as webpack modul
 </unit-test>
 ```
 
-## Comments
+## Comentarios
 
 Inside each block you shall use the comment syntax of the language being used (HTML, CSS, JavaScript, Pug, etc.). For top-level comments, use HTML comment syntax: `<!-- comment contents here -->`
