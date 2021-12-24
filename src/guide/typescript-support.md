@@ -88,7 +88,7 @@ O, si quiere combinar TypeScript con una [función `render` de JSX](/guide/rende
 
 Para desarrollar aplicaciones Vue con TypeScript, recomendamos fuertemente utilizar [Visual Studio Code](https://code.visualstudio.com/), que provee soporte genial integrado para TypeScript. Si está utilizando [componentes de un solo archivo](./single-file-component.html) (SFCs), obtenga la asombrosa [extención Volar](https://github.com/johnsoncodehk/volar), que provee inferencia de TypeScript dentro de SFCs y muchas otras características geniales.
 
-[WebStorm](https://www.jetbrains.com/webstorm/) también provee soporte integrado para ambos, TypeScript y Vue.
+[WebStorm](https://www.jetbrains.com/webstorm/) provee soporte integrado para ambos TypeScript y Vue. Otros IDEs de JetBrains también los soportan, tando de soporte integrado como mediante [este plugin gratis](https://plugins.jetbrains.com/plugin/9442-vue-js).
 
 ## Definir Componentes Vue
 
