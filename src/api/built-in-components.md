@@ -22,7 +22,7 @@ import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
 
   - `is` - `string | Component | VNode`
 
-- **Usage:**
+- **Uso:**
 
   A "meta component" for rendering dynamic components. The actual component to render is determined by the `is` prop. An `is` prop as a string could be either an HTML tag name or a Component name.
 
@@ -74,7 +74,7 @@ import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
 
   A caveat of mixing VNodes and templates in this way is that you need to provide a suitable `key` attribute. The VNode will be considered static, so any updates will be ignored unless the `key` changes. The `key` can be on the VNode or the `<component>` tag, but either way it must change every time you want the VNode to re-render. This caveat doesn't apply if the nodes have different types, e.g. changing a `span` to a `div`.
 
-- **See also:** [Dynamic Components](../guide/component-dynamic-async.html)
+- **Vea también:** [Dynamic Components](../guide/component-dynamic-async.html)
 
 ## transition
 
@@ -97,7 +97,7 @@ import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
   - `leave-active-class` - `string`
   - `appear-active-class` - `string`
 
-- **Events:**
+- **Eventos:**
 
   - `before-enter`
   - `before-leave`
@@ -111,7 +111,7 @@ import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
   - `leave-cancelled` (`v-show` only)
   - `appear-cancelled`
 
-- **Usage:**
+- **Uso:**
 
   `<transition>` serve as transition effects for **single** element/component. The `<transition>` only applies the transition behavior to the wrapped content inside; it doesn't render an extra DOM element, or show up in the inspected component hierarchy.
 
@@ -148,7 +148,7 @@ import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
   app.mount('#transition-demo')
   ```
 
-- **See also:** [Enter & Leave Transitions](/guide/transitions-enterleave.html#transitioning-single-elements-components)
+- **Vea también:** [Enter & Leave Transitions](/guide/transitions-enterleave.html#transitioning-single-elements-components)
 
 ## transition-group
 
@@ -158,11 +158,11 @@ import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
   - `move-class` - overwrite CSS class applied during moving transition.
   - exposes the same props as `<transition>` except `mode`.
 
-- **Events:**
+- **Eventos:**
 
   - exposes the same events as `<transition>`.
 
-- **Usage:**
+- **Uso:**
 
   `<transition-group>` provides transition effects for **multiple** elements/components. By default it doesn't render a wrapper DOM element, but one can be defined via the `tag` attribute.
 
@@ -178,7 +178,7 @@ import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
   </transition-group>
   ```
 
-- **See also:** [List Transitions](/guide/transitions-list.html)
+- **Vea también:** [List Transitions](/guide/transitions-list.html)
 
 ## keep-alive
 
@@ -188,7 +188,7 @@ import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
   - `exclude` - `string | RegExp | Array`. Any component with a matching name will not be cached.
   - `max` - `number | string`. The maximum number of component instances to cache.
 
-- **Usage:**
+- **Uso:**
 
   When wrapped around a dynamic component, `<keep-alive>` caches the inactive component instances without destroying them. Similar to `<transition>`, `<keep-alive>` is an abstract component: it doesn't render a DOM element itself, and doesn't show up in the component parent chain.
 
@@ -255,7 +255,7 @@ import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
   `<keep-alive>` does not work with functional components because they do not have instances to be cached.
   :::
 
-- **See also:** [Dynamic Components - keep-alive](../guide/component-dynamic-async.html#dynamic-components-with-keep-alive)
+- **Vea también:** [Dynamic Components - keep-alive](../guide/component-dynamic-async.html#dynamic-components-with-keep-alive)
 
 ## slot
 
@@ -263,13 +263,13 @@ import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
 
   - `name` - `string`, Used for named slot.
 
-- **Usage:**
+- **Uso:**
 
   `<slot>` serve as content distribution outlets in component templates. `<slot>` itself will be replaced.
 
   For detailed usage, see the guide section linked below.
 
-- **See also:** [Content Distribution with Slots](../guide/component-basics.html#content-distribution-with-slots)
+- **Vea también:** [Content Distribution with Slots](../guide/component-basics.html#content-distribution-with-slots)
 
 ## teleport
 
@@ -298,4 +298,4 @@ import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
 
   Notice that this will move the actual DOM nodes instead of being destroyed and recreated, and it will keep any component instances alive as well. All stateful HTML elements (i.e. a playing video) will keep their state.
 
-- **See also:** [Teleport component](../guide/teleport.html#teleport)
+- **Vea también:** [Teleport component](../guide/teleport.html#teleport)
