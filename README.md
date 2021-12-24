@@ -11,6 +11,7 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/README.md](src/README.md)|Spanish :white_check_mark:|
 |[src/api/application-api.md](src/api/application-api.md)|Spanish :white_check_mark:|
 |[src/api/application-config.md](src/api/application-config.md)|Spanish :white_check_mark:|
+|[src/api/built-in-components.md](src/api/built-in-components.md)|Spanish :white_check_mark:|
 |[src/api/directives.md](src/api/directives.md)|Spanish :white_check_mark:|
 |[src/api/global-api.md](src/api/global-api.md)|Spanish :white_check_mark:|
 |[src/api/index.md](src/api/index.md)|Spanish :white_check_mark:|
@@ -87,7 +88,6 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
 |[src/search/README.md](src/search/README.md)|Spanish :white_check_mark:|
 |[src/.vuepress/theme/README.md](src/.vuepress/theme/README.md)|English :x:|
 |[src/api/basic-reactivity.md](src/api/basic-reactivity.md)|English :x:|
-|[src/api/built-in-components.md](src/api/built-in-components.md)|English :x:|
 |[src/api/composition-api.md](src/api/composition-api.md)|English :x:|
 |[src/api/computed-watch-api.md](src/api/computed-watch-api.md)|English :x:|
 |[src/api/effect-scope.md](src/api/effect-scope.md)|English :x:|
