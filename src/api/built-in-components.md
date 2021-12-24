@@ -31,8 +31,7 @@ import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
   <!-- la propiedad `componentId` en el vm -->
   <component :is="componentId"></component>
 
-  <!-- Además puede renderizar un componente registrado o un componente -->
-  <!-- pasado como prop -->
+  <!-- Además puede renderizar un componente registrado o un componente pasado como prop -->
   <component :is="$options.components.child"></component>
 
   <!-- puede referir a los componentes por cadena de caracteres -->
