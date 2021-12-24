@@ -297,6 +297,6 @@ import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
   </teleport>
   ```
 
-  Note que este moverá los nodos DOM actuales en vez de destruirlo y recrearlos, y también va a mantener vivientes a cualquieras instancias de componente. Todos elementos HTML con estados (p. ej. un video que se está reproduciendo) mantendrá sus estados.
+  Note que este moverá los nodos DOM actuales en vez de destruirlos y recrearlos, y también va a mantener vivientes a cualquieras instancias de componente. Todos elementos HTML con estados (p. ej. un video que se está reproduciendo) mantendrá sus estados.
 
 - **Vea también:** [El componente Teleport](../guide/teleport.html#teleport)
