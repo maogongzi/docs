@@ -1,20 +1,20 @@
 # Componentes Integrados
 
-Built-in components can be used directly in templates without needing to be registered.
+Componentes integrados pueden ser utilizados directamente en plantillas sin necesidad de ser registrados.
 
-The `<keep-alive>`, `<transition>`, `<transition-group>`, and `<teleport>` components can all be tree-shaken by bundlers, so that they are only included in the build if they're used. They can also be imported explicitly if you need direct access to the component itself:
+Todos los componentes `<keep-alive>`, `<transition>`, `<transition-group>`, y `<teleport>` pueden ser quitados del árbol (tree-shaken) por los compiladores, así que son solo incluidos en la compilación si son utilizados. Pueden también ser importados explícitamente si necesita el acceso directo al componente mísmo:
 
 ```js
-// CDN build of Vue
+// compilación Vue de CDN
 const { KeepAlive, Teleport, Transition, TransitionGroup } = Vue
 ```
 
 ```js
-// ESM build of Vue
+// compilación Vue de ESM
 import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
 ```
 
-`<component>` and `<slot>` are component-like features of template syntax. They are not true components and they can't be imported like the components shown above.
+`<component>` y `<slot>` son características de sintaxis de plantilla similares a componentes. No son verdaderos componentes y no pueden ser importados como los componentes mostrados arriba.
 
 ## component
 
@@ -24,26 +24,27 @@ import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
 
 - **Uso:**
 
-  A "meta component" for rendering dynamic components. The actual component to render is determined by the `is` prop. An `is` prop as a string could be either an HTML tag name or a Component name.
+  Un "metacomponente" ("meta component") para renderizar componentes dinámicos. El componente actual que se renderizará está determinado por la propiedad `is`. Una _prop_ `is`, como una cadena de caracteres, podría ser tanto el nombre de una etiqueta HTML como el nombre de un componente.
 
   ```html
-  <!-- a dynamic component controlled by -->
-  <!-- the `componentId` property on the vm -->
+  <!-- un componente dinámico controlado por -->
+  <!-- la propiedad `componentId` en el vm -->
   <component :is="componentId"></component>
 
-  <!-- can also render registered component or component passed as prop -->
+  <!-- Además puede renderizar un componente registrado o un componente -->
+  <!-- pasado como prop -->
   <component :is="$options.components.child"></component>
 
-  <!-- can reference components by string -->
+  <!-- puede referir a los componentes por cadena de caracteres -->
   <component :is="condition ? 'FooComponent' : 'BarComponent'"></component>
 
-  <!-- can be used to render native HTML elements -->
+  <!-- puede ser utilizado para renderizar elementos HTML nativos -->
   <component :is="href ? 'a' : 'span'"></component>
   ```
 
-- **Usage with built-in components:**
+- **Uso con componentes integrados:**
 
-  The built-in components `KeepAlive`, `Transition`, `TransitionGroup`, and `Teleport` can all be passed to `is`, but you must register them if you want to pass them by name. For example:
+  Todos los componentes integrados `KeepAlive`, `Transition`, `TransitionGroup`, y `Teleport` pueden ser pasados a `is`, pero debe registrarlos si quiere pasarlos por nombre. Por ejemplo:
 
   ```js
   const { Transition, TransitionGroup } = Vue
@@ -62,28 +63,28 @@ import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
   }
   ```
 
-  Registration is not required if you pass the component itself to `is` rather than its name.
+  Registración no es requerida si pasa el componente mísmo a `is` en vez de su nombre.
 
-- **Usage with VNodes:**
+- **Uso con VNodes:**
 
-  In advanced use cases, it can sometimes be useful to render an existing VNode via a template. Using a `<component>` makes this possible, but it should be seen as an escape hatch, used to avoid rewriting the entire template as a `render` function.
+  En casos de usuario avanzados, a veces puede ser útil renderizar un VNode existente mediante una plantilla. Utilizar un `<component>` lo hace posible, pero debería verse como una escotilla de escape, utilizada para evitar reescribir la entera plantilla como una función `render`.
 
   ```html
   <component :is="vnode" :key="aSuitableKey" />
   ```
 
-  A caveat of mixing VNodes and templates in this way is that you need to provide a suitable `key` attribute. The VNode will be considered static, so any updates will be ignored unless the `key` changes. The `key` can be on the VNode or the `<component>` tag, but either way it must change every time you want the VNode to re-render. This caveat doesn't apply if the nodes have different types, e.g. changing a `span` to a `div`.
+  Una advertencia de mezclar VNodes y plantillas de esta manera es que necesita proporcionar un atributo adecuado `key`. El VNode será considerado estático, así cualquieras actualizaciones serán ignorados a menos que el `key` cambie. El `key` puede en el VNode o la etiqueta `<component>`, pero de cualquier manera debe cambiarse cada vez quiera rerenderizar el VNode. Esta advertencia no aplica si los nodos tienen tipos diferentes, p. ej. cambiar una `span` a `div`.
 
-- **Vea también:** [Dynamic Components](../guide/component-dynamic-async.html)
+- **Vea también:** [Componentes dinámicos](../guide/component-dynamic-async.html)
 
 ## transition
 
 - **Props:**
 
-  - `name` - `string` Used to automatically generate transition CSS class names. e.g. `name: 'fade'` will auto expand to `.fade-enter`, `.fade-enter-active`, etc.
-  - `appear` - `boolean`, Whether to apply transition on initial render. Defaults to `false`.
-  - `persisted` - `boolean`. If true, indicates this is a transition that doesn't actually insert/remove the element, but toggles the show / hidden status instead. The transition hooks are injected, but will be skipped by the renderer. Instead, a custom directive can control the transition by calling the injected hooks (e.g. `v-show`).
-  - `css` - `boolean`. Whether to apply CSS transition classes. Defaults to `true`. If set to `false`, will only trigger JavaScript hooks registered via component events.
+  - `name` - `string` Se utiliza para generar nombres de clases de transición CSS. P. ej, `name: 'fade'` se expandirá automáticamente a `.fade-enter`, `.fade-enter-active`, etc.
+  - `appear` - `boolean`, Establece si se aplicará la transición en la renderización inicial. El valor por defecto es `false`.
+  - `persisted` - `boolean`. Si es `true`, indica que esta es una transición que actualmente no inserta/elimina el elemento, pero cambia el estado de mostrar/ocultar en su lugar. Los hooks de la transición son inyectados, pero serán salteados por el renderizador. En su lugar, una directiva personalizada puede controlar la transición mediante llamar los hooks inyectados (p. ej. `v-show`).
+  - `css` - `boolean`. Establece si se aplicará clases de transición CSS. El valor por defecto es `true`. Si se establece como `false`, solo disparará hooks JavaScript registrados mediante eventos de componente.
   - `type` - `string`. Specifies the type of transition events to wait for to determine transition end timing. Available values are `"transition"` and `"animation"`. By default, it will automatically detect the type that has a longer duration.
   - `mode` - `string` Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
   - `duration` - `number | { enter: number, leave: number }`. Specifies the duration of transition. By default, Vue waits for the first `transitionend` or `animationend` event on the root transition element.
