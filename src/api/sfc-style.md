@@ -6,7 +6,7 @@ sidebarDepth: 1
 
 ## `<style scoped>`
 
-When a `<style>` tag has the `scoped` attribute, its CSS will apply to elements of the current component only. This is similar to the style encapsulation found in Shadow DOM. It comes with some caveats, but doesn't require any polyfills. It is achieved by using PostCSS to transform the following:
+Cuando una etiqueta `<style>` tiene el atributo `scoped`, sus CSS sólo serán aplicadas a elementos del componente actual. Este es similar a la encapsulación de estilos encontrados en DOM _shadow_. Viene con algunas advertencias, pero no necesita cualquier _polyfill_. Es realizado mediante utlizar PostCSS para transformar el siguiente:
 
 ```vue
 <style scoped>
@@ -20,7 +20,7 @@ When a `<style>` tag has the `scoped` attribute, its CSS will apply to elements 
 </template>
 ```
 
-Into the following:
+al siguiente:
 
 ```vue
 <style>
@@ -34,13 +34,13 @@ Into the following:
 </template>
 ```
 
-### Child Component Root Elements
+### Los Elementos Raíz de Componentes Hijos
 
-With `scoped`, the parent component's styles will not leak into child components. However, a child component's root node will be affected by both the parent's scoped CSS and the child's scoped CSS. This is by design so that the parent can style the child root element for layout purposes.
+Con `scoped`, los estilos del componente padre no se filtrarán a componentes hijos. Sin embargo, el nodo raíz de un componente hijo será afectado por las CSS del alcance padre y las CSS del alcance hijo. Eso es a propósito para que el padre pueda aplicar estilos al elemento raíz del hijo para el propósito de _layout_.
 
-### Deep Selectors
+### Selector _Deep_
 
-If you want a selector in `scoped` styles to be "deep", i.e. affecting child components, you can use the `:deep()` pseudo-class:
+Si quiere que un selector en estilos con alcance sea "profundo", p. ej. afectar componentes hijos, puede utilizar el _pseudo-class_ `:deep()`:
 
 ```vue
 <style scoped>
@@ -50,7 +50,7 @@ If you want a selector in `scoped` styles to be "deep", i.e. affecting child com
 </style>
 ```
 
-The above will be compiled into:
+El arriba será compilado a:
 
 ```css
 .a[data-v-f3f3eg9] .b {
@@ -59,12 +59,12 @@ The above will be compiled into:
 ```
 
 :::tip
-DOM content created with `v-html` are not affected by scoped styles, but you can still style them using deep selectors.
+Los contenidos DOM creados por `v-html` no son afectados por estilos con alcance, pero puede también aplicar estilos a ellos utilizando selectores profundos.
 :::
 
-### Slotted Selectors
+### Selector _Slotted_
 
-By default, scoped styles do not affect contents rendered by `<slot/>`, as they are considered to be owned by the parent component passing them in. To explicitly target slot content, use the `:slotted` pseudo-class:
+Por defector, los estilos con alcance no afectan a contenidos renderizados por `<slot/>`, debido a que son considerados pertenecientes al componente padre que los pasen. Para orientar explícitamente los contenidos de _slot_, utilice el _pseudo-class_ `:slotted`:
 
 ```vue
 <style scoped>
@@ -74,9 +74,9 @@ By default, scoped styles do not affect contents rendered by `<slot/>`, as they 
 </style>
 ```
 
-### Global Selectors
+### Selector _Global_
 
-If you want just one rule to apply globally, you can use the `:global` pseudo-class rather than creating another `<style>` (see below):
+Si quiere que se aplique solo una regla globalmente, puede utilizar el _pseudo-class_ `:global` en vez de crear otro `<style>` (vea abajo):
 
 ```vue
 <style scoped>
@@ -86,17 +86,17 @@ If you want just one rule to apply globally, you can use the `:global` pseudo-cl
 </style>
 ```
 
-### Mixing Local and Global Styles
+### Mezclar Los Estilos Locales y Globales
 
-You can also include both scoped and non-scoped styles in the same component:
+Puede también incluir estilos tanto con alcance como sin alcance en el mismo componente:
 
 ```vue
 <style>
-/* global styles */
+/* estilos globales */
 </style>
 
 <style scoped>
-/* local styles */
+/* estilos locales */
 </style>
 ```
 
