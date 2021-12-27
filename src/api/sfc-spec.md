@@ -54,39 +54,39 @@ export default {
 
 ### `<style>`
 
-- A single `*.vue` file can contain multiple `<style>` tags.
+- Un solo archivo `*.vue` puede contener múltiples etiquetas `<style>`.
 
-- A `<style>` tag can have `scoped` or `module` attributes (see [SFC Style Features](/api/sfc-style) for more details) to help encapsulate the styles to the current component. Multiple `<style>` tags with different encapsulation modes can be mixed in the same component.
+- Una etiqueta `<style>` puede tener atributos `scoped` o `module` (vea [características de estilos de sfc](/api/sfc-style) para más detalles) para ayudar a encapsular los estilos al componente actual. Múltiples etiquetas `<style>` con diferentes modos de encapsulación se pueden mezclar en el mismo componente.
 
 ### Bloques Personalizados
 
-Additional custom blocks can be included in a `*.vue` file for any project-specific needs, for example a `<docs>` block. Some real-world examples of custom blocks include:
+Se pueden incluir bloques personalizados adicionales en un archivo `*.vue` para cualquiera necesidad específica para el proyecto, por ejemplo un bloque `<docs>`. Algunos ejemplos de bloques personalizados del mundo real incluyen:
 
 - [Gridsome: `<page-query>`](https://gridsome.org/docs/querying-data/)
 - [vite-plugin-vue-gql: `<gql>`](https://github.com/wheatjs/vite-plugin-vue-gql)
 - [vue-i18n: `<i18n>`](https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n#i18n-custom-block)
 
-Handling of Custom Blocks will depend on tooling - if you want to build your own custom block integrations, see [SFC Tooling](/api/sfc-tooling.html#custom-blocks-integration) for more details.
+El manejamiento de bloques personalizados dependerá de las herramientas, si quiere construir sus propios integraciones de bloques personalizados, vea [herramienta de sfc](/api/sfc-tooling.html#custom-blocks-integration) para más detalles.
 
 ## Inferencia de `name` Automática
 
-An SFC automatically infers the component's name from its **filename** in the following cases:
+Un SFC automáticamente infiere el nombre del componente de su **nombre de archivo (filename)** en los siguientes casos:
 
-- Dev warning formatting
-- DevTools inspection
-- Recursive self-reference. E.g. a file named `FooBar.vue` can refer to itself as `<FooBar/>` in its template. This has lower priority than explicity registered/imported components.
+- El formateo de advertencias de desarrollo (Dev warning formatting)
+- La inspección de DevTools (DevTools inspection)
+- La autorreferencia recursiva. P. ej. un archivo llamado `FooBar.vue` puede referirse como `<FooBar/>` en su plantilla. Este tiene menor prioridad que components registrados/importados explícitamente.
 
 ## Preprocesadores (Pre-Processors)
 
-Blocks can declare pre-processor languages using the `lang` attribute. The most common case is using TypeScript for the `<script>` block:
+Los bloques pueden declarar lenguajes de preprocesadores utilizando el atributo `lang`. La más común caso es utilizar TypeScript para el bloque `<script>`:
 
 ```html
 <script lang="ts">
-  // use TypeScript
+  // utilizar TypeScript
 </script>
 ```
 
-`lang` can be applied to any block - for example we can use `<style>` with [SASS](https://sass-lang.com/) and `<template>` with [Pug](https://pugjs.org/api/getting-started.html):
+`lang` puede ser aplicado a cualquier bloque, por ejemplo podemos utilizar `<style>` con [SASS](https://sass-lang.com/) y `<template>` con [Pug](https://pugjs.org/api/getting-started.html):
 
 ```html
 <template lang="pug">
@@ -101,7 +101,7 @@ p {{ msg }}
 </style>
 ```
 
-Note the intergration with pre-processors may differ based on the toolchain. Check out the respective documentations for examples:
+Note que la integración con preprocesadores podría variar en función de la cadena de herramientas. Echa un vistazo a las documentaciones correspondientes para ejemplos:
 
 - [Vite](https://vitejs.dev/guide/features.html#css-pre-processors)
 - [Vue CLI](https://cli.vuejs.org/guide/css.html#pre-processors)
@@ -109,7 +109,7 @@ Note the intergration with pre-processors may differ based on the toolchain. Che
 
 ## Importaciones de _Src_
 
-If you prefer splitting up your `*.vue` components into multiple files, you can use the `src` attribute to import an external file for a language block:
+Si prefiere dividir sus componentes `*.vue` en múltiples archivos, puede utilizar el atributo `src` para importar un archivo externo para un bloque de lenguaje:
 
 ```vue
 <template src="./template.html"></template>
@@ -117,17 +117,17 @@ If you prefer splitting up your `*.vue` components into multiple files, you can 
 <script src="./script.js"></script>
 ```
 
-Beware that `src` imports follow the same path resolution rules as webpack module requests, which means:
+Tenga en cuenta que las importaciones `src` siguen las mismas reglas de resolución de ruta como las solicitudes de recursos webpack, lo que significa:
 
-- Relative paths need to start with `./`
-- You can import resources from npm dependencies:
+- las rutas relativas necesitan empezar con `./`
+- Puede importar recursos de las dependencias npm:
 
 ```vue
-<!-- import a file from the installed "todomvc-app-css" npm package -->
+<!-- importar un archivo del paquete npm instalado "todomvc-app-css" -->
 <style src="todomvc-app-css/index.css">
 ```
 
-`src` imports also work with custom blocks, e.g.:
+Las importaciones `src` también funcionan con bloques personalizados, p. ej.:
 
 ```vue
 <unit-test src="./unit-test.js">
@@ -136,4 +136,4 @@ Beware that `src` imports follow the same path resolution rules as webpack modul
 
 ## Comentarios
 
-Inside each block you shall use the comment syntax of the language being used (HTML, CSS, JavaScript, Pug, etc.). For top-level comments, use HTML comment syntax: `<!-- comment contents here -->`
+Dentro de cada bloque debe utilizar la sintaxis de comentario del lenguaje utilizado (HTML, CSS, JavaScript, Pug, etc.). Para comentarios de nivel superior, utilice la sintaxis de comentarios de HTML: `<!-- comment contents here -->`

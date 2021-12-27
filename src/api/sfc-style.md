@@ -2,7 +2,7 @@
 sidebarDepth: 1
 ---
 
-# SFC Style Features
+# Características de estilos de SFC
 
 ## `<style scoped>`
 
