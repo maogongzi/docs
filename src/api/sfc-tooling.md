@@ -1,96 +1,96 @@
 # Herramienta de SFC
 
-## Online Playgrounds
+## Área de Pruebas En Líneas
 
-You don't need to install anything on your machine to try out Vue SFCs - there are many online playgrounds that allow you to do so right in the browser:
+No necesita instalar todas las cosas en su mácina para probar SFCs Vue, hay múltiples áreas de pruebas en líneas que le permite hacerlo justo en el navegador:
 
-- [Vue SFC Playground](https://sfc.vuejs.org) (official, deployed from latest commit)
-- [VueUse Playground](https://play.vueuse.org)
-- [Vue on CodeSandbox](https://codesandbox.io/s/vue-3)
-- [Vue on Repl.it](https://replit.com/@templates/VueJS-with-Vite)
-- [Vue on Codepen](https://codepen.io/pen/editor/vue)
-- [Vue on StackBlitz](https://stackblitz.com/fork/vue)
-- [Vue on Components.studio](https://components.studio/create/vue3)
-- [Vue on WebComponents.dev](https://webcomponents.dev/create/cevue)
+- [Área de Pruebas de Vue SFC](https://sfc.vuejs.org) (oficial, desplegado con el último commit)
+- [Área de Pruebas de VueUse](https://play.vueuse.org)
+- [Vue en CodeSandbox](https://codesandbox.io/s/vue-3)
+- [Vue en Repl.it](https://replit.com/@templates/VueJS-with-Vite)
+- [Vue en Codepen](https://codepen.io/pen/editor/vue)
+- [Vue en StackBlitz](https://stackblitz.com/fork/vue)
+- [Vue en Components.studio](https://components.studio/create/vue3)
+- [Vue en WebComponents.dev](https://webcomponents.dev/create/cevue)
 
-It is also recommended to use these online playgrounds to provide reproductions when reporting bugs.
+Es también recomendado utilizar estas áreas de pruebas en líneas para proveer reproducciones cuando reporte errores.
 
-## Project Scaffolding
+## La Construcción de Proyectos
 
 ### Vite
 
-[Vite](https://vitejs.dev/) is a lightweight and fast build tool with first-class Vue SFC support. It is created by Evan You, who is also the author of Vue itself! To get started with Vite + Vue, simply run:
+[Vite](https://vitejs.dev/) es una herramienta de construcción ligera y rápida con soporte de primera clase para SFC Vue. Es creado por Evan You, ¡quien es también el autor de Vue mismo! Para empezar con Vite + Vue, simplemente ejecuta:
 
 ```sh
 npm init vite@latest
 ```
 
-Then select the Vue template and follow the instructions.
+Entonces seleciona la plantilla Vue y seguir las instrucciones.
 
-- To learn more about Vite, check out the [Vite docs](https://vitejs.dev/guide/).
-- To configure Vue-specific behavior in a Vite project, for example passing options to the Vue compiler, check out the docs for [@vitejs/plugin-vue](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#readme).
+- Para aprender más sobre Vite, echa un vistazo a [las documentaciones de Vite](https://vitejs.dev/guide/).
+- Para configurar comportamientos específicos de Vue en un proyecto de Vite, por ejemplo pasar opciones al compilador de Vue, echa un vistazo a las documentaciones de [@vitejs/plugin-vue](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#readme).
 
-The [SFC Playground](https://sfc.vuejs.org/) also supports downloading the files as a Vite project.
+La [área de pruebas de SFC](https://sfc.vuejs.org/) también soporta descargar los archivos como un proyecto de Vite.
 
 ### Vue CLI
 
-[Vue CLI](https://cli.vuejs.org/) is the official webpack-based build tool for Vue projects. To get started with Vue CLI:
+[Vue CLI](https://cli.vuejs.org/) es la herramienta de compilación oficial basada de webpack para proyectos de Vue. Para empezar con Vue CLI:
 
 ```sh
 npm install -g @vue/cli
 vue create hello-vue
 ```
 
-- To learn more about Vue CLI, check out [Vue CLI docs](https://cli.vuejs.org/guide/installation.html).
+- Para aprender más sobre Vue CLI, echa un vistazo a [documentaciones de Vue CLI](https://cli.vuejs.org/guide/installation.html).
 
-### Vite or Vue CLI?
+### ¿Vite o Vue CLI?
 
-We recommend starting new projects with Vite as it offers significantly better development experience in terms of dev server startup and HMR update performance ([details](https://vitejs.dev/guide/why.html)). Only go with Vue CLI if you rely on specific webpack features (e.g. Module Federation).
+Nosotros recomendamos empezar nuevos proyectos con Vite debido a que ofrece drásticamente mejor experiencia de desarrollo en términos de rendimiento de la inicialización de servidor de desarrollo y actualización de recarga en caliente (HMR) ([detalles](https://vitejs.dev/guide/why.html)). Solo opta por Vue CLI si depende de características específicas de webpack (p. ej. federación de módulos (Module Federation)).
 
-If you are a [Rollup](https://rollupjs.org/) user, you can safely adopt Vite as it uses Rollup for production builds and supports a Rollup-compatible plugin system. [Even Rollup's maintainer recommends Vite as THE web development wrapper for Rollup](https://twitter.com/lukastaegert/status/1412119729431584774).
+Si usted es un usuario de [Rollup](https://rollupjs.org/), puede adopta Vite con seguridad debido a que utiliza Rollup para las construcciones de producción y soporta el sistema de plugins compatibles con Rollup. [Incluso el mantenedor de Rollup recomienda Vite como el envoltorio de desarrollo web para Rollup](https://twitter.com/lukastaegert/status/1412119729431584774).
 
-## IDE Support
+## Soporte de IDE
 
-The recommended IDE setup is [VSCode](https://code.visualstudio.com/) + the [Volar](https://github.com/johnsoncodehk/volar) extension. Volar provides syntax highlighting and advanced IntelliSense for template expressions, component props and even slots validation. We strongly recommend this setup if you want to get the best possible experience with Vue SFCs, especially if you are also using TypeScript.
+La configuración recomendada de IDE es [VSCode](https://code.visualstudio.com/) + la extención [Volar](https://github.com/johnsoncodehk/volar). Volar provee el resaltado de sintaxis y IntelliSense avanzada para epxresiones de plantilla, _props_ de componente y incluso la validación de _slots_. Recomendamos encarecidamente esta configuración si quiere obtener la mejor posible experiencia con los SFCs Vue, especialmente si está también utilizando TypeScript.
 
-[WebStorm](https://www.jetbrains.com/webstorm/) also provides decent support for Vue SFCs. However, do note as of now its support for `<script setup>` is still [in progress](https://youtrack.jetbrains.com/issue/WEB-49000).
+[WebStorm](https://www.jetbrains.com/webstorm/) también provee soporte decente para los SFCs Vue. Sin embargo, tenga en cuenta que ahora su soporte para `<script setup>` es todavía [en curso](https://youtrack.jetbrains.com/issue/WEB-49000).
 
-Most other editors have community-created syntax highlighting support for Vue, but lack the same level of code IntelliSense. In the long run, we do hope we can extend the range of editor support by leveraging the [Language Service Protocol](https://microsoft.github.io/language-server-protocol/) as Volar's core logic is implemented as a standard language server.
+La mayoría de otros editores tienen soporte de resaltado de sintaxis creado por la comunidad para Vue, pero falta el mismo nivel de IntelliSense de código. A largo plazo, Esperamos que podamos extender el rango de soporte de editores mediante apalancar el [protocol de servicio de lenguaje](https://microsoft.github.io/language-server-protocol/) debido a que la lógica principal de Volar es implementada como un servidor estándar de lenguaje.
 
-## Testing Support
+## Soporte de Prueba
 
-- If using Vite, we recommend [Cypress](https://www.cypress.io/) as the test runner for both unit and e2e tests. Unit tests for Vue SFCs can be done with the [Cypress Component Test Runner](https://www.cypress.io/blog/2021/04/06/introducing-the-cypress-component-test-runner/).
+- Si se utilice Vite, recomendamos [Cypress](https://www.cypress.io/) como el mejor ejecutor para las pruebas unitarias y e2e. Las pruebas unitarias para SFCs Vue pueden realizarse con el [ejecutador de pruebas de componentes de cypress](https://www.cypress.io/blog/2021/04/06/introducing-the-cypress-component-test-runner/).
 
-- Vue CLI comes with [Jest](https://jestjs.io/) and [Mocha](https://mochajs.org/) integrations.
+- Vue CLI proporciona la integración de [Jest](https://jestjs.io/) y [Mocha](https://mochajs.org/).
 
-- If you are manually configuring Jest to work with Vue SFCs, check out [vue-jest](https://github.com/vuejs/vue-jest) which is the official Jest transform for Vue SFCs.
+- Si está configurando manualmente Jest para trabajar con SFCs Vue, echa un vistazo a [vue-jest](https://github.com/vuejs/vue-jest), lo que es la transformación oficial de Jest para SFCs Vue.
 
-## Custom Blocks Integration
+## Integración con Bloques Personalizados
 
-Custom blocks are compiled into imports to the same Vue file with different request queries. It is up to the underlying build tool to handle these import requests.
+Bloques Personalizados son compilados en importaciones al mismo archivo Vue con queries de solicitudes distintos (different request queries). La herramienta de compilación subyacente puede decidir cómo manajar estas solicitudes de importación.
 
-- If using Vite, a custom Vite plugin should be used to transform matched custom blocks into executable JavaScript. [[Example](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#example-for-transforming-custom-blocks)]
+- Si se utiliza Vite, un plugin personalizado de Vite debe ser utilizado para transformar los bloques personalizados correspondidos en JavaScript ejecutable. [[Ejemplo](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#example-for-transforming-custom-blocks)]
 
-- If using Vue CLI or plain webpack, a webpack loader should be configured to transform the matched blocks. [[Example](https://vue-loader.vuejs.org/guide/custom-blocks.html#custom-blocks)]
+- Si se utiliza Vue CLI o webpack plano, un cargador webpack debe ser configurado para transformar los bloques correspondidos. [[Ejemplo](https://vue-loader.vuejs.org/guide/custom-blocks.html#custom-blocks)]
 
-## Lower-Level Tools
+## Herramientas de nivel inferior
 
 ### `@vue/compiler-sfc`
 
-- [Docs](https://github.com/vuejs/vue-next/tree/master/packages/compiler-sfc)
+- [Documentación](https://github.com/vuejs/vue-next/tree/master/packages/compiler-sfc)
 
-This package is part of the Vue core monorepo and is always published with the same version as the main `vue` package. Typically, it will be listed as a peer dependency of `vue` in a project. To ensure correct behavior, its version should always be kept in-sync with `vue` - i.e. whenever you upgrade the version of `vue`, you should also upgrade `@vue/compiler-sfc` to match it.
+Este paquete es parte del monorepo núcleo de Vue y siempre publicado con la misma versión como el paquete principal `vue`. Típicamente, será listado como una dependencia _peer_ de `vue` en un proyecto. Para asegurarse del comportamiento correcto, su versión debe ser siempre sincronizado con `vue`, es decir, cada vez que actualice la versión de `vue`, debería también actualizar `@vue/compiler-sfc` para que coincidan.
 
-The package itself provides lower-level utilities for processing Vue SFCs and is only meant for tooling authors that need to support Vue SFCs in custom tools.
+El paquete mismo provee utilidades de nivel inferior para procesar SFCs Vue y sólo está dedicado para los autores de herramientos que necesitan soportar SFCs Vue en herramientas personalizadas.
 
 ### `@vitejs/plugin-vue`
 
-- [Docs](https://github.com/vitejs/vite/tree/main/packages/plugin-vue)
+- [Documentación](https://github.com/vitejs/vite/tree/main/packages/plugin-vue)
 
-Official plugin that provides Vue SFC support in Vite.
+El plugin oficial que provee soporte de SFC Vue en Vite.
 
 ### `vue-loader`
 
-- [Docs](https://vue-loader.vuejs.org/)
+- [Documentación](https://vue-loader.vuejs.org/)
 
-The official loader that provides Vue SFC support in webpack. If you are using Vue CLI, also see [docs on modifying `vue-loader` options in Vue CLI](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader).
+El cargador oficial que provee soporte de SFC Vue en webpack. Si está utilizando Vue CLI, vea también la [documentación sobre modificar opciones de `vue-loader` en Vue CLI](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader).
