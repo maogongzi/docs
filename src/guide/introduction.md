@@ -219,7 +219,7 @@ El sistema de componentes es otro concepto importante en Vue, porque es una abst
 
 ![Árbol de Componentes](/images/components.png)
 
-En vue, un componente es escencialmente una instancia con opciones predefinidas. Registrar un componente en Vue es sencillo: creamos un objeto componente como hicimos con los objetos `App` y lo definimos en la opción `components` en su padre:
+En vue, un componente es escencialmente una instancia con opciones predefinidas. Registrar un componente en Vue es sencillo: creamos un objeto componente como hicimos con el objeto `app` y lo definimos en la opción `components` en su padre:
 
 ```js
 const TodoItem = {
@@ -250,10 +250,10 @@ Ahora puede componenrlo en la plantilla del otro componente:
 Pero este va a renderizar el mismo texto para cada todo, lo cual no es muy interesante. Deberíamos ser capaces de pasar datos a los componentes hijos desde el padre. Vamos a modificar la definición del componente para que acepte un [prop](component-basics.html#passing-data-to-child-components-with-props):
 
 ```js
-app.component('todo-item', {
+const TodoItem = {
   props: ['todo'],
   template: `<li>{{ todo.text }}</li>`
-})
+}
 ```
 
 Ahora podemos pasar el todo en cada componente repetido utilizando `v-bind`:
@@ -278,6 +278,11 @@ Ahora podemos pasar el todo en cada componente repetido utilizando `v-bind`:
 ```
 
 ```js
+const TodoItem = {
+  props: ['todo'],
+  template: `<li>{{ todo.text }}</li>`
+}
+
 const TodoList = {
   data() {
     return {
@@ -287,22 +292,20 @@ const TodoList = {
         { id: 2, text: 'Cualquiera otra cosa que se supone que coman los humanos' }
       ]
     }
+  },
+  components: {
+    TodoItem
   }
 }
 
 const app = Vue.createApp(TodoList)
-
-app.component('todo-item', {
-  props: ['todo'],
-  template: `<li>{{ todo.text }}</li>`
-})
 
 app.mount('#todo-list-app')
 ```
 
 <common-codepen-snippet title="Intro-Components-1" slug="VwLxeEz" />
 
-Este es un ejemplo inventado, pero hemos logrado separar nos aplicación en dos unidades pequeñas, y el hijo está bien desacoplado del padre mediante el uso de la interfaz props. Ahora podemos mejorar nuestro componente`<todo-item>` con plantilla y lógica más compleja sin afectar la aplicación padre.
+Este es un ejemplo inventado, pero hemos logrado separar nos aplicación en dos unidades pequeñas, y el hijo está bien desacoplado del padre mediante el uso de la interfaz props. Ahora podemos mejorar nuestro componente `<todo-item>` con una plantilla y lógica más compleja sin afectar la aplicación padre.
 
 En una aplicación grande, es necesario dividir toda la aplicación en componentes para hacer el desarrollo manejable. Hablaremos más sobre componentes [más adelante en esta guía](component-basics.html), pero aquí brinadamos un ejemplo(imaginario) de como se vería la plantilla de una aplicación con componentes:
 
