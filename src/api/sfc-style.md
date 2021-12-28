@@ -64,7 +64,7 @@ Los contenidos DOM creados por `v-html` no son afectados por estilos con alcance
 
 ### Selector _Slotted_
 
-Por defector, los estilos con alcance no afectan a contenidos renderizados por `<slot/>`, debido a que son considerados pertenecientes al componente padre que los pasen. Para orientar explícitamente los contenidos de _slot_, utilice el _pseudo-class_ `:slotted`:
+Por defecto, los estilos con alcance no afectan a contenidos renderizados por `<slot/>`, debido a que son considerados pertenecientes al componente padre que los pasen. Para orientar explícitamente los contenidos de _slot_, utilice el _pseudo-class_ `:slotted`:
 
 ```vue
 <style scoped>
@@ -102,18 +102,18 @@ Puede también incluir estilos tanto con alcance como sin alcance en el mismo co
 
 ### Scoped Style Tips
 
-- **Scoped styles do not eliminate the need for classes**. Due to the way browsers render various CSS selectors, `p { color: red }` will be many times slower when scoped (i.e. when combined with an attribute selector). If you use classes or ids instead, such as in `.example { color: red }`, then you virtually eliminate that performance hit.
+- **Los estilos con alcance no elimina la necesidad de clases**. Debido a la manera que utilizan los navegadores para renderizar varios selectores CSS, `p { color: red }` será muchas veces más lentos cuando se utilice con alcance (es decir, cuando está combinado con un selector de atributo). Si utiliza clases o _ids_ en su lugar, tal como en `.example { color: red }`, luego prácticamente elimina el impacto en el rendimiento.
 
-- **Be careful with descendant selectors in recursive components!** For a CSS rule with the selector `.a .b`, if the element that matches `.a` contains a recursive child component, then all `.b` in that child component will be matched by the rule.
+- **¡Tenga cuidado con selectores de descendientes en componentes recursivos!** Para una regla CSS con el selector `.a .b`, si el elemento que coincide con `.a` contiene un componente hijo recursivo, luego todos `.b` en ese componente hijo se harán coincidir por la regla.
 
 ## `<style module>`
 
-A `<style module>` tag is compiled as [CSS Modules](https://github.com/css-modules/css-modules) and exposes the resulting CSS classes to the component as an object under the key of `$style`:
+Una etiqueta `<style module>` es compilada como [módulos CSS](https://github.com/css-modules/css-modules) y expuesta las clases CSS resultantes al componente como un objeto debajo la clave `$style`:
 
 ```vue
 <template>
   <p :class="$style.red">
-    This should be red
+    Este debe ser rojo
   </p>
 </template>
 
@@ -124,13 +124,13 @@ A `<style module>` tag is compiled as [CSS Modules](https://github.com/css-modul
 </style>
 ```
 
-The resulting classes are hashed to avoid collision, achieving the same effect of scoping the CSS to the current component only.
+Las clases resultantes utilizan _hash_ para evitar colisión, realiza el mismo efecto de CSS con alcance al componente actual solamente.
 
-Refer to the [CSS Modules spec](https://github.com/css-modules/css-modules) for more details such as [global exceptions](https://github.com/css-modules/css-modules#exceptions) and [composition](https://github.com/css-modules/css-modules#composition).
+Refierase a la la [especificación de módulos CSS](https://github.com/css-modules/css-modules) para más detalles tal como [excepciones globales](https://github.com/css-modules/css-modules#exceptions) y [composición](https://github.com/css-modules/css-modules#composition).
 
-### Custom Inject Name
+### Personalizar el nombre de inyección
 
-You can customize the property key of the injected classes object by giving the `module` attribute a value:
+Puede personalizar la clave de la propiedad del objeto de clases inyectadas mediante darle un valor al atributo `module`:
 
 ```vue
 <template>
@@ -144,21 +144,21 @@ You can customize the property key of the injected classes object by giving the 
 </style>
 ```
 
-### Usage with Composition API
+### Uso con API de Composición
 
-The injected classes can be accessed in `setup()` and `<script setup>` via the [`useCssModule`](/api/global-api.html#usecssmodule) API. For `<style module>` blocks with custom injection names, `useCssModule` accepts the matching `module` attribute value as the first argument:
+Las clases inyectadas pueden ser accesadas en `setup()` y `<script setup>` mediante la API [`useCssModule`](/api/global-api.html#usecssmodule). Para bloques `<style module>` con nombres de inyección personalizados, `useCssModule` acepta el valor del atributo coincidente `module` como su primer argumento:
 
 ```js
-// default, returns classes for <style module>
+// por defecto retorna clases para <style module>
 useCssModule()
 
-// named, returns classes for <style module="classes">
+// nombrado, retorna clases para <style module="classes">
 useCssModule('classes')
 ```
 
-## State-Driven Dynamic CSS
+## CSS dinámico impulsado por estados
 
-SFC `<style>` tags support linking CSS values to dynamic component state using the `v-bind` CSS function:
+Las etiquetas `<style>` soporta enlacer valores CSS a estados dinámicos de componentes utilizando la función CSS `v-bind`:
 
 ```vue
 <template>
@@ -182,7 +182,7 @@ export default {
 </style>
 ```
 
-The syntax works with [`<script setup>`](./sfc-script-setup), and supports JavaScript expressions (must be wrapped in quotes):
+La sintaxis funciona con [`<script setup>`](./sfc-script-setup), y soporta expresiones JavaScript (debe encerrarse entre comillas):
 
 ```vue
 <script setup>
@@ -202,4 +202,4 @@ p {
 </style>
 ```
 
-The actual value will be compiled into a hashed CSS custom property, so the CSS is still static. The custom property will be applied to the component's root element via inline styles and reactively updated if the source value changes.
+El valor actual será compilado a una propiedad CSS personalizada, así que el CSS es todavía estático. la propiedad personalizada será aplicada al elemento raíz del componente mediante estilos en línea y actualizada reactivamente si el valor del fuente se cambie.
