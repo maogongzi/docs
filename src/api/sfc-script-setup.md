@@ -4,35 +4,35 @@ sidebarDepth: 1
 
 # SFC `<script setup>`
 
-`<script setup>` is a compile-time syntactic sugar for using [Composition API](/api/composition-api.html) inside Single File Components (SFCs). It is the recommended syntax if you are using both SFCs and Composition API. It provides a number of advantages over the normal `<script>` syntax:
+`<script setup>` es un azúcar sintáctico de tiempo de compilación para utilizar [API de composición](/api/composition-api.html) dentro de componentes de un solo archivo (SFCs). Es la sintaxis recomendada si está utilizando SFSc y la API de composición. Provee un número de ventajas sobre la sintaxis normal de `<script>`:
 
-- More succinct code with less boilerplate
-- Ability to declare props and emitted events using pure TypeScript
-- Better runtime performance (the template is compiled into a render function in the same scope, without an intermediate proxy)
-- Better IDE type-inference performance (less work for the language server to extract types from code)
+- Más código sucinto con menos plantilla (boilerplate)
+- Habilidad para declarar _props_ y emitir eventos utilizando TypeScript puro
+- Mejor rendimiento de tiempo de ejecución (la plantilla es compilada en una función _render_ en el mismo alcance, sin ningún proxy intermediario)
+- Mejor rendimiento de inferencia de tipo de IDE (menos trabajo para el servidor del lenguaje para extraer tipos del código)
 
-## Basic Syntax
+## Sintaxis Básica
 
-To opt-in to the syntax, add the `setup` attribute to the `<script>` block:
+Para optar por la sintaxis, agrega el atributo `setup` al bloque `<script>`:
 
 ```vue
 <script setup>
-console.log('hello script setup')
+console.log('hola, script setup')
 </script>
 ```
 
-The code inside is compiled as the content of the component's `setup()` function. This means that unlike normal `<script>`, which only executes once when the component is first imported, code inside `<script setup>` will **execute every time an instance of the component is created**.
+El código dentro es compilado como el contenido de la función `setup()` del componente. Este significa que, al contrario a `<script>` normal, lo que solo ejecuta una vez cuando el componente es importado por primera vez, el código dentro de `<script setup>` **ejecutará cada vez una instancia del componente es creada**.
 
-### Top-level bindings are exposed to template
+### Las vinculaciones de nivel superior son expuestas a la plantilla
 
-When using `<script setup>`, any top-level bindings (including variables, function declarations, and imports) declared inside `<script setup>` are directly usable in the template:
+Cuando se utiliza `<script setup>`, cualquieras vinculaciones de nivel superior (incluyendo variables, declaraciones de funciones, y importaciones) declaradas dentro de `<script setup>` son directamente disponibles en la plantilla:
 
 ```vue
 <script setup>
 // variable
 const msg = 'Hello!'
 
-// functions
+// funciones
 function log() {
   console.log(msg)
 }
@@ -43,7 +43,7 @@ function log() {
 </template>
 ```
 
-Imports are exposed in the same fashion. This means you can directly use an imported helper function in template expressions without having to expose it via the `methods` option:
+Las importaciones son expuestas en la misma manera. Este significa que puede directamente utilizar una función de ayuda importada en expresiones de plantilla sin tener que exponerla mediante la opción `methods`:
 
 ```vue
 <script setup>
@@ -55,9 +55,9 @@ import { capitalize } from './helpers'
 </template>
 ```
 
-## Reactivity
+## Reactividad
 
-Reactive state needs to be explicitly created using [Reactivity APIs](/api/basic-reactivity.html). Similar to values returned from a `setup()` function, refs are automatically unwrapped when referenced in templates:
+El estado reactivo necesita ser explícitamente creado utilizando [APIs de reactividad](/api/basic-reactivity.html). Similar a valores retornados de una función `setup()`, las _refs_ son automáticamente desenvueltas cuando sean referenciadas en plantillas:
 
 ```vue
 <script setup>
@@ -71,9 +71,9 @@ const count = ref(0)
 </template>
 ```
 
-## Using Components
+## Utilizar Componentes
 
-Values in the scope of `<script setup>` can also be used directly as custom component tag names:
+Los valores en el alcance de `<script setup>` pueden también ser utilizados directamente como nombres de etiqueta de componente personalizado:
 
 ```vue
 <script setup>
@@ -85,11 +85,11 @@ import MyComponent from './MyComponent.vue'
 </template>
 ```
 
-Think of `MyComponent` as being referenced as a variable. If you have used JSX, the mental model is similar here. The kebab-case equivalent `<my-component>` also works in the template - however PascalCase component tags are strongly recommended for consistency. It also helps differentiating from native custom elements.
+Piensa que `MyComponent` sea referido como un variable. Si ha utilizado JSX, el model mental es similar aquí. el equivalente de _kebab-case_ `<my-component>` también funciona en la plantilla, sin embargo las etiquetas de componentes en _PascalCase_ son recomendadas encarecidamente por consistencia. También ayuda a diferenciar de elementos personalizados nativos.
 
-### Dynamic Components
+### Componentes Dinámicos
 
-Since components are referenced as variables instead of registered under string keys, you should use dynamic `:is` binding when using dynamic components inside `<script setup>`:
+Debido a que componentes son referidos como variables en vez de registrados debajo de claves de cadena de caracteres, debería utilizar la vinculación dinámica `:is` cuando utilice componentes dinámicos en `<script setup>`:
 
 ```vue
 <script setup>
