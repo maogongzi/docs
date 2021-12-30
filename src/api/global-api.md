@@ -193,9 +193,7 @@ createApp({
 })
 ```
 
-Para uso avanzado, `defineAsyncComponent` puede aceptar un objeto:
-
-El método `defineAsyncComponent` puede también retornar un objeto del formato siguiente:
+Para uso avanzado, `defineAsyncComponent` puede aceptar un objeto del formato siguiente:
 
 ```js
 import { defineAsyncComponent } from 'vue'

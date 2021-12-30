@@ -26,7 +26,7 @@ app.config.errorHandler = (err, vm, info) => {
 }
 ```
 
-Asigna un manejador para errores no capturados durante la función _render_ y los observadores del componente. El manejador será llamado con el error y la instancia de aplicación.
+Asigna un manejador para errores no capturados durante la función _render_ y los observadores del componente. El manejador será llamado con el error y la instancia de aplicación correspondiente.
 
 > Los servicios de seguimiento de errores [Sentry](https://sentry.io/for/vue/) y [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) proporcionan integraciones oficiales utilizando esta opción.
 
@@ -147,7 +147,7 @@ Esta opción de configuración solo se respeta cuando se utilice la compilación
 app.config.compilerOptions.isCustomElement = tag => tag.startsWith('ion-')
 ```
 
-Especifica un método para reconocer elementos personalizadas definidos afuera de Vue (p. e.j. utilizando las APIs de Componentes Web). Si un componente cumple esta condición, no necesitará registración local o global y Vue no lanzará una advertencia sobre un `Unknown custom element` (Elemento personalizado desconocido).
+Especifica un método para reconocer elementos personalizados definidos afuera de Vue (p. e.j. utilizando las APIs de Componentes Web). Si un componente cumple esta condición, no necesitará registración local o global y Vue no lanzará una advertencia sobre un `Unknown custom element` (Elemento personalizado desconocido).
 
 > Note que todas etiquetas HTML y SVG nativas no necesitan ser coincididas en esta función, el intérprete (parser) Vue realiza esta comprobación automáticamente.
 
