@@ -103,21 +103,21 @@ import Bar from './Bar.vue'
 </template>
 ```
 
-Note how the components can be used as variables in a ternary expression.
+Note cómo los componentes pueden ser utilizados como variables en la expresión ternaria.
 
-### Recursive Components
+### Componentes Recursivos
 
-An SFC can implicitly refer to itself via its filename. E.g. a file named `FooBar.vue` can refer to itself as `<FooBar/>` in its template.
+Un SFC puede implícitamente referirse a sí mísmo mediante el nombre de su archivo. P. ej. un archivo llamado `FooBar.vue` puede referirse a sí mísmo como `<FooBar/>` en su plantilla.
 
-Note this has lower priority than imported components. If you have a named import that conflicts with the component's inferred name, you can alias the import:
+Note que este tiene menor prioridad que los componentes importados. Si tiene una importación nombrada que tenga conflicto con el nombre inferido del componente, puede aplicar alias a la importación:
 
 ```js
 import { FooBar as FooBarChild } from './components'
 ```
 
-### Namespaced Components
+### Componentes con espacio de nombres (namespace)
 
-You can use component tags with dots like `<Foo.Bar>` to refer to components nested under object properties. This is useful when you import multiple components from a single file:
+Puede utilizar etiquetas de componentes con puntos como `<Foo.Bar>` para referir a componentes anidados bajo propiedades de objetos. Este es útil cuando importa múltiples componentes desde un solo archivo:
 
 ```vue
 <script setup>
@@ -131,34 +131,34 @@ import * as Form from './form-components'
 </template>
 ```
 
-## Using Custom Directives
+## Utilizar Directivas Personalizadas
 
-Globally registered custom directives just work as expected, and local ones can be used directly in the template, much like we explained above for components. 
+Las directivas registradas globalmente siempre funcionan como se esperan, y las locales pueden ser utilizadas directamente en la plantilla, muy similar a lo que explicamos para componentes arriba.
 
-But there's one restriction to be aware of: You must name local custom directives according to the following schema: `vNameOfDirective` in order for them to be directly usable in the template.
+Pero hay una restricción a tener en cuenta: debe nombrar las directivas personalizadas locales conforme a la sequema siguiente: `vNameOfDirective` para que puedan ser utilizadas directamente en la plantilla.
 
 ```html
 <script setup>
 const vMyDirective = {
   beforeMount: (el) => {
-    // do something with the element
+    // hacer algo con el elemento
   }
 }
 </script>
 <template>
-  <h1 v-my-directive>This is a Heading</h1>
+  <h1 v-my-directive>Este es un encabezado</h1>
 </template>
 ```
 ```html
 <script setup>
-  // imports also work, and can be renamed to fit the required naming schema
+  // las importaciones también funcionan, y pueden ser renombradas para ajustarse a la esquema de nomenclatura requerida
   import { myDirective as vMyDirective } from './MyDirective.js'
 </script>
 ```
 
-## `defineProps` and `defineEmits`
+## `defineProps` y `defineEmits`
 
-To declare `props` and `emits` in `<script setup>`, you must use the `defineProps` and `defineEmits` APIs, which provide full type inference support and are automatically available inside `<script setup>`:
+Para declarar `props` y `emits` en `<script setup>`, debe utilizar las APIs `defineProps` y `defineEmits`, los que proveen soporte completo de inferencia de tipos y son automáticamente disponibles dentro de `<script setup>`:
 
 ```vue
 <script setup>
@@ -167,25 +167,25 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['change', 'delete'])
-// setup code
+// código para la configuración
 </script>
 ```
 
-- `defineProps` and `defineEmits` are **compiler macros** only usable inside `<script setup>`. They do not need to be imported, and are compiled away when `<script setup>` is processed.
+- `defineProps` y `defineEmits` son **macros de compiladores (compiler macros)** solo utilizables dentro de `<script setup>`. No necesitan ser importados, y son eliminados durante el proceso de compilación cuando `<script setup>` sea procesado.
 
-- `defineProps` accepts the same value as the [`props` option](/api/options-data.html#props), while `defineEmits` accepts the same value as the [`emits` option](/api/options-data.html#emits).
+- `defineProps` acepta el mismo valor como la [opción `props`](/api/options-data.html#props), mientras `defineEmits` acepta el mismo valor como la [opción `emits`](/api/options-data.html#emits).
 
-- `defineProps` and `defineEmits` provide proper type inference based on the options passed.
+- `defineProps` y `defineEmits` provee inferencia de tipos adecuada basado de las opciones pasadas.
 
-- The options passed to `defineProps` and `defineEmits` will be hoisted out of setup into module scope. Therefore, the options cannot reference local variables declared in setup scope. Doing so will result in a compile error. However, it _can_ reference imported bindings since they are in the module scope as well.
+- Las opciones pasadas a `defineProps` y `defineEmits` serán elevadas afuera del `setup` al alcance del módulo. Por lo tanto, las opciones no pueden referir variables locales declaradas en el alcance de setup. Hacerlo resultará un error de compilación. Sin embargo, _puede_ referir a las vinculaciones importadas debido a que son en el el alcance del módulo también.
 
-If you are using TypeScript, it is also possible to [declare props and emits using pure type annotations](#typescript-only-features).
+Si está utilizando TypeScript, es también posible [declarar props y emits utilizando anotaciones de tipo puro](#typescript-only-features).
 
 ## `defineExpose`
 
-Components using `<script setup>` are **closed by default** - i.e. the public instance of the component, which is retrieved via template refs or `$parent` chains, will **not** expose any of the bindings declared inside `<script setup>`.
+Los componentes que utilizan `<script setup>` son **cerrados por defecto**, es decir, la instancia pública del componente, que es recuperada mediante _refs_ de plantilla o cadenas de `$parent`, **no** exponerán nada de las vinculaciones declaradas dentro de `<script setup>`.
 
-To explicitly expose properties in a `<script setup>` component, use the `defineExpose` compiler macro:
+Par explícitamente exponer propiedades en un componente de `<script setup>`, utiliza el macro de compilador `defineExpose`:
 
 ```vue
 <script setup>
@@ -201,9 +201,9 @@ defineExpose({
 </script>
 ```
 
-When a parent gets an instance of this component via template refs, the retrieved instance will be of the shape `{ a: number, b: number }` (refs are automatically unwrapped just like on normal instances).
+Cuando un padre obtiene una instancia de este componente mediante _refs_ de plantilla, la instancia recuperada será de la forma `{ a: number, b: number }` (las _refs_ son automáticamente desenvueltas justo como en instancias normales).
 
-## `useSlots` and `useAttrs`
+## `useSlots` y `useAttrs`
 
 Usage of `slots` and `attrs` inside `<script setup>` should be relatively rare, since you can access them directly as `$slots` and `$attrs` in the template. In the rare case where you do need them, use the `useSlots` and `useAttrs` helpers respectively:
 
