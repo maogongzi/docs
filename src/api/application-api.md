@@ -234,7 +234,7 @@ app.mount('#my-app')
   Proporcionar valores mediante la aplicación es específicamente útil cuando escribir _plugins_, como los _plugins_ típicamente no serían capaz de proporcionar valores utilizando componentes. Es una alternativa para utilizar [globalProperties](application-config.html#globalproperties).
 
   :::tip Note
-  Las vinculaciones de `provide` y `inject` NO so reactivas. Este es a propósito. Sin embargo, si pasa un objeto observado abajo, las propiedades en ese objeto se mantienen reactivas.
+  Las vinculaciones de `provide` y `inject` NO son reactivas. Este es a propósito. Sin embargo, si pasa un objeto reactivo abajo, las propiedades en ese objeto se mantienen reactivas.
   :::
 
 - **Ejemplo:**
@@ -299,7 +299,7 @@ setTimeout(() => app.unmount(), 5000)
 
   Instalar un _plugin_ de Vue.js. Si el plugin es un objeto, debe exponer un método `install`, si es una función de sí mismo, será tratado como el método `install`.
 
-  El método `install` será llamado con la aplicación como su primer argumento. Cualquier `options` pasado a `use` será pasado como argumentos posteriores a `install`.
+  El método `install` será llamado con la aplicación como su primer argumento. Cualquieras `options` pasadas a `use` serán pasadas en argumentos posteriores.
 
   Cuando este método es llamado en el mismo _plugin_ múltiples veces, el _plugin_ solo se instala una vez.
 
