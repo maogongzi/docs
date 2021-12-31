@@ -298,9 +298,9 @@ const emit = defineEmits<{
 
   En la actualidad tipos complejos y importar tipos desde otros archivos no son soportados. Es teóricamente posible soportar importaciones de tipos en el futuro.
 
-### Default props values when using type declaration
+### Los valores por defecto de las _props_ cuando se utiliza la declaración de tipo
 
-One drawback of the type-only `defineProps` declaration is that it doesn't have a way to provide default values for the props. To resolve this problem, a `withDefaults` compiler macro is also provided:
+Una desventaja de la declaración `defineProps` de solo tipo es que no tiene una manera para proporcionar valores por defecto para las _props_. Para resolver este problema, un macro de compilador `withDefaults` es también proporcionado:
 
 ```ts
 interface Props {
@@ -309,13 +309,13 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  msg: 'hello',
-  labels: () => ['one', 'two']
+  msg: 'hola',
+  labels: () => ['uno', 'dos']
 })
 ```
 
-This will be compiled to equivalent runtime props `default` options. In addition, the `withDefaults` helper provides type checks for the default values, and ensures the returned `props` type has the optional flags removed for properties that do have default values declared.
+Este será compilado a opciones equivalentes `por defecto` (`default`) de _props_ de tiempo de ejecución. Además, el ayudante `withDefaults` proporciona pruebas de tipo para los valores por defecto, y asegura que el tipo retornado de `props` haya eliminado los parámetros (flags) opcionales para propiedades que no tengan valores por defecto declarados.
 
-## Restriction: No Src Imports
+## Restricción: no importaciones de _src_
 
-Due to the difference in module execution semantics, code inside `<script setup>` relies on the context of an SFC. When moved into external `.js` or `.ts` files, it may lead to confusion for both developers and tools. Therefore, **`<script setup>`** cannot be used with the `src` attribute.
+Debido a la diferencia en las semánticas de ejecución de módulo, el código dentro de `<script setup>` depende del contexto de un SFC. Cuando se ha mudado en un archivo externo como `.js` o `.ts`, podría conducir a confusión para tanto desarrolladores como herramientas. Por lo tanto, **`<script setup>`** no se puede utilizar con el atributo `src`.
