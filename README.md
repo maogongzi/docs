@@ -28,6 +28,7 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
   |[src/api/options-lifecycle-hooks.md](src/api/options-lifecycle-hooks.md)|Spanish :white_check_mark:|
   |[src/api/options-misc.md](src/api/options-misc.md)|Spanish :white_check_mark:|
   |[src/api/reactivity-api.md](src/api/reactivity-api.md)|Spanish :white_check_mark:|
+  |[src/api/sfc-script-setup.md](src/api/sfc-script-setup.md)|Spanish :white_check_mark:|
   |[src/api/sfc-spec.md](src/api/sfc-spec.md)|Spanish :white_check_mark:|
   |[src/api/sfc-style.md](src/api/sfc-style.md)|Spanish :white_check_mark:|
   |[src/api/sfc-tooling.md](src/api/sfc-tooling.md)|Spanish :white_check_mark:|
@@ -98,7 +99,6 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
   |[src/api/computed-watch-api.md](src/api/computed-watch-api.md)|English :x:|
   |[src/api/effect-scope.md](src/api/effect-scope.md)|English :x:|
   |[src/api/refs-api.md](src/api/refs-api.md)|English :x:|
-  |[src/api/sfc-script-setup.md](src/api/sfc-script-setup.md)|English :x:|
   |[src/coc/index.md](src/coc/index.md)|English :x:|
   |[src/community/join.md](src/community/join.md)|English :x:|
   |[src/community/partners.md](src/community/partners.md)|English :x:|
