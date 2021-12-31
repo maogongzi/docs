@@ -205,7 +205,7 @@ Cuando un padre obtiene una instancia de este componente mediante _refs_ de plan
 
 ## `useSlots` y `useAttrs`
 
-Usage of `slots` and `attrs` inside `<script setup>` should be relatively rare, since you can access them directly as `$slots` and `$attrs` in the template. In the rare case where you do need them, use the `useSlots` and `useAttrs` helpers respectively:
+Los usos de `slots` y `attrs` dentro de `<script setup>` deberían ser relativamente raros, debido a que puede accederlos directamente como `$slots` y `$attrs` en la plantilla. En los raros casos dónde los necesita, utiliza los ayudantes `useSlots` y `useAttrs`, respectivamente:
 
 ```vue
 <script setup>
@@ -216,22 +216,22 @@ const attrs = useAttrs()
 </script>
 ```
 
-`useSlots` and `useAttrs` are actual runtime functions that return the equivalent of `setupContext.slots` and `setupContext.attrs`. They can be used in normal composition API functions as well.
+`useSlots` y `useAttrs` son funciones actuales de tiempo de ejecución que retornan los equivalentes de `setupContext.slots` y `setupContext.attrs`. También pueden ser utilizadas en funciones normales de la API de composición.
 
-## Usage alongside normal `<script>`
+## Uso junto a `<script>` normal
 
-`<script setup>` can be used alongside normal `<script>`. A normal `<script>` may be needed in cases where you need to:
+`<script setup>` puede ser utilizado junto a `<script>` normal, Un `<script>` normal puede ser necesito en casos dónde necesite:
 
-- Declare options that cannot be expressed in `<script setup>`, for example `inheritAttrs` or custom options enabled via plugins.
-- Declaring named exports.
-- Run side effects or create objects that should only execute once.
+- Declarar opciones que no puedan ser expresadas en `<script setup>`, por ejemplo `inheritAttrs` o opciones personalizadas habilitadas mediante _plugins_.
+- Declarar exportaciones nombradas.
+- Ejecutar efectos secundarios o crear objetos que deben ejecutarse solo una vez.
 
 ```vue
 <script>
-// normal <script>, executed in module scope (only once)
+// <script> normal, ejecutado en el alcance del módulo (solo una vez)
 runSideEffectOnce()
 
-// declare additional options
+// declarar opciones adicionales
 export default {
   inheritAttrs: false,
   customOptions: {}
@@ -239,17 +239,17 @@ export default {
 </script>
 
 <script setup>
-// executed in setup() scope (for each instance)
+// ejecutado en el alcance de setup() (para cada instancia)
 </script>
 ```
 
 :::warning
-`render` function is not supported in this scenario. Please use one normal `<script>` with `setup` option instead.
+La función `render` no es soportada en este escenario. Por favor utilice un `<script>` normal junto con la opción `setup` en su lugar.
 :::
 
-## Top-level `await`
+## `await` de nivel superior
 
-Top-level `await` can be used inside `<script setup>`. The resulting code will be compiled as `async setup()`:
+`await` de nivel superior puede ser utilizada en `<script setup>`. El código resultante será compilado como `async setup()`:
 
 ```vue
 <script setup>
@@ -257,17 +257,17 @@ const post = await fetch(`/api/post/1`).then(r => r.json())
 </script>
 ```
 
-In addition, the awaited expression will be automatically compiled in a format that preserves the current component instance context after the `await`.
+Además, la expresión esperada (awaited) será automáticamente compilada en un formato que preserve el contexto de la instancia del componente actual después de `await`.
 
 :::warning Note
-`async setup()` must be used in combination with `Suspense`, which is currently still an experimental feature. We plan to finalize and document it in a future release - but if you are curious now, you can refer to its [tests](https://github.com/vuejs/vue-next/blob/master/packages/runtime-core/__tests__/components/Suspense.spec.ts) to see how it works.
+`async setup()` debe ser utilizada en combinación con `Suspense`, lo que es todavía una característica experimental. Planeamos finalizar y documentarlo en una futura versión, pero si tiene curiosidad ahora, puede referirse a sus [pruebas](https://github.com/vuejs/vue-next/blob/master/packages/runtime-core/__tests__/components/Suspense.spec.ts) para ver cómo funcione.
 :::
 
-## TypeScript-only Features
+## Características de solo TypeScript
 
-### Type-only props/emit declarations
+### Declaraciones solo tipados de props/emit
 
-Props and emits can also be declared using pure-type syntax by passing a literal type argument to `defineProps` or `defineEmits`:
+Las _props_ y _emits_ pueden también ser declaradas utilizando la sintaxis de puro tipo (pure-type) mediante pasar un argumento de tipo literal a `defineProps` o `defineEmits`:
 
 ```ts
 const props = defineProps<{
@@ -281,22 +281,22 @@ const emit = defineEmits<{
 }>()
 ```
 
-- `defineProps` or `defineEmits` can only use either runtime declaration OR type declaration. Using both at the same time will result in a compile error.
+- `defineProps` o `defineEmits` solo pueden utilizar tanto declaración de tiempo de ejecución COMO declaración de tipo. Utilizar ambos al mismo tiempo puede resultar un error de compilación.
 
-- When using type declaration, the equivalent runtime declaration is automatically generated from static analysis to remove the need for double declaration and still ensure correct runtime behavior.
+- Cuando se utiliza declaración de tipo, la declaración equivalente de tiempo de ejecución es automáticamente generada de analísis estática para eliminar la necesidad de declaración duplicada y todavía asegurar el comportamiento correcto de tiempo de ejecución.
 
-  - In dev mode, the compiler will try to infer corresponding runtime validation from the types. For example here `foo: String` is inferred from the `foo: string` type. If the type is a reference to an imported type, the inferred result will be `foo: null` (equal to `any` type) since the compiler does not have information of external files.
+  - En modo de desarrollo, el compilador tratará de inferir validación de tiempo de ejecución correspondiente desde los tipos. Por ejemplo, aquí `foo: String` es inferido del tipo `foo: string`. Si el tipo es una referencia a un tipo importado, el resultado inferido será `foo: null` (igual al tipo `any`) debido a que el compilador no tiene información de los archivos externos.
 
-  - In prod mode, the compiler will generate the array format declaration to reduce bundle size (the props here will be compiled into `['foo', 'bar']`)
+  En modo de producción, el compilador generará la declaración de formato de matriz para reducir tamaño de la compilación (las props aquí serán compiladas a `['foo', 'bar']`)
 
-  - The emitted code is still TypeScript with valid typing, which can be further processed by other tools.
+  - El código emitido es todavía TypeScript con tipo válido, lo que puede ser procesado más por otras herramientas.
 
-- As of now, the type declaration argument must be one of the following to ensure correct static analysis:
+- Por ahora, el argumento de declaración de tipo debe ser uno de los siguientes para aseguarse de la analísis estática correcta:
 
-  - A type literal
-  - A reference to an interface or a type literal in the same file
+  - Un tipo literal
+  - Una referencia a un interfaz o un tipo literal en el mismo archivo
 
-  Currently complex types and type imports from other files are not supported. It is theoretically possible to support type imports in the future.
+  En la actualidad tipos complejos y importar tipos desde otros archivos no son soportados. Es teóricamente posible soportar importaciones de tipos en el futuro.
 
 ### Default props values when using type declaration
 
