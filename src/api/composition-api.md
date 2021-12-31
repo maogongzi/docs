@@ -1,12 +1,12 @@
 # API de Composición
 
-> This section uses [single-file component](../guide/single-file-component.html) syntax for code examples
+> Esta sección utiliza la sintaxis de [componentes de un solo archivo](../guide/single-file-component.html) para ejemplos de código
 
 ## `setup`
 
-A component option that is executed **before** the component is created, once the `props` are resolved. It serves as the entry point for composition APIs.
+Una opción de componente que se va a ejecutar **antes** de que se cree el componente, tan pronto son recuperados las `props`. Sirve como el punto de entrada para APIs de composición.
 
-- **Arguments:**
+- **Argumentos:**
 
   - `{Data} props`
   - `{SetupContext} context`
@@ -51,7 +51,7 @@ A component option that is executed **before** the component is created, once th
   To get type inference for the arguments passed to `setup()`, the use of [defineComponent](global-api.html#definecomponent) is needed.
   :::
 
-- **Example**
+- **Ejemplo**
 
   With the template:
 
@@ -121,7 +121,7 @@ A component option that is executed **before** the component is created, once th
   }
   ```
 
-- **See also**: [Composition API `setup`](../guide/composition-api-setup.html)
+- **Vea también**: [Composition API `setup`](../guide/composition-api-setup.html)
 
 ## Lifecycle Hooks
 
@@ -166,7 +166,7 @@ The component instance context is also set during the synchronous execution of l
   - `deactivated` -> `onDeactivated`
 
 
-- **See also**: [Composition API lifecycle hooks](../guide/composition-api-lifecycle-hooks.html)
+- **Vea también**: [Composition API lifecycle hooks](../guide/composition-api-lifecycle-hooks.html)
 
 ## Provide / Inject
 
@@ -209,7 +209,7 @@ The component instance context is also set during the synchronous execution of l
   const foo = inject<string>('foo') // string | undefined
   ```
 
-- **See also**:
+- **Vea también**:
   - [Provide / Inject](../guide/component-provide-inject.html)
   - [Composition API Provide / Inject](../guide/composition-api-provide-inject.html)
 
