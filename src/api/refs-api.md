@@ -6,7 +6,7 @@
 
 Takes an inner value and returns a reactive and mutable ref object. The ref object has a single property `.value` that points to the inner value.
 
-**Example:**
+**Ejemplo:**
 
 ```js
 const count = ref(0)
@@ -18,7 +18,7 @@ console.log(count.value) // 1
 
 If an object is assigned as a ref's value, the object is made deeply reactive by the [reactive](./basic-reactivity.html#reactive) function.
 
-**Typing:**
+**Tipar:**
 
 ```ts
 interface Ref<T> {
@@ -187,7 +187,7 @@ Creates a customized ref with explicit control over its dependency tracking and 
   }
   ```
 
-**Typing:**
+**Tipar:**
 
 ```ts
 function customRef<T>(factory: CustomRefFactory<T>): Ref<T>
@@ -213,7 +213,7 @@ foo.value = {}
 isReactive(foo.value) // false
 ```
 
-**See also**: [Creating Standalone Reactive Values as `refs`](../guide/reactivity-fundamentals.html#creating-standalone-reactive-values-as-refs)
+**Vea también:** [Creating Standalone Reactive Values as `refs`](../guide/reactivity-fundamentals.html#creating-standalone-reactive-values-as-refs)
 
 ## `triggerRef`
 
@@ -236,4 +236,4 @@ shallow.value.greet = 'Hello, universe'
 triggerRef(shallow)
 ```
 
-**See also:** [Computed and Watch - watchEffect](./computed-watch-api.html#watcheffect)
+**Vea también:** [Computed and Watch - watchEffect](./computed-watch-api.html#watcheffect)
