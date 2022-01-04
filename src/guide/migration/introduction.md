@@ -1,4 +1,4 @@
-# Introduction
+# Introducción
 
 ::: info
 New to Vue.js? Check out our [Essentials Guide](/guide/introduction.html) to get started.
