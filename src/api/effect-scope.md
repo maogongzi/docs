@@ -1,25 +1,25 @@
 # API del Alcance de Efectos <Badge text="3.2+" />
 
 :::info
-Effect scope is an advanced API primarily intended for library authors. For details on how to leverage this API, please consult its corresponding [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md).
+El alcance de efectos es una API avanzada principalmente destinada a autores de librerías. Para más detalles sobre cómo apalancar esta API, por favor consulte su [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md) correspondiente.
 :::
 
 ## `effectScope`
 
-Creates an effect scope object which can capture the reactive effects (e.g. computed and watchers) created within it so that these effects can be disposed together.
+Crea un objeto de alcance de efecto que puede capturar los efectos reactivos (p. e.j. _computed_ y observadores) creados dentro de sí para que estos efectos pueden ser eliminados juntos.
 
-**Typing:**
+**Tipar:**
 
 ```ts
 function effectScope(detached?: boolean): EffectScope
 
 interface EffectScope {
-  run<T>(fn: () => T): T | undefined // undefined if scope is inactive
+  run<T>(fn: () => T): T | undefined // undefined si el alcance es inactivo
   stop(): void
 }
 ```
 
-**Example:**
+**Ejemplo:**
 
 ```js
 const scope = effectScope()
@@ -29,18 +29,18 @@ scope.run(() => {
 
   watch(doubled, () => console.log(doubled.value))
 
-  watchEffect(() => console.log('Count: ', doubled.value))
+  watchEffect(() => console.log('Cuenta: ', doubled.value))
 })
 
-// to dispose all effects in the scope
+// para eliminar todos efectos en el alcance
 scope.stop()
 ```
 
 ## `getCurrentScope`
 
-Returns the current active [effect scope](#effectscope) if there is one.
+Retorna el [alcance de efecto](#effectscope) activo actual si hay uno.
 
-**Typing:**
+**Tipar:**
 
 ```ts
 function getCurrentScope(): EffectScope | undefined
@@ -48,11 +48,11 @@ function getCurrentScope(): EffectScope | undefined
 
 ## `onScopeDispose`
 
-Registers a dispose callback on the current active [effect scope](#effectscope). The callback will be invoked when the associated effect scope is stopped.
+Registra un callback de eliminación en el [alcance de efecto](#effectscope) activo actual. El callback será invocado cuando el alcance de efecto asociado sea detenido.
 
-This method can be used as a non-component-coupled replacement of `onUnmounted` in reusable composition functions, since each Vue component's `setup()` function is also invoked in an effect scope.
+Este método puede ser utilizado como una sustitución _non-component-coupled_ de `onUnmounted` en funciones de composición reutilizables, debido a que la función `setup()` de cada componente Vue es también invocado en un alcance de efecto.
 
-**Typing:**
+**Tipar:**
 
 ```ts
 function onScopeDispose(fn: () => void): void
