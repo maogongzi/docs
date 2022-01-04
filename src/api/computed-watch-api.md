@@ -1,6 +1,6 @@
 # _Computed_ y _watch_
 
-> This section uses [single-file component](../guide/single-file-component.html) syntax for code examples
+> Esta sección utiliza la sintaxis de [componentes de un solo archivo](../guide/single-file-component.html) para ejemplos de código
 
 ## `computed`
 
@@ -30,7 +30,7 @@ plusOne.value = 1
 console.log(count.value) // 0
 ```
 
-**Typing:**
+**Tipar:**
 
 ```ts
 // read-only
@@ -77,7 +77,7 @@ setTimeout(() => {
 }, 100)
 ```
 
-**Typing:**
+**Tipar:**
 
 ```ts
 function watchEffect(
@@ -158,7 +158,7 @@ watch([fooRef, barRef], ([foo, bar], [prevFoo, prevBar]) => {
 
 `watch` shares behavior with [`watchEffect`](#watcheffect) in terms of [manual stoppage](../guide/reactivity-computed-watchers.html#stopping-the-watcher), [side effect invalidation](../guide/reactivity-computed-watchers.html#side-effect-invalidation) (with `onInvalidate` passed to the callback as the 3rd argument instead), [flush timing](../guide/reactivity-computed-watchers.html#effect-flush-timing) and [debugging](../guide/reactivity-computed-watchers.html#watcher-debugging).
 
-**Typing:**
+**Tipar:**
 
 ```ts
 // watching single source
