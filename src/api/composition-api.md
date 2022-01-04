@@ -1,19 +1,19 @@
 # API de Composición
 
-> This section uses [single-file component](../guide/single-file-component.html) syntax for code examples
+> Esta sección utiliza la sintaxis de [componentes de un solo archivo](../guide/single-file-component.html) para ejemplos de código
 
 ## `setup`
 
-A component option that is executed **before** the component is created, once the `props` are resolved. It serves as the entry point for composition APIs.
+Una opción de componente que se va a ejecutar **antes** de que se cree el componente, tan pronto son recuperados las `props`. Sirve como el punto de entrada para APIs de composición.
 
-- **Arguments:**
+- **Argumentos:**
 
   - `{Data} props`
   - `{SetupContext} context`
 
-  Similar to `this.$props` when using Options API, the `props` object will only contain explicitly declared props. Also, all declared prop keys will be present on the `props` object, regardless of whether it was passed by the parent component or not. Absent optional props will have a value of `undefined`.
+  Similar a `this.$props` cuando se utiliza la API de opciones, el objeto `props` solo contendrá _props_ declaradas explícitamente. También, todas claves declaradas de _props_ serán presentes en el objeto `props`, sin tener en cuenta de si fue pasada por el componente padre o no. Las _props_ opcionales ausentes tendrán un valor de `undefined`.
 
-  If you need to check the absence of an optional prop, you can give it a Symbol as its default value:
+  Si necesita comprobar la ausencia de una _prop_ opcional, puede darle un Symbol como su valor por defecto:
 
   ```js
   const isAbsent = Symbol()
@@ -24,13 +24,13 @@ A component option that is executed **before** the component is created, once th
     },
     setup(props) {
       if (props.foo === isAbsent) {
-        // foo was not provided.
+        // foo no fue proporcionado
       }
     }
   }
   ```
 
-- **Typing**:
+- **Tipar**:
 
   ```ts
   interface Data {
@@ -48,12 +48,12 @@ A component option that is executed **before** the component is created, once th
   ```
 
   ::: tip
-  To get type inference for the arguments passed to `setup()`, the use of [defineComponent](global-api.html#definecomponent) is needed.
+  Para obtener inferencia de tipo para los argumentos pasados a `setup()`, el uso de [defineComponent](global-api.html#definecomponent) es necesario.
   :::
 
-- **Example**
+- **Ejemplo**
 
-  With the template:
+  Con la plantilla:
 
   ```vue-html
   <!-- MyBook.vue -->
@@ -67,9 +67,9 @@ A component option that is executed **before** the component is created, once th
     export default {
       setup() {
         const readersNumber = ref(0)
-        const book = reactive({ title: 'Vue 3 Guide' })
+        const book = reactive({ title: 'El guía de Vue 3' })
 
-        // expose to template
+        // expone a la plantilla
         return {
           readersNumber,
           book
@@ -79,7 +79,7 @@ A component option that is executed **before** the component is created, once th
   </script>
   ```
 
-  With render function:
+  Con una función render:
 
   ```js
   // MyBook.vue
@@ -89,14 +89,14 @@ A component option that is executed **before** the component is created, once th
   export default {
     setup() {
       const readersNumber = ref(0)
-      const book = reactive({ title: 'Vue 3 Guide' })
-      // Please note that we need to explicitly use ref value here
+      const book = reactive({ title: 'El guía de Vue 3' })
+      // Por favor note que necesitamos explícitamente utilizar valor de ref aquí
       return () => h('div', [readersNumber.value, book.title])
     }
   }
   ```
 
-  If you return a render function then you can't return any other properties. If you need to expose properties so that they can be accessed externally, e.g. via a `ref` in the parent, you can use `expose`:
+  Si retorna una función render, luego no puede retornar cualquieras otras propiedades. Si necesita exponer propiedades para que puedan ser accesadas externamente, p. ej, mediante una `ref` en el padre, puede utilizar `expose`:
 
   ```js
   // MyBook.vue
@@ -106,12 +106,12 @@ A component option that is executed **before** the component is created, once th
   export default {
     setup(props, { expose }) {
       const reset = () => {
-        // Some reset logic
+        // unas lógica de reestablecer (reset)
       }
 
-      // Expose can only be called once.
-      // If you need to expose multiple properties, they must all
-      // be included in the object passed to expose. 
+      // La función expose puede ser llamada solo una vez. 
+      // Si necesita exponer múltiples propiedades, todos de ellas deben ser 
+      // incluidas en el objeto pasado a _expose_.
       expose({
         reset
       })
@@ -121,11 +121,11 @@ A component option that is executed **before** the component is created, once th
   }
   ```
 
-- **See also**: [Composition API `setup`](../guide/composition-api-setup.html)
+- **Vea también**: [`setup` en la API de Composición](../guide/composition-api-setup.html)
 
-## Lifecycle Hooks
+## Hooks de ciclo de vida
 
-Lifecycle hooks can be registered with directly-imported `onX` functions:
+Los hooks de ciclo de vida pueden ser registrados con las funciones `onX` importadas directamente:
 
 ```js
 import { onMounted, onUpdated, onUnmounted } from 'vue'
@@ -145,14 +145,14 @@ const MyComponent = {
 }
 ```
 
-These lifecycle hook registration functions can only be used synchronously during [`setup()`](#setup), since they rely on internal global state to locate the current active instance (the component instance whose `setup()` is being called right now). Calling them without a current active instance will result in an error.
+Estas funciones de registración de ciclo de vida pueden ser utilizadas solo sincrónicamente durante [`setup()`](#setup), debido a que dependen de estado global internal para ubicar la instancia activa actual (la instancia de componente cuya `setup()` está siendo llamada ahora mismo). Llamarlas sin una instancia activa actual resultará un error.
 
-The component instance context is also set during the synchronous execution of lifecycle hooks. As a result, watchers and computed properties created synchronously inside of lifecycle hooks are also automatically tore down when the component unmounts.
+El contexto de la instancia del componente es también establecido durante la ejecución síncrona de los hooks de ciclo de vida. Como un resultado, los observadores y propiedades computadas creados sincrónicamente dentro de hooks de ciclo de vida son también automáticamente destruidos cuando el componente se desmonte.
+ 
+- **Mapping entre las opciones de ciclo de vida de API de opciones y API de composición**
 
-- **Mapping between Options API Lifecycle Options and Composition API**
-
-  - ~~`beforeCreate`~~ -> use `setup()`
-  - ~~`created`~~ -> use `setup()`
+  - ~~`beforeCreate`~~ -> utilice `setup()`
+  - ~~`created`~~ -> utilice `setup()`
   - `beforeMount` -> `onBeforeMount`
   - `mounted` -> `onMounted`
   - `beforeUpdate` -> `onBeforeUpdate`
@@ -166,24 +166,24 @@ The component instance context is also set during the synchronous execution of l
   - `deactivated` -> `onDeactivated`
 
 
-- **See also**: [Composition API lifecycle hooks](../guide/composition-api-lifecycle-hooks.html)
+- **Vea también**: [hooks de ciclo de vida de API de composición](../guide/composition-api-lifecycle-hooks.html)
 
 ## Provide / Inject
 
-`provide` and `inject` enables dependency injection. Both can only be called during [`setup()`](#setup) with a current active instance.
+`provide` y `inject` habilitan inyección de dependencia. Ambos pueden solo ser llamado durante [`setup()`](#setup) con una instancia activa actual.
 
-- **Typing**:
+- **Tipar**:
 
   ```ts
   interface InjectionKey<T> extends Symbol {}
 
   function provide<T>(key: InjectionKey<T> | string, value: T): void
 
-  // without default value
+  // sin un valor por defecto
   function inject<T>(key: InjectionKey<T> | string): T | undefined
-  // with default value
+  // con un valor por defecto
   function inject<T>(key: InjectionKey<T> | string, defaultValue: T): T
-  // with factory
+  // con una factoría
   function inject<T>(
     key: InjectionKey<T> | string,
     defaultValue: () => T,
@@ -191,34 +191,34 @@ The component instance context is also set during the synchronous execution of l
   ): T
   ```
 
-  Vue provides an `InjectionKey` interface which is a generic type that extends `Symbol`. It can be used to sync the type of the injected value between the provider and the consumer:
+  Vue porporciona una interfaz `InjectionKey` que es un tipo genénico que extienda `Symbol`. Puede ser utilizada para sincronizar el tipo del valor inyectado entre el proveedor y el consumidor:
 
   ```ts
   import { InjectionKey, provide, inject } from 'vue'
 
   const key: InjectionKey<string> = Symbol()
 
-  provide(key, 'foo') // providing non-string value will result in error
+  provide(key, 'foo') // provee valores que no son cadenas de caracteres resultará un error
 
-  const foo = inject(key) // type of foo: string | undefined
+  const foo = inject(key) // tipo de foo: string | undefined
   ```
 
-  If using string keys or non-typed symbols, the type of the injected value will need to be explicitly declared:
+  Si se utiliza claves de cadena de caracteres o _symbols_ sin tipo, el tipo del valor inyectado necesitará ser explícitamente declarado:
 
   ```ts
   const foo = inject<string>('foo') // string | undefined
   ```
 
-- **See also**:
+- **Vea también**:
   - [Provide / Inject](../guide/component-provide-inject.html)
-  - [Composition API Provide / Inject](../guide/composition-api-provide-inject.html)
+  - [Provide / Inject de API de composición](../guide/composition-api-provide-inject.html)
 
 ## `getCurrentInstance`
 
-`getCurrentInstance` enables access to an internal component instance.
+`getCurrentInstance` habilita acceso a una instancia internal de componente.
 
 :::warning
-`getCurrentInstance` is only exposed for advanced use cases, typically in libraries. Usage of `getCurrentInstance` is strongly discouraged in application code. Do **NOT** use it as an escape hatch to get the equivalent of `this` in Composition API.
+`getCurrentInstance` solo es expuesto para casos de usuario avanzados, típicamente en librerías. El uso de `getCurrentInstance` es totalmente desaconsejado en el código de aplicación. **NO** lo utilice como una salida de emergencia para obtener el equivalente de `this` en API de composición.
 :::
 
 ```ts
@@ -228,31 +228,31 @@ const MyComponent = {
   setup() {
     const internalInstance = getCurrentInstance()
 
-    internalInstance.appContext.config.globalProperties // access to globalProperties
+    internalInstance.appContext.config.globalProperties // acceder a globalProperties
   }
 }
 ```
 
-`getCurrentInstance` **only** works during [setup](#setup) or [Lifecycle Hooks](#lifecycle-hooks)
+`getCurrentInstance` **solo** funciona durante [setup](#setup) o [hooks de ciclo de vida](#lifecycle-hooks)
 
-> When using outside of [setup](#setup) or [Lifecycle Hooks](#lifecycle-hooks), please call `getCurrentInstance()` on `setup` and use the instance instead.
+> Cuando se utiliza afuera de [setup](#setup) o [hooks de ciclo de vida](#lifecycle-hooks), por favor llame a `getCurrentInstance()` en `setup` y utilice la instancia en su lugar.
 
 ```ts
 const MyComponent = {
   setup() {
-    const internalInstance = getCurrentInstance() // works
+    const internalInstance = getCurrentInstance() // funciona
 
-    const id = useComponentId() // works
+    const id = useComponentId() // funciona
 
     const handleClick = () => {
-      getCurrentInstance() // doesn't work
-      useComponentId() // doesn't work
+      getCurrentInstance() // no funciona
+      useComponentId() // no funciona
 
-      internalInstance // works
+      internalInstance // funciona
     }
 
     onMounted(() => {
-      getCurrentInstance() // works
+      getCurrentInstance() // funciona
     })
 
     return () =>
@@ -266,7 +266,7 @@ const MyComponent = {
   }
 }
 
-// also works if called on a composable
+// también funciona si está llamada en un _composable_
 function useComponentId() {
   return getCurrentInstance().uid
 }
