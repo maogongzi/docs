@@ -25,7 +25,7 @@ Luego en la plantilla para `<todo-button>`, es posible que usted tenga:
 </button>
 ```
 
-Cuando el componente se renderiza, `<slot></slot>` será reemplazado por “Add Todo”.
+Cuando el componente se renderiza, `<slot></slot>` será reemplazado por “Add todo”.
 
 ```html
 <!-- el HTML renderizado -->
