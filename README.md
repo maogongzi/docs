@@ -17,7 +17,9 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
   |[src/api/basic-reactivity.md](src/api/basic-reactivity.md)|Spanish :white_check_mark:|
   |[src/api/built-in-components.md](src/api/built-in-components.md)|Spanish :white_check_mark:|
   |[src/api/composition-api.md](src/api/composition-api.md)|Spanish :white_check_mark:|
+  |[src/api/computed-watch-api.md](src/api/computed-watch-api.md)|Spanish :white_check_mark:|
   |[src/api/directives.md](src/api/directives.md)|Spanish :white_check_mark:|
+  |[src/api/effect-scope.md](src/api/effect-scope.md)|Spanish :white_check_mark:|
   |[src/api/global-api.md](src/api/global-api.md)|Spanish :white_check_mark:|
   |[src/api/index.md](src/api/index.md)|Spanish :white_check_mark:|
   |[src/api/instance-methods.md](src/api/instance-methods.md)|Spanish :white_check_mark:|
@@ -30,6 +32,7 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
   |[src/api/options-lifecycle-hooks.md](src/api/options-lifecycle-hooks.md)|Spanish :white_check_mark:|
   |[src/api/options-misc.md](src/api/options-misc.md)|Spanish :white_check_mark:|
   |[src/api/reactivity-api.md](src/api/reactivity-api.md)|Spanish :white_check_mark:|
+  |[src/api/refs-api.md](src/api/refs-api.md)|Spanish :white_check_mark:|
   |[src/api/sfc-script-setup.md](src/api/sfc-script-setup.md)|Spanish :white_check_mark:|
   |[src/api/sfc-spec.md](src/api/sfc-spec.md)|Spanish :white_check_mark:|
   |[src/api/sfc-style.md](src/api/sfc-style.md)|Spanish :white_check_mark:|
@@ -96,9 +99,6 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
   |[src/guide/web-components.md](src/guide/web-components.md)|Spanish :white_check_mark:|
   |[src/search/README.md](src/search/README.md)|Spanish :white_check_mark:|
   |[src/.vuepress/theme/README.md](src/.vuepress/theme/README.md)|English :x:|
-  |[src/api/computed-watch-api.md](src/api/computed-watch-api.md)|English :x:|
-  |[src/api/effect-scope.md](src/api/effect-scope.md)|English :x:|
-  |[src/api/refs-api.md](src/api/refs-api.md)|English :x:|
   |[src/coc/index.md](src/coc/index.md)|English :x:|
   |[src/community/join.md](src/community/join.md)|English :x:|
   |[src/community/partners.md](src/community/partners.md)|English :x:|
