@@ -6,42 +6,42 @@ sidebar: auto
 
 Esta es la guía de estilo oficial para el código específico de Vue. Si utiliza Vue en un proyecto, es una excelente referencia para evitar errores, “bikeshedding” y antipatrones. Sin embargo, no creemos que ninguna guía de estilo sea ideal para todos los equipos o proyectos, por lo que las desviaciones conscientes se fomentan en función de la experiencia pasada, la tecnología acumulada y los valores personales.
 
-For the most part, we also avoid suggestions about JavaScript or HTML in general. We don't mind whether you use semicolons or trailing commas. We don't mind whether your HTML uses single-quotes or double-quotes for attribute values. Some exceptions will exist however, where we've found that a particular pattern is helpful in the context of Vue.
+También evitamos las sugerencias sobre JavaScript o HTML en general. No nos importa si utiliza punto y coma o comas finales. No nos importa si su HTML utiliza comillas simples o comillas dobles para los valores de los atributos. Sin embargo, algunas excepciones existirán cuando descubramos que un patrón particular es útil en el contexto de Vue.
 
-Finally, we've split rules into four categories:
+Finalmente, hemos dividido las reglas en cuatro categorías:
 
-## Rule Categories
+## Categorías de Reglas
 
-### Priority A: Essential
+### Prioridad A: Esencial
 
-These rules help prevent errors, so learn and abide by them at all costs. Exceptions may exist, but should be very rare and only be made by those with expert knowledge of both JavaScript and Vue.
+Estas reglas ayudan a prevenir errores, así que apréndalas y cumpla con ellas a toda costa. Pueden existir excepciones, pero deben ser muy raras y sólo las deben realizar aquellas personas con conocimientos de JavaScript y Vue.
 
-### Priority B: Strongly Recommended
+### Prioridad B: Muy recomendable
 
-These rules have been found to improve readability and/or developer experience in most projects. Your code will still run if you violate them, but violations should be rare and well-justified.
+Se ha descubierto que estas reglas mejoran la legibilidad y/o la experiencia del desarrollador en la mayoría de los proyectos. Su código aún se ejecutará si no las respeta, pero estas excepciones deben ser raras y estar bien justificadas.
 
-### Priority C: Recommended
+### Prioridad C: Recomendado
 
-Where multiple, equally good options exist, an arbitrary choice can be made to ensure consistency. In these rules, we describe each acceptable option and suggest a default choice. That means you can feel free to make a different choice in your own codebase, as long as you're consistent and have a good reason. Please do have a good reason though! By adapting to the community standard, you will:
+Donde existen opciones múltiples e igualmente buenas, se puede hacer una elección arbitraria para garantizar la coherencia. En estas reglas, describimos cada opción aceptable y sugerimos una opción predeterminada. Eso significa que puede sentirse libre de hacer una elección diferente en su propia base de código, siempre que sea coherente y tenga una buena razón para ello. Por favor, justifique su elección! Al adaptarse al estándar de la comunidad, usted:
 
-1. train your brain to more easily parse most of the community code you encounter
-2. be able to copy and paste most community code examples without modification
-3. often find new hires are already accustomed to your preferred coding style, at least in regards to Vue
+1. Entrena su cerebro para analizar más fácilmente la mayoría del código de comunidad que encuentre
+2. Será capaz de copiar y pegar la mayoría de los ejemplos de código de comunidad sin modificación
+3. A menudo descubrirá que los nuevos empleados ya están amoldadas a su estilo de codificación preferido, al menos en lo que respecta a Vue
 
-### Priority D: Use with Caution
+### Prioridad D: Utilizar con precaución
 
-Some features of Vue exist to accommodate rare edge cases or smoother migrations from a legacy code base. When overused however, they can make your code more difficult to maintain or even become a source of bugs. These rules shine a light on potentially risky features, describing when and why they should be avoided.
+Algunas características de Vue existen para adaptarse a casos excepcionales o migraciones menos “agresivas” desde una base de código heredada. Sin embargo, cuando se usan en exceso, pueden hacer que su código sea más difícil de mantener o incluso convertirse en una fuente de errores. Estas reglas arrojan luz sobre las características potencialmente riesgosas, y describen cuándo y por qué deberían evitarse.
 
-## Priority A Rules: Essential <span class="hide-from-sidebar">(Error Prevention)</span>
+## Reglas de prioridad A: Esencial <span class="hide-from-sidebar">(prevención de errores)</span>
 
-### Multi-word component names <sup data-p="a">essential</sup>
+### Nombres de componentes de varias palabras <sup data-p="a">esencial</sup>
 
-**Component names should always be multi-word, except for root `App` components, and built-in components provided by Vue, such as `<transition>` or `<component>`.**
+**Los nombres de los componentes siempre deben ser de varias palabras, a excepción de los componentes raíz de la `App` y los componentes integrados proporcionados por Vue, tales como `<transition>` or `<component>`.**
 
-This [prevents conflicts](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name) with existing and future HTML elements, since all HTML elements are a single word.
+Esto [evita conflictos](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name) con elementos HTML existentes y futuros, ya que todos los elementos HTML son una sola palabra.
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```js
 app.component('todo', {
@@ -58,7 +58,7 @@ export default {
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```js
 app.component('todo-item', {
@@ -74,30 +74,30 @@ export default {
 ```
 </div>
 
-### Prop definitions <sup data-p="a">essential</sup>
+### Definiciones de Props <sup data-p="a">esencial</sup>
 
-**Prop definitions should be as detailed as possible.**
+**Las definiciones de Props deben ser lo mas detalladas posible.**
 
-In committed code, prop definitions should always be as detailed as possible, specifying at least type(s).
+En el código “commiteado”, las definiciones de props siempre deben ser lo más detalladas posible, especificando al menos su(s) tipo(s).
 
-::: details Detailed Explanation
-Detailed [prop definitions](/guide/component-props.html#prop-validation) have two advantages:
+::: details Explicación Detallada
+Las [definiciones detalladas de props](/guide/component-props.html#prop-validation) tienen dos ventajas:
 
-- They document the API of the component, so that it's easy to see how the component is meant to be used.
-- In development, Vue will warn you if a component is ever provided incorrectly formatted props, helping you catch potential sources of error.
+- Documentan la API del componente, de modo que es fácil ver cómo se debe utilizar el componente.
+- En desarrollo, Vue le advertirá si algún componente se proporciona con props formateados incorrectamente, ayudándole a detectar posibles fuentes de error.
 :::
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```js
-// This is only OK when prototyping
+// Esto esta BIEN solo cuando se prototipa
 props: ['status']
 ```
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```js
 props: {
@@ -106,7 +106,7 @@ props: {
 ```
 
 ```js
-// Even better!
+// ¡Mucho mejor!
 props: {
   status: {
     type: String,
@@ -125,14 +125,14 @@ props: {
 ```
 </div>
 
-### Keyed `v-for` <sup data-p="a">essential</sup>
+### Key + `v-for` <sup data-p="a">esencial</sup>
 
-**Always use `key` with `v-for`.**
+**Siempre utiliza `key` con `v-for`.**
 
-`key` with `v-for` is _always_ required on components, in order to maintain internal component state down the subtree. Even for elements though, it's a good practice to maintain predictable behavior, such as [object constancy](https://bost.ocks.org/mike/constancy/) in animations.
+`key` con `v-for` es _siempre_ requerido en componentes, para mantener el estado del componente interno en el subárbol. Sin embargo, incluso para los elementos, es una buena práctica mantener un comportamiento predecible, como [constancia del objeto](https://bost.ocks.org/mike/constancy/) en las animaciones.
 
-::: details Detailed Explanation
-Let's say you have a list of todos:
+::: details Explicación Detallada
+Digamos que tiene una lista de "ToDos":
 
 ```js
 data() {
@@ -140,18 +140,18 @@ data() {
     todos: [
       {
         id: 1,
-        text: 'Learn to use v-for'
+        text: 'Aprender a utilizar v-for'
       },
       {
         id: 2,
-        text: 'Learn to use key'
+        text: 'Aprender a utilizar key'
       }
     ]
   }
 }
 ```
 
-Then you sort them alphabetically. When updating the DOM, Vue will optimize rendering to perform the cheapest DOM mutations possible. That might mean deleting the first todo element, then adding it again at the end of the list.
+Luego los ordena alfabéticamente. Al actualizar el DOM, Vue optimizará la renderización para realizar las mutaciones de DOM más efectivas en lo posible. Eso podría significar eliminar el primer elemento del "ToDo" y luego agregarlo nuevamente al final de la lista.
 
 The problem is, there are cases where it's important not to delete elements that will remain in the DOM. For example, you may want to use `<transition-group>` to animate list sorting, or maintain focus if the rendered element is an `<input>`. In these cases, adding a unique key for each item (e.g. `:key="todo.id"`) will tell Vue how to behave more predictably.
 
