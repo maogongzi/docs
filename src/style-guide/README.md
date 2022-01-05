@@ -159,7 +159,7 @@ En nuestra experiencia, es mejor agregar _siempre_ una clave única, para que us
 :::
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```html
 <ul>
@@ -171,7 +171,7 @@ En nuestra experiencia, es mejor agregar _siempre_ una clave única, para que us
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```html
 <ul>
@@ -185,18 +185,18 @@ En nuestra experiencia, es mejor agregar _siempre_ una clave única, para que us
 ```
 </div>
 
-### Avoid `v-if` with `v-for` <sup data-p="a">essential</sup>
+### Evitar `v-if` con `v-for` <sup data-p="a">esencial</sup>
 
-**Never use `v-if` on the same element as `v-for`.**
+**Nunca utilice `v-if` en el mismo elemento que `v-for`.**
 
-There are two common cases where this can be tempting:
+Hay dos casos comunes en los que esto puede ser tentador:
 
-- To filter items in a list (e.g. `v-for="user in users" v-if="user.isActive"`). In these cases, replace `users` with a new computed property that returns your filtered list (e.g. `activeUsers`).
+- Para filtrar elementos en una lista (por ejemplo, `v-for="user in users" v-if="user.isActive"`). En estos casos, reemplace `users` con una nueva propiedad calculada que devuelva su lista filtrada (por ejemplo `activeUsers`).
 
-- To avoid rendering a list if it should be hidden (e.g. `v-for="user in users" v-if="shouldShowUsers"`). In these cases, move the `v-if` to a container element (e.g. `ul`, `ol`).
+- Para evitar renderizar una lista si debe estar oculta (por ejemplo, `v-for="user in users" v-if="shouldShowUsers"`). En estos casos, mueva el `v-if` a un elemento contenedor (por ejemplo,`ul`, `ol`).
 
-::: details Detailed Explanation
-When Vue processes directives, `v-if` has a higher priority than `v-for`, so that this template:
+::: details Explicación Detallada
+Cuando Vue procesa directivas, `v-if` tiene mayor prioridad que `v-for`, entonces esta plantilla:
 
 ```html
 <ul>
@@ -210,9 +210,9 @@ When Vue processes directives, `v-if` has a higher priority than `v-for`, so tha
 </ul>
 ```
 
-Will throw an error, because the `v-if` directive will be evaluated first and the iteration variable `user` does not exist at this moment.
+Arrojará un error, porque la directiva `v-if` se evaluará primero y el variable de iteración `user` no existe en este momento.
 
-This could be fixed by iterating over a computed property instead, like this:
+Este puede ser corregido mediante iterar sobre una propiedad computada en su lugar, como esto: 
 
 ```js
 computed: {
@@ -233,7 +233,7 @@ computed: {
 </ul>
 ```
 
-Alternatively, we can use a `<template>` tag with `v-for` to wrap the `<li>` element:
+Alternativamente, podemos utilizar una etiqueta `<template>` con `v-for` para envolver el elemento `<li>`:
 
 ```html
 <ul>
@@ -248,7 +248,7 @@ Alternatively, we can use a `<template>` tag with `v-for` to wrap the `<li>` ele
 :::
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```html
 <ul>
@@ -264,7 +264,7 @@ Alternatively, we can use a `<template>` tag with `v-for` to wrap the `<li>` ele
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```html
 <ul>
