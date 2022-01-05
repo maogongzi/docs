@@ -479,10 +479,10 @@ export default myGreatMixin
 
 **Siempre que un sistema de compilación pueda concatenar archivos, cada componente debería estar en su propio archivo.**
 
-This helps you to more quickly find a component when you need to edit it or review how to use it.
+Esto lo ayudará a usted a encontrar de una manera más rápida un componente cuando precise editarlo o verificar como se utiliza.
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```js
 app.component('TodoList', {
@@ -496,7 +496,7 @@ app.component('TodoItem', {
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```
 components/
@@ -511,9 +511,9 @@ components/
 ```
 </div>
 
-### Single-file component filename casing <sup data-p="b">strongly recommended</sup>
+### Notación de nombres de componentes de un solo archivo <sup data-p="b">altamente recomendado</sup>
 
-**Filenames of [single-file components](../guide/single-file-component.html) should either be always PascalCase or always kebab-case.**
+**Los nombres de los [componentes de un solo archivo](../guide/single-file-component.html) deben ser siempre PascalCase o siempre kebab-case.**
 
 PascalCase works best with autocompletion in code editors, as it's consistent with how we reference components in JS(X) and templates, wherever possible. However, mixed case filenames can sometimes create issues on case-insensitive file systems, which is why kebab-case is also perfectly acceptable.
 
