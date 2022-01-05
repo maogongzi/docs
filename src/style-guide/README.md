@@ -106,7 +106,7 @@ props: {
 ```
 
 ```js
-// ¡Mucho mejor!
+// ¡aún mejor!
 props: {
   status: {
     type: String,
@@ -288,24 +288,24 @@ Alternativamente, podemos utilizar una etiqueta `<template>` con `v-for` para en
 ```
 </div>
 
-### Component style scoping <sup data-p="a">essential</sup>
+### Alcance de Estilos de Componentes <sup data-p="a">esencial</sup>
 
-**For applications, styles in a top-level `App` component and in layout components may be global, but all other components should always be scoped.**
+**Para las aplicaciones, los estilos, en un componente `App` de nivel superior y en los componentes de "layout" pueden ser globales, pero todos los demás componentes siempre deben poseer sus propios alcances (be scoped).**
 
-This is only relevant for [single-file components](../guide/single-file-component.html). It does _not_ require that the [`scoped` attribute](https://vue-loader.vuejs.org/en/features/scoped-css.html) be used. Scoping could be through [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html), a class-based strategy such as [BEM](http://getbem.com/), or another library/convention.
+Esto es relevante sólo a [componentes de un solo archivo](../guide/single-file-components.html). *No* requiere que se utilice el [atributo `scoped`](https://vue-loader.vuejs.org/en/features/scoped-css.html). El "alcance" podría implementarse a través de [módulos CSS](https://vue-loader.vuejs.org/en/features/css-modules.html), una estrategia basada en clases como [BEM](http://getbem.com/), ú otra biblioteca/convención.
 
-**Component libraries, however, should prefer a class-based strategy instead of using the `scoped` attribute.**
+**Para las bibliotecas de componentes, sin embargo, se debería implementar una estrategia basada en clases en vez de usar el atributo `scoped`.**
 
-This makes overriding internal styles easier, with human-readable class names that don't have too high specificity, but are still very unlikely to result in a conflict.
+Esto hace que sea más fácil sobreescribir los estilos internos, con nombres de clase legibles que no tienen una especificidad demasiado alta, y menos probable que generen conflictos.
 
-::: details Detailed Explanation
-If you are developing a large project, working with other developers, or sometimes include 3rd-party HTML/CSS (e.g. from Auth0), consistent scoping will ensure that your styles only apply to the components they are meant for.
+::: details Explicación Detallada
+Si está desarrollando un proyecto grande, trabajando con otros desarrolladores o, a veces, incluye HTML / CSS de terceros (por ejemplo, de Auth0), el alcance consistente (consistent scoping) garantizará que sus estilos solo se apliquen a los componentes para los que están diseñados.
 
-Beyond the `scoped` attribute, using unique class names can help ensure that 3rd-party CSS does not apply to your own HTML. For example, many projects use the `button`, `btn`, or `icon` class names, so even if not using a strategy such as BEM, adding an app-specific and/or component-specific prefix (e.g. `ButtonClose-icon`) can provide some protection.
+Más allá del atributo `scoped`, el uso de nombres de clase únicos puede ayudar a garantizar que el CSS de terceros no se aplique a su propio HTML. Por ejemplo, muchos proyectos usan los nombres de las clases `button`,` btn` o `icon`, por lo que incluso si no usan una estrategia como BEM, agregan un prefijo específico de la aplicación y / o componente específico (por ejemplo,`ButtonClose-icon`) puede proporcionar cierta protección.
 :::
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```html
 <template>
@@ -321,14 +321,14 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```html
 <template>
   <button class="button button-close">×</button>
 </template>
 
-<!-- Using the `scoped` attribute -->
+<!-- Utilizando el atributo `scoped` -->
 <style scoped>
 .button {
   border: none;
@@ -346,7 +346,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
   <button :class="[$style.button, $style.buttonClose]">×</button>
 </template>
 
-<!-- Using CSS modules -->
+<!-- Utilizando módulos CSS -->
 <style module>
 .button {
   border: none;
@@ -364,7 +364,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
   <button class="c-Button c-Button--close">×</button>
 </template>
 
-<!-- Using the BEM convention -->
+<!-- Utilizando la convención BEM -->
 <style>
 .c-Button {
   border: none;
@@ -378,20 +378,20 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 ```
 </div>
 
-### Private property names <sup data-p="a">essential</sup>
+### Nombres de propiedades privadas <sup data-p="a">esencial</sup>
 
-**Use module scoping to keep private functions inaccessible from the outside. If that's not possible, always use the `$_` prefix for custom private properties in a plugin, mixin, etc that should not be considered public API. Then to avoid conflicts with code by other authors, also include a named scope (e.g. `$_yourPluginName_`).**
+**Utiliza alcance de módulo para mantener funciones privadas inaccesibles desde fuera. Si eso no es posible, siempre utilice el prefijo `$_` para propiedades privadas personalizadas en un plugin, mixin, etc. que no debería considerarse como API pública. Luego para evitar conflictos con código por otros autores, también incluya un alcance nombrado (p. ej. `$_yourPluginName_`).**
 
-::: details Detailed Explanation
-Vue uses the `_` prefix to define its own private properties, so using the same prefix (e.g. `_update`) risks overwriting an instance property. Even if you check and Vue is not currently using a particular property name, there is no guarantee a conflict won't arise in a later version.
+::: details Explicación Detallada
+Vue utiliza el prefijo `_` para definir sus propias propiedades privadas, entonces, utilizar el mismo prefijo (ej. `_update`) puede causar que una propiedad privada sea sobreescrita. Incluso si usted verifica y Vue no esta haciendo uso de dicho nombre, no hay garantía de que este conflicto no surja en una versión futura.
 
-As for the `$` prefix, its purpose within the Vue ecosystem is special instance properties that are exposed to the user, so using it for _private_ properties would not be appropriate.
+En cuanto al prefijo `$`, su propósito en el ecosistema de Vue es identificar las propiedades especiales de instancia que están expuestas al usuario, por lo tanto, utilizarlo para propiedades _privadas_ no sería apropiado.
 
-Instead, we recommend combining the two prefixes into `$_`, as a convention for user-defined private properties that guarantee no conflicts with Vue.
+En su lugar, recomendamos combinar ambos prefijos en `$_`, como una convención para propiedades privadas definidas por el usuario para que no haya conflicto con Vue.
 :::
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```js
 const myGreatMixin = {
@@ -440,7 +440,7 @@ const myGreatMixin = {
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```js
 const myGreatMixin = {
@@ -454,7 +454,7 @@ const myGreatMixin = {
 ```
 
 ```js
-// Even better!
+// ¡aún mejor!
 const myGreatMixin = {
   // ...
   methods: {
@@ -473,11 +473,11 @@ export default myGreatMixin
 ```
 </div>
 
-## Priority B Rules: Strongly Recommended <span class="hide-from-sidebar">(Improving Readability)</span>
+## Reglas de prioridad B: Altamente Recomendadas <span class="hide-from-sidebar">(Mejorar la legibilidad)</span>
 
-### Component files <sup data-p="b">strongly recommended</sup>
+### Archivos de componentes <sup data-p="b">altamente recomendada</sup>
 
-**Whenever a build system is available to concatenate files, each component should be in its own file.**
+**Siempre que un sistema de compilación pueda concatenar archivos, cada componente debería estar en su propio archivo.**
 
 This helps you to more quickly find a component when you need to edit it or review how to use it.
 
@@ -549,7 +549,7 @@ components/
 
 **Base components (a.k.a. presentational, dumb, or pure components) that apply app-specific styling and conventions should all begin with a specific prefix, such as `Base`, `App`, or `V`.**
 
-::: details Detailed Explanation
+::: details Explicación Detallada
 These components lay the foundation for consistent styling and behavior in your application. They may **only** contain:
 
 - HTML elements,
@@ -651,7 +651,7 @@ components/
 
 If a component only makes sense in the context of a single parent component, that relationship should be evident in its name. Since editors typically organize files alphabetically, this also keeps these related files next to each other.
 
-::: details Detailed Explanation
+::: details Explicación Detallada
 You might be tempted to solve this problem by nesting child components in directories named after their parent. For example:
 
 ```
@@ -718,7 +718,7 @@ components/
 
 **Component names should start with the highest-level (often most general) words and end with descriptive modifying words.**
 
-::: details Detailed Explanation
+::: details Explicación Detallada
 You may be wondering:
 
 > "Why would we force component names to use less natural language?"
@@ -886,7 +886,7 @@ OR
 
 **Component names in JS/[JSX](../guide/render-function.html#jsx) should always be PascalCase, though they may be kebab-case inside strings for simpler applications that only use global component registration through `app.component`.**
 
-::: details Detailed Explanation
+::: details Explicación Detallada
 In JavaScript, PascalCase is the convention for classes and prototype constructors - essentially, anything that can have distinct instances. Vue components also have instances, so it makes sense to also use PascalCase. As an added benefit, using PascalCase within JSX (and templates) allows readers of the code to more easily distinguish between components and HTML elements.
 
 However, for applications that use **only** global component definitions via `app.component`, we recommend kebab-case instead. The reasons are:
@@ -1089,7 +1089,7 @@ computed: {
 
 **Complex computed properties should be split into as many simpler properties as possible.**
 
-::: details Detailed Explanation
+::: details Explicación Detallada
 Simpler, well-named computed properties are:
 
 - __Easier to test__
@@ -1482,7 +1482,7 @@ computed: {
 
 Prefer class selectors over element selectors in `scoped` styles, because large numbers of element selectors are slow.
 
-::: details Detailed Explanation
+::: details Explicación Detallada
 To scope styles, Vue adds a unique attribute to component elements, such as `data-v-f3f3eg9`. Then selectors are modified so that only matching elements with this attribute are selected (e.g. `button[data-v-f3f3eg9]`).
 
 The problem is that large numbers of element-attribute selectors (e.g. `button[data-v-f3f3eg9]`) will be considerably slower than class-attribute selectors (e.g. `.btn-close[data-v-f3f3eg9]`), so class selectors should be preferred whenever possible.
