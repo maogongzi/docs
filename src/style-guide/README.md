@@ -153,9 +153,9 @@ data() {
 
 Luego los ordena alfabéticamente. Al actualizar el DOM, Vue optimizará la renderización para realizar las mutaciones de DOM más efectivas en lo posible. Eso podría significar eliminar el primer elemento del "ToDo" y luego agregarlo nuevamente al final de la lista.
 
-The problem is, there are cases where it's important not to delete elements that will remain in the DOM. For example, you may want to use `<transition-group>` to animate list sorting, or maintain focus if the rendered element is an `<input>`. In these cases, adding a unique key for each item (e.g. `:key="todo.id"`) will tell Vue how to behave more predictably.
+El problema es que hay casos en los que es importante no eliminar elementos que permanecerán en el DOM. Por ejemplo, puede utilizar `<transition-group>` para animar el orden de las listas, o mantener el foco si el elemento renderizado es `<input>`. En estos casos, agregar una clave única para cada elemento (por ejemplo, `:key="todo.id"`) le indicará a Vue cómo comportarse de manera más predecible.
 
-In our experience, it's better to _always_ add a unique key, so that you and your team simply never have to worry about these edge cases. Then in the rare, performance-critical scenarios where object constancy isn't necessary, you can make a conscious exception.
+En nuestra experiencia, es mejor agregar _siempre_ una clave única, para que usted y su equipo simplemente nunca tengan que preocuparse por estos casos extremos. Luego, en los raros escenarios de rendimiento crítico donde la constancia del objeto no es necesaria, puede hacer una excepción consciente.
 :::
 
 <div class="style-example style-example-bad">
