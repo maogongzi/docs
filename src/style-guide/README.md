@@ -882,17 +882,17 @@ OR
 ```
 </div>
 
-### Component name casing in JS/JSX <sup data-p="b">altamente recomendado</sup>
+### Notación de nombres de componentes en JS/JSX <sup data-p="b">altamente recomendado</sup>
 
-**Component names in JS/[JSX](../guide/render-function.html#jsx) should always be PascalCase, though they may be kebab-case inside strings for simpler applications that only use global component registration through `app.component`.**
+**Los nombres de los componentes en JS/[JSX](../guide/render-function.html#jsx) siempre deben ser PascalCase, aunque pueden ser kebab-case dentro de cadenas de caracteres para aplicaciones más simples, que solo utilizan registro global de componentes a través de `app.component`.**
 
 ::: details Explicación Detallada
-In JavaScript, PascalCase is the convention for classes and prototype constructors - essentially, anything that can have distinct instances. Vue components also have instances, so it makes sense to also use PascalCase. As an added benefit, using PascalCase within JSX (and templates) allows readers of the code to more easily distinguish between components and HTML elements.
+En JavaScript, PascalCase es la convención para clases y constructores de prototipo - esencialmente, cualquier cosa que pueda tener instancias diferentes. Los componentes de Vue también tienen instancias, así que tiene sentido utilizar PascalCase. Como un beneficio agregado, utilizar PascalCase en JSX (y plantillas) les permite a los lectores del código distinguen de una manera más fácil entre componentes y elementos HTML.
 
-However, for applications that use **only** global component definitions via `app.component`, we recommend kebab-case instead. The reasons are:
+Sin embargo, para aplicaciones que **solo** utilizen definiciones globales de componentes a través de `app.component`, recomendamos utilizar kebab-case en su lugar. Las razones son las siguientes:
 
-- It's rare that global components are ever referenced in JavaScript, so following a convention for JavaScript makes less sense.
-- These applications always include many in-DOM templates, where [kebab-case **must** be used](#component-name-casing-in-templates-strongly-recommended).
+- Es raro que los componentes globales sean referenciados en JavaScript, entonces adoptar una convención para Javascript no tiene sentido.
+- Estas aplicaciones siempre incluyen muchas plantillas del DOM donde [kebab-case **debe** ser utilizada](#component-name-casing-in-templates-strongly-recommended).
 :::
 
 <div class="style-example style-example-bad">
@@ -950,11 +950,11 @@ export default {
 ```
 </div>
 
-### Full-word component names <sup data-p="b">altamente recomendado</sup>
+### Componentes con nombres completos <sup data-p="b">altamente recomendado</sup>
 
-**Component names should prefer full words over abbreviations.**
+**Nombres de componentes deben tener palabras completas, en vez de abreviaciones.**
 
-The autocompletion in editors make the cost of writing longer names very low, while the clarity they provide is invaluable. Uncommon abbreviations, in particular, should always be avoided.
+El autocompletado automático en los editores hace que el costo de escribir nombres largos muy bajo, mientras que la claridad que estos proveen es invaluable. En particular, las abreviaciones poco comunes debe ser evitadas.
 
 <div class="style-example style-example-bad">
 <h4>Incorrecto</h4>
@@ -976,11 +976,11 @@ components/
 ```
 </div>
 
-### Prop name casing <sup data-p="b">altamente recomendado</sup>
+### Notación de nombres de props <sup data-p="b">altamente recomendado</sup>
 
-**Prop names should always use camelCase during declaration, but kebab-case in templates and [JSX](../guide/render-function.html#jsx).**
+**Los nombres de props siempre deben utilizar camelCase al declararse, pero kebab-case en plantillas y [JSX](../guide/render-function.html#jsx).**
 
-We're simply following the conventions of each language. Within JavaScript, camelCase is more natural. Within HTML, kebab-case is.
+Simplemente estamos siguiendo las convenciones de cada lenguaje. En Javascript, camelCase es más natural, mientras que HTML, kebab-case lo es.
 
 <div class="style-example style-example-bad">
 <h4>Incorrecto</h4>
@@ -1010,11 +1010,11 @@ props: {
 ```
 </div>
 
-### Multi-attribute elements <sup data-p="b">altamente recomendado</sup>
+### Elementos con múltiples atributos <sup data-p="b">altamente recomendado</sup>
 
-**Elements with multiple attributes should span multiple lines, with one attribute per line.**
+**Elementos con múltiples atributos deben ocupar múltiples líneas, con un atributo por línea.**
 
-In JavaScript, splitting objects with multiple properties over multiple lines is widely considered a good convention, because it's much easier to read. Our templates and [JSX](../guide/render-function.html#jsx) deserve the same consideration.
+En Javascript, dividir objetos que poseen múltiples propiedades en varias líneas es considerado una buena práctica, porque es mucho más fácil de leer. Nuestras plantillas y [JSX](../guide/render-function.html#jsx) merecen la misma consideración.
 
 <div class="style-example style-example-bad">
 <h4>Incorrecto</h4>
@@ -1047,11 +1047,11 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 ```
 </div>
 
-### Simple expressions in templates <sup data-p="b">altamente recomendado</sup>
+### Expresiones simples en plantillas <sup data-p="b">altamente recomendado</sup>
 
-**Component templates should only include simple expressions, with more complex expressions refactored into computed properties or methods.**
+**Plantillas de componentes deben incluir expresiones simples, con expresiones más complejas refactorizadas en propiedades computadas o métodos.**
 
-Complex expressions in your templates make them less declarative. We should strive to describe _what_ should appear, not _how_ we're computing that value. Computed properties and methods also allow the code to be reused.
+Las expresiones complejas en sus plantillas los tornan menos declarativos. Debemos enfocarnos en escribir _qué_ debe aparecer, no en _cómo_ estamos computando dicho valor. También, las propiedades computadas y métodos permite que el código sea reutilizado.
 
 <div class="style-example style-example-bad">
 <h4>Incorrecto</h4>
@@ -1069,12 +1069,12 @@ Complex expressions in your templates make them less declarative. We should stri
 <h4>Correcto</h4>
 
 ```html
-<!-- In a template -->
+<!-- En una plantilla -->
 {{ normalizedFullName }}
 ```
 
 ```js
-// The complex expression has been moved to a computed property
+// La expresión compleja ha sido movida a una propiedad computada
 computed: {
   normalizedFullName() {
     return this.fullName.split(' ')
@@ -1085,26 +1085,26 @@ computed: {
 ```
 </div>
 
-### Simple computed properties <sup data-p="b">altamente recomendado</sup>
+### Propiedades computadas simples <sup data-p="b">altamente recomendado</sup>
 
-**Complex computed properties should be split into as many simpler properties as possible.**
+**Propiedades computadas complejas deben ser separadadas en propiedades más simples, siempre que sea posible.**
 
 ::: details Explicación Detallada
-Simpler, well-named computed properties are:
+Propiedades computadas simples y bien nombradas son:
 
-- __Easier to test__
+- __Fácil de probar__
 
-  When each computed property contains only a very simple expression, with very few dependencies, it's much easier to write tests confirming that it works correctly.
+  Cuando cada propiedad computada contiene solo una expresión simple, con pocas dependencias, es más fácil escribir _tests_ confirmando que esta funciona correctamente.
 
-- __Easier to read__
+- __Fácil de leer__
 
-  Simplifying computed properties forces you to give each value a descriptive name, even if it's not reused. This makes it much easier for other developers (and future you) to focus in on the code they care about and figure out what's going on.
+  Simplificar las propiedades computadas le obliga a darle un nombre descriptivo a cada valor, incluso si no es reutilizado. Esto facilita a otros desarrolladores (y en el futuro, a usted) enfocarse en el código que les importa y descubrir lo que este hace.
 
-- __More adaptable to changing requirements__
+- __Más adaptable al cambio en requirimientos__
 
-  Any value that can be named might be useful to the view. For example, we might decide to display a message telling the user how much money they saved. We might also decide to calculate sales tax, but perhaps display it separately, rather than as part of the final price.
+  Cualquier valor que pueda ser nombrado puede ser útil para la vista. Por ejemplo, podemos decidir mostrar un mensaje al usuario diciendo cuanto dinero ahorró. Podemos también decidir calcular los impuestos sobre las ventas, pero quizás mostrar estos valores separados y no como parte del precio final.
 
-  Small, focused computed properties make fewer assumptions about how information will be used, so require less refactoring as requirements change.
+  Las propiedades computadas pequeñas y enfocadas hacen menos suposiciones sobre como se utilizará la información, por lo que requieren una menor refactorización a medida que cambian los requerimientos.
 :::
 
 <div class="style-example style-example-bad">
@@ -1143,11 +1143,11 @@ computed: {
 ```
 </div>
 
-### Quoted attribute values <sup data-p="b">altamente recomendado</sup>
+### Comillas en los valores de los atributos <sup data-p="b">altamente recomendado</sup>
 
-**Non-empty HTML attribute values should always be inside quotes (single or double, whichever is not used in JS).**
+**Los valores de atributos HTML no vacíos siempre deben estar dentro de comillas (simples o dobles, la que no sea utilizada en JS).**
 
-While attribute values without any spaces are not required to have quotes in HTML, this practice often leads to _avoiding_ spaces, making attribute values less readable.
+Si bien los valores de atributos sin espacios no requiren comillas en HTML, esta práctica usualmente conduce a _evitar_ espacios, lo que causa que los valores de los atributos sean menos legibles.
 
 <div class="style-example style-example-bad">
 <h4>Incorrecto</h4>
@@ -1173,9 +1173,9 @@ While attribute values without any spaces are not required to have quotes in HTM
 ```
 </div>
 
-### Directive shorthands <sup data-p="b">altamente recomendado</sup>
+### Abreviación de directivas <sup data-p="b">altamente recomendado</sup>
 
-**Directive shorthands (`:` for `v-bind:`, `@` for `v-on:` and `#` for `v-slot`) should be used always or never.**
+**Las abreviación de directivas (`:` para `v-bind:`, `@` para `v-on:` and `#` para `v-slot`) deben ser utilizadas siempre o nunca.**
 
 <div class="style-example style-example-bad">
 <h4>Incorrecto</h4>
@@ -1196,11 +1196,11 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 ```html
 <template v-slot:header>
-  <h1>Here might be a page title</h1>
+  <h1>Aquí podría ser un título de página</h1>
 </template>
 
 <template #footer>
-  <p>Here's some contact info</p>
+  <p>Aquí son unas informaciones de contacto</p>
 </template>
 ```
 </div>
@@ -1238,64 +1238,64 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 ```html
 <template v-slot:header>
-  <h1>Here might be a page title</h1>
+  <h1>Aquí podría ser un título de página</h1>
 </template>
 
 <template v-slot:footer>
-  <p>Here's some contact info</p>
+  <p>Aquí son unas informaciones de contacto</p>
 </template>
 ```
 
 ```html
 <template #header>
-  <h1>Here might be a page title</h1>
+  <h1>Aquí podría ser un título de página</h1>
 </template>
 
 <template #footer>
-  <p>Here's some contact info</p>
+  <p>Aquí son unas informaciones de contacto</p>
 </template>
 ```
 </div>
 
-## Priority C Rules: Recommended <span class="hide-from-sidebar">(Minimizing Arbitrary Choices and Cognitive Overhead)</span>
+## Reglas de prioridad C: Recomendadas <span class="hide-from-sidebar">(Minimizando Elecciones Arbitrarias y Sobrecarga Cognitiva)</span>
 
-### Component/instance options order <sup data-p="c">recommended</sup>
+### Orden de las opciones en un componente/instancia <sup data-p="c">recomendado</sup>
 
-**Component/instance options should be ordered consistently.**
+**Opciones de componentes/instancias deben ser ordenadas consistentemente.**
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add new properties from plugins.
+Este es el orden por defecto que recomendamos para las opciones de los componentes. Estas están separadas en categorías, así usted sabe donde agregar nuevas propiedades de _plugins_.
 
-1. **Global Awareness** (requires knowledge beyond the component)
+1. **Consciencia Global** (requiere conocimiento más allá del componente)
     - `name`
 
-2. **Template Compiler Options** (changes the way templates are compiled)
+2. **Opciones del compilador de plantillas** (cambia la manera de que son compiladas las plantillas)
     - `compilerOptions`
 
-3. **Template Dependencies** (assets used in the template)
+3. **Dependencias de plantilla** (_assets_ utilizados en la plantilla)
     - `components`
     - `directives`
 
-4. **Composition** (merges properties into the options)
+4. **Composición** (mezcla propiedades en las opciones)
     - `extends`
     - `mixins`
     - `provide`/`inject`
 
-5. **Interface** (the interface to the component)
+5. **Interfaz** (la interfaz del componente)
     - `inheritAttrs`
     - `props`
     - `emits`
     - `expose`
 
-6. **Composition API** (the entry point for using the Composition API)
+6. **API de Composición** (el punto de entrada para utilizar la API de composición)
     - `setup`
 
-7. **Local State** (local reactive properties)
+7. **Estado Local** (propiedades reactivas locales)
     - `data`
     - `computed`
 
-8. **Events** (callbacks triggered by reactive events)
+8. **Eventos** (_callbacks_ disparados por eventos reactivos)
     - `watch`
-    - Lifecycle Events (in the order they are called)
+    - Eventos del ciclo de vida (en el orden que son invocados)
         - `beforeCreate`
         - `created`
         - `beforeMount`
@@ -1310,59 +1310,59 @@ This is the default order we recommend for component options. They're split into
         - `renderTracked`
         - `renderTriggered`
 
-9.  **Non-Reactive Properties** (instance properties independent of the reactivity system)
+9.  **Propiedades no reactivas** (propiedades de instancia independientes del sistema de reactividad)
     - `methods`
 
-10. **Rendering** (the declarative description of the component output)
+10. **Renderización** (la descripción declarativa de la salida del componente)
     - `template`/`render`
 
-### Element attribute order <sup data-p="c">recommended</sup>
+### Orden de los atributos en un elemento <sup data-p="c">recomendado</sup>
 
-**The attributes of elements (including components) should be ordered consistently.**
+**Los atributos de elementos (incluyendo componentes) deben ser ordenadas consistentemente.**
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add custom attributes and directives.
+Este es el orden por defecto que recomendamos para las opciones de los componentes. Estas están separadas en categorías, así usted sabe donde agregar nuevos atributos y directivas.
 
-1. **Definition** (provides the component options)
+1. **Definición** (provee las opciones del componente)
     - `is`
 
-2. **List Rendering** (creates multiple variations of the same element)
+2. **Renderización de Listas** (crea múltiples variaciones del mismo elemento)
     - `v-for`
 
-3. **Conditionals** (whether the element is rendered/shown)
+3. **Condicionales** (si el elemento es renderizado/mostrado o no)
     - `v-if`
     - `v-else-if`
     - `v-else`
     - `v-show`
     - `v-cloak`
 
-4. **Render Modifiers** (changes the way the element renders)
+4. **Modificadores de renderizado** (cambia la forma en la que el elemento se renderiza)
     - `v-pre`
     - `v-once`
 
-5. **Global Awareness** (requires knowledge beyond the component)
+5. **Consciencia Global** (requiere conocimiento más allá del componente)
     - `id`
 
-6. **Unique Attributes** (attributes that require unique values)
+6. **Atributos Únicos** (atributos que requieren valores únicos)
     - `ref`
     - `key`
 
-7. **Two-Way Binding** (combining binding and events)
+7. **Vinculación Bidireccional** (combinación de vinculación y eventos)
     - `v-model`
 
-8. **Other Attributes** (all unspecified bound & unbound attributes)
+8. **Otros Atributos** (todos los atributos vinculados & desvinculados no especificados)
 
-9. **Events** (component event listeners)
+9. **Eventos** (escuchadores de eventos de los componentes)
     - `v-on`
 
-10. **Content** (overrides the content of the element)
+10. **Contenido** (sobreescribe el contenido del elemento)
     - `v-html`
     - `v-text`
 
-### Empty lines in component/instance options <sup data-p="c">recommended</sup>
+### Líneas vacías en las opciones de un componente/instancia <sup data-p="c">recomendado</sup>
 
-**You may want to add one empty line between multi-line properties, particularly if the options can no longer fit on your screen without scrolling.**
+**Usted puede añadir una línea vacía entre propiedades que se extienden en múltiples líneas, particularmente si las opciones no entrar en la pantalla sin _scrollear_.**
 
-When components begin to feel cramped or difficult to read, adding spaces between multi-line properties can make them easier to skim again. In some editors, such as Vim, formatting options like this can also make them easier to navigate with the keyboard.
+Cuando un componente comienza a sentirse apretado o difícil de leer, añadir espacios entre propiedades que se extienden en múltiples líneas puede mejorar la legibilidad. En algunos editores, como Vim, opciones de formateo como esta pueden facilitar la navegación con el teclado.
 
 <div class="style-example style-example-good">
 <h4>Correcto</h4>
@@ -1395,8 +1395,8 @@ computed: {
 ```
 
 ```js
-// No spaces are also fine, as long as the component
-// is still easy to read and navigate.
+// No tener espacios también es correcto, siempre y cuando
+// el componente siga siendo fácil de leer y navegar.
 props: {
   value: {
     type: String,
@@ -1420,9 +1420,9 @@ computed: {
 ```
 </div>
 
-### Single-file component top-level element order <sup data-p="c">recommended</sup>
+### Orden de los elementos de nivel superior de componentes de un solo archivo <sup data-p="c">recomendado</sup>
 
-**[Single-file components](../guide/single-file-component.html) should always order `<script>`, `<template>`, and `<style>` tags consistently, with `<style>` last, because at least one of the other two is always necessary.**
+**[Componentes de un solo archivo](../guide/single-file-component.html) siempre deben ordenar las etiquetas `<script>`, `<template>`, y `<style>` consistentemente, con `<style>` por último, ya que al menos una de las otras dos siempre es necesaria.**
 
 <div class="style-example style-example-bad">
 <h4>Incorrecto</h4>
@@ -1474,7 +1474,7 @@ computed: {
 ```
 </div>
 
-## Priority D Rules: Use with Caution <span class="hide-from-sidebar">(Potentially Dangerous Patterns)</span>
+## Reglas de prioridad D: Utilizar con Precaución <span class="hide-from-sidebar">(Patrones Potencialmente Peligrosos)</span>
 
 ### Element selectors with `scoped` <sup data-p="d">use with caution</sup>
 
