@@ -515,10 +515,10 @@ components/
 
 **Los nombres de los [componentes de un solo archivo](../guide/single-file-component.html) deben ser siempre PascalCase o siempre kebab-case.**
 
-PascalCase works best with autocompletion in code editors, as it's consistent with how we reference components in JS(X) and templates, wherever possible. However, mixed case filenames can sometimes create issues on case-insensitive file systems, which is why kebab-case is also perfectly acceptable.
+El autocompletado de los editores de código funciona mejor cuando se utiliza PascalCase, ya que esta es consistente con la forma en que referenciamos componentes en JS(X) y plantillas, dónde sea posible. Sin embargo, nombres de archivos mixtos pueden crear problemas en sistemas de archivos insensibles a las mayúsculas y minúsculas, es por esto que utilizar kebab-case es perfectamente aceptable.
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```
 components/
@@ -532,7 +532,7 @@ components/
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```
 components/
@@ -545,28 +545,28 @@ components/
 ```
 </div>
 
-### Base component names <sup data-p="b">strongly recommended</sup>
+### Nombre de componentes base <sup data-p="b">altamente recomendado</sup>
 
-**Base components (a.k.a. presentational, dumb, or pure components) that apply app-specific styling and conventions should all begin with a specific prefix, such as `Base`, `App`, or `V`.**
+**Los componentes base (también conocidos como componentes de presentación, "tontos", o puros) que aplican estilos y convenciones específicas de la aplicación, deben comenzar con un prefijo específico, tal como `Base`, `App` o `V`.**
 
 ::: details Explicación Detallada
-These components lay the foundation for consistent styling and behavior in your application. They may **only** contain:
+Estos componentes son la base para la definición de estilos y comportamientos consistentes en la aplicación. Estos **solamente** deben contener:
 
-- HTML elements,
-- other base components, and
-- 3rd-party UI components.
+- elementos HTML,
+- otros componentes base, y
+- componentes de interfaz de usuario de terceros.
 
-But they'll **never** contain global state (e.g. from a Vuex store).
+Pero, **nunca** deben contener estado global (p. ej. proviene de una _store_ Vuex).
 
-Their names often include the name of an element they wrap (e.g. `BaseButton`, `BaseTable`), unless no element exists for their specific purpose (e.g. `BaseIcon`). If you build similar components for a more specific context, they will almost always consume these components (e.g. `BaseButton` may be used in `ButtonSubmit`).
+Sus nombres generalmente incluyen el nombre del elemento que envuelven (por ejemplo `BaseButton`, `BaseTable`), a menos que no exista un elemento para su propósito específico (por ejemplo `BaseIcon`). Si usted construye componentes similares para un contexto más específico, casi siempre consumirán estos componentes (por ejemplo `BaseButton` podría ser consumido en `ButtonSubmit`).
 
-Some advantages of this convention:
+Algunas ventajas de esta convención:
 
-- When organized alphabetically in editors, your app's base components are all listed together, making them easier to identify.
+- Cuando están organizados alfabéticamente en los editores, los componentes base de su aplicación serán listados todos juntos, volviéndose más fácil de identificar.
 
-- Since component names should always be multi-word, this convention prevents you from having to choose an arbitrary prefix for simple component wrappers (e.g. `MyButton`, `VueButton`).
+- Dado que los nombres de los componentes siempre deben ser multi-palabras, esta convención impide tener que elegir un prefijo arbitrario para envoltorios de componente simples (por ejemplo `MyButton`, `VueButton`).
 
-- Since these components are so frequently used, you may want to simply make them global instead of importing them everywhere. A prefix makes this possible with Webpack:
+- Dado que estos componentes se utilizan con frecuencia, es posible que simplemente desee hacerlos globales en vez de importarlos en todos lados. Un prefijo hace esto posible con Webpack:
 
   ```js
   const requireComponent = require.context("./src", true, /Base[A-Z]\w+\.(vue|js)$/)
@@ -584,7 +584,7 @@ Some advantages of this convention:
 :::
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```
 components/
@@ -595,7 +595,7 @@ components/
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```
 components/
@@ -619,14 +619,14 @@ components/
 ```
 </div>
 
-### Single-instance component names <sup data-p="b">strongly recommended</sup>
+### Nombres de componentes de instancia única <sup data-p="b">altamente recomendado</sup>
 
-**Components that should only ever have a single active instance should begin with the `The` prefix, to denote that there can be only one.**
+**Componentes que deben tener solamente una única instancia activa deben comenzar con el prefijo `The`, para denotar que solo puede haber una.**
 
-This does not mean the component is only used in a single page, but it will only be used once _per page_. These components never accept any props, since they are specific to your app, not their context within your app. If you find the need to add props, it's a good indication that this is actually a reusable component that is only used once per page _for now_.
+Esto no quiere decir que el componente solamente se utiliza en una única página, sino que solamente será utilizado una vez _por página_. Este tipo de componente nunca aceptan _props_, dado que son específicas para la aplicación, no del contexto de la misma. Si usted encuentra la necesidad de añadir _props_, puede ser un buen indicio de que de hecho se trata de un componente reusable que solamente se utiliza una vez por página, _por ahora_.
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```
 components/
@@ -636,7 +636,7 @@ components/
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```
 components/
@@ -645,14 +645,14 @@ components/
 ```
 </div>
 
-### Tightly coupled component names <sup data-p="b">strongly recommended</sup>
+### Nombres de componentes fuertemente acoplados <sup data-p="b">altamente recomendado</sup>
 
-**Child components that are tightly coupled with their parent should include the parent component name as a prefix.**
+**Los componentes hijo que están fuertemente acoplados a su padre deben incluir el nombre del componente padre como prefijo.**
 
-If a component only makes sense in the context of a single parent component, that relationship should be evident in its name. Since editors typically organize files alphabetically, this also keeps these related files next to each other.
+Si un componente solo tiene sentido en el contetxo de un componente padre, dicha relación debe ser evidente en su nombre. Dado que usualmente los editores organizan los archivos alfabéticamente, esto también deja ambos archivos cerca visualmente.
 
 ::: details Explicación Detallada
-You might be tempted to solve this problem by nesting child components in directories named after their parent. For example:
+Usted puede verse tentado a resolver este problema colocando los componentes hijo en directorios nombrados como su componente padre. Por ejemplo:
 
 ```
 components/
@@ -663,7 +663,7 @@ components/
    |- index.vue
 ```
 
-or:
+o:
 
 ```
 components/
@@ -674,14 +674,14 @@ components/
 |- TodoList.vue
 ```
 
-This isn't recommended, as it results in:
+Esto no es recomendado, ya que resulta en:
 
-- Many files with similar names, making rapid file switching in code editors more difficult.
-- Many nested sub-directories, which increases the time it takes to browse components in an editor's sidebar.
+- Muchos archivos con nombres similares, haciendo difícil cambiar entre archivos en un editor de código.
+- Muchos subdirectorios anidados, lo cual incrementa el tiempo que toma para navegar componentes en la barra lateral de un editor.
 :::
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```
 components/
@@ -698,7 +698,7 @@ components/
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```
 components/
@@ -714,24 +714,24 @@ components/
 ```
 </div>
 
-### Order of words in component names <sup data-p="b">strongly recommended</sup>
+### Orden de las palabras en el nombre de los componentes <sup data-p="b">altamente recomendado</sup>
 
-**Component names should start with the highest-level (often most general) words and end with descriptive modifying words.**
+**Los nombres de los componentes deben comenzar con la palabra de más alto nivel (muchas veces la más general) y terminar con palabras descriptivas.**
 
 ::: details Explicación Detallada
-You may be wondering:
+Usted se debe estar preguntando:
 
-> "Why would we force component names to use less natural language?"
+> "¿Por qué forzar un lenguaje menos natural al nombrar componentes?"
 
-In natural English, adjectives and other descriptors do typically appear before the nouns, while exceptions require connector words. For example:
+En inglés natural, adjetivos y otros descriptores aparecen típicamente antes de los sustantivos, mientras que excepciones requieren conectores. Por ejemplo:
 
 - Coffee _with_ milk
 - Soup _of the_ day
 - Visitor _to the_ museum
 
-You can definitely include these connector words in component names if you'd like, but the order is still important.
+Usted puede definitivamente incluir estos conectores en el nombre de los componentes si así lo desea, pero el orden de las palabras sigue siendo importante.
 
-Also note that **what's considered "highest-level" will be contextual to your app**. For example, imagine an app with a search form. It may include components like this one:
+También observe que **lo que es considerado "de más alto nivel" será contextual a su aplicación**. Por ejemplo, imagine una aplicación con un formulario de búsqueda. Este puede incluir componentes como esto:
 
 ```
 components/
@@ -743,7 +743,7 @@ components/
 |- TermsCheckbox.vue
 ```
 
-As you might notice, it's quite difficult to see which components are specific to the search. Now let's rename the components according to the rule:
+Como puede ver, es muy difícil ver que componentes son específicas para el formulario de búsqueda. Ahora, renombremos los componentes de acuerdo a la regla:
 
 ```
 components/
@@ -755,17 +755,17 @@ components/
 |- SettingsCheckboxTerms.vue
 ```
 
-Since editors typically organize files alphabetically, all the important relationships between components are now evident at a glance.
+Ya que típicamente los editores organizan los archivos alfabéticamente, todos los componentes que se relacionan quedan evidentes por el propio nombre.
 
-You might be tempted to solve this problem differently, nesting all the search components under a "search" directory, then all the settings components under a "settings" directory. We only recommend considering this approach in very large apps (e.g. 100+ components), for these reasons:
+Usted puede verse tentado a resolver este problema de una forma diferente, anidando todos los componentes del formulario de búsqueda bajo un directorio llamado "search", y todos los componentes de configuración bajo otro directorio llamado "settings". Solo recomendamos este enfoque en aplicaciones de gran porte (por ejemplo, con más de 100 componentes), por las siguientes razones:
 
-- It generally takes more time to navigate through nested sub-directories, than scrolling through a single `components` directory.
-- Name conflicts (e.g. multiple `ButtonDelete.vue` components) make it more difficult to quickly navigate to a specific component in a code editor.
-- Refactoring becomes more difficult, because find-and-replace often isn't sufficient to update relative references to a moved component.
+- Generalmente lleva más tiempo navegador a través de subdirectorios anidados que recorrer un simple directorio `components`.
+- Conflictos de nombres (por ejemplo, múltiples componentes `ButtonDelete.vue`) dificultan la navegación rápida a un componente específico en un editor de código.
+- La refactorización se vuelve más difícil, ya que buscar-y-sustituir no siempre será suficiente para actualizar las referencias relativas al componente movido.
 :::
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```
 components/
@@ -779,7 +779,7 @@ components/
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```
 components/
@@ -792,97 +792,97 @@ components/
 ```
 </div>
 
-### Self-closing components <sup data-p="b">strongly recommended</sup>
+### Componentes con cierre automático <sup data-p="b">altamente recomendado</sup>
 
-**Components with no content should be self-closing in [single-file components](../guide/single-file-component.html), string templates, and [JSX](../guide/render-function.html#jsx) - but never in DOM templates.**
+**Componentes sin contenido deben cerrarse automáticamenete en [componentes de un solo archivo](../guide/single-file-components.html), plantillas de cadena de caracteres, y [JSX](../guide/render-function.html#JSX) - pero nunca en plantillas del DOM.**
 
-Components that self-close communicate that they not only have no content, but are **meant** to have no content. It's the difference between a blank page in a book and one labeled "This page intentionally left blank." Your code is also cleaner without the unnecessary closing tag.
+Los componentes que se cierran automáticamente no solo comunican que no tienen contenido, sino que **garantizan** que no deben tener contenido. Es la diferencia entre una página en blanco en un libro y una con el texto "Está página fue intencionalmente dejada en blanco". También, su código es más limpio sin la etiqueta de cerrado innecesaria.
 
-Unfortunately, HTML doesn't allow custom elements to be self-closing - only [official "void" elements](https://www.w3.org/TR/html/syntax.html#void-elements). That's why the strategy is only possible when Vue's template compiler can reach the template before the DOM, then serve the DOM spec-compliant HTML.
+Desafortunadamente, HTML no permite que los elementos personalizados se cierren automáticamente - sólo los [elementos sin contenidos (void) oficiales](https://www.w3.org/TR/html/syntax.html#void-elements). Es por eso que esta estrategia solo es posible cuando el compilador de plantillas de Vue pueda acceder la plantilla antes del DOM, luego sirva HTML compatible con la especifiación de DOM.
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```html
-<!-- In single-file components, string templates, and JSX -->
+<!-- En componentes de un solo archivo, plantillas basadas en cadena de caracteres, y JSX -->
 <MyComponent></MyComponent>
 ```
 
 ```html
-<!-- In DOM templates -->
+<!-- en plantillas del DOM -->
 <my-component/>
 ```
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```html
-<!-- In single-file components, string templates, and JSX -->
+<!-- En componentes de un solo archivo, plantillas basadas en cadena de caracteres, y JSX -->
 <MyComponent/>
 ```
 
 ```html
-<!-- In DOM templates -->
+<!-- en plantillas del DOM -->
 <my-component></my-component>
 ```
 </div>
 
-### Component name casing in templates <sup data-p="b">strongly recommended</sup>
+### Notación de nombres de componentes en plantillas <sup data-p="b">altamente recomendado</sup>
 
-**In most projects, component names should always be PascalCase in [single-file components](../guide/single-file-component.html) and string templates - but kebab-case in DOM templates.**
+**En la mayoría de los proyectos, los nombres de los componentes deben ser siempre PascalCase en [componentes de un solo archivo](../guide/single-file-components.html) y plantillas basadas en cadena de caracteres - pero kebab-case en plantillas del DOM.**
 
-PascalCase has a few advantages over kebab-case:
+PascalCase tiene algunas ventajas sobre kebab-case:
 
-- Editors can autocomplete component names in templates, because PascalCase is also used in JavaScript.
-- `<MyComponent>` is more visually distinct from a single-word HTML element than `<my-component>`, because there are two character differences (the two capitals), rather than just one (a hyphen).
-- If you use any non-Vue custom elements in your templates, such as a web component, PascalCase ensures that your Vue components remain distinctly visible.
+- Editores pueden autocompletar nombres de componentes en plantillas, ya que en JavaScript también se utiliza PascalCase.
+- `<MyComponent>` es más distintivo visualmente que un elemento HTML de un solo palabra que `<my-component>`, porque hay dos caracteres distintos (las dos mayúsculas), en lugar de solo uno (el guión).
+- Si usted utiliza elementos personalizados que no son de Vue en sus plantillas, como un componente web, PascalCase asegura que sus componentes Vue se mantendrán distinguibles visualmente.
 
-Unfortunately, due to HTML's case insensitivity, DOM templates must still use kebab-case.
+Desafortunadamente, como HTML es insensible a las mayúsculas y minúsculas, plantillas del DOM deben utilizar kebab-case.
 
-Also note that if you've already invested heavily in kebab-case, consistency with HTML conventions and being able to use the same casing across all your projects may be more important than the advantages listed above. In those cases, **using kebab-case everywhere is also acceptable.**
+También tenga en cuenta que si usted ya ha invertido fuertemente en kebab-case, la consistencia con las convenciones de HTML y la posibilidad de utilizar ese mismo enfoque en todos sus proyectos puede ser más importante que las ventajas mencionadas anteriormente. En dichos casos, **utilizar kebab-case en todos lados también es aceptable.**
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```html
-<!-- In single-file components and string templates -->
+<!-- En componentes de un solo archivo, plantillas basadas en cadena de caracteres -->
 <mycomponent/>
 ```
 
 ```html
-<!-- In single-file components and string templates -->
+<!-- En componentes de un solo archivo, plantillas basadas en cadena de caracteres -->
 <myComponent/>
 ```
 
 ```html
-<!-- In DOM templates -->
+<!-- En plantillas del DOM -->
 <MyComponent></MyComponent>
 ```
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```html
-<!-- In single-file components and string templates -->
+<!-- En componentes de un solo archivo, plantillas basadas en cadena de caracteres -->
 <MyComponent/>
 ```
 
 ```html
-<!-- In DOM templates -->
+<!-- En plantillas del DOM -->
 <my-component></my-component>
 ```
 
 OR
 
 ```html
-<!-- Everywhere -->
+<!-- En todos lados -->
 <my-component></my-component>
 ```
 </div>
 
-### Component name casing in JS/JSX <sup data-p="b">strongly recommended</sup>
+### Component name casing in JS/JSX <sup data-p="b">altamente recomendado</sup>
 
 **Component names in JS/[JSX](../guide/render-function.html#jsx) should always be PascalCase, though they may be kebab-case inside strings for simpler applications that only use global component registration through `app.component`.**
 
@@ -896,7 +896,7 @@ However, for applications that use **only** global component definitions via `ap
 :::
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```js
 app.component('myComponent', {
@@ -924,7 +924,7 @@ export default {
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```js
 app.component('MyComponent', {
@@ -950,14 +950,14 @@ export default {
 ```
 </div>
 
-### Full-word component names <sup data-p="b">strongly recommended</sup>
+### Full-word component names <sup data-p="b">altamente recomendado</sup>
 
 **Component names should prefer full words over abbreviations.**
 
 The autocompletion in editors make the cost of writing longer names very low, while the clarity they provide is invaluable. Uncommon abbreviations, in particular, should always be avoided.
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```
 components/
@@ -967,7 +967,7 @@ components/
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```
 components/
@@ -976,14 +976,14 @@ components/
 ```
 </div>
 
-### Prop name casing <sup data-p="b">strongly recommended</sup>
+### Prop name casing <sup data-p="b">altamente recomendado</sup>
 
 **Prop names should always use camelCase during declaration, but kebab-case in templates and [JSX](../guide/render-function.html#jsx).**
 
 We're simply following the conventions of each language. Within JavaScript, camelCase is more natural. Within HTML, kebab-case is.
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```js
 props: {
@@ -997,7 +997,7 @@ props: {
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```js
 props: {
@@ -1010,14 +1010,14 @@ props: {
 ```
 </div>
 
-### Multi-attribute elements <sup data-p="b">strongly recommended</sup>
+### Multi-attribute elements <sup data-p="b">altamente recomendado</sup>
 
 **Elements with multiple attributes should span multiple lines, with one attribute per line.**
 
 In JavaScript, splitting objects with multiple properties over multiple lines is widely considered a good convention, because it's much easier to read. Our templates and [JSX](../guide/render-function.html#jsx) deserve the same consideration.
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```html
 <img src="https://vuejs.org/images/logo.png" alt="Vue Logo">
@@ -1029,7 +1029,7 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```html
 <img
@@ -1047,14 +1047,14 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 ```
 </div>
 
-### Simple expressions in templates <sup data-p="b">strongly recommended</sup>
+### Simple expressions in templates <sup data-p="b">altamente recomendado</sup>
 
 **Component templates should only include simple expressions, with more complex expressions refactored into computed properties or methods.**
 
 Complex expressions in your templates make them less declarative. We should strive to describe _what_ should appear, not _how_ we're computing that value. Computed properties and methods also allow the code to be reused.
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```html
 {{
@@ -1066,7 +1066,7 @@ Complex expressions in your templates make them less declarative. We should stri
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```html
 <!-- In a template -->
@@ -1085,7 +1085,7 @@ computed: {
 ```
 </div>
 
-### Simple computed properties <sup data-p="b">strongly recommended</sup>
+### Simple computed properties <sup data-p="b">altamente recomendado</sup>
 
 **Complex computed properties should be split into as many simpler properties as possible.**
 
@@ -1108,7 +1108,7 @@ Simpler, well-named computed properties are:
 :::
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```js
 computed: {
@@ -1124,7 +1124,7 @@ computed: {
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```js
 computed: {
@@ -1143,14 +1143,14 @@ computed: {
 ```
 </div>
 
-### Quoted attribute values <sup data-p="b">strongly recommended</sup>
+### Quoted attribute values <sup data-p="b">altamente recomendado</sup>
 
 **Non-empty HTML attribute values should always be inside quotes (single or double, whichever is not used in JS).**
 
 While attribute values without any spaces are not required to have quotes in HTML, this practice often leads to _avoiding_ spaces, making attribute values less readable.
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```html
 <input type=text>
@@ -1162,7 +1162,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```html
 <input type="text">
@@ -1173,12 +1173,12 @@ While attribute values without any spaces are not required to have quotes in HTM
 ```
 </div>
 
-### Directive shorthands <sup data-p="b">strongly recommended</sup>
+### Directive shorthands <sup data-p="b">altamente recomendado</sup>
 
 **Directive shorthands (`:` for `v-bind:`, `@` for `v-on:` and `#` for `v-slot`) should be used always or never.**
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```html
 <input
@@ -1206,7 +1206,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```html
 <input
@@ -1365,7 +1365,7 @@ This is the default order we recommend for component options. They're split into
 When components begin to feel cramped or difficult to read, adding spaces between multi-line properties can make them easier to skim again. In some editors, such as Vim, formatting options like this can also make them easier to navigate with the keyboard.
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```js
 props: {
@@ -1425,7 +1425,7 @@ computed: {
 **[Single-file components](../guide/single-file-component.html) should always order `<script>`, `<template>`, and `<style>` tags consistently, with `<style>` last, because at least one of the other two is always necessary.**
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```html
 <style>/* ... */</style>
@@ -1447,7 +1447,7 @@ computed: {
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```html
 <!-- ComponentA.vue -->
@@ -1489,7 +1489,7 @@ The problem is that large numbers of element-attribute selectors (e.g. `button[d
 :::
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```html
 <template>
@@ -1505,7 +1505,7 @@ button {
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```html
 <template>
@@ -1529,7 +1529,7 @@ An ideal Vue application is props down, events up. Sticking to this convention m
 The problem is, there are also many _simple_ cases where these patterns may offer convenience. Beware: do not be seduced into trading simplicity (being able to understand the flow of your state) for short-term convenience (writing less code).
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```js
 app.component('TodoItem', {
@@ -1572,7 +1572,7 @@ app.component('TodoItem', {
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```js
 app.component('TodoItem', {
@@ -1626,7 +1626,7 @@ Managing state on `this.$root` and/or using a global event bus can be convenient
 Vuex is the [official flux-like implementation](/guide/state-management.html#official-flux-like-implementation) for Vue, and offers not only a central place to manage state, but also tools for organizing, tracking, and debugging state changes. It integrates well in the Vue ecosystem (including full [Vue DevTools](/guide/installation.html#vue-devtools) support).
 
 <div class="style-example style-example-bad">
-<h4>Bad</h4>
+<h4>Incorrecto</h4>
 
 ```js
 // main.js
@@ -1655,7 +1655,7 @@ const app = createApp({
 </div>
 
 <div class="style-example style-example-good">
-<h4>Good</h4>
+<h4>Correcto</h4>
 
 ```js
 // store/modules/todos.js
