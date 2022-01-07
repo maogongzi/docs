@@ -12,21 +12,21 @@ Este guía es principalmente para usuarios con experiencia previa de Vue 2 quien
 - [Cambios Rotundos](#breaking-changes)
 - [Librerías de Soporte](#supporting-libraries)
 
-## Overview
+## Visión General
 
 <br>
 <iframe src="https://player.vimeo.com/video/440868720" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
-Start learning Vue 3 at [Vue Mastery](https://www.vuemastery.com/courses-path/vue3).
+Empiece a aprender Vue 3 en [Vue Mastery](https://www.vuemastery.com/courses-path/vue3).
 
 ## Inicio Rápido
 
-If you want to quickly try out Vue 3 in a new project:
+Si quiere probar Vue 3 en un nuevo proyecto rápidamente:
 
-- Via CDN: `<script src="https://unpkg.com/vue@next"></script>`
-- In-browser playground on [Codepen](https://codepen.io/yyx990803/pen/OJNoaZL)
-- In-browser Sandbox on [CodeSandbox](https://v3.vue.new)
-- Scaffold via [Vite](https://github.com/vitejs/vite):
+- Mediante CDN: `<script src="https://unpkg.com/vue@next"></script>`
+- _playground_ dentro del navegador en [Codepen](https://codepen.io/yyx990803/pen/OJNoaZL)
+- _Sandbox_ dentro del navegador en [CodeSandbox](https://v3.vue.new)
+- Andamio (scaffold) mediante [Vite](https://github.com/vitejs/vite):
 
   ```bash
   npm init vite hello-vue3 -- --template vue # OR yarn create vite hello-vue3 --template vue
