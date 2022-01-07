@@ -1,16 +1,16 @@
 # Introducción
 
 ::: info
-New to Vue.js? Check out our [Essentials Guide](/guide/introduction.html) to get started.
+¿Usted es nuevo a Vue.js? Consulte nuestra [guía esencial](/guide/introduction.html) para empezar.
 :::
 
-This guide is primarily for users with prior Vue 2 experience who want to learn about the new features and changes in Vue 3. **This is not something you have to read from top to bottom before trying out Vue 3.** While it looks like a lot has changed, a lot of what you know and love about Vue is still the same; but we wanted to be as thorough as possible and provide detailed explanations and examples for every documented change.
+Este guía es principalmente para usuarios con experiencia previa de Vue 2 quien quiere aprender sobre las nuevas características y cambios en Vue 3. **Este no es algo que tiene que leer desde arriba hasta abajo antes de probar Vue 3.** Mientras se ve como que mucho ya han cambiado, muchos de los que ya sabe y a usted le gustan sobre Vue todavía mantienen lo mismo, pero queremos ser lo más minucioso posible y proveemos explicaciones y ejemplos detalladas para cada cambio documentado.
 
-- [Quickstart](#quickstart)
-- [Migration Build](#migration-build)
-- [Notable New Features](#notable-new-features)
-- [Breaking Changes](#breaking-changes)
-- [Supporting Libraries](#supporting-libraries)
+- [Inicio Rápido](#quickstart)
+- [Compilación para Migración](#migration-build)
+- [Nuevas Características Destatadas](#notable-new-features)
+- [Cambios Rotundos](#breaking-changes)
+- [Librerías de Soporte](#supporting-libraries)
 
 ## Overview
 
@@ -19,7 +19,7 @@ This guide is primarily for users with prior Vue 2 experience who want to learn 
 
 Start learning Vue 3 at [Vue Mastery](https://www.vuemastery.com/courses-path/vue3).
 
-## Quickstart
+## Inicio Rápido
 
 If you want to quickly try out Vue 3 in a new project:
 
@@ -40,11 +40,11 @@ If you want to quickly try out Vue 3 in a new project:
   # select vue 3 preset
   ```
 
-## Migration Build
+## Compilación para Migración
 
-If you have an existing Vue 2 project or library that you intend to upgrade to Vue 3, we provide a build of Vue 3 that offers Vue 2 compatible APIs. Check out the [Migration Build](./migration-build.html) page for more details.
+If you have an existing Vue 2 project or library that you intend to upgrade to Vue 3, we provide a build of Vue 3 that offers Vue 2 compatible APIs. Check out the [Compilación para Migración](./migration-build.html) page for more details.
 
-## Notable New Features
+## Nuevas Características Destatadas
 
 Some of the new features to keep an eye on in Vue 3 include:
 
@@ -58,7 +58,7 @@ Some of the new features to keep an eye on in Vue 3 include:
 - [SFC `<style scoped>` can now include global rules or rules that target only slotted content](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0023-scoped-styles-changes.md)
 - [Suspense](/guide/migration/suspense.html) <Badge text="experimental" type="warning" />
 
-## Breaking Changes
+## Cambios Rotundos
 
 The following consists a list of breaking changes from 2.x:
 
@@ -122,7 +122,7 @@ The following consists a list of breaking changes from 2.x:
 - `$destroy` instance method. Users should no longer manually manage the lifecycle of individual Vue components.
 - Global functions `set` and `delete`, and the instance methods `$set` and `$delete`. They are no longer required with proxy-based change detection.
 
-## Supporting Libraries
+## Librerías de Soporte
 
 All of our official libraries and tools now support Vue 3, but some of them are still in beta or release candidate status. You'll find details for the individual libraries below. Most are currently distributed using the `next` dist tag on npm. We intend to switch to `latest` once all the official libraries have compatible, stable versions.
 
