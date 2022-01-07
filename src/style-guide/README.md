@@ -1526,7 +1526,7 @@ button {
 
 Una aplicación Vue ideal es usada con _props_ para abajo y eventos para arriba. Apegarse a esta convención hace que sus componentes sean más fáciles de entender. Sin embargo, hay casos border donde la mutación de _props_ o el uso de `this.$parent` puede simplificar dos componentes que están fuertemente acopladas.
 
-The problem is, there are also many _simple_ cases where these patterns may offer convenience. Beware: do not be seduced into trading simplicity (being able to understand the flow of your state) for short-term convenience (writing less code).
+El problema es que también existen muchos casos _simples_ donde estos patrones pueden ofrecer conveniencia. Cuidado: no se deje seducir por la conveniencia a corto plazo (escribir menos código) sobre la simpicidad (poder entender el flujo de su estado).
 
 <div class="style-example style-example-bad">
 <h4>Incorrecto</h4>
@@ -1617,13 +1617,13 @@ app.component('TodoItem', {
 ```
 </div>
 
-### Non-flux state management <sup data-p="d">utilizar con precaución</sup>
+### Manejo de estado sin utilizar flux <sup data-p="d">utilizar con precaución</sup>
 
-**[Vuex](https://next.vuex.vuejs.org/) should be preferred for global state management, instead of `this.$root` or a global event bus.**
+**Se debe preferir el uso de [Vuex](https://next.vuex.vuejs.org/) para el manejo del estado global, en vez de `this.$root` u un _event bus_ global.**
 
-Managing state on `this.$root` and/or using a global event bus can be convenient for very simple cases, but it is not appropriate for most applications.
+Manejar el estado en `this.$root` y/u utilizar un _event bus_ global puede ser conveniente para casos simples, pero no son apropiados para la mayoría de las aplicaciones.
 
-Vuex is the [official flux-like implementation](/guide/state-management.html#official-flux-like-implementation) for Vue, and offers not only a central place to manage state, but also tools for organizing, tracking, and debugging state changes. It integrates well in the Vue ecosystem (including full [Vue DevTools](/guide/installation.html#vue-devtools) support).
+Vuex es la [implementación oficial similar a flux](/guide/state-management.html#official-flux-like-implementation) para Vue, y ofrece no solo un lugar central para manejar estado, sino también herramientas para organizar, rastrear y depurar cambios de estado. Se integra bien en el ecosistema de Vue (incluyendo soporte completo de [Vue DevTools](/guide/installation.html#vue-devtools)).
 
 <div class="style-example style-example-bad">
 <h4>Incorrecto</h4>
@@ -1764,8 +1764,8 @@ $color-priority-d: #3f536d;
 
 h3 {
   a.header-anchor {
-    // as we have too many h3 elements on this page, set the anchor to be always visible
-    // to make them stand out more from paragraph texts.
+    // Ya que tenemos demasiados elementos h3 en esta página, establecemos que el
+    // anclaje pueda ser siempre visible, así que puedan destacarse entre los textos del párrafo.
     opacity: 1; 
   }
 
