@@ -8,7 +8,7 @@ Este guía es principalmente para usuarios con experiencia previa de Vue 2 quien
 
 - [Inicio Rápido](#quickstart)
 - [Compilación para Migración](#migration-build)
-- [Nuevas Características Destatadas](#notable-new-features)
+- [Nuevas Características Destacadas](#notable-new-features)
 - [Cambios Rotundos](#breaking-changes)
 - [Librerías de Soporte](#supporting-libraries)
 
@@ -44,7 +44,7 @@ If you want to quickly try out Vue 3 in a new project:
 
 If you have an existing Vue 2 project or library that you intend to upgrade to Vue 3, we provide a build of Vue 3 that offers Vue 2 compatible APIs. Check out the [Compilación para Migración](./migration-build.html) page for more details.
 
-## Nuevas Características Destatadas
+## Nuevas Características Destacadas
 
 Some of the new features to keep an eye on in Vue 3 include:
 
