@@ -172,7 +172,7 @@ Vea la [Guía de Redacción de Documentación de Vue](https://v3.vuejs.org/guide
 1. Clone este repositorio
 
 ```bash
-git clone git@github.com:vuejs/docs.git
+git clone https://github.com/vuejs/docs.git
 ```
 
 2. Instale las dependencias
