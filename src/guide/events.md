@@ -172,7 +172,7 @@ Para solucionar este problema, Vue proporciona **modificadores de eventos** para
 ```
 
 ::: tip
-El orden es importante cuando se utilizan modificadores porque el código relevante se genera en el mismo orden. Por lo tanto, el uso de `v-on: click.prevent.self` evitará **todos los clics** mientras que `v-on: click.self.prevent` solo evitará clics en el elemento de sí mismo.
+El orden es importante cuando se utilizan modificadores porque el código relevante se genera en el mismo orden. Por lo tanto, el uso de `@click.prevent.self` evitará **todas las acciones por defecto de clics en el elemento de sí mismo y en sus elementos hijo** mientras que `@click.self.prevent` solo evitará la acción por defecto de clics en el elemento de sí mismo.
 :::
 
 ```html

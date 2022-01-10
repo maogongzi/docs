@@ -38,7 +38,7 @@ Las llaves dobles interpretan los datos como texto plano, no como HTML. Para obt
 El contenido de la etiqueta `span` será reemplazado con el valor de la propiedad `rawHtml`, interpretado como HTML plano, ignorando las vinculaciones de datos. Debe notar que no puede utilizar `v-html` para componer plantillas parciales porque Vue no es un motor de plantillas basado en cadenas de caracteres. En su lugar, los componentes son preferidos como la unidad fundamental para la reutilización y composición de interfaces de usuario.
 
 ::: tip
-Renderizar dinámicamente HTML arbitrario en su sitio web puede ser muy peligroso porque puede llevar fácilmente a [Vulnerabilidades XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Solo utilice la interpolación de HTML en contenido de confianza y **nunca** en contenido proporcionado por el usuario
+Renderizar dinámicamente HTML arbitrario en su sitio web puede ser muy peligroso porque puede llevar fácilmente a [vulnerabilidades XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Solo utilice la interpolación de HTML en contenido de confianza y **nunca** en contenido proporcionado por el usuario.
 :::
 
 ### Atributos
@@ -144,7 +144,7 @@ Usted verá luego otros ejemplos de modificadores, [para `v-on`](events.md#event
 
 ## Abreviaturas de las Directivas
 
-El prefijo `v-` sirve como una señal para identificar los atributos específicos de Vue en sus plantillas. Esto es útil cuando está utilizando Vue.js para aplicar un comportamiento dinámico a un código existente, pero se puede sentir verboso en algunas directivas utilizadas frecuentemente. Al mismo tiempo, la necesidad para el prefijo `v-` se vuelve menos importante cuando está construyendo una [SPA](https://en.wikipedia.org/wiki/Single-page_application), donde Vue maneja cada plantilla. Por lo tanto, Vue provee abreviaturas para las directivas más utilizadas, `v-bind` y `v-on`:
+El prefijo `v-` sirve como una señal para identificar los atributos específicos de Vue en sus plantillas. Esto es útil cuando está utilizando Vue.js para aplicar un comportamiento dinámico a un código existente, pero se puede sentir verboso en algunas directivas utilizadas frecuentemente. Al mismo tiempo, la necesidad para el prefijo `v-` se vuelve menos importante cuando está construyendo una [SPA](https://en.wikipedia.org/wiki/Single-page_application), donde Vue maneja cada plantilla. Por lo tanto, Vue provee abreviaturas especiales para las dos directivas más utilizadas, `v-bind` y `v-on`:
 
 ### `v-bind` Shorthand
 
