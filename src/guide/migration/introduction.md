@@ -97,51 +97,51 @@ El siguiente consiste una lista de cambios rotundos desde 2.x:
 
 ### Otros cambios minores
 
-- The `destroyed` lifecycle option has been renamed to `unmounted`
-- The `beforeDestroy` lifecycle option has been renamed to `beforeUnmount`
-- [Props `default` factory function no longer has access to `this` context](/guide/migration/props-default-this.html)
-- [Custom directive API changed to align with component lifecycle and `binding.expression` removed](/guide/migration/custom-directives.html)
-- [The `data` option should always be declared as a function](/guide/migration/data-option.html)
-- [The `data` option from mixins is now merged shallowly](/guide/migration/data-option.html#mixin-merge-behavior-change)
-- [Attributes coercion strategy changed](/guide/migration/attribute-coercion.html)
-- [Some transition classes got a rename](/guide/migration/transition.html)
-- [`<TransitionGroup>` now renders no wrapper element by default](/guide/migration/transition-group.html)
-- [When watching an array, the callback will only trigger when the array is replaced. If you need to trigger on mutation, the `deep` option must be specified.](/guide/migration/watch.html)
-- `<template>` tags with no special directives (`v-if/else-if/else`, `v-for`, or `v-slot`) are now treated as plain elements and will result in a native `<template>` element instead of rendering its inner content.
-- [Mounted application does not replace the element it's mounted to](/guide/migration/mount-changes.html)
-- [Lifecycle `hook:` events prefix changed to `vnode-`](/guide/migration/vnode-lifecycle-events.html)
+- La opción de ciclo de vida `destroyed` se ha renombrado a `unmounted`
+- La opción de ciclo de vida `beforeDestroy` se ha renombrado a `beforeUnmount`
+- [La función de factoría de _props_ `default` ya no tiene acceso al contexto `this`](/guide/migration/props-default-this.html)
+- [Se ha cambiado la API de directiva personalizada para alinearse con ciclo de vida de componentes y se ha eliminado `binding.expression`](/guide/migration/custom-directives.html)
+- [La opción `data` siempre debe ser declarada como una función](/guide/migration/data-option.html)
+- [La opción `data` de los _mixines_ ahora se fusionan superficialmente (shallowly)](/guide/migration/data-option.html#mixin-merge-behavior-change)
+- [Se ha cambiado la estrategia de coación de atributos](/guide/migration/attribute-coercion.html)
+- [Se han renombrado unas clases de transición](/guide/migration/transition.html)
+- [`<TransitionGroup>` ahora no renderiza elemento de envoltorio por defecto](/guide/migration/transition-group.html)
+- [Al observar una matriz, el callback solo será disparado cuando la matriz sea reemplazada. Si necesita dispararlo en mutación, debe especificar la opción `deep`.](/guide/migration/watch.html)
+- Las etiquetas `<template>` sin ninguna directiva especial (`v-if/else-if/else`, `v-for`, o `v-slot`) ahora son tratadas como elementos planos y resultarán en un elemento nativo `<template>` en vez de renderizar el contenido interior de sí mísmo.
+- [Una aplicación montada no reemplaza el elemento al cual está montado](/guide/migration/mount-changes.html)
+- [Los eventos de ciclo de vida prefijados con `hook:` ahora utilizan el prefijo `vnode-`](/guide/migration/vnode-lifecycle-events.html)
 
-### Removed APIs
+### APIs eliminados
 
-- [`keyCode` support as `v-on` modifiers](/guide/migration/keycode-modifiers.html)
-- [$on, $off and \$once instance methods](/guide/migration/events-api.html)
-- [Filters](/guide/migration/filters.html)
-- [Inline templates attributes](/guide/migration/inline-template-attribute.html)
-- [`$children` instance property](/guide/migration/children.html)
-- [`propsData` option](/guide/migration/props-data.html)
-- `$destroy` instance method. Users should no longer manually manage the lifecycle of individual Vue components.
-- Global functions `set` and `delete`, and the instance methods `$set` and `$delete`. They are no longer required with proxy-based change detection.
+- [`keyCode` como modificadores de `v-on`](/guide/migration/keycode-modifiers.html)
+- [métodos de instancias $on, $off and \$once](/guide/migration/events-api.html)
+- [Filtros](/guide/migration/filters.html)
+- [Atributos de plantillas en líneas](/guide/migration/inline-template-attribute.html)
+- [La propiedad de instancia `$children`](/guide/migration/children.html)
+- [La opción `propsData`](/guide/migration/props-data.html)
+- El método de instancia `$destroy`. Los usuarios ya no deberían manejar el ciclo de vida de componentes Vue individuales manualmente.
+- Las funciones globales `set` y `delete`, y los métodos de instancias `$set` y `$delete`. Ya no son requeridos con la detección de cambios basado de _proxy_.
 
 ## Librerías de Soporte
 
-All of our official libraries and tools now support Vue 3, but some of them are still in beta or release candidate status. You'll find details for the individual libraries below. Most are currently distributed using the `next` dist tag on npm. We intend to switch to `latest` once all the official libraries have compatible, stable versions.
+Todas las liberías y herramientas oficiales nuestras ahora soportan Vue 3, pero algunos de ellas son todavía en fase _beta_ o versión candidata. Puede encontrar detalles para las librerías individuales abajo. La mayoría ahora son distribuidas utilizando la etiqueta de distribución `next` en _npm_. Intentamos cambiar a `latest` una vez que todas las librerías oficiales sean versiones compatibles y estables.
 
 ### Vue CLI
 
 <a href="https://www.npmjs.com/package/@vue/cli" target="_blank" noopener noreferrer><img src="https://img.shields.io/npm/v/@vue/cli"></a>
 
-As of v4.5.0, `vue-cli` now provides the built-in option to choose Vue 3 when creating a new project. You can upgrade `vue-cli` and run `vue create` to create a Vue 3 project today.
+Desde v4.5.0, `vue-cli` ahora provee la opción integrada para elegir Vue 3 cuando se cree un nuevo proyecto. Hoy puede actualizar `vue-cli` y ejecutar `vue create` para crear un proyecto de Vue 3.
 
-- [Documentation](https://cli.vuejs.org/)
+- [Documentación](https://cli.vuejs.org/)
 - [GitHub](https://github.com/vuejs/vue-cli)
 
 ### Vue Router
 
 <a href="https://www.npmjs.com/package/vue-router/v/next" target="_blank" noopener noreferrer><img src="https://img.shields.io/npm/v/vue-router/next.svg"></a>
 
-Vue Router 4.0 provides Vue 3 support and has a number of breaking changes of its own. Check out its [migration guide](https://next.router.vuejs.org/guide/migration/) for full details.
+Vue Router 4.0 provee soporte para Vue 3 y tiene un número de cambios rotundos propios. Echa una vistazo a su [guía de migración](https://next.router.vuejs.org/guide/migration/) para más detalles.
 
-- [Documentation](https://next.router.vuejs.org/)
+- [Documentación](https://next.router.vuejs.org/)
 - [GitHub](https://github.com/vuejs/vue-router-next)
 - [RFCs](https://github.com/vuejs/rfcs/pulls?q=is%3Apr+is%3Amerged+label%3Arouter)
 
@@ -149,28 +149,28 @@ Vue Router 4.0 provides Vue 3 support and has a number of breaking changes of it
 
 <a href="https://www.npmjs.com/package/vuex/v/next" target="_blank" noopener noreferrer><img src="https://img.shields.io/npm/v/vuex/next.svg"></a>
 
-Vuex 4.0 provides Vue 3 support with largely the same API as 3.x. The only breaking change is [how the plugin is installed](https://next.vuex.vuejs.org/guide/migrating-to-4-0-from-3-x.html#breaking-changes).
+Vuex 4.0 provee soporte para Vue 3 con la misma API como 3.x en gran medida. El sólo cambio rotundo es [cómo se instala el plugin](https://next.vuex.vuejs.org/guide/migrating-to-4-0-from-3-x.html#breaking-changes).
 
-- [Documentation](https://next.vuex.vuejs.org/)
+- [Documentación](https://next.vuex.vuejs.org/)
 - [GitHub](https://github.com/vuejs/vuex/tree/4.0)
 
-### Devtools Extension
+### Extenciones para Devtools
 
-We are working on a new version of the Devtools with a new UI and refactored internals to support multiple Vue versions. The new version is currently in beta and only supports Vue 3 (for now). Vuex and Router integration is also work in progress.
+Estamos trabajando sobre una nueva versión de Devtools con una nueva interfaz de usuario y las internales refactorizadas para soportar múltiples versiones de Vue. Actualmente la nueva versión es en fase _beta_ y solo soporta Vue 3 (para ahora). La integración entre Vuex y Router es también trabajo en proceso.
 
-- For Chrome: [Install from Chrome web store](https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg?hl=en)
+- Para Chrome: [Instalarlo desde Chrome web store](https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg?hl=en)
 
-  - Note: the beta channel may conflict with the stable version of devtools so you may need to temporarily disable the stable version for the beta channel to work properly.
+  - Note: el canal beta podría tener conflictos con la versión estable de devtools, por lo tanto, podría necesitar temporalmente deshablitar la versión estable para que se funcione bien el canal beta.
 
-- For Firefox: [Download the signed extension](https://github.com/vuejs/vue-devtools/releases/tag/v6.0.0-beta.20) (`.xpi` file under Assets)
+- Para Firefox: [Descargar la extención firmada](https://github.com/vuejs/vue-devtools/releases/tag/v6.0.0-beta.20) (archivo `.xpi` en _Assets_)
 
-### IDE Support
+### Soporte de IDE
 
-It is recommended to use [VSCode](https://code.visualstudio.com/) with our official extension [Volar](https://github.com/johnsoncodehk/volar), which provides comprehensive IDE support for Vue 3.
+Es recomendado utilizar [VSCode](https://code.visualstudio.com/) con nuestra extención oficial [Volar](https://github.com/johnsoncodehk/volar), que provee soporte de IDE comprehensivo para Vue 3.
 
-### Other Projects
+### Otros Proyectos
 
-| Project               | npm                           | Repo                 |
+| Proyecto               | npm                           | Repo                |
 | --------------------- | ----------------------------- | -------------------- |
 | @vue/babel-plugin-jsx | [![rc][jsx-badge]][jsx-npm]   | [[GitHub][jsx-code]] |
 | eslint-plugin-vue     | [![ga][epv-badge]][epv-npm]   | [[GitHub][epv-code]] |
@@ -205,5 +205,5 @@ It is recommended to use [VSCode](https://code.visualstudio.com/) with our offic
 [rpv-code]: https://github.com/vuejs/rollup-plugin-vue/tree/next
 
 ::: info
-For additional information on Vue 3 compatibility with libraries and plugins, be sure to check out [this issue in awesome-vue](https://github.com/vuejs/awesome-vue/issues/3544).
+Para información adicional sobre la compatibilidad de Vue 3 con librerías y plugins, asegúrese de echar una vistazo a [este problema en awesome-vue](https://github.com/vuejs/awesome-vue/issues/3544).
 :::
