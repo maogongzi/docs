@@ -1,24 +1,24 @@
-# Migration Build
+# Compilación para Migración
 
-## Overview
+## Visión General
 
-`@vue/compat` (aka "the migration build") is a build of Vue 3 that provides configurable Vue 2 compatible behavior.
+`@vue/compat` (también conocido como "la compilación para migración") es una compilación de Vue 3 que provea comportamientos configurables compatibles con Vue.
 
-The migration build runs in Vue 2 mode by default - most public APIs behave exactly like Vue 2, with only a few exceptions. Usage of features that have changed or been deprecated in Vue 3 will emit runtime warnings. A feature's compatibility can also be enabled/disabled on a per-component basis.
+La compilación para migración ejecuta en modo de Vue 2 por defecto, la mayor parte de las APIs públicas se comportan exactamente lo mismo como Vue 2, con solo unas excepciones. Los usos de características que han cambiado o sido deprecados en Vue 3 resultarán advertencias en tiempo de ejecución. La compatibilidad de una característica puede también ser habilitado/deshabilitado sobre una base de por cada componente.
 
-### Intended Use Cases
+### Casos de usuario destinados
 
-- Upgrading a Vue 2 application to Vue 3 (with [limitations](#known-limitations))
-- Migrating a library to support Vue 3
-- For experienced Vue 2 developers who have not tried Vue 3 yet, the migration build can be used in place of Vue 3 to help learn the difference between versions.
+- Actualizar una aplicación de Vue 2 a Vue 3 (con [limitaciones](#known-limitations))
+- Migrar una librería para soportar Vue 3
+- Para los desarrolladores experimentados de Vue 2 que no han probado Vue 3 todavía, la compilación de migración puede ser utilizada en lugar de Vue 3 para ayudar a aprender la diferencia entre las versiones.
 
-### Known Limitations
+### Limitaciones Conocidas
 
-While we've tried hard to make the migration build mimic Vue 2 behavior as much as possible, there are some limitations that may prevent your app from being eligible for upgrading:
+Mientras nos hemos esforzado mucho para hacer que la compilación de migración pueda imitar el comportamiento de Vue 2 lo más posible, hay unas limitaciones que puedan prevenir su aplicación de ser elegible para actualización:
 
-- Dependencies that rely on Vue 2 internal APIs or undocumented behavior. The most common case is usage of private properties on `VNodes`. If your project relies on component libraries like [Vuetify](https://vuetifyjs.com/en/), [Quasar](https://quasar.dev/) or [ElementUI](https://element.eleme.io/#/en-US), it is best to wait for their Vue 3 compatible versions.
+- Dependencias que dependen de las APIs internales de Vue 2 o los comportamientos no documentados. Lo más común caso es el uso de propiedades privadas en `VNodes`. Si su proyecto depende de librerías de componentes como [Vuetify](https://vuetifyjs.com/en/), [Quasar](https://quasar.dev/) u [ElementUI](https://element.eleme.io/#/en-US), lo mejor es esperar su versión compatible con Vue 3.
 
-- Internet Explorer 11 support: [Vue 3 has officially dropped the plan for IE11 support](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0038-vue3-ie11-support.md). If you still need to support IE11 or below, you will have to stay on Vue 2.
+- El soporte para Internet Explorer 11: [Vu3 ha abandonado oficialmente el plan de soportar IE11](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0038-vue3-ie11-support.md). Si todavía necesita soporte para IE11 o bajo, debería quedarse con Vue 2.
 
 - Server-side rendering: the migration build can be used for SSR, but migrating a custom SSR setup is much more involved. The general idea is replacing `vue-server-renderer` with [`@vue/server-renderer`](https://github.com/vuejs/vue-next/tree/master/packages/server-renderer). Vue 3 no longer provides a bundle renderer and it is recommended to use Vue 3 SSR with [Vite](https://vitejs.dev/guide/ssr.html). If you are using [Nuxt.js](https://nuxtjs.org/), you can try [Nuxt Bridge, a Nuxt.js 2 to 3 compatibility layer](https://v3.nuxtjs.org/getting-started/bridge/). For complex, production projects, it is probably best to wait for [Nuxt 3 (currently in beta)](https://v3.nuxtjs.org/getting-started/introduction).
 
