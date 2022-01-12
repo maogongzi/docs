@@ -29,73 +29,73 @@ Si quiere probar Vue 3 en un nuevo proyecto rápidamente:
 - Andamio (scaffold) mediante [Vite](https://github.com/vitejs/vite):
 
   ```bash
-  npm init vite hello-vue3 -- --template vue # OR yarn create vite hello-vue3 --template vue
+  npm init vite hello-vue3 -- --template vue # O yarn create vite hello-vue3 --template vue
   ```
 
 - Scaffold via [vue-cli](https://cli.vuejs.org/):
 
   ```bash
-  npm install -g @vue/cli # OR yarn global add @vue/cli
+  npm install -g @vue/cli # O yarn global add @vue/cli
   vue create hello-vue3
-  # select vue 3 preset
+  # seleccionar el preajuste vue 3
   ```
 
 ## Compilación para Migración
 
-If you have an existing Vue 2 project or library that you intend to upgrade to Vue 3, we provide a build of Vue 3 that offers Vue 2 compatible APIs. Check out the [Compilación para Migración](./migration-build.html) page for more details.
+Si tiene un proyecto o librería existente de Vue 2 que intente actualizar a Vue 3, proveemos una compilación de Vue 3 que ofrezca APIs compatibles con Vue 2. Echa una vistazo a la página [compilación para migración](./migration-build.html) para más detalles.
 
 ## Nuevas Características Destacadas
 
-Some of the new features to keep an eye on in Vue 3 include:
+Algunas de las nuevas características para ver en Vue 3 incluyen:
 
-- [Composition API](/guide/composition-api-introduction.html)
+- [API de Composición](/guide/composition-api-introduction.html)
 - [Teleport](/guide/teleport.html)
-- [Fragments](/guide/migration/fragments.html)
-- [Emits Component Option](/guide/component-custom-events.html)
-- [`createRenderer` API from `@vue/runtime-core`](https://github.com/vuejs/vue-next/tree/master/packages/runtime-core) to create custom renderers
-- [SFC Composition API Syntax Sugar (`<script setup>`)](/api/sfc-script-setup.html)
-- [SFC State-driven CSS Variables (`v-bind` in `<style>`)](/api/sfc-style.html#state-driven-dynamic-css)
-- [SFC `<style scoped>` can now include global rules or rules that target only slotted content](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0023-scoped-styles-changes.md)
+- [Fragmentos](/guide/migration/fragments.html)
+- [Opción de componentes _emits_](/guide/component-custom-events.html)
+- [API `createRenderer` de `@vue/runtime-core`](https://github.com/vuejs/vue-next/tree/master/packages/runtime-core) para crear renderizadores personalizados
+- [Azúcar sintaxis de API de composición de SFC (`<script setup>`)](/api/sfc-script-setup.html)
+- [Variables CSS impulsados por estados en SFC (`v-bind` en `<style>`)](/api/sfc-style.html#state-driven-dynamic-css)
+- [`<style scoped>` de SFC ahora puede incluir reglas globales o reglas que solo se dirigen a contenido de _slot_](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0023-scoped-styles-changes.md)
 - [Suspense](/guide/migration/suspense.html) <Badge text="experimental" type="warning" />
 
 ## Cambios Rotundos
 
-The following consists a list of breaking changes from 2.x:
+El siguiente consiste una lista de cambios rotundos desde 2.x:
 
-### Global API
+### API Global
 
-- [Global Vue API is changed to use an application instance](/guide/migration/global-api.html)
-- [Global and internal APIs have been restructured to be tree-shakable](/guide/migration/global-api-treeshaking.html)
+- [API Global de Vue se ha cambiado para utilizar una instancia de aplicación](/guide/migration/global-api.html)
+- [APIs Globales y internales se han reestructurado para ser capaz para _tree-shake_](/guide/migration/global-api-treeshaking.html)
 
-### Template Directives
+### Directivas de Plantillas
 
-- [`v-model` usage on components has been reworked, replacing `v-bind.sync`](/guide/migration/v-model.html)
-- [`key` usage on `<template v-for>` and non-`v-for` nodes has changed](/guide/migration/key-attribute.html)
-- [`v-if` and `v-for` precedence when used on the same element has changed](/guide/migration/v-if-v-for.html)
-- [`v-bind="object"` is now order-sensitive](/guide/migration/v-bind.html)
-- [`v-on:event.native` modifier has been removed](./v-on-native-modifier-removed.md)
-- [`ref` inside `v-for` no longer register an array of refs](/guide/migration/array-refs.html)
+- [El uso de `v-model` en componentes han sido rehecho, reemplazando `v-bind.sync`](/guide/migration/v-model.html)
+- [El uso de `key` en `<template v-for>` y nodos non-`v-for` ha cambiado](/guide/migration/key-attribute.html)
+- [La precedencia de `v-if` y `v-for` cuando se utilizan en el mismo elemento ha cambiado](/guide/migration/v-if-v-for.html)
+- [`v-bind="object"` ahora es sensible al orden](/guide/migration/v-bind.html)
+- [El modificador `v-on:event.native` se ha eliminado](./v-on-native-modifier-removed.md)
+- [El `ref` dentro de `v-for` ya no registra una matriz de _refs_](/guide/migration/array-refs.html)
 
-### Components
+### Componentes
 
-- [Functional components can only be created using a plain function](/guide/migration/functional-components.html)
-- [`functional` attribute on single-file component (SFC) `<template>` and `functional` component option are deprecated](/guide/migration/functional-components.html)
-- [Async components now require `defineAsyncComponent` method to be created](/guide/migration/async-components.html)
-- [Component events should now be declared with the `emits` option](./emits-option.md)
+- [Componentes funcionales solo pueden ser creados utilizando una función plana](/guide/migration/functional-components.html)
+- [El atributo `functional` en `<template>` de un componente de un solo archivo (SFC) y la opción de componente `functional` son deprecados](/guide/migration/functional-components.html)
+- [Ahora se requiere el método `defineAsyncComponent` para crear componentes asíncronos](/guide/migration/async-components.html)
+- [Los eventos de componentes ahora deben ser declarados con la opción `emits`](./emits-option.md)
 
-### Render Function
+### Función Render
 
-- [Render function API changed](/guide/migration/render-function-api.html)
-- [`$scopedSlots` property is removed and all slots are exposed via `$slots` as functions](/guide/migration/slots-unification.html)
-- [`$listeners` has been removed / merged into `$attrs`](./listeners-removed)
-- [`$attrs` now includes `class` and `style` attributes](./attrs-includes-class-style.md)
+- [Se ha cambiado la API de función render](/guide/migration/render-function-api.html)
+- [La propiedad `$scopedSlots` se ha eliminado y todos los _slots_ son expuestos mediante `$slots` como funciones](/guide/migration/slots-unification.html)
+- [La propiedad `$listeners` se ha eliminado / fusionado con `$attrs`](./listeners-removed)
+- [La propiedad `$attrs` ahora incluye los atributos `class` y `style`](./attrs-includes-class-style.md)
 
-### Custom Elements
+### Elementos Personalizados
 
-- [Custom element checks are now performed during template compilation](/guide/migration/custom-elements-interop.html)
-- [Special `is` attribute usage is restricted to the reserved `<component>` tag only](/guide/migration/custom-elements-interop.html#customized-built-in-elements)
+- [Las verificaciones de elementos personalizados ahora son realizadas durante el proceso de compilación de plantilla](/guide/migration/custom-elements-interop.html)
+- [El uso del artibuto especial `is` es limitado a la etiqueta reservada `<component>` solamente](/guide/migration/custom-elements-interop.html#customized-built-in-elements)
 
-### Other Minor Changes
+### Otros cambios minores
 
 - The `destroyed` lifecycle option has been renamed to `unmounted`
 - The `beforeDestroy` lifecycle option has been renamed to `beforeUnmount`
