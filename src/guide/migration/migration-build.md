@@ -1,54 +1,54 @@
-# Migration Build
+# Compilación para Migración
 
-## Overview
+## Visión General
 
-`@vue/compat` (aka "the migration build") is a build of Vue 3 that provides configurable Vue 2 compatible behavior.
+`@vue/compat` (también conocido como "la compilación para migración") es una compilación de Vue 3 que provea comportamientos configurables compatibles con Vue.
 
-The migration build runs in Vue 2 mode by default - most public APIs behave exactly like Vue 2, with only a few exceptions. Usage of features that have changed or been deprecated in Vue 3 will emit runtime warnings. A feature's compatibility can also be enabled/disabled on a per-component basis.
+La compilación para migración ejecuta en modo de Vue 2 por defecto, la mayor parte de las APIs públicas se comportan exactamente lo mismo como Vue 2, con solo unas excepciones. Los usos de características que han cambiado o sido deprecados en Vue 3 resultarán advertencias en tiempo de ejecución. La compatibilidad de una característica puede también ser habilitado/deshabilitado sobre una base de por cada componente.
 
-### Intended Use Cases
+### Casos de usuario destinados
 
-- Upgrading a Vue 2 application to Vue 3 (with [limitations](#known-limitations))
-- Migrating a library to support Vue 3
-- For experienced Vue 2 developers who have not tried Vue 3 yet, the migration build can be used in place of Vue 3 to help learn the difference between versions.
+- Actualizar una aplicación de Vue 2 a Vue 3 (con [limitaciones](#known-limitations))
+- Migrar una librería para soportar Vue 3
+- Para los desarrolladores experimentados de Vue 2 que no han probado Vue 3 todavía, la compilación de migración puede ser utilizada en lugar de Vue 3 para ayudar a aprender la diferencia entre las versiones.
 
-### Known Limitations
+### Limitaciones Conocidas
 
-While we've tried hard to make the migration build mimic Vue 2 behavior as much as possible, there are some limitations that may prevent your app from being eligible for upgrading:
+Mientras nos hemos esforzado mucho para hacer que la compilación de migración pueda imitar el comportamiento de Vue 2 lo más posible, hay unas limitaciones que puedan prevenir su aplicación de ser elegible para actualización:
 
-- Dependencies that rely on Vue 2 internal APIs or undocumented behavior. The most common case is usage of private properties on `VNodes`. If your project relies on component libraries like [Vuetify](https://vuetifyjs.com/en/), [Quasar](https://quasar.dev/) or [ElementUI](https://element.eleme.io/#/en-US), it is best to wait for their Vue 3 compatible versions.
+- Dependencias que dependen de las APIs internales de Vue 2 o los comportamientos no documentados. Lo más común caso es el uso de propiedades privadas en `VNodes`. Si su proyecto depende de librerías de componentes como [Vuetify](https://vuetifyjs.com/en/), [Quasar](https://quasar.dev/) u [ElementUI](https://element.eleme.io/#/en-US), lo mejor es esperar su versión compatible con Vue 3.
 
-- Internet Explorer 11 support: [Vue 3 has officially dropped the plan for IE11 support](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0038-vue3-ie11-support.md). If you still need to support IE11 or below, you will have to stay on Vue 2.
+- El soporte para Internet Explorer 11: [Vu3 ha abandonado oficialmente el plan de soportar IE11](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0038-vue3-ie11-support.md). Si todavía necesita soporte para IE11 o bajo, debería quedarse con Vue 2.
 
-- Server-side rendering: the migration build can be used for SSR, but migrating a custom SSR setup is much more involved. The general idea is replacing `vue-server-renderer` with [`@vue/server-renderer`](https://github.com/vuejs/vue-next/tree/master/packages/server-renderer). Vue 3 no longer provides a bundle renderer and it is recommended to use Vue 3 SSR with [Vite](https://vitejs.dev/guide/ssr.html). If you are using [Nuxt.js](https://nuxtjs.org/), you can try [Nuxt Bridge, a Nuxt.js 2 to 3 compatibility layer](https://v3.nuxtjs.org/getting-started/bridge/). For complex, production projects, it is probably best to wait for [Nuxt 3 (currently in beta)](https://v3.nuxtjs.org/getting-started/introduction).
+- Renderización en el lado del servidor: la compilación de migración puede ser utilizada para SSR, pero se involucra mucho más trabajo para migrar una configuración personalizada de SSR. La idea general es reemplazar `vue-server-renderer` por [`@vue/server-renderer`](https://github.com/vuejs/vue-next/tree/master/packages/server-renderer). Vue 3 ya no provee un renderizador de compilación y es recomendado utilizar Vue 3 SSR con [Vite](https://vitejs.dev/guide/ssr.html). Si está utilizando [Nuxt.js](https://nuxtjs.org/), puede probar [Nuxt Bridge, una capa de compatibilidad entre Nuxt.js 2 y 3](https://v3.nuxtjs.org/getting-started/bridge/). Para proyectos complejos y de producción, es probablemente mejor esperar [Nuxt 3 (ahora en fase beta)](https://v3.nuxtjs.org/getting-started/introduction).
 
-### Expectations
+### Expectativas
 
-Please note that the migration build aims to cover only publicly documented Vue 2 APIs and behavior. If your application fails to run under the migration build due to reliance on undocumented behavior, it is unlikely that we'll tweak the migration build to cater to your specific case. Consider refactoring to remove reliance on the behavior in question instead.
+Por favor tenga en cuenta que la compilación de migración apunta a abarcar solo las APIs y comportamientos de Vue 2 documentadas públicamente. Si su aplicación deja de ejecutar bajo la compilación de migración debido a dependencia de comportamientos que no son documentados, es poco probable que ajustemos la  compilación de migración para satisfacer su caso específico. Considera refactorizarla y quitar la dependencia del comportamiento en cuestión en su lugar.
 
-A word of caution: if your application is large and complex, migration will likely be a challenge even with the migration build. If your app is unfortunately not suitable for upgrade, do note that we are planning to backport Composition API and some other Vue 3 features to the 2.7 release (estimated late Q3 2021).
+Una palabra de precaución: Si su aplicación es grande y compleja, la migración podría ser un desafío incluso con la compilación de migración. Si por desgracia su aplicación no es capaz de actualizar, note que estamos planeando de adaptar la API de composition y unas otras características de Vue 3 a la versión 2.7 (estimado en tarde Q3 2021)
 
-If you do get your app running on the migration build, you **can** ship it to production before the migration is complete. Although there is a small performance/size overhead, it should not noticeably affect production UX. You may have to do so when you have dependencies that rely on Vue 2 behavior, and cannot be upgraded/replaced.
+Si realiza que su aplicación funcione en la compilación de migración, **puede** aplicarla en producción antes de que se complete la migración. Si bien hay un poco de sobrecarga de rendimiento/tamaño, no podría afectar notablemente la experiencia de usuario de producción. Tendría que hacerlo cuando tiene dependencias que dependen de comportamientos de Vue 2, y no pueden ser actualizadas/reemplazadas.
 
-The migration build will be provided starting with 3.1, and will continue to be published alongside the 3.2 release line. We do plan to eventually stop publishing the migration build in a future minor version (no earlier than EOY 2021), so you should still aim to switch to the standard build before then.
+La compilación de migración será proporcionada partiendo de 3.1, y será publicada continualmente junto a la línea de publicación de 3.2. Planeamos de eventualmente dejar de publicar la compilación de migración en una versión minor del futuro (no antes del fin de 2021), así que debería todavía apuntar a cambiar a la compilación estándar antes de esa fecha.
 
-## Upgrade Workflow
+## Flujo de trabajo de actualización
 
-The following workflow walks through the steps of migrating an actual Vue 2 app (Vue HackerNews 2.0) to Vue 3. The full commits can be found [here](https://github.com/vuejs/vue-hackernews-2.0/compare/migration). Note that the actual steps required for your project may vary, and these steps should be treated as general guidance rather than strict instructions.
+El siguiente flujo de trabajo pasea por los pasos de migrar una aplicación actual de Vue 2 (Vue HackerNews 2.0) a Vue 3. Los _commits_ completos pueden encontrarse [aquí](https://github.com/vuejs/vue-hackernews-2.0/compare/migration). Note que los pasos actuales requeridos para su proyecto pueden variar, y estos pasos deberían tratarse como orientación general en vez de instrucciones estrictos.
 
-### Preparations
+### Preparaciones
 
-- If you are still using the [deprecated named / scoped slot syntax](https://vuejs.org/v2/guide/components-slots.html#Deprecated-Syntax), update it to the latest syntax first (which is already supported in 2.6).
+- Si todavía está utilizando [la sintaxis obsoleta de slot nombrado / con alcance](https://vuejs.org/v2/guide/components-slots.html#Deprecated-Syntax), actualízala a la sintaxis última primero (lo que ya es soportada en 2.6).
 
-### Installation
+### Instalación
 
-1. Upgrade tooling if applicable.
+1. Actualizar las herramientas si es aplicable.
 
-   - If using custom webpack setup: Upgrade `vue-loader` to `^16.0.0`.
-   - If using `vue-cli`: upgrade to the latest `@vue/cli-service` with `vue upgrade`
-   - (Alternative) migrate to [Vite](https://vitejs.dev/) + [vite-plugin-vue2](https://github.com/underfin/vite-plugin-vue2). [[Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/565b948919eb58f22a32afca7e321b490cb3b074)]
+   - Si se utiliza configuración personalizada de webpack: actualiza `vue-loader` a `^16.0.0`.
+   - Si se utiliza `vue-cli`: actualiza `@vue/cli-service` hasta la última versión con `vue upgrade`
+   - (Alternativo) migrar a [Vite](https://vitejs.dev/) + [vite-plugin-vue2](https://github.com/underfin/vite-plugin-vue2).  [[commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/565b948919eb58f22a32afca7e321b490cb3b074)]
 
-2. In `package.json`, update `vue` to 3.1, install `@vue/compat` of the same version, and replace `vue-template-compiler` (if present) with `@vue/compiler-sfc`:
+2. En `package.json`, actualiza `vue` a 3.1, instala `@vue/compat` de la misma versión, y reemplaza `vue-template-compiler` (si existe) por `@vue/compiler-sfc`:
 
    ```diff
    "dependencies": {
@@ -63,11 +63,11 @@ The following workflow walks through the steps of migrating an actual Vue 2 app 
    }
    ```
 
-   [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/14f6f1879b43f8610add60342661bf915f5c4b20)
+   [commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/14f6f1879b43f8610add60342661bf915f5c4b20)
 
-3. In the build setup, alias `vue` to `@vue/compat` and enable compat mode via Vue compiler options.
+3. En la configuración de compilación, aplica alias `vue` a `@vue/compat` y habilita el modo compat mediante opciones de compilador de Vue.
 
-   **Example Configs**
+   **Configuración Ejemplo**
 
    <details>
      <summary><b>vue-cli</b></summary>
@@ -98,7 +98,7 @@ The following workflow walks through the steps of migrating an actual Vue 2 app 
    </details>
 
    <details>
-     <summary><b>Plain webpack</b></summary>
+     <summary><b>webpack plano</b></summary>
 
    ```js
    // webpack.config.js
@@ -155,7 +155,7 @@ The following workflow walks through the steps of migrating an actual Vue 2 app 
 
    </details>
 
-4. If you are using TypeScript, you will also need to modify `vue`'s typing to expose the default export (which is no longer present in Vue 3) by adding a `*.d.ts` file with the following:
+4. Si está utilizando TypeScript, también necesita modificar los tipos de `vue` para exponer la exportación por defecto (lo que ya no existe en Vue 3) mediante agregar un archivo `*.d.ts` con el siguiente:
 
    ```ts
    declare module 'vue' {
@@ -166,71 +166,71 @@ The following workflow walks through the steps of migrating an actual Vue 2 app 
    }
    ```
 
-5. At this point, your application may encounter some compile-time errors / warnings (e.g. use of filters). Fix them first. If all compiler warnings are gone, you can also set the compiler to Vue 3 mode.
+5. E este momento, su aplicación podría encontrar unos errores / advertencias de tiempo de compilación (p. ej. el uso de filtros). Corrígelos primero. Si todas advertencias de compilador son eliminadas, puede también establecer el compilador al modo Vue 3.
 
-   [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/b05d9555f6e115dea7016d7e5a1a80e8f825be52)
+   [commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/b05d9555f6e115dea7016d7e5a1a80e8f825be52)
 
-6. After fixing the errors, the app should be able to run if it is not subject to the [limitations](#known-limitations) mentioned above.
+6. Después de corregir los errores, la aplicación debería ser capaz de ejecutarse si no está sujeto a las [limitaciones](#known-limitations) mencionadas arriba.
 
-   You will likely see a LOT of warnings from both the command line and the browser console. Here are some general tips:
+   Es probable que vea MUCHAS advertencias de tanto la línea de comandos como la consola del navegador. Aquí son algunos consejos generales:
 
-   - You can filter for specific warnings in the browser console. It's a good idea to use the filter and focus on fixing one item at a time. You can also use negated filters like `-GLOBAL_MOUNT`.
+   - Puede filtrar por advertencias específicas en la consola del navegador. Es un buen idea utilizar el filtro y enfocarse en corregir una cosa cada vez. Puede también utilizar filtros negados (negated filters) como `-GLOBAL_MOUNT`.
 
-   - You can suppress specific deprecations via [compat configuration](#compat-configuration).
+   - Puede reprimir deprecaciones específicas mediante [configuración de compat](#compat-configuration).
 
-   - Some warnings may be caused by a dependency that you use (e.g. `vue-router`). You can check this from the warning's component trace or stack trace (expanded on click). Focus on fixing the warnings that originate from your own source code first.
+   - Algunas advertencias pueden ser causadas por una dependencia que utiliza (p. ej. `vue-router`). Puede verificar este del seguimiento de componente o seguimiento de pila de la advertencia (expandido al hacer clic). Enfóquese en corregir las advertencias que provienen de su propio código primero.
 
-   - If you are using `vue-router`, note `<transition>` and `<keep-alive>` will not work with `<router-view>` until you upgrade to `vue-router` v4.
+   - Si está utilizando `vue-router`, note que `<transition>` y `<keep-alive>` no funcionarán con `<router-view>` hasta que actualice `vue-router` a versión v4.
 
-7. Update [`<transition>` class names](/guide/migration/transition.html). This is the only feature that does not have a runtime warning. You can do a project-wide search for `.*-enter` and `.*-leave` CSS class names.
+7. Actualizar [nombres de clases de `<transition>`](/guide/migration/transition.html). Este es la sóla característica que no tiene una advertencia de tiempo de ejecución. Puede hacer una búsqueda en su proyecto por nombres de clases de CSS `.*-enter` and `.*-leave`.
 
-   [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/d300103ba622ae26ac26a82cd688e0f70b6c1d8f)
+   [commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/d300103ba622ae26ac26a82cd688e0f70b6c1d8f)
 
-8. Update app entry to use [new global mounting API](/guide/migration/global-api.html#a-new-global-api-createapp).
+8. Actualizar la entrada de aplicación para utilizar [la nueva API global de montaje](/guide/migration/global-api.html#a-new-global-api-createapp).
 
-   [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/a6e0c9ac7b1f4131908a4b1e43641f608593f714)
+   [commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/a6e0c9ac7b1f4131908a4b1e43641f608593f714)
 
-9. [Upgrade `vuex` to v4](https://next.vuex.vuejs.org/guide/migrating-to-4-0-from-3-x.html).
+9. [Actualizar `vuex` a versión v4](https://next.vuex.vuejs.org/guide/migrating-to-4-0-from-3-x.html).
 
-   [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/5bfd4c61ee50f358cd5daebaa584f2c3f91e0205)
+   [commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/5bfd4c61ee50f358cd5daebaa584f2c3f91e0205)
 
-10. [Upgrade `vue-router` to v4](https://next.router.vuejs.org/guide/migration/index.html). If you also use `vuex-router-sync`, you can replace it with a store getter.
+10. [Actualizar `vue-router` a versión v4](https://next.router.vuejs.org/guide/migration/index.html). Si también está utilizando `vuex-router-sync`, puede reemplazarlo con un captador de almacenamiento.
 
-    After the upgrade, to use `<transition>` and `<keep-alive>` with `<router-view>` requires using the new [scoped-slot based syntax](https://next.router.vuejs.org/guide/migration/index.html#router-view-keep-alive-and-transition).
+    Después de la actualización, se requiere utilizar la nueva [sintaxis basada de scoped-slot](https://next.router.vuejs.org/guide/migration/index.html#router-view-keep-alive-and-transition) para utilizar `<transition>` y `<keep-alive>` con `<router-view>`.
 
-    [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/758961e73ac4089890079d4ce14996741cf9344b)
+    [commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/758961e73ac4089890079d4ce14996741cf9344b)
 
-11. Pick off individual warnings. Note some features have conflicting behavior between Vue 2 and Vue 3 - for example, the render function API, or the functional component vs. async component change. To migrate to Vue 3 API without affecting the rest of the application, you can opt-in to Vue 3 behavior on a per-component basis with the [`compatConfig` option](#per-component-config).
+11. Eliminar advertencias individuales. Note que algunas características tienen comportamiento conflicto entre Vue 2 y Vue 3, por ejemplo, la API de función render, o el cambio de componentes funcionales versus componentes asíncronos. Para migrar a la API de Vue 3 sin afectar el resto de la aplicación, puede optar por comportamientos de Vue 3 sobre una base de por componente con la [opción `compatConfig`](#per-component-config).
 
-    [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/d0c7d3ae789be71b8fd56ce79cb4cb1f921f893b)
+    [commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/d0c7d3ae789be71b8fd56ce79cb4cb1f921f893b)
 
-12. When all warnings are fixed, you can remove the migration build and switch to Vue 3 proper. Note you may not be able to do so if you still have dependencies that rely on Vue 2 behavior.
+12. Cuando todas las advertencias son corregidas, puede eliminar la compilación de migración y cambiar a la propia versión de Vue 3. Note que no podría hacer esto si todavía tenga dependencias que dependen de comportamientos de Vue 2.
 
-    [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/9beb45490bc5f938c9e87b4ac1357cfb799565bd)
+    [commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/9beb45490bc5f938c9e87b4ac1357cfb799565bd)
 
-## Compat Configuration
+## Configuración de Compat
 
-### Global Config
+### Configuración Global
 
-Compat features can be disabled individually:
+Las características de _compat_ pueden ser deshabilitadas individualmente:
 
 ```js
 import { configureCompat } from 'vue'
 
-// disable compat for certain features
+// deshabilitar compat para ciertas características
 configureCompat({
   FEATURE_ID_A: false,
   FEATURE_ID_B: false
 })
 ```
 
-Alternatively, the entire application can default to Vue 3 behavior, with only certain compat features enabled:
+Alternativamente, la entera aplicación puede elegir el comportamiento de Vue 3 por defecto, con solo ciertas características de _compat_ habilitadas:
 
 ```js
 import { configureCompat } from 'vue'
 
-// default everything to Vue 3 behavior, and only enable compat
-// for certain features
+// Elige el comportamiento de Vue 3 por defecto para todos, y solo habilita
+// compat para ciertas características
 configureCompat({
   MODE: 3,
   FEATURE_ID_A: true,
@@ -238,105 +238,105 @@ configureCompat({
 })
 ```
 
-### Per-Component Config
+### Configuración per componente
 
-A component can use the `compatConfig` option, which expects the same options as the global `configureCompat` method:
+Un componente puede utilizar la opción `compatConfig`, lo que espera las mismas opciones como el método global `configureCompat`:
 
 ```js
 export default {
   compatConfig: {
-    MODE: 3, // opt-in to Vue 3 behavior for this component only
-    FEATURE_ID_A: true // features can also be toggled at component level
+    MODE: 3, // optar por comportamiento de Vue 3 para solo este componente
+    FEATURE_ID_A: true // las características también pueden alternarse al nivel de componente
   }
   // ...
 }
 ```
 
-### Compiler-specific Config
+### Configuración específicas para el compilador
 
-Features that start with `COMPILER_` are compiler-specific: if you are using the full build (with in-browser compiler), they can be configured at runtime. However if using a build setup, they must be configured via the `compilerOptions` in the build config instead (see example configs above).
+Las características que empiezan con `COMPILER_` son específicas para el compilador: si está utilizando la compilación completa (con compilador en navegador), pueden ser configuradas en tiempo de ejecución. Sin embargo, si se utiliza un paso de compilación, deben ser configuradas mediante la opción `compilerOptions` en la configuración de compilación en su lugar (vea los ejemplos de configuraciones arriba).
 
-## Feature Reference
+## Referencia de Características
 
-### Compatibility Types
+### Tipos de Compatibilidad
 
-- ✔ Fully compatible
-- ◐ Partially Compatible with caveats
-- ⨂ Incompatible (warning only)
-- ⭘ Compat only (no warning)
+- ✔ compatible completamente
+- ◐ paracialmente compatible con advertencias
+- ⨂ incompatible (solo advertencias)
+- ⭘ solo _compat_ (no hay advertencias)
 
 ### Incompatible
 
-> Should be fixed upfront or will likely lead to errors
+> debe ser corregidas por adelantado o será probable resultar en errores
 
-| ID                                    | Type | Description                                                             | Docs                                                                                           |
-| ------------------------------------- | ---- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| GLOBAL_MOUNT_CONTAINER                | ⨂    | Mounted application does not replace the element it's mounted to        | [link](/guide/migration/mount-changes.html)                                                    |
-| CONFIG_DEVTOOLS                       | ⨂    | production devtools is now a build-time flag                            | [link](https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags) |
-| COMPILER_V_IF_V_FOR_PRECEDENCE        | ⨂    | `v-if` and `v-for` precedence when used on the same element has changed | [link](/guide/migration/v-if-v-for.html)                                                       |
-| COMPILER_V_IF_SAME_KEY                | ⨂    | `v-if` branches can no longer have the same key                         | [link](/guide/migration/key-attribute.html#on-conditional-branches)                            |
-| COMPILER_V_FOR_TEMPLATE_KEY_PLACEMENT | ⨂    | `<template v-for>` key should now be placed on `<template>`             | [link](/guide/migration/key-attribute.html#with-template-v-for)                                |
-| COMPILER_SFC_FUNCTIONAL               | ⨂    | `<template functional>` is no longer supported in SFCs                  | [link](/guide/migration/functional-components.html#single-file-components-sfcs)                |
+| ID                                    | Tipo | Descripción                                                              | Documentación                                                                                  |
+| ------------------------------------- | ---- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| GLOBAL_MOUNT_CONTAINER                | ⨂    | La aplicación montada no reemplaza el elemento al que se monte           | [enlace](/guide/migration/mount-changes.html)                                                    |
+| CONFIG_DEVTOOLS                       | ⨂    | La devtools de producción ahora es un indicador de tiempo de compilación | [enlace](https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags) |
+| COMPILER_V_IF_V_FOR_PRECEDENCE        | ⨂    | La precedencia de `v-if` y `v-for` se ha cambiado cuando se utilizan en el mismo elemento | [enlace](/guide/migration/v-if-v-for.html)                                      |
+| COMPILER_V_IF_SAME_KEY                | ⨂    | Las ramas de `v-if` ya no pueden tenel el mismo _key_                    | [enlace](/guide/migration/key-attribute.html#on-conditional-branches)                            |
+| COMPILER_V_FOR_TEMPLATE_KEY_PLACEMENT | ⨂    | La _key_ en `<template v-for>` ahora debe ser puesto en `<template>`     | [enlace](/guide/migration/key-attribute.html#with-template-v-for)                                |
+| COMPILER_SFC_FUNCTIONAL               | ⨂    | `<template functional>` ya no se soporta en SFCs                         | [enlace](/guide/migration/functional-components.html#single-file-components-sfcs)                |
 
-### Partially Compatible with Caveats
+### Parcialmente Compatible con Advertencias
 
-| ID                       | Type | Description                                                                                                                                                                                | Docs                                                                                                          |
+| ID                       | Tipo | Descripción                                                                                                                                                                                | Documentación                                                                                                          |
 | ------------------------ | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
-| CONFIG_IGNORED_ELEMENTS  | ◐    | `config.ignoredElements` is now `config.compilerOptions.isCustomElement` (only in browser compiler build). If using build setup, `isCustomElement` must be passed via build configuration. | [link](/guide/migration/global-api.html#config-ignoredelements-is-now-config-compileroptions-iscustomelement) |
-| COMPILER_INLINE_TEMPLATE | ◐    | `inline-template` removed (compat only supported in browser compiler build)                                                                                                                | [link](/guide/migration/inline-template-attribute.html)                                                       |
-| PROPS_DEFAULT_THIS       | ◐    | props default factory no longer have access to `this` (in compat mode, `this` is not a real instance - it only exposes props, `$options` and injections)                                   | [link](/guide/migration/props-default-this.html)                                                              |
-| INSTANCE_DESTROY         | ◐    | `$destroy` instance method removed (in compat mode, only supported on root instance)                                                                                                       |                                                                                                               |
-| GLOBAL_PRIVATE_UTIL      | ◐    | `Vue.util` is private and no longer available                                                                                                                                              |                                                                                                               |
-| CONFIG_PRODUCTION_TIP    | ◐    | `config.productionTip` no longer necessary                                                                                                                                                 | [link](/guide/migration/global-api.html#config-productiontip-removed)                                         |
-| CONFIG_SILENT            | ◐    | `config.silent` removed                                                                                                                                                                    |                                                                                                               |
+| CONFIG_IGNORED_ELEMENTS  | ◐    | `config.ignoredElements` ahora es `config.compilerOptions.isCustomElement` (solo en la compilación que contiene compilador para el navegador). Si se utiliza paso de compilación, se debe pasar `isCustomElement`  mediante la configuración de compilación. | [enlace](/guide/migration/global-api.html#config-ignoredelements-is-now-config-compileroptions-iscustomelement) |
+| COMPILER_INLINE_TEMPLATE | ◐    | `inline-template` se ha eliminado (_compat_ solo es soportado en la compilación que contiene compilador para el navegador)                                                                                                                | [enlace](/guide/migration/inline-template-attribute.html)                                                       |
+| PROPS_DEFAULT_THIS       | ◐    | La factoría _default_ de _props_ ya no tiene acceso a `this` (en modo compat, `this` no es una instancia real, solo expone _props_, `$options` y inyecciones)                                   | [enlace](/guide/migration/props-default-this.html)                                                              |
+| INSTANCE_DESTROY         | ◐    | El método de instancia `$destroy` se ha eliminado (en modo compat, solo es soportado en la instancia raíz)                                                                                                       |                                                                                                               |
+| GLOBAL_PRIVATE_UTIL      | ◐    | `Vue.util` es privado y ya no es disponible                                                                                                                                              |                                                                                                               |
+| CONFIG_PRODUCTION_TIP    | ◐    | `config.productionTip` ya no es necesario                                                                                                                                                 | [enlace](/guide/migration/global-api.html#config-productiontip-removed)                                         |
+| CONFIG_SILENT            | ◐    | `config.silent` se ha eliminado                                                                                                                                                                    |                                                                                                               |
 
-### Compat only (no warning)
+### Solo _compat_ (no advertencias)
 
-| ID                 | Type | Description                            | Docs                                     |
+| ID                 | Tipo | Descripción                            | Documentación                                     |
 | ------------------ | ---- | -------------------------------------- | ---------------------------------------- |
-| TRANSITION_CLASSES | ⭘    | Transition enter/leave classes changed | [link](/guide/migration/transition.html) |
+| TRANSITION_CLASSES | ⭘    | Se han cambiado clases de entrada/salida de transición | [enlace](/guide/migration/transition.html) |
 
-### Fully Compatible
+### Compatible Completamente
 
-| ID                           | Type | Description                                                           | Docs                                                                                       |
+| ID                           | Tipo | Descripción                                                           | Documentación                                                                                       |
 | ---------------------------- | ---- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| GLOBAL_MOUNT                 | ✔    | new Vue() -> createApp                                                | [link](/guide/migration/global-api.html#mounting-app-instance)                             |
-| GLOBAL_EXTEND                | ✔    | Vue.extend removed (use `defineComponent` or `extends` option)        | [link](/guide/migration/global-api.html#vue-extend-removed)                                |
-| GLOBAL_PROTOTYPE             | ✔    | `Vue.prototype` -> `app.config.globalProperties`                      | [link](/guide/migration/global-api.html#vue-prototype-replaced-by-config-globalproperties) |
-| GLOBAL_SET                   | ✔    | `Vue.set` removed (no longer needed)                                  |                                                                                            |
-| GLOBAL_DELETE                | ✔    | `Vue.delete` removed (no longer needed)                               |                                                                                            |
-| GLOBAL_OBSERVABLE            | ✔    | `Vue.observable` removed (use `reactive`)                             | [link](/api/basic-reactivity.html)                                                         |
-| CONFIG_KEY_CODES             | ✔    | config.keyCodes removed                                               | [link](/guide/migration/keycode-modifiers.html)                                            |
-| CONFIG_WHITESPACE            | ✔    | In Vue 3 whitespace defaults to `"condense"`                          |                                                                                            |
-| INSTANCE_SET                 | ✔    | `vm.$set` removed (no longer needed)                                  |                                                                                            |
-| INSTANCE_DELETE              | ✔    | `vm.$delete` removed (no longer needed)                               |                                                                                            |
-| INSTANCE_EVENT_EMITTER       | ✔    | `vm.$on`, `vm.$off`, `vm.$once` removed                               | [link](/guide/migration/events-api.html)                                                   |
-| INSTANCE_EVENT_HOOKS         | ✔    | Instance no longer emits `hook:x` events                              | [link](/guide/migration/vnode-lifecycle-events.html)                                       |
-| INSTANCE_CHILDREN            | ✔    | `vm.$children` removed                                                | [link](/guide/migration/children.html)                                                     |
-| INSTANCE_LISTENERS           | ✔    | `vm.$listeners` removed                                               | [link](/guide/migration/listeners-removed.html)                                            |
-| INSTANCE_SCOPED_SLOTS        | ✔    | `vm.$scopedSlots` removed; `vm.$slots` now exposes functions          | [link](/guide/migration/slots-unification.html)                                            |
-| INSTANCE_ATTRS_CLASS_STYLE   | ✔    | `$attrs` now includes `class` and `style`                             | [link](/guide/migration/attrs-includes-class-style.html)                                   |
-| OPTIONS_DATA_FN              | ✔    | `data` must be a function in all cases                                | [link](/guide/migration/data-option.html)                                                  |
-| OPTIONS_DATA_MERGE           | ✔    | `data` from mixin or extension is now shallow merged                  | [link](/guide/migration/data-option.html)                                                  |
+| GLOBAL_MOUNT                 | ✔    | new Vue() -> createApp                                                | [enlace](/guide/migration/global-api.html#mounting-app-instance)                             |
+| GLOBAL_EXTEND                | ✔    | Vue.extend se ha eliminado (utiliza `defineComponent` u opción `extends`)        | [enlace](/guide/migration/global-api.html#vue-extend-removed)                                |
+| GLOBAL_PROTOTYPE             | ✔    | `Vue.prototype` -> `app.config.globalProperties`                      | [enlace](/guide/migration/global-api.html#vue-prototype-replaced-by-config-globalproperties) |
+| GLOBAL_SET                   | ✔    | `Vue.set` se ha eliminado (ya no es necesario)                                  |                                                                                            |
+| GLOBAL_DELETE                | ✔    | `Vue.delete` se ha eliminado (ya no es necesario)                               |                                                                                            |
+| GLOBAL_OBSERVABLE            | ✔    | `Vue.observable` se ha eliminado (use `reactive`)                             | [enlace](/api/basic-reactivity.html)                                                         |
+| CONFIG_KEY_CODES             | ✔    | config.keyCodes se ha eliminado                                               | [enlace](/guide/migration/keycode-modifiers.html)                                            |
+| CONFIG_WHITESPACE            | ✔    | En Vue 3 se utiliza `"condense"` por defecto para espacio blanco                           |                                                                                            |
+| INSTANCE_SET                 | ✔    | `vm.$set` se ha eliminado (ya no es necesario)                                  |                                                                                            |
+| INSTANCE_DELETE              | ✔    | `vm.$delete` se ha eliminado (ya no es necesario)                               |                                                                                            |
+| INSTANCE_EVENT_EMITTER       | ✔    | `vm.$on`, `vm.$off`, `vm.$once` se han eliminado                               | [enlace](/guide/migration/events-api.html)                                                   |
+| INSTANCE_EVENT_HOOKS         | ✔    | Las instancias ya no emiten eventos `hook:x`                              | [enlace](/guide/migration/vnode-lifecycle-events.html)                                       |
+| INSTANCE_CHILDREN            | ✔    | `vm.$children` se ha eliminado                                                | [enlace](/guide/migration/children.html)                                                     |
+| INSTANCE_LISTENERS           | ✔    | `vm.$listeners` se ha eliminado                                               | [enlace](/guide/migration/listeners-removed.html)                                            |
+| INSTANCE_SCOPED_SLOTS        | ✔    | `vm.$scopedSlots` se ha eliminado; `vm.$slots` ahora expone funciones          | [enlace](/guide/migration/slots-unification.html)                                            |
+| INSTANCE_ATTRS_CLASS_STYLE   | ✔    | `$attrs` ahora incluye `class` y `style`                             | [enlace](/guide/migration/attrs-includes-class-style.html)                                   |
+| OPTIONS_DATA_FN              | ✔    | `data` debe ser una función en todos casos                                | [enlace](/guide/migration/data-option.html)                                                  |
+| OPTIONS_DATA_MERGE           | ✔    | `data` de mixin o extención ahora son fusionados superficialmente                 | [enlace](/guide/migration/data-option.html)                                                  |
 | OPTIONS_BEFORE_DESTROY       | ✔    | `beforeDestroy` -> `beforeUnmount`                                    |                                                                                            |
 | OPTIONS_DESTROYED            | ✔    | `destroyed` -> `unmounted`                                            |                                                                                            |
-| WATCH_ARRAY                  | ✔    | watching an array no longer triggers on mutation unless deep          | [link](/guide/migration/watch.html)                                                        |
-| V_FOR_REF                    | ✔    | `ref` inside `v-for` no longer registers array of refs                | [link](/guide/migration/array-refs.html)                                                   |
-| V_ON_KEYCODE_MODIFIER        | ✔    | `v-on` no longer supports keyCode modifiers                           | [link](/guide/migration/keycode-modifiers.html)                                            |
-| CUSTOM_DIR                   | ✔    | Custom directive hook names changed                                   | [link](/guide/migration/custom-directives.html)                                            |
-| ATTR_FALSE_VALUE             | ✔    | No longer removes attribute if binding value is boolean `false`       | [link](/guide/migration/attribute-coercion.html)                                           |
-| ATTR_ENUMERATED_COERCION     | ✔    | No longer special case enumerated attributes                          | [link](/guide/migration/attribute-coercion.html)                                           |
-| TRANSITION_GROUP_ROOT        | ✔    | `<transition-group>` no longer renders a root element by default      | [link](/guide/migration/transition-group.html)                                             |
-| COMPONENT_ASYNC              | ✔    | Async component API changed (now requires `defineAsyncComponent`)     | [link](/guide/migration/async-components.html)                                             |
-| COMPONENT_FUNCTIONAL         | ✔    | Functional component API changed (now must be plain functions)        | [link](/guide/migration/functional-components.html)                                        |
-| COMPONENT_V_MODEL            | ✔    | Component v-model reworked                                            | [link](/guide/migration/v-model.html)                                                      |
-| RENDER_FUNCTION              | ✔    | Render function API changed                                           | [link](/guide/migration/render-function-api.html)                                          |
-| FILTERS                      | ✔    | Filters removed (this option affects only runtime filter APIs)        | [link](/guide/migration/filters.html)                                                      |
-| COMPILER_IS_ON_ELEMENT       | ✔    | `is` usage is now restricted to `<component>` only                    | [link](/guide/migration/custom-elements-interop.html)                                      |
-| COMPILER_V_BIND_SYNC         | ✔    | `v-bind.sync` replaced by `v-model` with arguments                    | [link](/guide/migration/v-model.html)                                                      |
-| COMPILER_V_BIND_PROP         | ✔    | `v-bind.prop` modifier removed                                        |                                                                                            |
-| COMPILER_V_BIND_OBJECT_ORDER | ✔    | `v-bind="object"` is now order sensitive                              | [link](/guide/migration/v-bind.html)                                                       |
-| COMPILER_V_ON_NATIVE         | ✔    | `v-on.native` modifier removed                                        | [link](/guide/migration/v-on-native-modifier-removed.html)                                 |
-| COMPILER_V_FOR_REF           | ✔    | `ref` in `v-for` (compiler support)                                   |                                                                                            |
-| COMPILER_NATIVE_TEMPLATE     | ✔    | `<template>` with no special directives now renders as native element |                                                                                            |
-| COMPILER_FILTERS             | ✔    | filters (compiler support)                                            |                                                                                            |
+| WATCH_ARRAY                  | ✔    | Observar una matriz ya no dispara en mutación, salvo que se especifica "deep"          | [enlace](/guide/migration/watch.html)                                                        |
+| V_FOR_REF                    | ✔    | `ref` dentro de `v-for` ya no registran una matriz de _refs_                | [enlace](/guide/migration/array-refs.html)                                                   |
+| V_ON_KEYCODE_MODIFIER        | ✔    | `v-on` ya no soporta modificadores de keyCode                           | [enlace](/guide/migration/keycode-modifiers.html)                                            |
+| CUSTOM_DIR                   | ✔    | Nombres de hooks de directivas personalizadas se han cambiado                                   | [enlace](/guide/migration/custom-directives.html)                                            |
+| ATTR_FALSE_VALUE             | ✔    | Ya no elimina el atributo si su valor vinculado es booleano `false`       | [enlace](/guide/migration/attribute-coercion.html)                                           |
+| ATTR_ENUMERATED_COERCION     | ✔    | Ya no trata los atributos enumerados como casos especiales                          | [enlace](/guide/migration/attribute-coercion.html)                                           |
+| TRANSITION_GROUP_ROOT        | ✔    | `<transition-group>` ya no renderiza un elemento raíz por defecto      | [enlace](/guide/migration/transition-group.html)                                             |
+| COMPONENT_ASYNC              | ✔    | Se ha cambiado la API de componente asíncrono (ahora se requiere `defineAsyncComponent`)     | [enlace](/guide/migration/async-components.html)                                             |
+| COMPONENT_FUNCTIONAL         | ✔    | Se ha cambiado la API de componente funcional (ahora deben ser funciones planos)        | [enlace](/guide/migration/functional-components.html)                                        |
+| COMPONENT_V_MODEL            | ✔    | Se ha rehecho la v-model de componentes                                            | [enlace](/guide/migration/v-model.html)                                                      |
+| RENDER_FUNCTION              | ✔    | Se ha cambiado la API de función render                                           | [enlace](/guide/migration/render-function-api.html)                                          |
+| FILTERS                      | ✔    | Se han eliminado los filtros (esta opción solo afecta APIs de filtro en tiempo de ejecución)        | [enlace](/guide/migration/filters.html)                                                      |
+| COMPILER_IS_ON_ELEMENT       | ✔    | El uso de `is` ahora se ha limitado a `<component>` solamente                    | [enlace](/guide/migration/custom-elements-interop.html)                                      |
+| COMPILER_V_BIND_SYNC         | ✔    | `v-bind.sync` es reemplazado por `v-model` con argumentos                    | [enlace](/guide/migration/v-model.html)                                                      |
+| COMPILER_V_BIND_PROP         | ✔    | El modificador `v-bind.prop` es eliminado                                        |                                                                                            |
+| COMPILER_V_BIND_OBJECT_ORDER | ✔    | `v-bind="object"` ahora es sensitivo al orden                              | [enlace](/guide/migration/v-bind.html)                                                       |
+| COMPILER_V_ON_NATIVE         | ✔    | El modificador `v-on.native` es eliminado                                        | [enlace](/guide/migration/v-on-native-modifier-removed.html)                                 |
+| COMPILER_V_FOR_REF           | ✔    | `ref` en `v-for` (soporte de compilador)                                   |                                                                                            |
+| COMPILER_NATIVE_TEMPLATE     | ✔    | `<template>` sin directivas especiales ahora se renderiza como elemento nativo |                                                                                            |
+| COMPILER_FILTERS             | ✔    | filtros (soporte de compilador)                                            |                                                                                            |
