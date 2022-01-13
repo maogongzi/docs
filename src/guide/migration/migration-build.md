@@ -296,7 +296,7 @@ Las características que empiezan con `COMPILER_` son específicas para el compi
 | ------------------ | ---- | -------------------------------------- | ---------------------------------------- |
 | TRANSITION_CLASSES | ⭘    | Se han cambiado clases de entrada/salida de transición | [enlace](/guide/migration/transition.html) |
 
-### Fully Compatible
+### Compatible Completamente
 
 | ID                           | Tipo | Descripción                                                           | Documentación                                                                                       |
 | ---------------------------- | ---- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
