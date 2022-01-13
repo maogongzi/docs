@@ -3,27 +3,27 @@ badges:
   - new
 ---
 
-# Async Components <MigrationBadges :badges="$frontmatter.badges" />
+# Componentes Asíncronos <MigrationBadges :badges="$frontmatter.badges" />
 
-## Overview
+## Visión General
 
-Here is a high level overview of what has changed:
+Aquí es una visión general de alto nivel de los que ya han cambiado:
 
-- New `defineAsyncComponent` helper method that explicitly defines async components
-- `component` option renamed to `loader`
-- Loader function does not inherently receive `resolve` and `reject` arguments and must return a Promise
+- Nuevo método de ayuda `defineAsyncComponent` que explícitamente define componentes asíncronos
+- La opción `component` es renombrada a `loader`
+- Función de cargador no recibe inherentemente argumentos `resolve` y `reject` y debe retornar un Promise
 
-For a more in-depth explanation, read on!
+Para una explicación más profundo, ¡sigue leyendo!
 
-## Introduction
+## Introducción
 
-Previously, async components were created by simply defining a component as a function that returned a promise, such as:
+Anteriormente, los componentes asíncronos son creados mediante simplemente definir un componente como una función que retorne un Promise, tal como:
 
 ```js
 const asyncModal = () => import('./Modal.vue')
 ```
 
-Or, for the more advanced component syntax with options:
+O, para la más avanzada sintaxis de componente con opciones:
 
 ```js
 const asyncModal = {
@@ -35,9 +35,9 @@ const asyncModal = {
 }
 ```
 
-## 3.x Syntax
+## Sintaxis para 3.x
 
-Now, in Vue 3, since functional components are defined as pure functions, async components definitions need to be explicitly defined by wrapping it in a new `defineAsyncComponent` helper:
+Ahora, en Vue 3, debido a que componentes funcionales son definidos como funciones puras, las definiciones de componentes asíncronos necesitan ser definidas mediante envolverla en un nuevo ayudante `defineAsyncComponent` helper:
 
 ```js
 import { defineAsyncComponent } from 'vue'
