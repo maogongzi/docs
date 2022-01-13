@@ -6,15 +6,15 @@ badges:
 
 # {{ $frontmatter.title }} <MigrationBadges :badges="$frontmatter.badges" />
 
-In Vue 2, using the `ref` attribute inside `v-for` will populate the corresponding `$refs` property with an array of refs. This behavior becomes ambiguous and inefficient when there are nested `v-for`s present.
+En Vue 2, cuando se utiliza el atributo `ref` dentro de `v-for`, la propiedad correspondiente `$refs` será llenado con una matriz de _refs_. Este comportamiento se vuelve ambiguo y ineficiente cuando hay `v-for` anidados.
 
-In Vue 3, such usage will no longer automatically create an array in `$refs`. To retrieve multiple refs from a single binding, bind `ref` to a function which provides more flexibility (this is a new feature):
+En Vue 3, dicho uso no creará automáticamente una matriz en `$refs`. Para recuperar múltiples _refs_ de una sola vinculación de dato, vincula la `ref` a una función que provea más flexibilidad (esta es una nueva característica):
 
 ```html
 <div v-for="item in list" :ref="setItemRef"></div>
 ```
 
-With Options API:
+Con la API de opciones:
 
 ```js
 export default {
@@ -39,7 +39,7 @@ export default {
 }
 ```
 
-With Composition API:
+Con la API de composición:
 
 ```js
 import { onBeforeUpdate, onUpdated } from 'vue'
@@ -65,15 +65,15 @@ export default {
 }
 ```
 
-Note that:
+Note que:
 
-- `itemRefs` doesn't have to be an array: it can also be an object where the refs are set by their iteration keys.
+- `itemRefs` no es necesario ser una matriz: puede también ser un objeto dónde las _refs_ son establecidas mediante sus claves de iteración.
 
-- This also allows `itemRefs` to be made reactive and watched, if needed.
+- Este también permite que `itemRefs` sea reactivo y observado, si es necesario.
 
-## Migration Strategy
+## Estrategia de Migración
 
-[Migration build flags:](migration-build.html#compat-configuration)
+[Indicadores de compilación de migración:](migration-build.html#compat-configuration)
 
 - `V_FOR_REF`
 - `COMPILER_V_FOR_REF`
