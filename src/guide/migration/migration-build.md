@@ -42,13 +42,13 @@ El siguiente flujo de trabajo pasea por los pasos de migrar una aplicación actu
 
 ### Instalación
 
-1. Upgrade tooling if applicable.
+1. Actualizar las herramientas si es aplicable.
 
-   - If using custom webpack setup: Upgrade `vue-loader` to `^16.0.0`.
-   - If using `vue-cli`: upgrade to the latest `@vue/cli-service` with `vue upgrade`
-   - (Alternative) migrate to [Vite](https://vitejs.dev/) + [vite-plugin-vue2](https://github.com/underfin/vite-plugin-vue2). [[Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/565b948919eb58f22a32afca7e321b490cb3b074)]
+   - Si se utiliza configuración personalizada de webpack: actualiza `vue-loader` a `^16.0.0`.
+   - Si se utiliza `vue-cli`: actualiza `@vue/cli-service` hasta la última versión con `vue upgrade`
+   - (Alternativo) migrar a [Vite](https://vitejs.dev/) + [vite-plugin-vue2](https://github.com/underfin/vite-plugin-vue2).  [[commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/565b948919eb58f22a32afca7e321b490cb3b074)]
 
-2. In `package.json`, update `vue` to 3.1, install `@vue/compat` of the same version, and replace `vue-template-compiler` (if present) with `@vue/compiler-sfc`:
+2. En `package.json`, actualiza `vue` a 3.1, instala `@vue/compat` de la misma versión, y reemplaza `vue-template-compiler` (si existe) por `@vue/compiler-sfc`:
 
    ```diff
    "dependencies": {
@@ -63,11 +63,11 @@ El siguiente flujo de trabajo pasea por los pasos de migrar una aplicación actu
    }
    ```
 
-   [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/14f6f1879b43f8610add60342661bf915f5c4b20)
+   [commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/14f6f1879b43f8610add60342661bf915f5c4b20)
 
-3. In the build setup, alias `vue` to `@vue/compat` and enable compat mode via Vue compiler options.
+3. En la configuración de compilación, aplica alias `vue` a `@vue/compat` y habilita el modo compat mediante opciones de compilador de Vue.
 
-   **Example Configs**
+   **Configuración Ejemplo**
 
    <details>
      <summary><b>vue-cli</b></summary>
@@ -98,7 +98,7 @@ El siguiente flujo de trabajo pasea por los pasos de migrar una aplicación actu
    </details>
 
    <details>
-     <summary><b>Plain webpack</b></summary>
+     <summary><b>webpack plano</b></summary>
 
    ```js
    // webpack.config.js
@@ -155,7 +155,7 @@ El siguiente flujo de trabajo pasea por los pasos de migrar una aplicación actu
 
    </details>
 
-4. If you are using TypeScript, you will also need to modify `vue`'s typing to expose the default export (which is no longer present in Vue 3) by adding a `*.d.ts` file with the following:
+4. Si está utilizando TypeScript, también necesita modificar los tipos de `vue` para exponer la exportación por defecto (lo que ya no existe en Vue 3) mediante agregar un archivo `*.d.ts` con el siguiente:
 
    ```ts
    declare module 'vue' {
@@ -166,71 +166,71 @@ El siguiente flujo de trabajo pasea por los pasos de migrar una aplicación actu
    }
    ```
 
-5. At this point, your application may encounter some compile-time errors / warnings (e.g. use of filters). Fix them first. If all compiler warnings are gone, you can also set the compiler to Vue 3 mode.
+5. E este momento, su aplicación podría encontrar unos errores / advertencias de tiempo de compilación (p. ej. el uso de filtros). Corrígelos primero. Si todas advertencias de compilador son eliminadas, puede también establecer el compilador al modo Vue 3.
 
-   [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/b05d9555f6e115dea7016d7e5a1a80e8f825be52)
+   [commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/b05d9555f6e115dea7016d7e5a1a80e8f825be52)
 
-6. After fixing the errors, the app should be able to run if it is not subject to the [limitations](#known-limitations) mentioned above.
+6. Después de corregir los errores, la aplicación debería ser capaz de ejecutarse si no está sujeto a las [limitaciones](#known-limitations) mencionadas arriba.
 
-   You will likely see a LOT of warnings from both the command line and the browser console. Here are some general tips:
+   Es probable que vea MUCHAS advertencias de tanto la línea de comandos como la consola del navegador. Aquí son algunos consejos generales:
 
-   - You can filter for specific warnings in the browser console. It's a good idea to use the filter and focus on fixing one item at a time. You can also use negated filters like `-GLOBAL_MOUNT`.
+   - Puede filtrar por advertencias específicas en la consola del navegador. Es un buen idea utilizar el filtro y enfocarse en corregir una cosa cada vez. Puede también utilizar filtros negados (negated filters) como `-GLOBAL_MOUNT`.
 
-   - You can suppress specific deprecations via [compat configuration](#compat-configuration).
+   - Puede reprimir deprecaciones específicas mediante [configuración de compat](#compat-configuration).
 
-   - Some warnings may be caused by a dependency that you use (e.g. `vue-router`). You can check this from the warning's component trace or stack trace (expanded on click). Focus on fixing the warnings that originate from your own source code first.
+   - Algunas advertencias pueden ser causadas por una dependencia que utiliza (p. ej. `vue-router`). Puede verificar este del seguimiento de componente o seguimiento de pila de la advertencia (expandido al hacer clic). Enfóquese en corregir las advertencias que provienen de su propio código primero.
 
-   - If you are using `vue-router`, note `<transition>` and `<keep-alive>` will not work with `<router-view>` until you upgrade to `vue-router` v4.
+   - Si está utilizando `vue-router`, note que `<transition>` y `<keep-alive>` no funcionarán con `<router-view>` hasta que actualice `vue-router` a versión v4.
 
-7. Update [`<transition>` class names](/guide/migration/transition.html). This is the only feature that does not have a runtime warning. You can do a project-wide search for `.*-enter` and `.*-leave` CSS class names.
+7. Actualizar [nombres de clases de `<transition>`](/guide/migration/transition.html). Este es la sóla característica que no tiene una advertencia de tiempo de ejecución. Puede hacer una búsqueda en su proyecto por nombres de clases de CSS `.*-enter` and `.*-leave`.
 
-   [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/d300103ba622ae26ac26a82cd688e0f70b6c1d8f)
+   [commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/d300103ba622ae26ac26a82cd688e0f70b6c1d8f)
 
-8. Update app entry to use [new global mounting API](/guide/migration/global-api.html#a-new-global-api-createapp).
+8. Actualizar la entrada de aplicación para utilizar [la nueva API global de montaje](/guide/migration/global-api.html#a-new-global-api-createapp).
 
-   [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/a6e0c9ac7b1f4131908a4b1e43641f608593f714)
+   [commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/a6e0c9ac7b1f4131908a4b1e43641f608593f714)
 
-9. [Upgrade `vuex` to v4](https://next.vuex.vuejs.org/guide/migrating-to-4-0-from-3-x.html).
+9. [Actualizar `vuex` a versión v4](https://next.vuex.vuejs.org/guide/migrating-to-4-0-from-3-x.html).
 
-   [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/5bfd4c61ee50f358cd5daebaa584f2c3f91e0205)
+   [commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/5bfd4c61ee50f358cd5daebaa584f2c3f91e0205)
 
-10. [Upgrade `vue-router` to v4](https://next.router.vuejs.org/guide/migration/index.html). If you also use `vuex-router-sync`, you can replace it with a store getter.
+10. [Actualizar `vue-router` a versión v4](https://next.router.vuejs.org/guide/migration/index.html). Si también está utilizando `vuex-router-sync`, puede reemplazarlo con un captador de almacenamiento.
 
-    After the upgrade, to use `<transition>` and `<keep-alive>` with `<router-view>` requires using the new [scoped-slot based syntax](https://next.router.vuejs.org/guide/migration/index.html#router-view-keep-alive-and-transition).
+    Después de la actualización, se requiere utilizar la nueva [sintaxis basada de scoped-slot](https://next.router.vuejs.org/guide/migration/index.html#router-view-keep-alive-and-transition) para utilizar `<transition>` y `<keep-alive>` con `<router-view>`.
 
-    [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/758961e73ac4089890079d4ce14996741cf9344b)
+    [commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/758961e73ac4089890079d4ce14996741cf9344b)
 
-11. Pick off individual warnings. Note some features have conflicting behavior between Vue 2 and Vue 3 - for example, the render function API, or the functional component vs. async component change. To migrate to Vue 3 API without affecting the rest of the application, you can opt-in to Vue 3 behavior on a per-component basis with the [`compatConfig` option](#per-component-config).
+11. Eliminar advertencias individuales. Note que algunas características tienen comportamiento conflicto entre Vue 2 y Vue 3, por ejemplo, la API de función render, o el cambio de componentes funcionales versus componentes asíncronos. Para migrar a la API de Vue 3 sin afectar el resto de la aplicación, puede optar por comportamientos de Vue 3 sobre una base de por componente con la [opción `compatConfig`](#per-component-config).
 
-    [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/d0c7d3ae789be71b8fd56ce79cb4cb1f921f893b)
+    [commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/d0c7d3ae789be71b8fd56ce79cb4cb1f921f893b)
 
-12. When all warnings are fixed, you can remove the migration build and switch to Vue 3 proper. Note you may not be able to do so if you still have dependencies that rely on Vue 2 behavior.
+12. Cuando todas las advertencias son corregidas, puede eliminar la compilación de migración y cambiar a la propia versión de Vue 3. Note que no podría hacer esto si todavía tenga dependencias que dependen de comportamientos de Vue 2.
 
-    [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/9beb45490bc5f938c9e87b4ac1357cfb799565bd)
+    [commit ejemplo](https://github.com/vuejs/vue-hackernews-2.0/commit/9beb45490bc5f938c9e87b4ac1357cfb799565bd)
 
-## Compat Configuration
+## Configuración de Compat
 
-### Global Config
+### Configuración Global
 
-Compat features can be disabled individually:
+Las características de _compat_ pueden ser deshabilitadas individualmente:
 
 ```js
 import { configureCompat } from 'vue'
 
-// disable compat for certain features
+// deshabilitar compat para ciertas características
 configureCompat({
   FEATURE_ID_A: false,
   FEATURE_ID_B: false
 })
 ```
 
-Alternatively, the entire application can default to Vue 3 behavior, with only certain compat features enabled:
+Alternativamente, la entera aplicación puede elegir el comportamiento de Vue 3 por defecto, con solo ciertas características de _compat_ habilitadas:
 
 ```js
 import { configureCompat } from 'vue'
 
-// default everything to Vue 3 behavior, and only enable compat
-// for certain features
+// Elige el comportamiento de Vue 3 por defecto para todos, y solo habilita
+// compat para ciertas características
 configureCompat({
   MODE: 3,
   FEATURE_ID_A: true,
@@ -238,49 +238,49 @@ configureCompat({
 })
 ```
 
-### Per-Component Config
+### Configuración per componente
 
-A component can use the `compatConfig` option, which expects the same options as the global `configureCompat` method:
+Un componente puede utilizar la opción `compatConfig`, lo que espera las mismas opciones como el método global `configureCompat`:
 
 ```js
 export default {
   compatConfig: {
-    MODE: 3, // opt-in to Vue 3 behavior for this component only
-    FEATURE_ID_A: true // features can also be toggled at component level
+    MODE: 3, // optar por comportamiento de Vue 3 para solo este componente
+    FEATURE_ID_A: true // las características también pueden alternarse al nivel de componente
   }
   // ...
 }
 ```
 
-### Compiler-specific Config
+### Configuración específicas para el compilador
 
-Features that start with `COMPILER_` are compiler-specific: if you are using the full build (with in-browser compiler), they can be configured at runtime. However if using a build setup, they must be configured via the `compilerOptions` in the build config instead (see example configs above).
+Las características que empiezan con `COMPILER_` son específicas para el compilador: si está utilizando la compilación completa (con compilador en navegador), pueden ser configuradas en tiempo de ejecución. Sin embargo, si se utiliza un paso de compilación, deben ser configuradas mediante la opción `compilerOptions` en la configuración de compilación en su lugar (vea los ejemplos de configuraciones arriba).
 
-## Feature Reference
+## Referencia de Características
 
-### Compatibility Types
+### Tipos de Compatibilidad
 
-- ✔ Fully compatible
-- ◐ Partially Compatible with caveats
-- ⨂ Incompatible (warning only)
-- ⭘ Compat only (no warning)
+- ✔ compatible completamente
+- ◐ paracialmente compatible con advertencias
+- ⨂ incompatible (solo advertencias)
+- ⭘ solo _compat_ (no hay advertencias)
 
 ### Incompatible
 
-> Should be fixed upfront or will likely lead to errors
+> debe ser corregidas por adelantado o será probable resultar en errores
 
-| ID                                    | Type | Description                                                             | Docs                                                                                           |
-| ------------------------------------- | ---- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| GLOBAL_MOUNT_CONTAINER                | ⨂    | Mounted application does not replace the element it's mounted to        | [link](/guide/migration/mount-changes.html)                                                    |
-| CONFIG_DEVTOOLS                       | ⨂    | production devtools is now a build-time flag                            | [link](https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags) |
-| COMPILER_V_IF_V_FOR_PRECEDENCE        | ⨂    | `v-if` and `v-for` precedence when used on the same element has changed | [link](/guide/migration/v-if-v-for.html)                                                       |
-| COMPILER_V_IF_SAME_KEY                | ⨂    | `v-if` branches can no longer have the same key                         | [link](/guide/migration/key-attribute.html#on-conditional-branches)                            |
-| COMPILER_V_FOR_TEMPLATE_KEY_PLACEMENT | ⨂    | `<template v-for>` key should now be placed on `<template>`             | [link](/guide/migration/key-attribute.html#with-template-v-for)                                |
-| COMPILER_SFC_FUNCTIONAL               | ⨂    | `<template functional>` is no longer supported in SFCs                  | [link](/guide/migration/functional-components.html#single-file-components-sfcs)                |
+| ID                                    | Tipo | Descripción                                                              | Documentación                                                                                  |
+| ------------------------------------- | ---- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| GLOBAL_MOUNT_CONTAINER                | ⨂    | La aplicación montada no reemplaza el elemento al que se monte           | [link](/guide/migration/mount-changes.html)                                                    |
+| CONFIG_DEVTOOLS                       | ⨂    | La devtools de producción ahora es un indicador de tiempo de compilación | [link](https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags) |
+| COMPILER_V_IF_V_FOR_PRECEDENCE        | ⨂    | La precedencia de `v-if` y `v-for` se ha cambiado cuando se utilizan en el mismo elemento | [link](/guide/migration/v-if-v-for.html)                                      |
+| COMPILER_V_IF_SAME_KEY                | ⨂    | Las ramas de `v-if` ya no pueden tenel el mismo _key_                    | [link](/guide/migration/key-attribute.html#on-conditional-branches)                            |
+| COMPILER_V_FOR_TEMPLATE_KEY_PLACEMENT | ⨂    | La _key_ en `<template v-for>` ahora debe ser puesto en `<template>`     | [link](/guide/migration/key-attribute.html#with-template-v-for)                                |
+| COMPILER_SFC_FUNCTIONAL               | ⨂    | `<template functional>` ya no se soporta en SFCs                         | [link](/guide/migration/functional-components.html#single-file-components-sfcs)                |
 
 ### Partially Compatible with Caveats
 
-| ID                       | Type | Description                                                                                                                                                                                | Docs                                                                                                          |
+| ID                       | Tipo | Descripción                                                                                                                                                                                | Documentación                                                                                                          |
 | ------------------------ | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
 | CONFIG_IGNORED_ELEMENTS  | ◐    | `config.ignoredElements` is now `config.compilerOptions.isCustomElement` (only in browser compiler build). If using build setup, `isCustomElement` must be passed via build configuration. | [link](/guide/migration/global-api.html#config-ignoredelements-is-now-config-compileroptions-iscustomelement) |
 | COMPILER_INLINE_TEMPLATE | ◐    | `inline-template` removed (compat only supported in browser compiler build)                                                                                                                | [link](/guide/migration/inline-template-attribute.html)                                                       |
@@ -292,13 +292,13 @@ Features that start with `COMPILER_` are compiler-specific: if you are using the
 
 ### Compat only (no warning)
 
-| ID                 | Type | Description                            | Docs                                     |
+| ID                 | Tipo | Descripción                            | Documentación                                     |
 | ------------------ | ---- | -------------------------------------- | ---------------------------------------- |
 | TRANSITION_CLASSES | ⭘    | Transition enter/leave classes changed | [link](/guide/migration/transition.html) |
 
 ### Fully Compatible
 
-| ID                           | Type | Description                                                           | Docs                                                                                       |
+| ID                           | Tipo | Descripción                                                           | Documentación                                                                                       |
 | ---------------------------- | ---- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | GLOBAL_MOUNT                 | ✔    | new Vue() -> createApp                                                | [link](/guide/migration/global-api.html#mounting-app-instance)                             |
 | GLOBAL_EXTEND                | ✔    | Vue.extend removed (use `defineComponent` or `extends` option)        | [link](/guide/migration/global-api.html#vue-extend-removed)                                |
