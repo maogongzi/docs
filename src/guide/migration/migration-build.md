@@ -2,7 +2,7 @@
 
 ## Visión General
 
-`@vue/compat` (también conocido como "la compilación para migración") es una compilación de Vue 3 que provea comportamientos configurables compatibles con Vue.
+`@vue/compat` (también conocido como "la compilación para migración") es una compilación de Vue 3 que provea comportamientos configurables compatibles con Vue 2.
 
 La compilación para migración ejecuta en modo de Vue 2 por defecto, la mayor parte de las APIs públicas se comportan exactamente lo mismo como Vue 2, con solo unas excepciones. Los usos de características que han cambiado o sido deprecados en Vue 3 resultarán advertencias en tiempo de ejecución. La compatibilidad de una característica puede también ser habilitado/deshabilitado sobre una base de por cada componente.
 
