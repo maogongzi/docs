@@ -20,27 +20,27 @@ Mientras nos hemos esforzado mucho para hacer que la compilación de migración 
 
 - El soporte para Internet Explorer 11: [Vu3 ha abandonado oficialmente el plan de soportar IE11](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0038-vue3-ie11-support.md). Si todavía necesita soporte para IE11 o bajo, debería quedarse con Vue 2.
 
-- Server-side rendering: the migration build can be used for SSR, but migrating a custom SSR setup is much more involved. The general idea is replacing `vue-server-renderer` with [`@vue/server-renderer`](https://github.com/vuejs/vue-next/tree/master/packages/server-renderer). Vue 3 no longer provides a bundle renderer and it is recommended to use Vue 3 SSR with [Vite](https://vitejs.dev/guide/ssr.html). If you are using [Nuxt.js](https://nuxtjs.org/), you can try [Nuxt Bridge, a Nuxt.js 2 to 3 compatibility layer](https://v3.nuxtjs.org/getting-started/bridge/). For complex, production projects, it is probably best to wait for [Nuxt 3 (currently in beta)](https://v3.nuxtjs.org/getting-started/introduction).
+- Renderización en el lado del servidor: la compilación de migración puede ser utilizada para SSR, pero se involucra mucho más trabajo para migrar una configuración personalizada de SSR. La idea general es reemplazar `vue-server-renderer` por [`@vue/server-renderer`](https://github.com/vuejs/vue-next/tree/master/packages/server-renderer). Vue 3 ya no provee un renderizador de compilación y es recomendado utilizar Vue 3 SSR con [Vite](https://vitejs.dev/guide/ssr.html). Si está utilizando [Nuxt.js](https://nuxtjs.org/), puede probar [Nuxt Bridge, una capa de compatibilidad entre Nuxt.js 2 y 3](https://v3.nuxtjs.org/getting-started/bridge/). Para proyectos complejos y de producción, es probablemente mejor esperar [Nuxt 3 (ahora en fase beta)](https://v3.nuxtjs.org/getting-started/introduction).
 
-### Expectations
+### Expectativas
 
-Please note that the migration build aims to cover only publicly documented Vue 2 APIs and behavior. If your application fails to run under the migration build due to reliance on undocumented behavior, it is unlikely that we'll tweak the migration build to cater to your specific case. Consider refactoring to remove reliance on the behavior in question instead.
+Por favor tenga en cuenta que la compilación de migración apunta a abarcar solo las APIs y comportamientos de Vue 2 documentadas públicamente. Si su aplicación deja de ejecutar bajo la compilación de migración debido a dependencia de comportamientos que no son documentados, es poco probable que ajustemos la  compilación de migración para satisfacer su caso específico. Considera refactorizarla y quitar la dependencia del comportamiento en cuestión en su lugar.
 
-A word of caution: if your application is large and complex, migration will likely be a challenge even with the migration build. If your app is unfortunately not suitable for upgrade, do note that we are planning to backport Composition API and some other Vue 3 features to the 2.7 release (estimated late Q3 2021).
+Una palabra de precaución: Si su aplicación es grande y compleja, la migración podría ser un desafío incluso con la compilación de migración. Si por desgracia su aplicación no es capaz de actualizar, note que estamos planeando de adaptar la API de composition y unas otras características de Vue 3 a la versión 2.7 (estimado en tarde Q3 2021)
 
-If you do get your app running on the migration build, you **can** ship it to production before the migration is complete. Although there is a small performance/size overhead, it should not noticeably affect production UX. You may have to do so when you have dependencies that rely on Vue 2 behavior, and cannot be upgraded/replaced.
+Si realiza que su aplicación funcione en la compilación de migración, **puede** aplicarla en producción antes de que se complete la migración. Si bien hay un poco de sobrecarga de rendimiento/tamaño, no podría afectar notablemente la experiencia de usuario de producción. Tendría que hacerlo cuando tiene dependencias que dependen de comportamientos de Vue 2, y no pueden ser actualizadas/reemplazadas.
 
-The migration build will be provided starting with 3.1, and will continue to be published alongside the 3.2 release line. We do plan to eventually stop publishing the migration build in a future minor version (no earlier than EOY 2021), so you should still aim to switch to the standard build before then.
+La compilación de migración será proporcionada partiendo de 3.1, y será publicada continualmente junto a la línea de publicación de 3.2. Planeamos de eventualmente dejar de publicar la compilación de migración en una versión minor del futuro (no antes del fin de 2021), así que debería todavía apuntar a cambiar a la compilación estándar antes de esa fecha.
 
-## Upgrade Workflow
+## Flujo de trabajo de actualización
 
-The following workflow walks through the steps of migrating an actual Vue 2 app (Vue HackerNews 2.0) to Vue 3. The full commits can be found [here](https://github.com/vuejs/vue-hackernews-2.0/compare/migration). Note that the actual steps required for your project may vary, and these steps should be treated as general guidance rather than strict instructions.
+El siguiente flujo de trabajo pasea por los pasos de migrar una aplicación actual de Vue 2 (Vue HackerNews 2.0) a Vue 3. Los _commits_ completos pueden encontrarse [aquí](https://github.com/vuejs/vue-hackernews-2.0/compare/migration). Note que los pasos actuales requeridos para su proyecto pueden variar, y estos pasos deberían tratarse como orientación general en vez de instrucciones estrictos.
 
-### Preparations
+### Preparaciones
 
-- If you are still using the [deprecated named / scoped slot syntax](https://vuejs.org/v2/guide/components-slots.html#Deprecated-Syntax), update it to the latest syntax first (which is already supported in 2.6).
+- Si todavía está utilizando [la sintaxis obsoleta de slot nombrado / con alcance](https://vuejs.org/v2/guide/components-slots.html#Deprecated-Syntax), actualízala a la sintaxis última primero (lo que ya es soportada en 2.6).
 
-### Installation
+### Instalación
 
 1. Upgrade tooling if applicable.
 
