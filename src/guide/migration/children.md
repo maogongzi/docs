@@ -5,19 +5,19 @@ badges:
 
 # $children <MigrationBadges :badges="$frontmatter.badges" />
 
-## Overview
+## Visión General
 
-The `$children` instance property has been removed from Vue 3.0 and is no longer supported.
+La propiedad de instancia `$children` se ha eliminado desde Vue 3.0 y ya no es soportada.
 
-## 2.x Syntax
+## Sintaxis para 2.x
 
-In 2.x, developers could access direct child components of the current instance with `this.$children`:
+En 2.x, los desarrolladores pudieron acceder componentes hijo directos de la instancia actual mediante `this.$children`:
 
 ```vue
 <template>
   <div>
     <img alt="Vue logo" src="./assets/logo.png">
-    <my-button>Change logo</my-button>
+    <my-button>Cambiar el logo</my-button>
   </div>
 </template>
 
@@ -35,10 +35,10 @@ export default {
 </script>
 ```
 
-## 3.x Update
+## Actualización en 3.x
 
-In 3.x, the `$children` property is removed and no longer supported. Instead, if you need to access a child component instance, we recommend using [$refs](/guide/component-template-refs.html#template-refs).
+En 3.x, la propiedad `$children` se ha eliminado y ya no es soportada. En su lugar, si necesita acceder una instancia de componente hijo, recomendamos utilizar [$refs](/guide/component-template-refs.html#template-refs).
 
-## Migration Strategy
+## Estrategia para Migración
 
-[Migration build flag: `INSTANCE_CHILDREN`](migration-build.html#compat-configuration)
+[Indicadores de compilación de migración: `INSTANCE_CHILDREN`](migration-build.html#compat-configuration)
