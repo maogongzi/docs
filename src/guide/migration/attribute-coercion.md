@@ -3,15 +3,15 @@ badges:
   - breaking
 ---
 
-# Attribute Coercion Behavior <MigrationBadges :badges="$frontmatter.badges" />
+# Comportamiento de Coacción de Atributos <MigrationBadges :badges="$frontmatter.badges" />
 
 ::: info Info
-This is a low-level internal API change and does not affect most developers.
+Este es un cambio de API internal de nivel inferior y no afecta la mayor parte de los desarrolladores.
 :::
 
-## Overview
+## Visión General
 
-Here is a high level summary of the changes:
+Aquí es una visión general de nivel superior de los cambios:
 
 - Drop the internal concept of enumerated attributes and treat those attributes the same as normal non-boolean attributes
 - **BREAKING**: No longer removes attribute if the value is boolean `false`. Instead, it's set as attr="false". To remove the attribute, use `null` or `undefined`.
