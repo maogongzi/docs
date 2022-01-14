@@ -103,7 +103,7 @@ Explicaremos el rol de `expose` en breve.
 
 ## Acceder a Propiedades de Componentes
 
-Cuando `setup` es ejecutada, la instancia del componente aún no ha sido creada. Como resultado, usted solo podrá acceder a las siguientes propiedades:
+Cuando `setup` es ejecutada, usted solo podrá acceder a las siguientes propiedades:
 
 - `props`
 - `attrs`

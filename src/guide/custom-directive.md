@@ -49,7 +49,7 @@ Un objeto de definición de directiva puede proveer algunas funciones de hook (t
 
 - `beforeMount`: llamado cuando la directiva es vinculado por primera vez al elemento y antes de que se monte el componente padre.
 
-- `mounted`: llamado cuando el componente padre del elemento vinculado está montado.
+- `mounted`: llamado antes de que se monte el componente padre del elemento vinculado.
 
 - `beforeUpdate`: llamado antes de que se actualice el VNode del componente que contiene el elemento
 
