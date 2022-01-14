@@ -50,24 +50,24 @@ En Vue 3, sin embargo, hemos creado una API cohesivo para directivas personaliza
 - **beforeUnmount**: !nuevo! Similar a los hooks de ciclo de vida de componentes, este será llamado justo antes de que un elemento sea desmontado.
 - unbind -> **unmounted**
 
-The final API is as follows:
+La API final es como lo siguiente:
 
 ```js
 const MyDirective = {
-  created(el, binding, vnode, prevVnode) {}, // new
+  created(el, binding, vnode, prevVnode) {}, // nuevo
   beforeMount() {},
   mounted() {},
-  beforeUpdate() {}, // new
+  beforeUpdate() {}, // nuevo
   updated() {},
-  beforeUnmount() {}, // new
+  beforeUnmount() {}, // nuevo
   unmounted() {}
 }
 ```
 
-The resulting API could be used like this, mirroring the example from earlier:
+La API resultante podría ser utilizado como esto, reflejando el ejempo de antes:
 
 ```html
-<p v-highlight="'yellow'">Highlight this text bright yellow</p>
+<p v-highlight="'yellow'">Destacar este texto como amarillo claro</p>
 ```
 
 ```js
@@ -80,13 +80,13 @@ app.directive('highlight', {
 })
 ```
 
-Now that the custom directive lifecycle hooks mirror those of the components themselves, they become easier to reason about and remember!
+Ahora que los hooks de ciclo de vida de directivas personalizadas reflejan aquellos de los componentes mismos, ¡se vuelven más fáciles de razonar y memorizar!
 
-### Edge Case: Accessing the component instance
+### Caso Extremo: Acceder la instancia de componente
 
-It's generally recommended to keep directives independent of the component instance they are used in. Accessing the instance from within a custom directive is often a sign that the directive should rather be a component itself. However, there are situations where this actually makes sense.
+Generalmente es recomendado mantener directivas independientes de las instancias de componentes en que son utilizadas. Acceder la instancia desde dentro de una directiva personalizada es a menudo una señal que sea mejor convertir la directiva misma a un componente. Sin embargo, hay situaciones dónde este actualmente tiene sentido.
 
-In Vue 2, the component instance had to be accessed through the `vnode` argument:
+En Vue 2, la instancia de componente tuvo que ser accsada mediante el argumento `vnode`:
 
 ```js
 bind(el, binding, vnode) {
@@ -94,7 +94,7 @@ bind(el, binding, vnode) {
 }
 ```
 
-In Vue 3, the instance is now part of the `binding`:
+En Vue 3, la instancia es ahora una parte de la `binding`:
 
 ```js
 mounted(el, binding, vnode) {
@@ -103,7 +103,7 @@ mounted(el, binding, vnode) {
 ```
 
 :::warning
-With [fragments](/guide/migration/fragments.html#overview) support, components can potentially have more than one root node. When applied to a multi-root component, a custom directive will be ignored and a warning will be logged.
+Con el soporte de [fragmentos](/guide/migration/fragments.html#overview), los componentes pueden potencialmente tener más que un nodo raíz. Cuando se aplica a un componente con múltiples nodos raíces, una directiva personalizada serán ignorada y se registrará una advertencia.
 :::
 
 ## Estrategia para Migración
