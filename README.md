@@ -74,6 +74,14 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
   |[src/guide/instance.md](src/guide/instance.md)|Spanish :white_check_mark:|
   |[src/guide/introduction.md](src/guide/introduction.md)|Spanish :white_check_mark:|
   |[src/guide/list.md](src/guide/list.md)|Spanish :white_check_mark:|
+  |[src/guide/migration/array-refs.md](src/guide/migration/array-refs.md)|Spanish :white_check_mark:|
+  |[src/guide/migration/async-components.md](src/guide/migration/async-components.md)|Spanish :white_check_mark:|
+  |[src/guide/migration/attribute-coercion.md](src/guide/migration/attribute-coercion.md)|Spanish :white_check_mark:|
+  |[src/guide/migration/attrs-includes-class-style.md](src/guide/migration/attrs-includes-class-style.md)|Spanish :white_check_mark:|
+  |[src/guide/migration/children.md](src/guide/migration/children.md)|Spanish :white_check_mark:|
+  |[src/guide/migration/custom-directives.md](src/guide/migration/custom-directives.md)|Spanish :white_check_mark:|
+  |[src/guide/migration/introduction.md](src/guide/migration/introduction.md)|Spanish :white_check_mark:|
+  |[src/guide/migration/migration-build.md](src/guide/migration/migration-build.md)|Spanish :white_check_mark:|
   |[src/guide/mixins.md](src/guide/mixins.md)|Spanish :white_check_mark:|
   |[src/guide/mobile.md](src/guide/mobile.md)|Spanish :white_check_mark:|
   |[src/guide/optimizations.md](src/guide/optimizations.md)|Spanish :white_check_mark:|
@@ -98,6 +106,7 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
   |[src/guide/typescript-support.md](src/guide/typescript-support.md)|Spanish :white_check_mark:|
   |[src/guide/web-components.md](src/guide/web-components.md)|Spanish :white_check_mark:|
   |[src/search/README.md](src/search/README.md)|Spanish :white_check_mark:|
+  |[src/style-guide/README.md](src/style-guide/README.md)|Spanish :white_check_mark:|
   |[src/.vuepress/theme/README.md](src/.vuepress/theme/README.md)|English :x:|
   |[src/coc/index.md](src/coc/index.md)|English :x:|
   |[src/community/join.md](src/community/join.md)|English :x:|
@@ -115,12 +124,6 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
   |[src/guide/contributing/doc-style-guide.md](src/guide/contributing/doc-style-guide.md)|English :x:|
   |[src/guide/contributing/translations.md](src/guide/contributing/translations.md)|English :x:|
   |[src/guide/contributing/writing-guide.md](src/guide/contributing/writing-guide.md)|English :x:|
-  |[src/guide/migration/array-refs.md](src/guide/migration/array-refs.md)|English :x:|
-  |[src/guide/migration/async-components.md](src/guide/migration/async-components.md)|English :x:|
-  |[src/guide/migration/attribute-coercion.md](src/guide/migration/attribute-coercion.md)|English :x:|
-  |[src/guide/migration/attrs-includes-class-style.md](src/guide/migration/attrs-includes-class-style.md)|English :x:|
-  |[src/guide/migration/children.md](src/guide/migration/children.md)|English :x:|
-  |[src/guide/migration/custom-directives.md](src/guide/migration/custom-directives.md)|English :x:|
   |[src/guide/migration/custom-elements-interop.md](src/guide/migration/custom-elements-interop.md)|English :x:|
   |[src/guide/migration/data-option.md](src/guide/migration/data-option.md)|English :x:|
   |[src/guide/migration/emits-option.md](src/guide/migration/emits-option.md)|English :x:|
@@ -131,11 +134,9 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
   |[src/guide/migration/global-api-treeshaking.md](src/guide/migration/global-api-treeshaking.md)|English :x:|
   |[src/guide/migration/global-api.md](src/guide/migration/global-api.md)|English :x:|
   |[src/guide/migration/inline-template-attribute.md](src/guide/migration/inline-template-attribute.md)|English :x:|
-  |[src/guide/migration/introduction.md](src/guide/migration/introduction.md)|English :x:|
   |[src/guide/migration/key-attribute.md](src/guide/migration/key-attribute.md)|English :x:|
   |[src/guide/migration/keycode-modifiers.md](src/guide/migration/keycode-modifiers.md)|English :x:|
   |[src/guide/migration/listeners-removed.md](src/guide/migration/listeners-removed.md)|English :x:|
-  |[src/guide/migration/migration-build.md](src/guide/migration/migration-build.md)|English :x:|
   |[src/guide/migration/mount-changes.md](src/guide/migration/mount-changes.md)|English :x:|
   |[src/guide/migration/props-data.md](src/guide/migration/props-data.md)|English :x:|
   |[src/guide/migration/props-default-this.md](src/guide/migration/props-default-this.md)|English :x:|
@@ -159,7 +160,6 @@ La siguiente tabla muestra los archivos del proyecto y el idioma en el que se en
   |[src/guide/ssr/server.md](src/guide/ssr/server.md)|English :x:|
   |[src/guide/ssr/structure.md](src/guide/ssr/structure.md)|English :x:|
   |[src/guide/ssr/universal.md](src/guide/ssr/universal.md)|English :x:|
-  |[src/style-guide/README.md](src/style-guide/README.md)|English :x:|
   |[src/support-vuejs/README.md](src/support-vuejs/README.md)|English :x:|
 </details>
 
