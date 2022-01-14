@@ -3,15 +3,15 @@ badges:
   - breaking
 ---
 
-# Custom Directives <MigrationBadges :badges="$frontmatter.badges" />
+# Directivas Personalizadas <MigrationBadges :badges="$frontmatter.badges" />
 
-## Overview
+## Visión General
 
 The hook functions for directives have been renamed to better align with the component lifecycle.
 
 Additionally, the `expression` string is no longer passed as part of the `binding` object.
 
-## 2.x Syntax
+## Sintaxis para 2.x
 
 In Vue 2, custom directives were created by using the hooks listed below to target an element’s lifecycle, all of which are optional:
 
@@ -37,7 +37,7 @@ Vue.directive('highlight', {
 
 Here, in the initial setup for this element, the directive binds a style by passing in a value, that can be updated to different values through the application.
 
-## 3.x Syntax
+## Sintaxis para 3.x
 
 In Vue 3, however, we’ve created a more cohesive API for custom directives. As you can see, they differ greatly from our component lifecycle methods even though we’re hooking into similar events. We’ve now unified them like so:
 
@@ -106,6 +106,6 @@ mounted(el, binding, vnode) {
 With [fragments](/guide/migration/fragments.html#overview) support, components can potentially have more than one root node. When applied to a multi-root component, a custom directive will be ignored and a warning will be logged.
 :::
 
-## Migration Strategy
+## Estrategia para Migración
 
-[Migration build flag: `CUSTOM_DIR`](migration-build.html#compat-configuration)
+[Indicadores de compilación de migración: `CUSTOM_DIR`](migration-build.html#compat-configuration)
