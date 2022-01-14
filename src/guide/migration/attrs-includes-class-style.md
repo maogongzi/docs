@@ -4,20 +4,20 @@ badges:
   - breaking
 ---
 
-# `$attrs` includes `class` & `style` <MigrationBadges :badges="$frontmatter.badges" />
+# `$attrs` incluye `class` & `style` <MigrationBadges :badges="$frontmatter.badges" />
 
-## Overview
+## Visión General
 
-`$attrs` now contains _all_ attributes passed to a component, including `class` and `style`.
+`$attrs` ahora contiene _todos_ atributos pasados a un componente, incluye `class` y `style`.
 
-## 2.x Behavior
+## Comportamiento en 2.x
 
-`class` and `style` attributes get some special handling in the Vue 2 virtual DOM implementation. For that reason, they are _not_ included in `$attrs`, while all other attributes are.
+Los atributos `class` y `style` obtienen unos tratamientos especiales en la implementación de DOM virtual en Vue 2. Por esa razón, _no_ son incluidos en `$attrs`, mientras todos otros atributos son incluidos.
 
-A side effect of this manifests when using `inheritAttrs: false`:
+Un efecto secundario de este se manifiesta cuando se utiliza `inheritAttrs: false`:
 
-- Attributes in `$attrs` are no longer automatically added to the root element, leaving it to the developer to decide where to add them.
-- But `class` and `style`, not being part of `$attrs`, will still be applied to the component's root element:
+- Los atributos en `$attrs` ya no son agregados automáticamente al elemento raíz, dejándoselo al desarrollador para decidir el lugar para agregarlos.
+- Pero `class` y `style`, no siendo parte de `$attrs`, será todavía aplicado al elemento raíz del componente:
 
 ```vue
 <template>
@@ -32,13 +32,13 @@ export default {
 </script>
 ```
 
-when used like this:
+cuando está utilizado como esto:
 
 ```html
 <my-component id="my-id" class="my-class"></my-component>
 ```
 
-...will generate this HTML:
+...generará HTML como esto:
 
 ```html
 <label class="my-class">
@@ -46,9 +46,9 @@ when used like this:
 </label>
 ```
 
-## 3.x Behavior
+## Comportamiento en 3.x
 
-`$attrs` contains _all_ attributes, which makes it easier to apply all of them to a different element. The example from above now generates the following HTML:
+`$attrs` contiene _todos_ atributos, lo que hace posible aplicar todos ellos a un elemento diferente. El ejemplo arriba ahora genera el HTML como lo siguiente:
 
 ```html
 <label>
@@ -56,16 +56,16 @@ when used like this:
 </label>
 ```
 
-## Migration Strategy
+## Estrategia para Migración
 
-In components that use `inheritAttrs: false`, make sure that styling still works as intended. If you previously relied on the special behavior of `class` and `style`, some visuals might be broken as these attributes might now be applied to another element.
+En componentes que utiliza `inheritAttrs: false`, asegúrese de que los estilos todavía funcionan como se espera. Si anteriormente confía en el comportamiento especial de `class` y `style`, algunos partes de su interfaz de usuario podrían funcionar anormalmente, debido a que ahora estos atributos podrían haberse aplicado a un otro elemento.
 
-[Migration build flag: `INSTANCE_ATTRS_CLASS_STYLE`](migration-build.html#compat-configuration)
+[Indicadores de compilación de migración: `INSTANCE_ATTRS_CLASS_STYLE`](migration-build.html#compat-configuration)
 
-## See also
+## Vea también
 
-- [Relevant RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0031-attr-fallthrough.md)
-- [Migration guide - `$listeners` removed](./listeners-removed.md)
-- [Migration guide - New Emits Option](./emits-option.md)
-- [Migration guide - `.native` modifier removed](./v-on-native-modifier-removed.md)
-- [Migration guide - Changes in the Render Functions API](./render-function-api.md)
+- [RFC pertinente](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0031-attr-fallthrough.md)
+- [Guía para migración - `$listeners` se ha eliminado](./listeners-removed.md)
+- [Guía para migración - la nueva opción _emits_](./emits-option.md)
+- [Guía para migración - el modificador `.native` se ha eliminado](./v-on-native-modifier-removed.md)
+- [Guía para migración - cambios en la API de funciones render](./render-function-api.md)
