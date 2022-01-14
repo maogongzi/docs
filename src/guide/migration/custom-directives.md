@@ -7,24 +7,24 @@ badges:
 
 ## Visión General
 
-The hook functions for directives have been renamed to better align with the component lifecycle.
+Las funciones hook para directivas han sido renombradas para mejor alinear con el ciclo de vida de componentes.
 
-Additionally, the `expression` string is no longer passed as part of the `binding` object.
+Además, la cadena de caracteres `expression` ya no es pasada como un parte del objeto `binding`.
 
 ## Sintaxis para 2.x
 
-In Vue 2, custom directives were created by using the hooks listed below to target an element’s lifecycle, all of which are optional:
+En Vue 2, directivas personalizadas fueron creadas mediante utilizar hooks listados abajo para apuntar al ciclo de vida de un elemento, todos de estos son opcionales:
 
-- **bind** - Called once the directive is bound to the element. Called only once.
-- **inserted** - Called once the element is inserted into the parent DOM.
-- **update** - This hook is called when the element updates, but children haven't been updated yet.
-- **componentUpdated** - This hook is called once the component and the children have been updated.
-- **unbind** - This hook is called once the directive is removed. Also called only once.
+- **bind** - Llamado una vez que la directiva sea vinculada al element. Llamado solo una vez.
+- **inserted** - Llamado una vez que el element sea insertado en el DOM padre.
+- **update** - Este  hook es llamado cuando el element se actualice, pero los hijos aún no sean actualizados.
+- **componentUpdated** - Este hook es llamado una vez que el componente y sus hijos hayan sido actualizados.
+- **unbind** - Este hook es llamado una vez que la directiva sea eliminado. También solo llamado una vez.
 
-Here’s an example of this:
+Aquí es un ejemplo de esto:
 
 ```html
-<p v-highlight="'yellow'">Highlight this text bright yellow</p>
+<p v-highlight="'yellow'">Destacar este texto como amarillo claro</p>
 ```
 
 ```js
@@ -35,19 +35,19 @@ Vue.directive('highlight', {
 })
 ```
 
-Here, in the initial setup for this element, the directive binds a style by passing in a value, that can be updated to different values through the application.
+Aquí, en la configuración inicial para este elemento, la directiva vincula un estilo mediante pasar un valor, que puede ser actualizado a valores diferentes a través de la aplicación.
 
 ## Sintaxis para 3.x
 
-In Vue 3, however, we’ve created a more cohesive API for custom directives. As you can see, they differ greatly from our component lifecycle methods even though we’re hooking into similar events. We’ve now unified them like so:
+En Vue 3, sin embargo, hemos creado una API cohesivo para directivas personalizadas. Como puede ver, difieren en gran medida de nuestros métodos de ciclo de vida de componentes aunque estamos enganchando en eventos similares. Ahora los hemos unificado de esta manera:
 
-- **created** - new! This is called before the element's attributes or event listeners are applied.
+- **created** - ¡nuevo! Este es llamado antes de que sean aplicados los atributos o escuchadores de eventos del elemento.
 - bind → **beforeMount**
 - inserted → **mounted**
-- **beforeUpdate**: new! This is called before the element itself is updated, much like the component lifecycle hooks.
-- update → removed! There were too many similarities to `updated`, so this is redundant. Please use `updated` instead.
+- **beforeUpdate**: !nuevo! Este es llamado antes de que el elemento mismo sea actualizado, muy similar a los hooks de ciclo de vida de componentes.
+- update → !eliminado! Hay demasiado similaridades para ser actualizados, así que este es redundante. Por favor utilice `updated` en su lugar.
 - componentUpdated → **updated**
-- **beforeUnmount**: new! Similar to component lifecycle hooks, this will be called right before an element is unmounted.
+- **beforeUnmount**: !nuevo! Similar a los hooks de ciclo de vida de componentes, este será llamado justo antes de que un elemento sea desmontado.
 - unbind -> **unmounted**
 
 The final API is as follows:
