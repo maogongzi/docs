@@ -44,10 +44,10 @@ import { defineAsyncComponent } from 'vue'
 import ErrorComponent from './components/ErrorComponent.vue'
 import LoadingComponent from './components/LoadingComponent.vue'
 
-// Async component without options
+// Componente asíncrono sin opciones
 const asyncModal = defineAsyncComponent(() => import('./Modal.vue'))
 
-// Async component with options
+// Componente asíncrono con opciones
 const asyncModalWithOptions = defineAsyncComponent({
   loader: () => import('./Modal.vue'),
   delay: 200,
@@ -58,10 +58,10 @@ const asyncModalWithOptions = defineAsyncComponent({
 ```
 
 ::: tip NOTE
-Vue Router supports a similar mechanism for asynchronously loading route components, known as *lazy loading*. Despite the similarities, this feature is distinct from Vue's support for async components. You should **not** use `defineAsyncComponent` when configuring route components with Vue Router. You can read more about this in the [Lazy Loading Routes](https://next.router.vuejs.org/guide/advanced/lazy-loading.html) section of the Vue Router documentation.
+Vue Router soporta un mecanismo similar para cargar componentes de ruta asíncronamente, conocido como *cargamiento perezoso (lazy loading)*. Pese a las semejanzas, esta característica es distinta del soporte Vue para components asíncronos. **No** debe utilizar `defineAsyncComponent` cuando configura componentes de ruta con Vue Router. Puede leer más sobre este en la sección [rutas cargadas perezosamente](https://next.router.vuejs.org/guide/advanced/lazy-loading.html) de la documentación de Vue Router.
 :::
 
-Another change that has been made from 2.x is that the `component` option is now renamed to `loader` in order to accurately communicate that a component definition cannot be provided directly.
+Otro cambio que se ha hecho desde 2.x es que la opción `component` ahora es renombrada a `loader` para informar con prcisión que una definición de componente no se puede proveer directamente.
 
 ```js{4}
 import { defineAsyncComponent } from 'vue'
@@ -75,15 +75,15 @@ const asyncModalWithOptions = defineAsyncComponent({
 })
 ```
 
-In addition, unlike 2.x, the loader function no longer receives the `resolve` and `reject` arguments and must always return a Promise.
+Además, al contrario de 2.x, la función de cargador ya no recibe los argumentos `resolve` y `reject` y debe siempre retornar un Promise.
 
 ```js
-// 2.x version
+// versión 2.x
 const oldAsyncComponent = (resolve, reject) => {
   /* ... */
 }
 
-// 3.x version
+// versión 3.x
 const asyncComponent = defineAsyncComponent(
   () =>
     new Promise((resolve, reject) => {
@@ -92,7 +92,7 @@ const asyncComponent = defineAsyncComponent(
 )
 ```
 
-For more information on the usage of async components, see:
+Para más información sobre el uso de componentes asíncronos, vea:
 
-- [Guide: Dynamic & Async Components](/guide/component-dynamic-async.html#dynamic-components-with-keep-alive)
-- [Migration build flag: `COMPONENT_ASYNC`](migration-build.html#compat-configuration)
+- [Guía: Componentes Dinámicos & Asíncronos](/guide/component-dynamic-async.html#dynamic-components-with-keep-alive)
+- [Indicadores de compilación de migración: `COMPONENT_ASYNC`](migration-build.html#compat-configuration)
