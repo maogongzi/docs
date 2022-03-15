@@ -10,7 +10,7 @@ El tutorial asume una familiaridad básica con HTML, CSS y JavaScript. Si eres t
 
 ## Cómo Usar Este Tutorial
 
-Puedes editar el código <span class="narrow">debajo</span> <span class="wide">a la derecha</span> y ver la actualización del resultado al instante. Cada paso introducirá una característica central de Vue, y se espera que completes el código para que la demostración funcione. Si te quedas atascado, tendrás un botón de "¡Muéstrame!" que te mostrará el código en funcionamiento. Trata de no depender demasiado de él: aprenderás más rápido al resolver las cosas por tu cuenta.
+Puedes editar el código <span class="narrow">justo</span> <span class="wide">a la derecha</span> y ver la actualización del resultado al instante. Cada paso introducirá una característica central de Vue, y se espera que completes el código para que la demostración funcione. Si te quedas atascado, tendrás un botón de "¡Muéstrame!" que te mostrará el código en funcionamiento. Trata de no depender demasiado de él: aprenderás más rápido al resolver las cosas por tu cuenta.
 
 Si eres un desarrollador experimentado que viene de Vue 2 u otros frameworks, hay algunas configuraciones que puedes modificar para aprovechar al máximo este tutorial. Si es un principiante, te recomendamos continuar con los valores predeterminados.
 
