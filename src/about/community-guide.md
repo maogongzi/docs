@@ -1,33 +1,33 @@
 ---
-outline: deep
+esbozo: más profundo
 ---
 
-# Community Guide
+# Guía de la comunidad
 
-Vue's community is growing incredibly fast and if you're reading this, there's a good chance you're ready to join it. So... welcome!
+La comunidad de Vue está creciendo increíblemente rápido y si estás leyendo esto, es muy probable que estés listo para unírtenos. Si es así, pues... ¡bienvenido!
 
-Now we'll answer both what the community can do for you and what you can do for the community.
+Ahora explicaremos tanto lo que la comunidad puede hacer por ti como lo que puedes hacer por la comunidad.
 
-## Resources
+## Recursos
 
 ### Code of Conduct
 
-Our [Code of Conduct](/about/coc) is a guide to make it easier to enrich all of us and the technical communities in which we participate.
+Nuestro [Código de Conducta](/about/coc) es una guía para facilitar el enriquecimiento de todos nosotros y de las comunidades técnicas en las que participamos.
 
-### Stay in the Know
+### Mantente Informado
 
-- Follow our [official Twitter account](https://twitter.com/vuejs).
-- Follow our [team members](./team) on Twitter or GitHub.
-- Follow the [RFC discussions](https://github.com/vuejs/rfcs).
-- Subscribe to the [official blog](https://blog.vuejs.org/).
+- Sigue nuestra [cuenta oficial de Twitter](https://twitter.com/vuejs).
+- Sigue a los [miembros del equipo](./team) on Twitter or GitHub.
+- Sigue los [debates del RFC (request for comments)](https://github.com/vuejs/rfcs).
+- Subscríbete al [blog oficial](https://blog.vuejs.org/).
 
-### Get Support
+### Obtener Soporte o Apoyo
 
-- [Discord Chat](https://chat.vuejs.org/): A place for Vue devs to meet and chat in real time.
-- [Forum](https://forum.vuejs.org/): The best place to ask questions and get answers about Vue and its ecosystem.
-- [DEV Community](https://dev.to/t/vue): share and discuss Vue related topics on Dev.to.
-- [Meetups](https://events.vuejs.org/meetups): Want to find local Vue enthusiasts like yourself? Interested in becoming a community leader? We have the help and support you need right here!
-- [GitHub](https://github.com/vuejs): If you have a bug to report or feature to request, that's what the GitHub issues are for. Please respect the rules specified in each repository's issue template.
+- [Chat de Discord](https://chat.vuejs.org/): Un lugar para que los desarrolladores de Vue se reúnan y charlen en tiempo real.
+- [Foro](https://forum.vuejs.org/): El mejor lugar para hacer preguntas y obtener respuestas sobre Vue y su ecosistema.
+- [La Comunidad en DEV](https://dev.to/t/vue): Comparte y discute temas relacionados con Vue en Dev.to.
+- [Meetups](https://events.vuejs.org/meetups): ¿Quiere encontrar entusiastas locales de Vue como tu? ¿Te interesa convertirse en un líder de la comunidad? ¡Tenemos la ayuda y el soporte que necesitas justo aquí!
+- [GitHub](https://github.com/vuejs): Si tiene algún error (bug) que reportar o una funcionalidad que solicitar, para eso están los temas (issues) de GitHub. Por favor, respeta las reglas especificadas en la plantilla de temas de cada repositorio.
 
 ### Explore the Ecosystem
 
