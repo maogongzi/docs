@@ -20,3 +20,17 @@ pnpm run dev
 ## Trabajando en el tema
 
 Si es necesario realizar cambios en el tema, consulta las [instrucciones para el desarrollo del tema junto con los documentos](https://github.com/vuejs/vue-theme#developing-with-real-content).
+
+## Glosario de términos
+
+| Término en Inglés | Traducción Recomendada (queda blanco si no necesita traducirse) | Contexto (cuando se encuentra ambigüedad) | Notas Extras |
+|-------------------|------------------------|-------------------------------------------|--------------|
+| application | aplicación |||
+| app | aplicación || abreviatura de **application**|
+| instance | instancia |||
+| option | opción |||
+| argument | argumento |||
+| selector || selector de CSS ||
+| DOM || elemento DOM ||
+| root component | componente raíz |||
+| Single-File Component | Componente de un solo archivo |||

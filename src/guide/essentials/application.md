@@ -1,32 +1,33 @@
-# Creating a Vue Application
+# Crear una Aplicación Vue
 
-## The application instance
+## La instancia de aplicación
 
-Every Vue application starts by creating a new **application instance** with the [`createApp`](/api/application#createapp) function:
+Cada aplicación Vue empieza mediante crear una nueva **instancia de aplicación** con la función [`createApp`](/api/application#createapp):
+
 
 ```js
 import { createApp } from 'vue'
 
 const app = createApp({
-  /* root component options */
+  /* opciones del componente raíz */
 })
 ```
 
-## The Root Component
+## El componente raíz
 
-The object we are passing into `createApp` is in fact a component. Every app requires a "root component" that can contain other components as its children.
+De hecho, el objeto que pasamos a `createApp` es un componente. Cada aplicación requiere un "componente raíz" que contenga otros componentes como sus hijos.
 
-If you are using Single-File Components, we typically import the root component from another file:
+Si estás utilizando componentes de un solo archivo, típicamente importamos el componente raíz desde otro archivo:
 
 ```js
 import { createApp } from 'vue'
-// import the root component App from a single-file component.
+// importar la aplicación de componente raíz desde un componente de un solo archivo.
 import App from './App.vue'
 
 const app = createApp(App)
 ```
 
-While many examples in this guide only need a single component, most real applications are organized into a tree of nested, reusable components. For example, a Todo application's component tree might look like this:
+Mientras muchos ejemplos en este guía solo necesitan un solo componente, la mayoría de las aplicaciones reales se organizan en un árbol de componentes anidados y reutilizables. Por ejemplo, el árbol de componentes de una aplicación Todo podría verse así:
 
 ```
 App (root component)
@@ -39,11 +40,11 @@ App (root component)
    └─ TodoStatistics
 ```
 
-We will discuss how to define and compose multiple components together in later sections of the guide. Before that, we will focus on what happens inside a single component.
+Hablaremos como definir y componer múltiples componentes juntos en las secciones siguientes del guía. Antes de eso, Nos enfocaremos en qué ocurre dentro de un solo componente.
 
-## Mounting the App
+## Montar la aplicación
 
-An application instance won't render anything until its `.mount()` method is called. It expects a "container" argument, which can either be an actual DOM element or a selector string:
+Una instancia de aplicación no se renderizará de nada hasta que su método `.mount()` sea llamado. Se espera un argumento "container", lo que puede ser un elemento DOM actual o una cadena de caracteres de selector:
 
 ```html
 <div id="app"></div>
