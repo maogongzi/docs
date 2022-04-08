@@ -1,6 +1,6 @@
 # vuejs.org
 
-## Aportando
+## Contribuyendo
 
 Este sitio está construido con [VitePress](https://github.com/vuejs/vitepress) y depende de [@vue/theme](https://github.com/vuejs/vue-theme). El contenido del sitio está escrito en formato Markdown ubicado en `src`. Para ediciones sencillas, puedes editar el archivo directamente en GitHub y generar un Pull Request.
 

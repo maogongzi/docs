@@ -7,8 +7,15 @@ import PartnerList from './PartnerList.vue'
 <template>
   <div class="PartnerPage">
     <PartnerHero>
-      <template #title>Vue Partners</template>
-      <template #lead>Vue Partners are premium shops that provide first-class Vue consulting and development. If your company is interested in being listed as a partner, please <VTLink href="https://airtable.com/shrCQhat57SApJI2l" no-icon>register your interest here</VTLink>.</template>
+      <template #title>Socios de Vue</template>
+      <template #lead
+        >Vue Partners son negocios premium que brindan consultoría y
+        desarrollo de Vue de primera clase. Si su empresa está interesada
+        en aparecer como socio, por favor
+        <VTLink href="https://airtable.com/shrCQhat57SApJI2l" no-icon
+          >registre su interés aquí</VTLink
+        >.</template
+      >
     </PartnerHero>
 
     <PartnerList />

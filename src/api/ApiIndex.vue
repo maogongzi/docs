@@ -66,12 +66,12 @@ function slugify(text: string): string {
 <template>
   <div id="api-index">
     <div class="header">
-      <h1>API Reference</h1>
+      <h1>Referencias de la API</h1>
       <div class="api-filter">
-        <label for="api-filter">Filter</label>
+        <label for="api-filter">Filtro</label>
         <input
           type="search"
-          placeholder="Enter keyword"
+          placeholder="Ingresa la palabra clave"
           id="api-filter"
           v-model="query"
         />
@@ -101,7 +101,7 @@ function slugify(text: string): string {
     </div>
 
     <div v-if="!filtered.length" class="no-match">
-      No API matching "{{ query }}" found.
+      No se encontró ninguna API que coincida con "{{ query }}".
     </div>
   </div>
 </template>

@@ -1,24 +1,24 @@
 <script setup lang="ts">
 import NewsLetter from './NewsLetter.vue'
-import SponsorsGroup from './SponsorsGroup.vue';
-import VueMasteryModal from './VueMasteryModal.vue';
+import SponsorsGroup from './SponsorsGroup.vue'
+import VueMasteryModal from './VueMasteryModal.vue'
 </script>
 
 <template>
   <section id="hero">
     <h1 class="tagline">
-      The
-      <span class="accent">Progressive</span>
-      <br />JavaScript Framework
+      El Framework
+      <span class="accent">Progresivo</span>
+      <br />de JavaScript
     </h1>
     <p class="description">
-      An approachable, performant and versatile framework for building web
-      user interfaces.
+      Un framework accesible, eficaz y versátil para crear interfaces de
+      usuario web.
     </p>
     <p class="actions">
       <vue-mastery-modal />
       <a class="get-started" href="/guide/introduction.html">
-        Get Started
+        Comenzar
         <svg
           class="icon"
           xmlns="http://www.w3.org/2000/svg"
@@ -31,16 +31,21 @@ import VueMasteryModal from './VueMasteryModal.vue';
           />
         </svg>
       </a>
-      <a class="setup" href="/guide/quick-start.html">Install</a>
+      <a class="setup" href="/guide/quick-start.html">Instalar</a>
     </p>
   </section>
 
   <!-- TODO make dynamic based on data -->
   <section id="special-sponsor">
-    <span>Special Sponsor</span>
-    <a href="https://www.dcloud.io/hbuilderx.html?hmsr=vue-en&hmpl=&hmcu=&hmkw=&hmci=">
+    <span>Patrocinador Especial</span>
+    <a
+      href="https://www.dcloud.io/hbuilderx.html?hmsr=vue-en&hmpl=&hmcu=&hmkw=&hmci="
+    >
       <picture>
-        <source type="image/avif" srcset="/images/sponsors/hbuilder.avif" />
+        <source
+          type="image/avif"
+          srcset="/images/sponsors/hbuilder.avif"
+        />
         <img
           alt="hbuilder logo"
           width="97"
@@ -49,37 +54,37 @@ import VueMasteryModal from './VueMasteryModal.vue';
         />
       </picture>
     </a>
-    <span>Advanced IDE for Vue</span>
+    <span>IDE avanzado para Vue</span>
   </section>
 
   <section id="highlights" class="vt-box-container">
     <div class="vt-box">
-      <h2>Approachable</h2>
+      <h2>Accesible</h2>
       <p>
-        Builds on top of standard HTML, CSS and JavaScript with intuitive
-        API and world-class documentation.
+        Basado en los estándares de HTML, CSS y JavaScript con una API
+        intuitiva y documentación de clase mundial.
       </p>
     </div>
     <div class="vt-box">
-      <h2>Performant</h2>
+      <h2>Eficaz</h2>
       <p>
-        Truly reactive, compiler-optimized rendering system that rarely
-        requires manual optimization.
+        Sistema de renderizado verdaderamente reactivo y optimizado por
+        compilador que rara vez requiere optimización manual.
       </p>
     </div>
     <div class="vt-box">
-      <h2>Versatile</h2>
+      <h2>Versátil</h2>
       <p>
-        A rich, incrementally adoptable ecosystem that scales between a
-        library and a full-featured framework.
+        Un ecosistema enriquecido y adoptable de forma incremental que
+        escala entre una librería y un framework con todas sus funciones.
       </p>
     </div>
   </section>
 
   <section id="sponsors">
-    <h2>Platinum Sponsors</h2>
+    <h2>Patrocinadores Platino</h2>
     <SponsorsGroup tier="platinum" placement="landing" />
-    <h2>Gold Sponsors</h2>
+    <h2>Patrocinadores Oro</h2>
     <SponsorsGroup tier="gold" placement="landing" />
   </section>
 

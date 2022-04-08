@@ -6,7 +6,7 @@
       rel="sponsored noopener"
       :title="title"
     >
-      <slot>Watch a free video lesson on Vue School</slot>
+      <slot>Ver una lección de video gratuita en Vue School</slot>
     </a>
   </div>
 </template>
@@ -14,8 +14,8 @@
 export default {
   props: {
     href: { type: String, required: true },
-    title: { type: String, required: true },
-  },
+    title: { type: String, required: true }
+  }
 }
 </script>
 <style scoped>

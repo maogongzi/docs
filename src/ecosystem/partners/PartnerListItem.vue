@@ -33,7 +33,11 @@ const linkIcons = {
     <div class="container">
       <div class="billboard">
         <VTLink class="logo" :href="partner.website.url" no-icon>
-          <img class="logo-image" :src="`/images/partners/${partner.logo}`" :alt="partner.name">
+          <img
+            class="logo-image"
+            :src="`/images/partners/${partner.logo}`"
+            :alt="partner.name"
+          />
         </VTLink>
 
         <div class="social-links">
@@ -44,19 +48,26 @@ const linkIcons = {
             :href="link.url"
             no-icon
           >
-            <component :is="linkIcons[link.type]" class="social-link-icon" />
+            <component
+              :is="linkIcons[link.type]"
+              class="social-link-icon"
+            />
           </VTLink>
         </div>
       </div>
 
       <div class="content">
-        <h1 class="title">About {{ partner.name }}</h1>
-        <p v-for="(lead, index) in partner.description" :key="index" class="description">
+        <h1 class="title">Acerca de {{ partner.name }}</h1>
+        <p
+          v-for="(lead, index) in partner.description"
+          :key="index"
+          class="description"
+        >
           {{ lead }}
         </p>
 
         <section class="proficiencies">
-          <h2 class="title">Proficiencies</h2>
+          <h2 class="title">Competencias</h2>
 
           <ul class="proficiency-list">
             <li
@@ -64,7 +75,12 @@ const linkIcons = {
               :key="proficiency.name"
               class="proficiency-item"
             >
-              <VTLink v-if="proficiency.url" class="proficiency-link" :href="proficiency.url" no-icon>
+              <VTLink
+                v-if="proficiency.url"
+                class="proficiency-link"
+                :href="proficiency.url"
+                no-icon
+              >
                 {{ proficiency.name }}
               </VTLink>
               <span v-else class="proficiency-text">
@@ -80,7 +96,11 @@ const linkIcons = {
               <div class="data-icon">
                 <VTIconLink class="data-icon-svg" />
               </div>
-              <VTLink class="data-link" :href="partner.website.url" no-icon>
+              <VTLink
+                class="data-link"
+                :href="partner.website.url"
+                no-icon
+              >
                 {{ partner.website.text }}
               </VTLink>
             </li>
@@ -89,7 +109,11 @@ const linkIcons = {
                 <VTIconMapPin class="data-icon-svg" />
               </div>
               <ul class="data-texts">
-                <li v-for="location in partner.locations" :key="location" class="data-text">
+                <li
+                  v-for="location in partner.locations"
+                  :key="location"
+                  class="data-text"
+                >
                   {{ location }}
                 </li>
               </ul>
@@ -99,7 +123,11 @@ const linkIcons = {
                 <VTIconGlobe class="data-icon-svg" />
               </div>
               <ul class="data-texts">
-                <li v-for="language in partner.languages" :key="language" class="data-text">
+                <li
+                  v-for="language in partner.languages"
+                  :key="language"
+                  class="data-text"
+                >
                   {{ language }}
                 </li>
               </ul>
@@ -230,7 +258,7 @@ const linkIcons = {
 
 .proficiency-item::after {
   margin-left: 8px;
-  content: "•";
+  content: '•';
   color: var(--vt-c-text-3);
   transition: color 0.25s;
 }
@@ -246,9 +274,15 @@ const linkIcons = {
   transition: color 0.25s;
 }
 
-.proficiency-link       { color: var(--vt-c-brand); }
-.proficiency-link:hover { color: var(--vt-c-brand-dark); }
-.proficiency-text       { color: var(--vt-c-text-1); }
+.proficiency-link {
+  color: var(--vt-c-brand);
+}
+.proficiency-link:hover {
+  color: var(--vt-c-brand-dark);
+}
+.proficiency-text {
+  color: var(--vt-c-text-1);
+}
 
 .data {
   padding-top: 24px;
@@ -308,7 +342,7 @@ const linkIcons = {
 
 .data-text::after {
   margin-left: 8px;
-  content: "•";
+  content: '•';
   color: var(--vt-c-text-3);
   transition: color 0.25s;
 }

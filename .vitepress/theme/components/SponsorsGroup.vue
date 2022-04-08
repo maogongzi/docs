@@ -82,7 +82,7 @@ onMounted(async () => {
       v-if="placement !== 'page' && tier !== 'special'"
       href="/sponsor/"
       class="sponsor-item action"
-      >Your logo</a
+      >Su logo</a
     >
   </div>
 </template>

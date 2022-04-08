@@ -20,11 +20,11 @@ function dismiss() {
 
 <template>
   <div class="banner" v-if="open">
-    Vue 3 is now the new default version!
+    ¡Vue 3 es ahora la nueva versión predeterminada!
     <a
       href="https://blog.vuejs.org/posts/vue-3-as-the-new-default.html"
       target="_blank"
-      >Learn more</a
+      >Aprende más</a
     >
   </div>
 </template>

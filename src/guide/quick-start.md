@@ -2,31 +2,31 @@
 footer: false
 ---
 
-# Quick Start
+# Inicio Rápido
 
-Depending on your use case and preference, you can use Vue with or without a build step.
+Según tu caso de uso y preferencias, puedes usar Vue con o sin un paso de compilación.
 
-## With Build Tools
+## Con Herramientas de Construcción
 
-A build setup allows us to use Vue [Single-File Components](/guide/scaling-up/sfc) (SFCs). The official Vue build setup is based on [Vite](https://vitejs.dev), a frontend build tool that is modern, lightweight and extremely fast.
+Una configuración de desarrollo nos permite usar los [Componentes de un Solo Archivo](/guide/scaling-up/sfc) (SFC) de Vue. La configuración de desarrollo oficial de Vue se basa en [Vite](https://vitejs.dev), una herramienta de compilación frontend que es moderna, ligera y extremadamente rápida.
 
-### Online
+### En Línea
 
-You can try Vue with SFCs online on [StackBlitz](https://vite.new/vue). StackBlitz runs the Vite-based build setup directly in the browser, so it is almost identical to the local setup but doesn't require installing anything on your machine.
+Puedes probar Vue con SFC en línea en [StackBlitz](https://vite.new/vue). StackBlitz ejecuta la configuración de desarrollo basada en Vite directamente en el navegador, por lo que es casi idéntica a la configuración local pero no requiere instalar nada en tu máquina.
 
-### Local
+### En Local
 
-:::tip Pre-requisites
+:::tip Prerrequisitos
 
-- Familiarity with the command line
-- Install [Node.js](https://nodejs.org/)
+- Familiaridad con la línea de comandos.
+- Instalar [Node.js](https://nodejs.org/)
   :::
 
-To create a build-tool-enabled Vue project on your machine, run the following command in your command line (without the `>` sign):
+Para crear un proyecto Vue habilitado para herramientas de compilación en tu máquina, ejecuta el siguiente comando en tu terminal (sin el signo `>`):
 
 <div class="language-sh"><pre><code><span class="line"><span style="color:var(--vt-c-green);">&gt;</span> <span style="color:#A6ACCD;">npm init vue@latest</span></span></code></pre></div>
 
-This command will install and execute [create-vue](https://github.com/vuejs/create-vue), the official Vue project scaffolding tool. You will be presented with prompts for a number of optional features such as TypeScript and testing support:
+Este comando instalará y ejecutará [create-vue](https://github.com/vuejs/create-vue), la herramienta estructural oficial de proyectos de Vue. Se te consultará por una serie de características opcionales, como TypeScript y soporte para testing:
 
 <div class="language-sh"><pre><code><span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Project name: <span style="color:#888;">… <span style="color:#89DDFF;">&lt;</span><span style="color:#888;">your-project-name</span><span style="color:#89DDFF;">&gt;</span></span></span>
 <span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Add TypeScript? <span style="color:#888;">… <span style="color:#89DDFF;text-decoration:underline">No</span> / Yes</span></span>
@@ -41,32 +41,32 @@ This command will install and execute [create-vue](https://github.com/vuejs/crea
 <span style="color:#A6ACCD;">Scaffolding project in ./<span style="color:#89DDFF;">&lt;</span><span style="color:#888;">your-project-name</span><span style="color:#89DDFF;">&gt;</span>...</span>
 <span style="color:#A6ACCD;">Done.</span></code></pre></div>
 
-If you are unsure about an option, simply choose `No` by hitting enter for now. Once the project is created, follow the instructions to install dependencies and start the dev server:
+Si no estás seguro sobre alguna opción, simplemente escoge `No` haciendo enter. Una vez que el proyecto esté creado, sigue las instrucciones para instalar las dependencias e inicializar el servidor de desarrollo:
 
 <div class="language-sh"><pre><code><span class="line"><span style="color:var(--vt-c-green);">&gt; </span><span style="color:#A6ACCD;">cd</span><span style="color:#A6ACCD;"> </span><span style="color:#89DDFF;">&lt;</span><span style="color:#888;">your-project-name</span><span style="color:#89DDFF;">&gt;</span></span>
 <span class="line"><span style="color:var(--vt-c-green);">&gt; </span><span style="color:#A6ACCD;">npm install</span></span>
 <span class="line"><span style="color:var(--vt-c-green);">&gt; </span><span style="color:#A6ACCD;">npm run dev</span></span>
 <span class="line"></span></code></pre></div>
 
-You should now have your first Vue project running! Here are some additional tips:
+¡Ahora deberías tener en ejecución tu primer proyecto de Vue! Hay algunos consejos adicionales:
 
-- The recommended IDE setup is [Visual Studio Code](https://code.visualstudio.com/) + [Volar extension](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar). [WebStorm](https://www.jetbrains.com/webstorm/) is also viable.
-- More tooling details, including integration with backend frameworks, are discussed in the [Tooling Guide](/guide/scaling-up/tooling.html).
-- To learn more about the underlying build tool Vite, check out the [Vite docs](https://vitejs.dev).
-- If you chose to use TypeScript, check out the [TypeScript Usage Guide](typescript/overview.html).
+- La configuración de IDE recomendada es [Visual Studio Code](https://code.visualstudio.com/) + [Extensión Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar). También está disponible para [WebStorm](https://www.jetbrains.com/webstorm/).
+- En la [Guía de Herramientas](/guide/scaling-up/tooling.html) se analizan más detalles sobre las herramientas, incluida la integración con frameworks backend.
+- Para obtener más información sobre la herramienta de compilación subyacente Vite, consulta la [documentación de Vite](https://vitejs.dev).
+- Si eliges usar TypeScript, consulta la [Guía de Uso de TypeScript](typescript/overview.html).
 
-When you are ready to ship your app to production, run the following:
+Cuando estés listo para enviar tu aplicación a producción, ejecuta lo siguiente:
 
 <div class="language-sh"><pre><code><span class="line"><span style="color:var(--vt-c-green);">&gt; </span><span style="color:#A6ACCD;">npm run build</span></span>
 <span class="line"></span></code></pre></div>
 
-This will create a production-ready build of your app in the project's `./dist` directory. Check out the [Production Deployment Guide](/guide/best-practices/production-deployment.html) to learn more about shipping your app to production.
+Esto creará una compilación de tu aplicación lista para producción en el directorio `./dist` del proyecto. Consulta la [Guía de Implementación de Producción](/guide/best-practices/production-deployment.html) para obtener más información sobre cómo enviar tu aplicación a producción.
 
-[Next Steps >](#next-steps)
+[Próximos Pasos >](#next-steps)
 
-## Without Build Tools
+## Sin Herramientas de Construcción
 
-To get started with Vue without a build step, simply copy the following code into an HTML file and open it in your browser:
+Para comenzar con Vue sin un paso de compilación, simplemente copia el siguiente código en un archivo HTML y ábrelo en tu navegador:
 
 ```html
 <script src="https://unpkg.com/vue@3"></script>
@@ -84,9 +84,9 @@ To get started with Vue without a build step, simply copy the following code int
 </script>
 ```
 
-The above example uses the global build of Vue where all APIs are exposed under the global `Vue` variable.
+El ejemplo anterior usa la compilación global de Vue donde todas las API están expuestas bajo la variable global `Vue`.
 
-While the global build works, we will be primarily using [ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) syntax throughout the rest of the documentation for consistency. In order to use Vue over native ES modules, use the following HTML instead:
+Si bien la compilación global funciona, usaremos principalmente la sintaxis de [módulos ES](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) en el resto de la documentación para mantener la coherencia. Para usar Vue sobre módulos ES nativos, usa el siguiente HTML en lugar del anterior:
 
 ```html
 <script type="importmap">
@@ -112,17 +112,17 @@ While the global build works, we will be primarily using [ES modules](https://de
 </script>
 ```
 
-Notice how we can import directly from `'vue'` in our code - this is made possible by the `<script type="importmap">` block, leveraging a native browser feature called [Import Maps](https://caniuse.com/import-maps). Import maps are currently only available in Chromium-based browsers, so we recommend using Chrome or Edge during the learning process. If your preferred browser does not support import maps yet, you can polyfill it with [es-module-shims](https://github.com/guybedford/es-module-shims).
+Observa cómo podemos importar directamente desde `'vue'` en nuestro código; esto es posible gracias al bloque `<script type="importmap">`, que aprovecha una característica nativa del navegador llamada [Import Maps](https://caniuse.com/import-maps). Actualmente, la importación de mapas solo está disponible en navegadores basados ​​en Chromium, por lo que recomendamos usar Chrome o Edge durante el proceso de aprendizaje. Si tu navegador preferido aún no admite la importación de mapas, puedes usar polyfill con [es-module-shims](https://github.com/guybedford/es-module-shims).
 
-You can add entries for other dependencies to the import map - just make sure they point to the ES modules version of the library you intend to use.
+Puedes agregar entradas para otras dependencias al mapa de importación; solo asegúrate de que apunten a la versión de módulos ES de la biblioteca que pretendes usar.
 
-:::tip Not for production
-The import-maps-based setup is meant for learning only - if you intend to use Vue without build tools in production, make sure to check out the [Production Deployment Guide](/guide/best-practices/production-deployment.html#without-build-tools).
+:::tip No para producción
+La configuración basada en la importación de mapas está diseñada solo para el aprendizaje; si tienes la intención de usar Vue sin herramientas de compilación en producción, asegúrate de consultar la [Guía de Implementación de Producción](/guide/best-practices/production-deployment.html#).
 :::
 
-### Serving over HTTP
+### Servicio a través de HTTP
 
-As we dive deeper into the guide, we may need to split our code into separate JavaScript files so that they are easier to manage. For example:
+A medida que profundizamos en la guía, es posible que necesitemos dividir nuestro código en archivos JavaScript separados para que sean más fáciles de manejar. Por ejemplo:
 
 ```html
 <!-- index.html -->
@@ -144,25 +144,25 @@ export default {
 }
 ```
 
-In order for this to work, you need to serve your HTML over the `http://` protocol instead of `file://` protocol. To start a local HTTP server, first install [Node.js](https://nodejs.org/en/), and then run `npx serve` from the command line in the same directory where your HTML file is. You can also use any other HTTP server that can serve static files with correct MIME types.
+Para que esto funcione, debe servir tu HTML sobre el protocolo `http://` en lugar del protocolo `file://`. Para iniciar un servidor HTTP local, primero instala [Node.js](https://nodejs.org/en/), y luego ejecuta `npx serve` desde la línea de comandos en el mismo directorio donde se encuentra tu archivo HTML. Puedes usar también cualquier otro servidor HTTP que pueda servir archivos estáticos con los tipos MIME correctos.
 
-You may have noticed that the imported component's template is inlined as a JavaScript string. If you are using VSCode, you can install the [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) extension and prefix the strings with a `/*html*/` comment to get syntax highlighting for them.
+Es posible que hayas notado que la template del componente importado está integrada como un string de JavaScript. Si estás utilizando VSCode, puedes instalar la extensión [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) y prefijar las cadenas con un comentario `/*html*/` para que sea resaltada la sintaxis de los mismos.
 
-## Next Steps
+## Próximos Pasos
 
-If you skipped the [Introduction](/guide/introduction), we strongly recommend reading it before moving on to the rest of the documentation.
+Si te saltaste la [Introducción](/guide/introduction), te recomendamos encarecidamente que la leas antes de pasar al resto de la documentación.
 
 <div class="vt-box-container next-steps">
   <a class="vt-box" href="/guide/essentials/application.html">
-    <p class="next-steps-link">Continue the Guide</p>
-    <p class="next-steps-caption">The guide walks you through every aspect of the framework in full details.</p>
+    <p class="next-steps-link">Continúa con la Guía</p>
+    <p class="next-steps-caption">La guía te lleva a través de cada aspecto del framework con todos sus detalles.</p>
   </a>
   <a class="vt-box" href="/tutorial/">
-    <p class="next-steps-link">Try the Tutorial</p>
-    <p class="next-steps-caption">For those who prefer learning things hands-on.</p>
+    <p class="next-steps-link">Prueba el Tutorial</p>
+    <p class="next-steps-caption">Para aquellos que prefieren aprender las cosas de forma práctica.</p>
   </a>
   <a class="vt-box" href="/examples/">
-    <p class="next-steps-link">Check out the Examples</p>
-    <p class="next-steps-caption">Explore examples of core features and common UI tasks.</p>
+    <p class="next-steps-link">Mira los Ejemplos</p>
+    <p class="next-steps-caption">Explora ejemplos de las principales características y las tareas comunes de la UI.</p>
   </a>
 </div>

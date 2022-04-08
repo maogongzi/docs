@@ -3,7 +3,7 @@
     "name": "Vehikl",
     "logo": "vehikl.png",
     "description": [
-      "Vehikl is a software consultancy specialising in PHP and JavaScript. We build best-in-class web applications written with popular frameworks such as Laravel, Express, NestJS, Vue, and React. Think of us as an extension of your team."
+      "Vehikl es una consultora de software especializada en PHP y JavaScript. Creamos las mejores aplicaciones web de su clase escritas con frameworks populares tales como Laravel, Express, NestJS, Vue y React. Piense en nosotros como una extensión de su equipo."
     ],
     "proficiencies": [
       { "name": "VueJs", "url": "https://vuejs.org" },
@@ -11,8 +11,8 @@
       { "name": "Node", "url": "https://nodejs.org" },
       { "name": "Team Augmentation" }
     ],
-    "locations": ["Ontario", "Canada"],
-    "languages": ["English"],
+    "locations": ["Ontario", "Canadá"],
+    "languages": ["Inglés"],
     "website": {
       "text": "www.vehikl.com",
       "url": "https://www.vehikl.com?utm_source=vue_partners_page"
@@ -21,15 +21,18 @@
       { "type": "email", "url": "mailto:go+partner@vehikl.com" },
       { "type": "github", "url": "https://github.com/vehikl" },
       { "type": "twitter", "url": "https://twitter.com/vehikl" },
-      { "type": "instagram", "url": "https://www.instagram.com/vehiklteam/" }
+      {
+        "type": "instagram",
+        "url": "https://www.instagram.com/vehiklteam/"
+      }
     ]
   },
   {
     "name": "Modus Create",
     "logo": "modus.png",
     "description": [
-      "Modus Create is a disruptive consulting firm that helps companies transform for success in the digital future. Clients work with Modus to effect transformational change through a unique collaborative engagement model that focuses on strategy, product design/build, user experience, company culture, and process change to accelerate their response to digital disruption.",
-      "Modus is uniquely expert at executing within the new reality of global talent sourcing and globally distributed teams. Modus culture is based on recruiting only top talent regardless of their location. Modus delivers time zone-aligned, highly productive, English-speaking teams, accessibility, and a totally collaborative environment regardless of individual location."
+      "Modus Create es una firma de consultora disruptiva que ayuda a las empresas a transformarse para tener éxito en el futuro digital. Los clientes trabajan con Modus para lograr un cambio transformador a través de un modelo único de compromiso colaborativo enfocade en la estrategia, el diseño/construcción de productos, la experiencia del usuario, la cultura empresarial y el cambio de procesos para acelerar su respuesta a la disrupción digital.",
+      "Modus es excepcionalmente experto en la ejecución dentro de la nueva realidad de abastecimiento de talento global y equipos globalmente distribuidos. La cultura de Modus se basa en reclutar solo a los mejores talentos, independientemente de su ubicación. Modus ofrece equipos alineados con la zona horaria, altamente productivos, de habla inglesa, con accesibilidad y un entorno totalmente colaborativo independientemente de la ubicación individual."
     ],
     "proficiencies": [
       {
@@ -65,8 +68,13 @@
         "url": "https://moduscreate.com/what-we-do/cloud-migration/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage"
       }
     ],
-    "locations": ["Reston, VA, USA", "Los Angeles, CA, USA", "Cluj, Romania", "San José, Costa Rica"],
-    "languages": ["English", "Global"],
+    "locations": [
+      "Reston, VA, USA",
+      "Los Angeles, CA, USA",
+      "Cluj, Romania",
+      "San José, Costa Rica"
+    ],
+    "languages": ["Inglés", "Global"],
     "website": {
       "text": "moduscreate.com",
       "url": "https://moduscreate.com/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage"
@@ -75,7 +83,10 @@
       { "type": "email", "url": "mailto:contact@moduscreate.com" },
       { "type": "github", "url": "https://github.com/ModusCreateOrg" },
       { "type": "twitter", "url": "https://twitter.com/ModusCreate" },
-      { "type": "linkedin", "url": "https://www.linkedin.com/company/modus-create-inc" },
+      {
+        "type": "linkedin",
+        "url": "https://www.linkedin.com/company/modus-create-inc"
+      },
       { "type": "youtube", "url": "https://www.youtube.com/moduscreate" }
     ]
   },
@@ -83,7 +94,7 @@
     "name": "Monterail",
     "logo": "monterail.png",
     "description": [
-      "Monterail is a full-service software development company with 110+ experts on board delivering meaningful software for start-ups, SMBs and enterprises. We are organizers of the first official Vue-related conference in the world and authors of the State of Vue.js report (2017&2019). Our experts delivered 30 Vue.js-based projects so far."
+      "Monterail es una empresa de desarrollo de software de servicio completo con más de 110 expertos a bordo que ofrecen software significativo para start-ups, PYMEs y corporaciones. Somos organizadores de la primera conferencia oficial relacionada con Vue en el mundo y autores del informe State of Vue.js (2017 y 2019). Nuestros expertos han entregado 30 proyectos basados en Vue.js hasta el momento."
     ],
     "proficiencies": [
       {
@@ -112,7 +123,7 @@
       }
     ],
     "locations": ["Wrocław, Poland"],
-    "languages": ["English", "Polish"],
+    "languages": ["Inglés", "Polaco"],
     "website": {
       "text": "www.monterail.com",
       "url": "https://www.monterail.com/services/vue-development?utm_campaign=Vue.js&utm_source=partner-list"
@@ -120,17 +131,23 @@
     "links": [
       { "type": "email", "url": "mailto:hello@monterail.com" },
       { "type": "github", "url": "https://github.com/monterail" },
-      { "type": "linkedin", "url": "https://www.linkedin.com/company/monterail" },
+      {
+        "type": "linkedin",
+        "url": "https://www.linkedin.com/company/monterail"
+      },
       { "type": "facebook", "url": "https://www.facebook.com/monterail/" },
       { "type": "twitter", "url": "https://twitter.com/monterail" },
-      { "type": "instagram", "url": "https://www.instagram.com/monterail/" }
+      {
+        "type": "instagram",
+        "url": "https://www.instagram.com/monterail/"
+      }
     ]
   },
   {
     "name": "Rangle",
     "logo": "rangle.png",
     "description": [
-      "Rangle is a global digital consultancy that helps ambitious organizations outperform the competition in the most demanding markets. We work closely with our clients as one team to imagine, design, and deliver human-centered digital experiences that create lasting results and real business value. Anchored in innovation and lean startup best-practices, our unique delivery and partnership model is purposed-built to this task."
+      "Rangle es una consultora digital global que ayuda a organizaciones ambiciosas a superar a la competencia en los mercados más exigentes. Trabajamos en estrecha colaboración con nuestros clientes como un solo equipo para imaginar, diseñar y ofrecer experiencias digitales centradas en el ser humano que crean resultados duraderos y valor comercial real. Anclado en la innovación y las mejores prácticas de puesta en marcha eficiente, nuestro modelo único de entrega y asociación está diseñado específicamente para esta tarea."
     ],
     "proficiencies": [
       {
@@ -154,8 +171,13 @@
         "url": "https://rangle.io/#transform-your-business/?utm_source=referral&utm_medium=partner&utm_campaign=vue-partners"
       }
     ],
-    "locations": ["Toronto, ON, CA", "Atlanta, GA, USA", "Amsterdam, Netherlands", "Tokyo, Japan"],
-    "languages": ["English", "French", "Dutch"],
+    "locations": [
+      "Toronto, ON, CA",
+      "Atlanta, GA, USA",
+      "Amsterdam, Netherlands",
+      "Tokyo, Japan"
+    ],
+    "languages": ["Inglés", "Francés", "Alemán"],
     "website": {
       "text": "rangle.io",
       "url": "https://rangle.io/?utm_source=referral&utm_medium=partner&utm_campaign=vue-partners"
@@ -163,9 +185,15 @@
     "links": [
       { "type": "email", "url": "mailto:info@rangle.io" },
       { "type": "github", "url": "https://github.com/rangle" },
-      { "type": "linkedin", "url": "https://www.linkedin.com/company/rangle/" },
+      {
+        "type": "linkedin",
+        "url": "https://www.linkedin.com/company/rangle/"
+      },
       { "type": "twitter", "url": "https://twitter.com/rangleio" },
-      { "type": "instagram", "url": "https://www.instagram.com/rangleio/?hl=en" }
+      {
+        "type": "instagram",
+        "url": "https://www.instagram.com/rangleio/?hl=en"
+      }
     ]
   }
 ]

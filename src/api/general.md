@@ -1,12 +1,12 @@
-# Global API: General
+# API Global: General
 
-## version
+## versión
 
-Exposes the current version of Vue.
+Expone la versión actual de Vue.
 
-- **Type:** `string`
+- **Tipo:** `string`
 
-- **Example**
+- **Ejemplo**
 
   ```js
   import { version } from 'vue'
