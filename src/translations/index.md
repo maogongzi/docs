@@ -1,5 +1,5 @@
 ---
-apartado: false
+aside: false
 ---
 
 # Traducciones <sup class="vt-badge wip" />
